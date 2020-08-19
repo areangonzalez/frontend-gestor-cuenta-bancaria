@@ -1,0 +1,32 @@
+body {
+  overflow: hidden;
+  background-color: #eeeeee;
+}
+.app-container {
+  position: absolute;
+  width: 100%;
+  overflow-y: auto;
+  top:66px;
+  height: 90%;
+}
+.container-fluid {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.texto-responsive {
+  overflow-wrap: break-word;
+}
+td {
+  word-break: break-all;
+}
+/* estilos para los campos de busqueda avanzada */
+.campo-seleccionado {
+  color: #495057;
+  background-color: #fff;
+  border: groove #8cc63f;
+  outline: 0
+}
+.campo-seleccionado:focus {
+  border: #8cc63f;
+  box-shadow: 0 0 0 0.2rem #8cc63f;
+}
