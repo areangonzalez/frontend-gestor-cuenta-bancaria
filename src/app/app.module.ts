@@ -6,6 +6,8 @@ import es from "@angular/common/locales/es";
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './shared/shared.module';
 
 registerLocaleData(es);
 
@@ -16,7 +18,9 @@ registerLocaleData(es);
   imports: [
     BrowserModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es-AR' }
