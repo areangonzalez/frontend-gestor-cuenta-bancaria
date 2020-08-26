@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SistemaComponent } from './layout/sistema/sistema.component';
+import { LoginComponent } from './layout/login/login.component';
 // import { CabeceraComponent } from './layout';
 
 
@@ -11,7 +12,8 @@ import { SistemaComponent } from './layout/sistema/sistema.component';
 @NgModule({
   declarations: [
     // CabeceraComponent
-  SistemaComponent],
+  SistemaComponent,
+    LoginComponent],
   imports: [
     CommonModule,
     FormsModule, ReactiveFormsModule,
