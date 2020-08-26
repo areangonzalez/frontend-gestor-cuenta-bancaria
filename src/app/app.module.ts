@@ -7,13 +7,12 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
-import { SharedModule, CabeceraComponent } from './shared';
+import { SharedModule } from './shared';
 
 registerLocaleData(es);
 
 @NgModule({
   declarations: [
-    CabeceraComponent,
     AppComponent
   ],
   imports: [
