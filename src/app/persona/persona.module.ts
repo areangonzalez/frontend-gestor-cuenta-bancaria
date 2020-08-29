@@ -1,15 +1,14 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../shared';
 import { PersonaComponent } from './persona.component';
-
+import { PersonaRoutingModule } from './persona-routing.module';
+import { SharedModule } from '../shared';
 
 @NgModule({
-  declarations: [
-    PersonaComponent
-  ],
+  declarations: [ PersonaComponent ],
   imports: [
-    CommonModule, SharedModule
-  ]
+    CommonModule, PersonaRoutingModule
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PersonaModule { }

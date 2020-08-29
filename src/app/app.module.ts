@@ -3,17 +3,19 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from "@angular/common";
 import es from "@angular/common/locales/es";
 
-import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
-import { SharedModule } from './shared';
+
+import { AppComponent } from './app.component';
+import { SharedModule, SistemaComponent, LoginComponent } from './shared';
 
 registerLocaleData(es);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SistemaComponent, LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,7 @@ registerLocaleData(es);
   providers: [
     { provide: LOCALE_ID, useValue: 'es-AR' }
   ],
-  bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
