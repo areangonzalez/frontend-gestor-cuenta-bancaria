@@ -7,7 +7,7 @@ import { SharedModule } from '../shared';
 @NgModule({
   declarations: [ PersonaComponent ],
   imports: [
-    CommonModule, PersonaRoutingModule
+    CommonModule, SharedModule, PersonaRoutingModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

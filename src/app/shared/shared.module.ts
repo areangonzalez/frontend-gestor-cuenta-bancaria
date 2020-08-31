@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CabeceraComponent } from './layout';
+import { AltaPersonaComponent } from './lista';
 
 @NgModule({
   declarations: [
     CabeceraComponent,
+    AltaPersonaComponent,
+
   ],
   imports: [
     CommonModule,
@@ -18,7 +21,8 @@ import { CabeceraComponent } from './layout';
     CommonModule,
     FormsModule, ReactiveFormsModule,
     NgbModule,
-    CabeceraComponent
+    CabeceraComponent,
+    AltaPersonaComponent,
   ]
 })
 export class SharedModule { }

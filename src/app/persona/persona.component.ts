@@ -7,9 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonaComponent implements OnInit {
 
-  constructor() {
-    console.log("llega");
-   }
+  constructor() {}
 
 
   ngOnInit(): void {
