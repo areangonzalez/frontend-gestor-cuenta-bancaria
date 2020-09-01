@@ -1,7 +1,7 @@
-<div class="row">
-  <div class="col-md-12">
+<fieldset>
+  <div class="form-group">
     <div class="input-group">
-      <input class="form-control" >
+      <input class="form-control" [(ngModel)]="global_param" placeholder="Buscar por Nro Documento, Apellido, Nombre, Cuit">
       <div class="input-group-append">
         <button type="button" class="btn btn-outline-primary"><i class="fas fa-search"></i></button>
         <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></button>
@@ -9,64 +9,58 @@
       </div>
     </div>
   </div>
-</div>
-<div class="row mt-2">
-  <div class="col-md-4">
-    <button type="button" class="btn btn-md btn-outline-primary">
-      Búsqueda Avanzada <i class="fas fa-angle-down"></i> <i class="fas fa-angle-up"></i>
-    </button>
-  </div>
-  <div class="col-md-12 mt-2">
-    <div class="card">
-      <div class="card-body">
-        <fieldset [formGroup]="busquedaAvanzada">
-          <div class="row">
-            <div class="form-group col-md-4">
-              <label for="fecha_desde" class="prioridad">Ingreso Desde/Hasta:</label>
-              <div class="input-group">
-                <input class="form-control input-append"
-                placeholder="Desde: dd/mm/yyyy"
-                ngbDatepicker
-                #datePicker="ngbDatepicker"
-                id="fecha_desde"
-                formControlName="fechaDesde"
-                (ngModelChange)="formatFecha($event, 'fecha_desde');"
-                [ngClass]="{'campo-seleccionado': marcarCampo(busquedaAvanzada.get('fechaDesde').value)}"
-                [displayMonths]="2"
-                [navigation]="'select'"
-                [dayTemplate]="t"
-                [autoClose]="false" >
-                <input class="form-control" #c1 placeholder="Hasta: dd/mm/yyyy" ngbDatepicker #fb="ngbDatepicker"
-                id="fecha_hasta" formControlName="fechaHasta" (ngModelChange)="formatFecha($event, 'fecha_hasta')" [ngClass]="{'campo-seleccionado': marcarCampo(busquedaAvanzada.get('fechaHasta').value)}"
-                >
-                <div class="input-group-prepend">
-                    <button class="btn btn-outline-info" (click)="abrirDp()" type="button">
-                      <i class="far fa-calendar-alt" title="Fecha desde/hasta" aria-hidden="true"></i>
-                    </button>
-                </div>
-                <ngb-datepicker #db (select)="onDateSelection($event)" class="dp-style" [ngClass]="{'d-block': mostrarDp, 'd-none': !mostrarDp}" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" [container]="'body'" ></ngb-datepicker>
-                <ng-template #t let-date let-focused="focused">
-                    <span class="custom-day"
-                          [class.focused]="focused"
-                          [class.range]="isRange(date)"
-                          [class.faded]="isHovered(date) || isInside(date)"
-                          (mouseenter)="hoveredDate = date"
-                          (mouseleave)="hoveredDate = null">
-                      {{ date.day }}
-                    </span>
-                  </ng-template>
+  <button type="button" class="btn btn-md" (click)="mostrarBusquedaAvanzada()" [ngClass]="{'btn-success': btnSeleccion, 'btn-outline-primary': !btnSeleccion}">
+    Búsqueda Avanzada <i *ngIf="!mostrar" class="fas fa-angle-down"></i> <i *ngIf="mostrar" class="fas fa-angle-up"></i>
+  </button>
+  <div class="card mt-1" *ngIf="mostrar">
+    <div class="card-body">
+      <fieldset [formGroup]="busquedaAvanzada">
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label for="fecha_desde" class="prioridad">Ingreso Desde/Hasta:</label>
+            <div class="input-group">
+              <input class="form-control input-append"
+              placeholder="Desde: dd/mm/yyyy"
+              ngbDatepicker
+              #datePicker="ngbDatepicker"
+              id="fecha_desde"
+              formControlName="fechaDesde"
+              (ngModelChange)="formatFecha($event, 'fecha_desde');"
+              [ngClass]="{'campo-seleccionado': marcarCampo(busquedaAvanzada.get('fechaDesde').value)}"
+              [displayMonths]="2"
+              [navigation]="'select'"
+              [dayTemplate]="t"
+              [autoClose]="false" >
+              <input class="form-control" #c1 placeholder="Hasta: dd/mm/yyyy" ngbDatepicker #fb="ngbDatepicker"
+              id="fecha_hasta" formControlName="fechaHasta" (ngModelChange)="formatFecha($event, 'fecha_hasta')" [ngClass]="{'campo-seleccionado': marcarCampo(busquedaAvanzada.get('fechaHasta').value)}"
+              >
+              <div class="input-group-prepend">
+                  <button class="btn btn-outline-info" (click)="abrirDp()" type="button">
+                    <i class="far fa-calendar-alt" title="Fecha desde/hasta" aria-hidden="true"></i>
+                  </button>
               </div>
-            </div>
-            <div class="col-md-4">
-              <label for="localidadid">Localidad</label>
-              <select class="form-control">
-                <option value="">Seleccionar Localidad</option>
-                <option value="1">Viedma</option>
-              </select>
+              <ngb-datepicker #db (select)="onDateSelection($event)" class="dp-style" [ngClass]="{'d-block': mostrarDp, 'd-none': !mostrarDp}" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" [container]="'body'" ></ngb-datepicker>
+              <ng-template #t let-date let-focused="focused">
+                  <span class="custom-day"
+                        [class.focused]="focused"
+                        [class.range]="isRange(date)"
+                        [class.faded]="isHovered(date) || isInside(date)"
+                        (mouseenter)="hoveredDate = date"
+                        (mouseleave)="hoveredDate = null">
+                    {{ date.day }}
+                  </span>
+                </ng-template>
             </div>
           </div>
-        </fieldset>
-      </div>
+          <div class="col-md-4">
+            <label for="localidadid">Localidad</label>
+            <select class="form-control" formControlName="localidadid">
+              <option value="">Seleccionar Localidad</option>
+              <option value="1">Viedma</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
     </div>
   </div>
-</div>
+</fieldset>

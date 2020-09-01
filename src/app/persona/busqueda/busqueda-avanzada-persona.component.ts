@@ -9,8 +9,10 @@ import { UtilService } from '../../core/services';
   styleUrls: ['./busqueda-avanzada-persona.component.scss']
 })
 export class BusquedaAvanzadaPersonaComponent implements OnInit {
+  public global_param:string = '';
   public busquedaAvanzada: FormGroup;
-
+  public mostrar: boolean = false;
+  public btnSeleccion: boolean = false;
 
   // Variables para calendarios
   public hoveredDate: NgbDate | null = null; // Resalta la fecha
@@ -23,13 +25,19 @@ export class BusquedaAvanzadaPersonaComponent implements OnInit {
       fechaDesde: '',
       fecha_desde: '',
       fechaHasta: '',
-      fecha_hasta: ''
+      fecha_hasta: '',
+      localidadid: ''
     });
   }
 
   ngOnInit(): void {
   }
-
+  /**
+   * Muestra/Oculta los campos de busqueda avanzada
+   */
+  public mostrarBusquedaAvanzada(){
+    return this.mostrar = !this.mostrar;
+  }
   /**
    * Formatea la fecha para una variable del formulario
    * @param obj [any] objecto de fecha
