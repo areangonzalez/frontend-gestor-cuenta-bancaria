@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AltaPersonaComponent implements OnInit {
 
+  public configPaginacion = { colleccionSize: 30, page: 1, pageSize: 20 }
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  cambioPagina(pagina:number){
+    console.log(pagina);
   }
 
 }
