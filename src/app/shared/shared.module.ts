@@ -4,11 +4,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CabeceraComponent } from './layout';
 import { AltaPersonaComponent } from './lista';
+import { RegistrarPersonaComponent } from './formulario/registrar-persona.component';
 
 @NgModule({
   declarations: [
     CabeceraComponent,
     AltaPersonaComponent,
+    RegistrarPersonaComponent,
 
   ],
   imports: [
