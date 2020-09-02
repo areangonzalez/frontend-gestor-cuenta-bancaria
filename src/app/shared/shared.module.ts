@@ -4,13 +4,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CabeceraComponent } from './layout';
 import { AltaPersonaComponent } from './lista';
-import { RegistrarPersonaComponent } from './formulario/registrar-persona.component';
+import { RegistrarPersonaComponent } from './formulario';
+import { CrearPersonaContent, CrearPersonaComponent } from './modal';
 
 @NgModule({
   declarations: [
     CabeceraComponent,
     AltaPersonaComponent,
     RegistrarPersonaComponent,
+    CrearPersonaContent, CrearPersonaComponent,
 
   ],
   imports: [
@@ -25,6 +27,7 @@ import { RegistrarPersonaComponent } from './formulario/registrar-persona.compon
     NgbModule,
     CabeceraComponent,
     AltaPersonaComponent,
+    CrearPersonaContent, CrearPersonaComponent,
   ]
 })
 export class SharedModule { }
