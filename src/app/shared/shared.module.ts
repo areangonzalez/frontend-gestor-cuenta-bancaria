@@ -4,14 +4,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CabeceraComponent } from './layout';
 import { AltaPersonaComponent } from './lista';
-import { RegistrarPersonaComponent } from './formulario';
+import { RegistrarPersonaComponent, FormLugarComponent } from './formulario';
 import { CrearPersonaContent, CrearPersonaComponent } from './modal';
 
 @NgModule({
   declarations: [
     CabeceraComponent,
     AltaPersonaComponent,
-    RegistrarPersonaComponent,
+    RegistrarPersonaComponent, FormLugarComponent,
     CrearPersonaContent, CrearPersonaComponent,
 
   ],
@@ -27,6 +27,7 @@ import { CrearPersonaContent, CrearPersonaComponent } from './modal';
     NgbModule,
     CabeceraComponent,
     AltaPersonaComponent,
+    RegistrarPersonaComponent, FormLugarComponent,
     CrearPersonaContent, CrearPersonaComponent,
   ]
 })

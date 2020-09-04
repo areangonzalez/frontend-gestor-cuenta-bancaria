@@ -1,1 +1,118 @@
-<p>registrar-persona works!</p>
+<div class="d-flex justify-content-between">
+  <div class="col-4 pt-1"><hr></div>
+  <div class="col-4 text-center"><h3><small class="text-muted">Datos Personales</small></h3></div>
+  <div class="col-4 pt-1"><hr></div>
+</div>
+<fieldset [formGroup]="personaForm">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="tipo_documentoid">Tipo Documento:</label>
+        <select class="form-control" id="tipo_documento">
+          <option value="">Seleccionar Tipo Documento</option>
+          <option value="1">DNI</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="nro_documento">Nro. Documento:</label>
+        <input type="text" class="form-control" placeholder="Ej.: 3246789" id="nro_documento">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="cuil">Cuil:</label>
+        <div class="input-group">
+          <input type="text" class="form-control col-3" id="cuil_primero" placeholder="20">
+          <div class="input-group-addon div-cuil-num-center">3246789</div>
+          <input type="text" class="form-control col-3" id="cuil_ultimo" placeholder="8">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" class="form-control" placeholder="Ej.: Cullumilla">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" class="form-control" placeholder="EJ.; Pedro">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="nacionalidad">Nacionalidad:</label>
+        <select class="form-control" id="nacionalidad">
+          <option value="">Seleccionar Nacionalidad</option>
+          <option value="1">Argentino/a</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="fecha_nacimiento">Fecha Nacimiento:</label>
+        <div class="input-group">
+          <input class="form-control" #c1 placeholder="Ej.: dd/mm/yyyy" ngbDatepicker #fpd="ngbDatepicker"
+          id="fecha_nacimiento" formControlName="fechaNacimiento" > <!-- (ngModelChange)="formatFechaNacimiento($event)" [ngClass]="{'is-invalid': (formPersona.get('fechaNacimiento').invalid && submitted)}" -->
+          <div class="input-group-append">
+              <button class="btn btn-outline-info" (click)="fpd.toggle()" type="button"> <!-- [ngClass]="{'btn-outline-danger': (formPersona.get('fechaNacimiento').invalid && submitted), 'is-invalid': (formPersona.get('fechaNacimiento').invalid && submitted)}" -->
+                <i class="far fa-calendar-alt"></i>
+              </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="estado_civil">Estado Civil:</label>
+        <select class="form-control" id="estado_civil">
+          <option value="">Seleccionar Estado Civil</option>
+          <option value="1">Soltero</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="sexo">Sexo / Género:</label>
+        <div class="input-group">
+          <select class="form-control" id="sexo">
+            <option value="">Sexo</option>
+            <option value="1">Femenino</option>
+          </select>
+          <select class="form-control" id="genero">
+            <option value="">Género</option>
+            <option value="1">Mujer</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="telefono">Telefono:</label>
+        <input type="text" id="telefono" class="form-control" placeholder="Ej.: 2920 - 437683">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="celular">Celular:</label>
+        <input type="text" id="celular" class="form-control" placeholder="Ej.: 2920 - 254693">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="email">Mail:</label>
+        <input type="text" id="email" class="form-control" placeholder="Ej.: 2920 - 254693">
+      </div>
+    </div>
+  </div>
+</fieldset>
+<shared-form-lugar [lugar]="personaForm.get('lugar')"></shared-form-lugar>

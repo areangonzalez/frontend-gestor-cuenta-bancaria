@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-between">
+  <div class="col-4 pt-1"><hr></div>
+  <div class="col-4 text-center"><h3><small class="text-muted">Dirección</small></h3></div>
+  <div class="col-4 pt-1"><hr></div>
+</div>
+<fieldset [formGroup]="lugar">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="localidad">Localidad:</label>
+        <select class="form-control" id="localidad">
+          <option value="">Seleccionar Localidad</option>
+          <option value="1">Viedma</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="calle">Calle:</label>
+        <input type="text" id="calle" class="form-control" placeholder="Ej.: México">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="altura">Número:</label>
+        <input type="text" id="altura" class="form-control" placeholder="Ej.: 345">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="escalera">Escalera/Modúlo:</label>
+        <input type="text" id="escalera" class="form-control" placeholder="Ej.: 6">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="piso">Piso:</label>
+        <input type="text" id="piso" class="form-control" placeholder="Ej.: 2">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="depto">Departamento:</label>
+        <input type="text" id="depto" class="form-control" placeholder="Ej.: B">
+      </div>
+    </div>
+  </div>
+</fieldset>

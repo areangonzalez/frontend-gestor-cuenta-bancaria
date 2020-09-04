@@ -15,6 +15,7 @@ export class RegistrarPersonaComponent implements OnInit {
       cuil: '',
       apellido: '',
       nombre: '',
+      fechaNacimiento: '',
       fecha_nacimiento: '',
       estado_civilid: '',
       sexoid: '',
