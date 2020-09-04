@@ -8,6 +8,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class FormLugarComponent implements OnInit {
   @Input("lugar") public lugar: FormGroup;
+  @Input("submitted") public submitted: boolean;
 
   constructor() { }
 

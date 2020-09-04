@@ -8,7 +8,7 @@
     <div class="col-md-4">
       <div class="form-group">
         <label for="localidad">Localidad:</label>
-        <select class="form-control" id="localidad">
+        <select class="form-control" id="localidad" formControlName="localidadid" [ngClass]="{'is-invalid': (lugar.get('localidadid').invalid && submitted)}">
           <option value="">Seleccionar Localidad</option>
           <option value="1">Viedma</option>
         </select>
@@ -17,13 +17,13 @@
     <div class="col-md-4">
       <div class="form-group">
         <label for="calle">Calle:</label>
-        <input type="text" id="calle" class="form-control" placeholder="Ej.: México">
+        <input type="text" id="calle" formControlName="calle" class="form-control" placeholder="Ej.: México" [ngClass]="{'is-invalid': (lugar.get('calle').invalid && submitted)}">
       </div>
     </div>
     <div class="col-md-4">
       <div class="form-group">
         <label for="altura">Número:</label>
-        <input type="text" id="altura" class="form-control" placeholder="Ej.: 345">
+        <input type="text" id="altura" formControlName="altura" class="form-control" placeholder="Ej.: 345" [ngClass]="{'is-invalid': (lugar.get('altura').invalid && submitted)}">
       </div>
     </div>
   </div>
@@ -31,19 +31,19 @@
     <div class="col-md-4">
       <div class="form-group">
         <label for="escalera">Escalera/Modúlo:</label>
-        <input type="text" id="escalera" class="form-control" placeholder="Ej.: 6">
+        <input type="text" id="escalera" formControlName="escalera" class="form-control" placeholder="Ej.: 6">
       </div>
     </div>
     <div class="col-md-4">
       <div class="form-group">
         <label for="piso">Piso:</label>
-        <input type="text" id="piso" class="form-control" placeholder="Ej.: 2">
+        <input type="text" id="piso" formControlName="piso" class="form-control" placeholder="Ej.: 2">
       </div>
     </div>
     <div class="col-md-4">
       <div class="form-group">
         <label for="depto">Departamento:</label>
-        <input type="text" id="depto" class="form-control" placeholder="Ej.: B">
+        <input type="text" id="depto" formControlName="depto" class="form-control" placeholder="Ej.: B">
       </div>
     </div>
   </div>
