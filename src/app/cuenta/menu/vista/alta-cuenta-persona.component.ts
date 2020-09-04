@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./alta-cuenta-persona.component.scss']
 })
 export class AltaCuentaPersonaComponent implements OnInit {
+  public global_param: string = '';
 
   constructor() { }
 
