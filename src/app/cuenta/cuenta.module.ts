@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared';
 import { CuentaComponent } from './cuenta.component';
@@ -12,10 +12,11 @@ import { MenuComponent, AltaCuentaPersonaComponent, ImportacionCbuComponent } fr
     CuentaComponent,
     MenuComponent,
     AltaCuentaPersonaComponent,
-    ImportacionCbuComponent
+    ImportacionCbuComponent,
   ],
   imports: [
     CommonModule, SharedModule, CuentaRoutingModule
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CuentaModule { }

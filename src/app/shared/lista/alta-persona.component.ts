@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'shared-lista-alta-persona',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./alta-persona.component.scss']
 })
 export class AltaPersonaComponent implements OnInit {
+  @Input("tipo") public tipo: string;
 
   public configPaginacion = { colleccionSize: 30, page: 1, pageSize: 20 }
 

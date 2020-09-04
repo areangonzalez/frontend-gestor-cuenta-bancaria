@@ -5,7 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CabeceraComponent } from './layout';
 import { AltaPersonaComponent } from './lista';
 import { RegistrarPersonaComponent, FormLugarComponent } from './formulario';
-import { CrearPersonaContent, CrearPersonaComponent } from './modal';
+import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, AgregarSucursalComponent } from './modal';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,7 @@ import { CrearPersonaContent, CrearPersonaComponent } from './modal';
     AltaPersonaComponent,
     RegistrarPersonaComponent, FormLugarComponent,
     CrearPersonaContent, CrearPersonaComponent,
-
+    AgregarSucursalContent, AgregarSucursalComponent
   ],
   imports: [
     CommonModule,
@@ -29,6 +29,7 @@ import { CrearPersonaContent, CrearPersonaComponent } from './modal';
     AltaPersonaComponent,
     RegistrarPersonaComponent, FormLugarComponent,
     CrearPersonaContent, CrearPersonaComponent,
+    AgregarSucursalContent, AgregarSucursalComponent
   ]
 })
 export class SharedModule { }
