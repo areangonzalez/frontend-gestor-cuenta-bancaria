@@ -3,14 +3,16 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared';
 import { CuentaComponent } from './cuenta.component';
 import { CuentaRoutingModule } from './cuenta-routing.module';
-import { MenuComponent } from './menu';
+import { MenuComponent, AltaCuentaPersonaComponent, ImportacionCbuComponent } from './menu';
 
 
 
 @NgModule({
   declarations: [
     CuentaComponent,
-    MenuComponent
+    MenuComponent,
+    AltaCuentaPersonaComponent,
+    ImportacionCbuComponent
   ],
   imports: [
     CommonModule, SharedModule, CuentaRoutingModule
