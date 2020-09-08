@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'shared-lista-alta-persona',
@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class AltaPersonaComponent implements OnInit {
   @Input("tipo") public tipo: string;
+  @Output("seleccionDePersona") public seleccionDePersona = new EventEmitter();
 
   public configPaginacion = { colleccionSize: 30, page: 1, pageSize: 20 }
 
@@ -17,6 +18,14 @@ export class AltaPersonaComponent implements OnInit {
 
   cambioPagina(pagina:number){
     console.log(pagina);
+  }
+
+  obtengoSeleccionDeSucursal(persona: any, sucursal: any) {
+    persona["sucursal_codigo_postal"] = sucursal.codigo_postal;
+    persona["sucursal_codigo"] = sucursal.codigo;
+
+    this.seleccionDePersona.emit(persona);
+
   }
 
 }

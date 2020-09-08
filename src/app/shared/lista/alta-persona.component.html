@@ -20,7 +20,7 @@
       <td class="text-center">5000</td>
       <td class="text-center">10/07/2020</td>
       <td class="text-center">
-        <modal-agregar-sucursal *ngIf="(tipo === 'cuenta')"></modal-agregar-sucursal>
+        <modal-agregar-sucursal *ngIf="(tipo === 'cuenta')" (seleccionDeSucursal)="obtengoSeleccionDeSucursal({id: 1, nombre: 'dario'} ,$event)"></modal-agregar-sucursal>
       </td>
     </tr>
     <tr>

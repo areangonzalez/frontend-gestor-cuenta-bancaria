@@ -4,6 +4,7 @@ import { SharedModule } from '../shared';
 import { CuentaComponent } from './cuenta.component';
 import { CuentaRoutingModule } from './cuenta-routing.module';
 import { MenuComponent, AltaCuentaPersonaComponent, ImportacionCbuComponent } from './menu';
+import { ListadoPersonaSelecionadaComponent } from './menu/listado/listado-persona-selecionada.component';
 
 
 
@@ -13,6 +14,7 @@ import { MenuComponent, AltaCuentaPersonaComponent, ImportacionCbuComponent } fr
     MenuComponent,
     AltaCuentaPersonaComponent,
     ImportacionCbuComponent,
+    ListadoPersonaSelecionadaComponent,
   ],
   imports: [
     CommonModule, SharedModule, CuentaRoutingModule

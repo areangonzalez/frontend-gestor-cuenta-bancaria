@@ -1,0 +1,27 @@
+<table class="table table-hover table-sm">
+  <thead>
+    <tr>
+      <th scope="col">Cuil</th>
+      <th scope="col" rowspan="1" colspan="2">Apellido y Nombre</th>
+      <th class="text-center" scope="col">Ingreso Neto</th>
+      <th class="text-center" scope="col">Fecha de Ingreso</th>
+      <th class="text-center">Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let persona of personaSeleccionada; let i = index;">
+      <td>{{persona.cuil}}</td>
+      <td rowspan="1" colspan="2">
+        {{persona.apellid}}, {{persona.nombre}}
+        <button type="button" class="btn btn-sm btn-light"><i class="fas fa-home"></i></button>
+        <button type="button" class="btn btn-sm btn-light"><i class="fas fa-phone"></i></button>
+        <button type="button" class="btn btn-sm btn-light"><i class="fas fa-mobile-alt"></i></button>
+      </td>
+      <td class="text-center">{{persona.ingreso_monto}}</td>
+      <td class="text-center">{{persona.fecha_ingreso}}</td>
+      <td class="text-center">
+        <button type="button" class="btn btn-sm btn-danger" (click)="borrarPersona(i)"><i class="fas fa-trash-alt"></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

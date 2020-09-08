@@ -7,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AltaCuentaPersonaComponent implements OnInit {
   public global_param: string = '';
+  public listadoPersonasSeleccionadas: any = [];
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  obtenerPersona(persona: any) {
+    this.listadoPersonasSeleccionadas.push(persona);
   }
 
 }
