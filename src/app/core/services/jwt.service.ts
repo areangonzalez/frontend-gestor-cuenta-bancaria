@@ -8,14 +8,14 @@ export class JwtService {
   constructor() { }
 
   getToken() {
-    return JSON.parse(localStorage.getItem('token-gdi'));
+    return JSON.parse(localStorage.getItem('token-gcb'));
   }
 
   saveToken(datosToken: object) {
-      localStorage.setItem('token-gdi', JSON.stringify({ datosToken }));
+      localStorage.setItem('token-gcb', JSON.stringify({ datosToken }));
   }
 
   destroyToken() {
-      localStorage.removeItem('token-gdi');
+      localStorage.removeItem('token-gcb');
   }
 }
