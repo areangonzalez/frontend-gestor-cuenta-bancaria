@@ -8,7 +8,7 @@ import { JwtService } from "./jwt.service";
 import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
-export class AuthenticationService {
+export class AutenticacionService {
     private currentUserSubject: BehaviorSubject<Usuario>;
     public currentUser: Observable<Usuario>;
 

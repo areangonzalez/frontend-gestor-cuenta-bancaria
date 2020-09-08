@@ -20,21 +20,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function handleRoute() {
             switch (true) {
-                case url.endsWith('/users/authenticate') && method === 'POST':
-                    return authenticate();
-                case url.endsWith('/users/register') && method === 'POST':
-                    return register();
-                case url.endsWith('/users') && method === 'GET':
-                    return getUsers();
-                case url.match(/\/users\/\d+$/) && method === 'GET':
-                    return getUserById();
-                case url.match(/\/users\/\d+$/) && method === 'PUT':
-                    return updateUser();
-                case url.match(/\/users\/\d+$/) && method === 'DELETE':
-                    return deleteUser();
-                default:
-                    // pass through any requests not handled above
-                    return next.handle(request);
+              case url.endsWith('/users/authenticate') && method === 'POST':
+                return authenticate();
+              case url.endsWith('/personas') && method === 'GET':
+                return getPersonas();
+              case url.endsWith('/sub-sucursales') && method === 'GET':
+                return getSubSucurasales();
             }
         }
 
@@ -53,56 +44,24 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             })
         }
 
-        function register() {
-            const user = body
+        function getPersonas() {
+          const personas = [
+            { "nombre": "Romina","apellido": "Rodríguez","nro_documento": "29890098","telefono": "2920430690","celular": "2920412127","tipo_documentoid": 1,"email":"rom_rodiguez@gmail.com","cuil":"20298900988","lugar":{ "id":9,"barrio":"Don bosco","calle":"Mitre","altura":"327","piso":"","depto":"","escalera":"","localidadid":1 }
+            },{ "nombre": "Gonzalo","apellido": "Gimenez","nro_documento": "29232132","telefono": "2920430728","celular": "2920412762","tipo_documentoid": 1,"email":"ggonzalo@hotmail.com.ar","cuil":"20292321328","lugar":{ "id":9,"barrio":"Fatima","calle":"Urquiza","altura":"1327","piso":"","depto":"","escalera":"","localidadid":1 }
+            },{ "nombre": "Roberto","apellido": "Almendra","nro_documento": "29857364","telefono": "2920456756","celular": "2920234567","tipo_documentoid": 1,"email":"rderoberto@outlook.com.ar","cuil":"20298573648","lugar":{ "id":9,"barrio":"Fatima","calle":"savedra","altura":"47","piso":"","depto":"","escalera":"","localidadid":1 }}
+            ];
 
-            if (users.find(x => x.username === user.username)) {
-                return error('Username "' + user.username + '" is already taken')
-            }
-
-            user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
-            users.push(user);
-            localStorage.setItem('users', JSON.stringify(users));
-            return ok();
+            return ok(personas);
         }
 
-        function getUsers() {
-            if (!isLoggedIn()) return unauthorized();
-            return ok(users);
+        function getSubSucurasales() {
+          const subSucrsales = [
+            {"id": 1,"localidad": "Allen","codigo_postal": "8328","codigo": "161014","sucursalid": 14,"nombre": "Allen (Suc. Allen)","sucursal_codigo": "265"},{"id": 2,"localidad": "Bariloche","codigo_postal": "8400","codigo": "161399","sucursalid": 3,"nombre": "Bariloche (Suc. Bariloche)","sucursal_codigo": "255"},{"id": 3,"localidad": "Pilcaniyeu","codigo_postal": "8412","codigo": "161355","sucursalid": 3,"nombre": "Pilcaniyeu (Suc. Bariloche)","sucursal_codigo": "255"}
+          ];
+
+            return ok(subSucrsales);
         }
 
-        function getUserById() {
-            if (!isLoggedIn()) return unauthorized();
-
-            const user = users.find(x => x.id === idFromUrl());
-            return ok(user);
-        }
-
-        function updateUser() {
-            if (!isLoggedIn()) return unauthorized();
-
-            let params = body;
-            let user = users.find(x => x.id === idFromUrl());
-
-            // only update password if entered
-            if (!params.password) {
-                delete params.password;
-            }
-
-            // update and save user
-            Object.assign(user, params);
-            localStorage.setItem('users', JSON.stringify(users));
-
-            return ok();
-        }
-
-        function deleteUser() {
-            if (!isLoggedIn()) return unauthorized();
-
-            users = users.filter(x => x.id !== idFromUrl());
-            localStorage.setItem('users', JSON.stringify(users));
-            return ok();
-        }
 
         // helper functions
 

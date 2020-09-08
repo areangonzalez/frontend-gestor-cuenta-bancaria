@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { UtilService } from "./services";
+import { UtilService, JwtService, ApiService, AutenticacionService } from "./services";
 
 @NgModule({
   declarations: [
-    UtilService
+    UtilService, JwtService, ApiService, AutenticacionService
   ],
   imports: [
     CommonModule
