@@ -1,18 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { registerLocaleData } from "@angular/common";
 import es from "@angular/common/locales/es";
 
+import { fakeBackendProvider } from "./core/helpers";
+
 import { NgbModule, NgbDatepickerI18n, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
-import { CustomDatepickerI18n, NgbDateARParserFormatter, FakeBackendInterceptor } from './core/helpers';
-
-import { AppRoutingModule } from './app-routing.module';
-
-import { JwtInterceptor, ErrorInterceptor } from './core/helpers';
+import { CustomDatepickerI18n, NgbDateARParserFormatter } from './core/helpers';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+
 import { SharedModule, SistemaComponent, LoginComponent } from './shared';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { JwtInterceptor, ErrorInterceptor } from './core/helpers';
 
 registerLocaleData(es);
 
@@ -24,6 +26,7 @@ registerLocaleData(es);
   imports: [
     BrowserModule,
     NgbModule,
+    HttpClientModule,
     AppRoutingModule,
     SharedModule,
   ],
@@ -33,9 +36,8 @@ registerLocaleData(es);
     { provide: LOCALE_ID, useValue: 'es-AR' },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
     // fake-backend
-    FakeBackendInterceptor
+    fakeBackendProvider
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]

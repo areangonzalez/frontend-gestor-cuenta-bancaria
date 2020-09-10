@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Resolve } from "@angular/router";
 import { ApiService } from './api.service';
+import { Resolve } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
-export class SubSucursalService {
+export class SubSucursalService implements Resolve<any> {
 
   constructor(private _http: ApiService) { }
 
