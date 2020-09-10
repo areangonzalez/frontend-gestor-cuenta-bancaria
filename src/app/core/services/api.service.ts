@@ -53,7 +53,7 @@ export class ApiService {
             `${environment.apiUrl}${path}`
         ).pipe(catchError(this.formatErrors));
     }
-
+    // descarga de archivos
     getFile(path: string, body: object): Observable<any> {
       return this.http.get(
         `${environment.apiUrl}${path}`,
