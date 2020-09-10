@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { configurarListas } from 'src/app/core/models';
 
 @Component({
   selector: 'shared-lista-alta-persona',
@@ -6,6 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./alta-persona.component.scss']
 })
 export class AltaPersonaComponent implements OnInit {
+  @Input("config-listas") public configurarListas: configurarListas; // array que contiene el/los listados para el componente
   @Input("tipo") public tipo: string;
   @Output("seleccionDePersona") public seleccionDePersona = new EventEmitter();
 

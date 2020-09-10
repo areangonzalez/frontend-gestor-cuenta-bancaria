@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -19,7 +19,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
                 <label for="sucursal">Sucursal</label>
                 <select class="form-control" id="sucursal" formControlName="sucursal">
                   <option value="">Seleccionar Sucursal</option>
-                  <option *ngFor="let sucursal of listaSubSucursal" [ngValue]="sucursal">{{sucursal.sucursal_codigo}} - {{sucursal.nombre}}</option>
+                  <option *ngFor="let sucursal of subSucursales" [ngValue]="sucursal">{{sucursal.sucursal_codigo}} - {{sucursal.nombre}}</option>
                 </select>
               </div>
               <div *ngIf="(sucursalForm.get('sucursal').invalid && submitted)" class="text-danger">
@@ -36,10 +36,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 `,
 })
 export class AgregarSucursalContent {
+  @Input("subSucursales") public subSucursales:any;
   public sucursalForm: FormGroup;
   public submitted: boolean = false;
   public sucursalSeleccionada: any = { codigo_postal: '', codigo: ''};
-  public listaSubSucursal = [{"id": 1,"localidad": "Allen","codigo_postal": "8328","codigo": "161014","sucursalid": 14,"nombre": "Allen (Suc. Allen)","sucursal_codigo": "265"},{"id": 2,"localidad": "Bariloche","codigo_postal": "8400","codigo": "161399","sucursalid": 3,"nombre": "Bariloche (Suc. Bariloche)","sucursal_codigo": "255"},{"id": 3,"localidad": "Pilcaniyeu","codigo_postal": "8412","codigo": "161355","sucursalid": 3,"nombre": "Pilcaniyeu (Suc. Bariloche)","sucursal_codigo": "255"}];
 
   constructor(public activeModal: NgbActiveModal, private _fb:FormBuilder) {
     this.sucursalForm = _fb.group({
@@ -71,12 +71,14 @@ export class AgregarSucursalContent {
   styleUrls: ['./agregar-sucursal.component.scss']
 })
 export class AgregarSucursalComponent {
+  @Input("subSucursales") public subSucursales: any;
   @Output("seleccionDeSucursal") public seleccionDeSucursal = new EventEmitter();
 
   constructor(private _modalService: NgbModal) { }
 
   open() {
     const modalRef = this._modalService.open(AgregarSucursalContent);
+    modalRef.componentInstance.subSucursales = this.subSucursales;
     modalRef.result.then(
       (result) => {
         if (result !== false) {

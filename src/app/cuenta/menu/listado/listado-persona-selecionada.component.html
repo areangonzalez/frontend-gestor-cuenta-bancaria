@@ -8,12 +8,15 @@
       <th class="text-center">Acción</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf="(personaSeleccionada.length == 0)">
+    <tr class="text-center bg-warning" rowspan="1"><td colspan="6"><strong>NO HAY PERSONAS SELECCIONADAS</strong></td></tr>
+  </tbody>
+  <tbody *ngIf="(personaSeleccionada.length > 0)">
     <tr *ngFor="let persona of personaSeleccionada; let i = index;">
       <td>{{persona.cuil}}</td>
       <td rowspan="1" colspan="2">
-        {{persona.apellid}}, {{persona.nombre}}
-        <button type="button" class="btn btn-sm btn-light"><i class="fas fa-home"></i></button>
+        {{persona.apellido}}, {{persona.nombre}}
+        <button type="button" class="btn btn-sm btn-light" ngbTooltip="casa" container="body" triggers="click:blur" ><i class="fas fa-home"></i></button>
         <button type="button" class="btn btn-sm btn-light"><i class="fas fa-phone"></i></button>
         <button type="button" class="btn btn-sm btn-light"><i class="fas fa-mobile-alt"></i></button>
       </td>

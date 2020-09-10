@@ -3,85 +3,23 @@
     <tr>
       <th scope="col">Documento</th>
       <th scope="col" rowspan="1" colspan="2">Apellido y Nombre</th>
-      <th class="text-center" scope="col">Ingreso Neto</th>
       <th class="text-center" scope="col">Fecha de Ingreso</th>
       <th class="text-center">Acción</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>12345678</td>
+    <tr *ngFor="let persona of configurarListas.personas">
+      <td>{{persona.nro_documento}}</td>
       <td rowspan="1" colspan="2">
-        Otto, Mark
+        {{persona.apellido}}, {{persona.nombre}}
         <button type="button" class="btn btn-sm btn-light"><i class="fas fa-home"></i></button>
         <button type="button" class="btn btn-sm btn-light"><i class="fas fa-phone"></i></button>
         <button type="button" class="btn btn-sm btn-light"><i class="fas fa-mobile-alt"></i></button>
       </td>
-      <td class="text-center">5000</td>
-      <td class="text-center">10/07/2020</td>
+      <td class="text-center">{{persona.fecha_ingreso | date: 'dd/MM/yyyy'}}</td>
       <td class="text-center">
-        <modal-agregar-sucursal *ngIf="(tipo === 'cuenta')" (seleccionDeSucursal)="obtengoSeleccionDeSucursal({id: 1, nombre: 'dario'} ,$event)"></modal-agregar-sucursal>
+        <modal-agregar-sucursal *ngIf="(tipo === 'cuenta')" [subSucursales]="configurarListas.subSucursales" (seleccionDeSucursal)="obtengoSeleccionDeSucursal(persona,$event)"></modal-agregar-sucursal>
       </td>
-    </tr>
-    <tr>
-      <td>12345678</td>
-      <td rowspan="1" colspan="2">
-        Otto, Mark
-        <button type="button" class="btn btn-sm btn-light"><i class="fas fa-home"></i></button>
-        <button type="button" class="btn btn-sm btn-light"><i class="fas fa-phone"></i></button>
-        <button type="button" class="btn btn-sm btn-light"><i class="fas fa-mobile-alt"></i></button>
-      </td>
-      <td class="text-center">5000</td>
-      <td class="text-center">10/07/2020</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>12345678</td>
-      <td rowspan="1" colspan="2">
-        Otto, Mark
-        <button type="button" class="btn btn-sm btn-light"><i class="fas fa-home"></i></button>
-        <button type="button" class="btn btn-sm btn-light"><i class="fas fa-phone"></i></button>
-        <button type="button" class="btn btn-sm btn-light"><i class="fas fa-mobile-alt"></i></button>
-      </td>
-      <td class="text-center">5000</td>
-      <td class="text-center">10/07/2020</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>12345678</td>
-      <td rowspan="1" colspan="2">
-        Otto, Mark
-        <button type="button" class="btn btn-sm btn-light"><i class="fas fa-home"></i></button>
-        <button type="button" class="btn btn-sm btn-light"><i class="fas fa-phone"></i></button>
-        <button type="button" class="btn btn-sm btn-light"><i class="fas fa-mobile-alt"></i></button>
-      </td>
-      <td class="text-center">5000</td>
-      <td class="text-center">10/07/2020</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>12345678</td>
-      <td rowspan="1" colspan="2">
-        Otto, Mark
-        <button type="button" class="btn btn-sm btn-light"><i class="fas fa-home"></i></button>
-        <button type="button" class="btn btn-sm btn-light"><i class="fas fa-phone"></i></button>
-        <button type="button" class="btn btn-sm btn-light"><i class="fas fa-mobile-alt"></i></button>
-      </td>
-      <td class="text-center">5000</td>
-      <td class="text-center">10/07/2020</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>12345678</td>
-      <td rowspan="1" colspan="2">
-        Otto, Mark
-        <button type="button" class="btn btn-sm btn-light"><i class="fas fa-home"></i></button>
-        <button type="button" class="btn btn-sm btn-light"><i class="fas fa-phone"></i></button>
-        <button type="button" class="btn btn-sm btn-light"><i class="fas fa-mobile-alt"></i></button>
-      </td>
-      <td class="text-center">5000</td>
-      <td class="text-center">10/07/2020</td>
-      <td></td>
     </tr>
   </tbody>
 </table>
