@@ -27,7 +27,17 @@ export class AltaPersonaComponent implements OnInit {
     persona["sucursal_codigo"] = sucursal.codigo;
 
     this.seleccionDePersona.emit(persona);
+  }
 
+  public direccion(lugar: object){
+    let dir = "";
+    dir += lugar['localidad'];
+    dir += (lugar['barrio'] != '') ? " - " + lugar['barrio'] + ' - ' + lugar['calle'] + ' ' + lugar['altura']: ' - ' + lugar['calle'] + ' ' + lugar['altura'];
+    dir += (lugar['escalera'] != '') ? ' - ' + lugar['escalera'] : '';
+    dir += (lugar['piso'] != '') ? ' - ' + lugar['piso'] : '';
+    dir += (lugar['depto'] != '') ? ' - ' + lugar['depto'] : '';
+
+    return dir;
   }
 
 }

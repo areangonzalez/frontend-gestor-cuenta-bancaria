@@ -3,6 +3,7 @@
     <tr>
       <th scope="col">Documento</th>
       <th scope="col" rowspan="1" colspan="2">Apellido y Nombre</th>
+      <th class="text-center">Localidad</th>
       <th class="text-center" scope="col">Fecha de Ingreso</th>
       <th class="text-center">Acción</th>
     </tr>
@@ -12,10 +13,14 @@
       <td>{{persona.nro_documento}}</td>
       <td rowspan="1" colspan="2">
         {{persona.apellido}}, {{persona.nombre}}
-        <button type="button" class="btn btn-sm btn-light"><i class="fas fa-home"></i></button>
-        <button type="button" class="btn btn-sm btn-light"><i class="fas fa-phone"></i></button>
-        <button type="button" class="btn btn-sm btn-light"><i class="fas fa-mobile-alt"></i></button>
+        <div class="btn-group">
+          <button type="button" class="btn btn-sm btn-light" ngbTooltip="{{direccion(persona.lugar)}}" container="body" triggers="click:blur" ><i class="fas fa-home"></i></button>
+          <button *ngIf="(persona.telefono !== '')" type="button" class="btn btn-sm btn-light" ngbTooltip="{{persona.telefono}}" container="body" triggers="click:blur"><i class="fas fa-phone"></i></button>
+          <button *ngIf="(persona.celular !== '')" type="button" class="btn btn-sm btn-light" ngbTooltip="{{persona.celular}}" container="body" triggers="click:blur"><i class="fas fa-mobile-alt"></i></button>
+          <button *ngIf="(persona.email !== '')" type="button" class="btn btn-sm btn-light" ngbTooltip="{{persona.email}}" container="body" triggers="click:blur"><i class="far fa-envelope"></i></button>
+        </div>
       </td>
+      <td class="text-center">{{persona.lugar.localidad}}</td>
       <td class="text-center">{{persona.fecha_ingreso | date: 'dd/MM/yyyy'}}</td>
       <td class="text-center">
         <modal-agregar-sucursal *ngIf="(tipo === 'cuenta')" [subSucursales]="configurarListas.subSucursales" (seleccionDeSucursal)="obtengoSeleccionDeSucursal(persona,$event)"></modal-agregar-sucursal>
