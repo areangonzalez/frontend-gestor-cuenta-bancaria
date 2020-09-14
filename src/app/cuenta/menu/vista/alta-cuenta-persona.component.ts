@@ -15,6 +15,7 @@ export class AltaCuentaPersonaComponent implements OnInit {
   constructor(private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.listas.seleccionPersona = this.listadoPersonasSeleccionadas;
     this.listas.personas = this._route.snapshot.data["personas"];
     this.listas.subSucursales = this._route.snapshot.data["subSucursales"];
   }

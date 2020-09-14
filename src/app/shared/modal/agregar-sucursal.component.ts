@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, Output, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
+import { NgbModal, NgbActiveModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -72,11 +72,30 @@ export class AgregarSucursalContent {
 })
 export class AgregarSucursalComponent {
   @Input("subSucursales") public subSucursales: any;
+  @Input("listaDeSeleccionPersona") public listaDeSeleccionPersona: any;
+  @Input("idPersona") public idPersona: number;
   @Output("seleccionDeSucursal") public seleccionDeSucursal = new EventEmitter();
 
   constructor(private _modalService: NgbModal) { }
 
   open() {
+    let existe: boolean = false;
+    if (this.listaDeSeleccionPersona.length > 0) {
+      for (let i = 0; i < this.listaDeSeleccionPersona.length; i++) {
+        if (this.listaDeSeleccionPersona[i].id == this.idPersona) {
+          existe = true;
+        }
+      }
+    }
+    if (existe) {
+      this.abrirNotificacion();
+    }else {
+      this.abrirModal();
+    }
+
+  }
+
+  abrirModal() {
     const modalRef = this._modalService.open(AgregarSucursalContent);
     modalRef.componentInstance.subSucursales = this.subSucursales;
     modalRef.result.then(
@@ -87,4 +106,30 @@ export class AgregarSucursalComponent {
       });
   }
 
+  abrirNotificacion() {
+    const notidficacion = this._modalService.open(NotidicacionModalContent, { windowClass: 'red-modal' });
+  }
+}
+
+@Component({
+  template: `
+    <div class="modal-header">
+      <h5 class="modal-title">Notificacion de error</h5>
+    </div>
+    <div class="modal-body d-flex justify-content-center">
+      <span>Esta persona ya ha sido seleccionada</span>
+    </div>
+    <div class="modal-footer d-flex justify-content-end">
+      <button type="button" class="btn btn-danger" (click)="activeModal.close()">Salir</button>
+    </div>
+  `,
+  styleUrls: ['./agregar-sucursal.component.scss'],
+  encapsulation: ViewEncapsulation.None
+})
+export class NotidicacionModalContent {
+
+  constructor(private modalService: NgbModal, public activeModal: NgbActiveModal, config: NgbModalConfig) {
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
 }

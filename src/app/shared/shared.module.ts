@@ -5,7 +5,7 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { CabeceraComponent } from './layout';
 import { AltaPersonaComponent } from './lista';
 import { RegistrarPersonaComponent, FormLugarComponent } from './formulario';
-import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, AgregarSucursalComponent } from './modal';
+import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, NotidicacionModalContent, AgregarSucursalComponent } from './modal';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,7 @@ import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, Agr
     AltaPersonaComponent,
     RegistrarPersonaComponent, FormLugarComponent,
     CrearPersonaContent, CrearPersonaComponent,
-    AgregarSucursalContent, AgregarSucursalComponent
+    AgregarSucursalContent, NotidicacionModalContent, AgregarSucursalComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +29,7 @@ import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, Agr
     AltaPersonaComponent,
     RegistrarPersonaComponent, FormLugarComponent,
     CrearPersonaContent, CrearPersonaComponent,
-    AgregarSucursalContent, AgregarSucursalComponent
+    AgregarSucursalContent, NotidicacionModalContent, AgregarSucursalComponent
   ]
 })
 export class SharedModule { }
