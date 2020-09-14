@@ -26,4 +26,8 @@ export class ArchivoService {
     };
     return this._apiService.getFile('/export/exportar-prestaciones-xls', options);
   } */
+
+  importarArchivo() {
+    console.log("hola");
+  }
 }
