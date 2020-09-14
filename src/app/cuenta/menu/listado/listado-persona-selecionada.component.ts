@@ -28,16 +28,19 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
     return dir;
   }
 
+
+
   /**
    * Permite descargar un archivo de texto
    */
-  /* public exportarArchivo(exportar:boolean) {
-    if (exportar){
+  public exportarArchivo(exportar:boolean) {
+    console.log("se hizo click!");
+    /* if (exportar){
       this._descargasService.descargar(this.personaSeleccionada).subscribe(
         blob => {
           let filename = 'cuenta_salto.txt';
           importedSaveAs(blob, filename);
       }, error => { this._mensajeService.cancelado(error, [{name: ''}]); });
-    }
-  } */
+    } */
+  }
 }
