@@ -6,6 +6,7 @@ import { CabeceraComponent } from './layout';
 import { AltaPersonaComponent } from './lista';
 import { RegistrarPersonaComponent, FormLugarComponent } from './formulario';
 import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, NotidicacionModalContent, AgregarSucursalComponent, ConfirmarExportacionModalContent, ConfirmarExportacionComponent, InfoPersonaContent, InfoPersonaComponent } from './modal';
+import { VistaPersonaComponent } from './vista';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, Not
     CrearPersonaContent, CrearPersonaComponent,
     AgregarSucursalContent, NotidicacionModalContent, AgregarSucursalComponent,
     ConfirmarExportacionModalContent, ConfirmarExportacionComponent,
-    InfoPersonaContent, InfoPersonaComponent
+    InfoPersonaContent, InfoPersonaComponent,
+    VistaPersonaComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,8 @@ import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, Not
     CrearPersonaContent, CrearPersonaComponent,
     AgregarSucursalContent, NotidicacionModalContent, AgregarSucursalComponent,
     ConfirmarExportacionModalContent, ConfirmarExportacionComponent,
-    InfoPersonaContent, InfoPersonaComponent
+    InfoPersonaContent, InfoPersonaComponent,
+    VistaPersonaComponent
   ]
 })
 export class SharedModule { }

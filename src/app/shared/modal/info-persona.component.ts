@@ -11,7 +11,7 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
       </button>
     </div>
     <div class="modal-body">
-       informacion de persona
+       <vista-persona [persona]="persona"></vista-persona>
     </div>
 `,
   styleUrls: ['./info-persona.component.scss']
