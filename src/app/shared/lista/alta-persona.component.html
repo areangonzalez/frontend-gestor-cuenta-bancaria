@@ -24,7 +24,7 @@
       <td *ngIf="(tipo === 'cuenta')" class="text-center">{{persona.fecha_ingreso | date: 'dd/MM/yyyy'}}</td>
       <td class="text-center">
         <modal-agregar-sucursal *ngIf="(tipo === 'cuenta')" [subSucursales]="configurarListas.subSucursales" [idPersona]="persona.id" [listaDeSeleccionPersona]="configurarListas.seleccionPersona" (seleccionDeSucursal)="obtengoSeleccionDeSucursal(persona,$event)"></modal-agregar-sucursal>
-        <button type="button" class="btn btn-sm btn-info" ngbTooltip="Informacion de {{persona.apellido}}, {{persona.nombre}}" container="'body'"><i class="fas fa-eye"></i></button>
+        <modal-info-persona [persona]="persona"></modal-info-persona>
       </td>
     </tr>
   </tbody>

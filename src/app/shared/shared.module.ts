@@ -5,7 +5,7 @@ import { NgbTooltipModule, NgbDatepickerModule, NgbCollapseModule } from '@ng-bo
 import { CabeceraComponent } from './layout';
 import { AltaPersonaComponent } from './lista';
 import { RegistrarPersonaComponent, FormLugarComponent } from './formulario';
-import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, NotidicacionModalContent, AgregarSucursalComponent, ConfirmarExportacionModalContent, ConfirmarExportacionComponent } from './modal';
+import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, NotidicacionModalContent, AgregarSucursalComponent, ConfirmarExportacionModalContent, ConfirmarExportacionComponent, InfoPersonaContent, InfoPersonaComponent } from './modal';
 
 @NgModule({
   declarations: [
@@ -14,7 +14,8 @@ import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, Not
     RegistrarPersonaComponent, FormLugarComponent,
     CrearPersonaContent, CrearPersonaComponent,
     AgregarSucursalContent, NotidicacionModalContent, AgregarSucursalComponent,
-    ConfirmarExportacionModalContent, ConfirmarExportacionComponent
+    ConfirmarExportacionModalContent, ConfirmarExportacionComponent,
+    InfoPersonaContent, InfoPersonaComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +32,8 @@ import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, Not
     RegistrarPersonaComponent, FormLugarComponent,
     CrearPersonaContent, CrearPersonaComponent,
     AgregarSucursalContent, NotidicacionModalContent, AgregarSucursalComponent,
-    ConfirmarExportacionModalContent, ConfirmarExportacionComponent
+    ConfirmarExportacionModalContent, ConfirmarExportacionComponent,
+    InfoPersonaContent, InfoPersonaComponent
   ]
 })
 export class SharedModule { }
