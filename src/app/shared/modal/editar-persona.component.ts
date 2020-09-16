@@ -1,0 +1,43 @@
+import { Component, OnInit } from '@angular/core';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
+@Component({
+  selector: 'content-editar-persona',
+  template: `
+    <div class="modal-header">
+      <h4 class="modal-title">Registrar Persona</h4>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <shared-registrar-persona (cancelarForm)="cerrarModal($event)"></shared-registrar-persona>
+    </div>
+`,
+  styleUrls: ['./editar-persona.component.scss']
+})
+export class EditarPersonaContent {
+
+  constructor(public activeModal: NgbActiveModal) {}
+
+  cerrarModal(cerrar:boolean) {
+    this.activeModal.close("cancelar registro")
+  }
+
+}
+
+@Component({
+  selector: 'app-editar-persona',
+  templateUrl: './editar-persona.component.html',
+  styleUrls: ['./editar-persona.component.scss']
+})
+export class EditarPersonaComponent {
+
+  constructor(private _modalService: NgbModal) {}
+
+  open() {
+    const modalRef = this._modalService.open(EditarPersonaContent, { size: 'lg' });
+    modalRef.componentInstance.name = 'World';
+  }
+
+}

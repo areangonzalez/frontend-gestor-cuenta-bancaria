@@ -5,7 +5,7 @@ import { NgbTooltipModule, NgbDatepickerModule, NgbCollapseModule } from '@ng-bo
 import { CabeceraComponent } from './layout';
 import { AltaPersonaComponent } from './lista';
 import { RegistrarPersonaComponent, FormLugarComponent } from './formulario';
-import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, NotidicacionModalContent, AgregarSucursalComponent, ConfirmarExportacionModalContent, ConfirmarExportacionComponent, InfoPersonaContent, InfoPersonaComponent } from './modal';
+import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, NotidicacionModalContent, AgregarSucursalComponent, ConfirmarExportacionModalContent, ConfirmarExportacionComponent, InfoPersonaContent, InfoPersonaComponent, EditarPersonaContent, EditarPersonaComponent } from './modal';
 import { VistaPersonaComponent } from './vista';
 
 @NgModule({
@@ -17,7 +17,8 @@ import { VistaPersonaComponent } from './vista';
     AgregarSucursalContent, NotidicacionModalContent, AgregarSucursalComponent,
     ConfirmarExportacionModalContent, ConfirmarExportacionComponent,
     InfoPersonaContent, InfoPersonaComponent,
-    VistaPersonaComponent
+    VistaPersonaComponent,
+    EditarPersonaContent, EditarPersonaComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +37,8 @@ import { VistaPersonaComponent } from './vista';
     AgregarSucursalContent, NotidicacionModalContent, AgregarSucursalComponent,
     ConfirmarExportacionModalContent, ConfirmarExportacionComponent,
     InfoPersonaContent, InfoPersonaComponent,
-    VistaPersonaComponent
+    VistaPersonaComponent,
+    EditarPersonaContent, EditarPersonaComponent
   ]
 })
 export class SharedModule { }
