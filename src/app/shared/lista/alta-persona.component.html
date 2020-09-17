@@ -25,6 +25,7 @@
       <td class="text-center">
         <modal-agregar-sucursal *ngIf="(tipo === 'cuenta')" [subSucursales]="configurarListas.subSucursales" [idPersona]="persona.id" [listaDeSeleccionPersona]="configurarListas.seleccionPersona" (seleccionDeSucursal)="obtengoSeleccionDeSucursal(persona,$event)"></modal-agregar-sucursal>
         <modal-info-persona [persona]="persona"></modal-info-persona>
+        <modal-editar-persona [persona]="persona"></modal-editar-persona>
       </td>
     </tr>
   </tbody>

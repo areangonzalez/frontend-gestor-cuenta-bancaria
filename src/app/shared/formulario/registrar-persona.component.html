@@ -8,8 +8,9 @@
     <div class="col-md-4">
       <div class="form-group">
         <label for="tipo_documentoid">Tipo Documento:</label>
-        <select class="form-control" id="tipo_documento" formControlName="tipo_documentoid" [ngClass]="{'is-invalid': (personaForm.get('tipo_documentoid').invalid && submitted)}">
+        <select class="form-control" id="tipo_documentoid" formControlName="tipo_documentoid" [ngClass]="{'is-invalid': (personaForm.get('tipo_documentoid').invalid && submitted)}">
           <option value="">Seleccionar Tipo Documento</option>
+          <option value="2">Cedula de identidad</option>
           <option value="1">DNI</option>
         </select>
       </div>

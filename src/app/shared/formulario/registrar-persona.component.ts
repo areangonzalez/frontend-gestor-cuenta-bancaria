@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UtilService } from 'src/app/core/services';
+import { map } from 'rxjs/operators';
+import { PersonaService, UtilService } from 'src/app/core/services';
 
 @Component({
   selector: 'shared-registrar-persona',
@@ -8,44 +9,68 @@ import { UtilService } from 'src/app/core/services';
   styleUrls: ['./registrar-persona.component.scss']
 })
 export class RegistrarPersonaComponent implements OnInit {
-  @Output("cancelarForm") public cancelarForm = new EventEmitter();
+  @Input("persona") public persona: any; // atributo que solo es utilizado para la edicion
+  @Output("cancelarForm") public cancelarForm = new EventEmitter(); // cancela el formulario devolviendo un false al componente padre
   public personaForm: FormGroup;
   public submitted: boolean = false;
   public cuil_medio: string = '';
 
-  constructor(private _fb: FormBuilder, private _util: UtilService) {
+  constructor(private _fb: FormBuilder, private _util: UtilService, private _personaService: PersonaService) {
     this.personaForm = _fb.group({
       tipo_documentoid: ['', [Validators.required]],
-      nro_documento: ['', Validators.required, Validators.minLength(7)],
+      nro_documento: ['', [Validators.required, Validators.minLength(7)]],
       cuil: '',
       cuil_primero: '',
       cuil_ultimo: '',
       apellido: ['', [Validators.required, Validators.minLength(3)]],
       nombre: ['', [Validators.required, Validators.minLength(3)]],
-      fechaNacimiento: ['', Validators.required],
+      fechaNacimiento: ['', [Validators.required]],
       fecha_nacimiento: '',
       estado_civilid: '',
-      sexoid: ['', Validators.required],
+      sexoid: ['', [Validators.required]],
       generoid: '',
-      nacionalidadid: ['', Validators.required],
+      nacionalidadid: ['', [Validators.required]],
       telefono: '',
       celular: '',
       email: ['', [Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
       lugar: _fb.group({
-        localidadid: ['', Validators.required],
+        localidadid: ['', [Validators.required]],
         calle: ['', [Validators.required, Validators.minLength(3)]],
-        altura: ['', Validators.required],
+        altura: ['', [Validators.required]],
         barrio: '',
         piso: '',
         depto: '',
         escalera: ''
       })
-    })
+    });
   }
 
   ngOnInit(): void {
+    // verifico si la variable tiene datos
+    if (this.persona) {
+      // completo el formulariocon el objeto de persona
+      this.editarPersona(this.persona);
+    }
   }
+  /**
+   * Configuro los datos de la persona dentro del formulario
+   * @param persona objeto que contiene los datos de la persona
+   */
+  public editarPersona(persona: any) {
+    if (persona['cuil'] != '') {
+      persona['cuil_primero'] = persona['cuil'].substring(0, 2);
+      persona['cuil_ultimo'] = persona['cuil'].substring(10);
+      this.cuil_medio = persona['nro_documento'];
+    }
+    this.validarCuil(persona['nro_documento']);
+    // verifico que exista y armo la fecha de nacimiento
+    if (persona['fecha_nacimiento'] != '') {
+      let fecha = persona['fecha_nacimiento'].split("-");
+      persona['fechaNacimiento'] = { year: parseInt(fecha[0]), month: parseInt(fecha[1]), day: parseInt(fecha[2]) };
+    }
 
+    this.personaForm.patchValue(persona);
+  }
   /**
    * @function soloNumero valida que los datos ingresados en un input sean solo numeros.
    * @param datos objeto que contiene los datos de un input.

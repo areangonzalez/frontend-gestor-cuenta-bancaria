@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -11,12 +11,13 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
       </button>
     </div>
     <div class="modal-body">
-        <shared-registrar-persona (cancelarForm)="cerrarModal($event)"></shared-registrar-persona>
+        <shared-registrar-persona [persona]="persona" (cancelarForm)="cerrarModal($event)"></shared-registrar-persona>
     </div>
 `,
   styleUrls: ['./editar-persona.component.scss']
 })
 export class EditarPersonaContent {
+  @Input("persona") public persona: any;
 
   constructor(public activeModal: NgbActiveModal) {}
 
@@ -27,17 +28,18 @@ export class EditarPersonaContent {
 }
 
 @Component({
-  selector: 'app-editar-persona',
+  selector: 'modal-editar-persona',
   templateUrl: './editar-persona.component.html',
   styleUrls: ['./editar-persona.component.scss']
 })
 export class EditarPersonaComponent {
+  @Input("persona") public persona: any;
 
   constructor(private _modalService: NgbModal) {}
 
   open() {
     const modalRef = this._modalService.open(EditarPersonaContent, { size: 'lg' });
-    modalRef.componentInstance.name = 'World';
+    modalRef.componentInstance.persona = this.persona;
   }
 
 }
