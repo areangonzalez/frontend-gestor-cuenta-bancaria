@@ -7,6 +7,7 @@ import { configurarListas } from 'src/app/core/models';
   styleUrls: ['./alta-persona.component.scss']
 })
 export class AltaPersonaComponent implements OnInit {
+  @Input("personas") public listadoPersonas: any;
   @Input("config-listas") public configurarListas: configurarListas; // array que contiene el/los listados para el componente
   @Input("tipo") public tipo: string;
   @Output("seleccionDePersona") public seleccionDePersona = new EventEmitter();

@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let persona of configurarListas.personas">
+    <tr *ngFor="let persona of listadoPersonas">
       <td>{{persona.nro_documento}}</td>
       <td rowspan="1" colspan="2">
         {{persona.apellido}}, {{persona.nombre}}
@@ -23,9 +23,9 @@
       <td class="text-center">{{persona.lugar.localidad}}</td>
       <td *ngIf="(tipo === 'cuenta')" class="text-center">{{persona.fecha_ingreso | date: 'dd/MM/yyyy'}}</td>
       <td class="text-center">
-        <modal-agregar-sucursal *ngIf="(tipo === 'cuenta')" [subSucursales]="configurarListas.subSucursales" [idPersona]="persona.id" [listaDeSeleccionPersona]="configurarListas.seleccionPersona" (seleccionDeSucursal)="obtengoSeleccionDeSucursal(persona,$event)"></modal-agregar-sucursal>
+        <modal-agregar-sucursal *ngIf="(tipo === 'cuenta')" [subSucursales]="configurarListas.subSucursales" [idPersona]="persona.id" [listaDeSeleccionPersona]="listadoPersonas" (seleccionDeSucursal)="obtengoSeleccionDeSucursal(persona,$event)"></modal-agregar-sucursal>
         <modal-info-persona [persona]="persona"></modal-info-persona>
-        <modal-editar-persona [persona]="persona"></modal-editar-persona>
+        <modal-editar-persona [config-listas]="configurarListas" [persona]="persona"></modal-editar-persona>
       </td>
     </tr>
   </tbody>
@@ -34,3 +34,5 @@
 <div class=" d-flex justify-content-center">
   <ngb-pagination *ngIf="(configPaginacion.colleccionSize > 0)"  [collectionSize]="configPaginacion.colleccionSize" [(page)]="configPaginacion.page" [pageSize]="configPaginacion.pageSize" [maxSize]="10" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="cambioPagina(configPaginacion.page)" aria-label="lisado de stock"></ngb-pagination>
 </div>
+
+

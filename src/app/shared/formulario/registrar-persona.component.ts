@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';
+import { configurarListas } from 'src/app/core/models';
 import { PersonaService, UtilService } from 'src/app/core/services';
 
 @Component({
@@ -10,6 +11,7 @@ import { PersonaService, UtilService } from 'src/app/core/services';
 })
 export class RegistrarPersonaComponent implements OnInit {
   @Input("persona") public persona: any; // atributo que solo es utilizado para la edicion
+  @Input("config-listas") public configurarListas: configurarListas; // array que contiene el/los listados para el componente
   @Output("cancelarForm") public cancelarForm = new EventEmitter(); // cancela el formulario devolviendo un false al componente padre
   public personaForm: FormGroup;
   public submitted: boolean = false;

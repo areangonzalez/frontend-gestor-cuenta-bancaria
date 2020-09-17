@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { SistemaComponent, LoginComponent } from './shared';
 
 const routes: Routes = [
+  { path: '**', redirectTo: 'personas', pathMatch: 'full' },
   {
     path: '',
     component: SistemaComponent,
@@ -21,7 +22,6 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
-  { path: '**', redirectTo: 'personas', pathMatch: 'full' }
 ];
     /* {
       path: 'login',

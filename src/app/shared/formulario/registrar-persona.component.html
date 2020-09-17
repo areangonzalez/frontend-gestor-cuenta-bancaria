@@ -10,8 +10,7 @@
         <label for="tipo_documentoid">Tipo Documento:</label>
         <select class="form-control" id="tipo_documentoid" formControlName="tipo_documentoid" [ngClass]="{'is-invalid': (personaForm.get('tipo_documentoid').invalid && submitted)}">
           <option value="">Seleccionar Tipo Documento</option>
-          <option value="2">Cedula de identidad</option>
-          <option value="1">DNI</option>
+          <option *ngFor="let tipo of configurarListas.tipo_documento" value="{{tipo.id}}">{{tipo.nombre}}</option>
         </select>
       </div>
     </div>
@@ -56,7 +55,7 @@
         <label for="nacionalidad">Nacionalidad:</label>
         <select class="form-control" id="nacionalidad" formControlName="nacionalidadid" [ngClass]="{'is-invalid': (personaForm.get('nacionalidadid').invalid && submitted)}">
           <option value="">Seleccionar Nacionalidad</option>
-          <option value="1">Argentino/a</option>
+          <option *ngFor="let nacionalidad of configurarListas.nacionalidad" value="{{nacionalidad.id}}">{{nacionalidad.nombre}}</option>
         </select>
       </div>
     </div>
@@ -81,7 +80,7 @@
         <label for="estado_civil">Estado Civil:</label>
         <select class="form-control" id="estado_civil" formControlName="estado_civilid">
           <option value="">Seleccionar Estado Civil</option>
-          <option value="1">Soltero</option>
+          <option *ngFor="let estado_civil of configurarListas.estado_civil" value="{{estado_civil.id}}">{{estado_civil.nombre}}</option>
         </select>
       </div>
     </div>
@@ -91,11 +90,11 @@
         <div class="input-group">
           <select class="form-control" id="sexo" formControlName="sexoid" [ngClass]="{'is-invalid': (personaForm.get('sexoid').invalid && submitted)}">
             <option value="">Sexo</option>
-            <option value="1">Femenino</option>
+            <option *ngFor="let sexo of configurarListas.sexo" value="{{sexo.id}}">{{sexo.nombre}}</option>
           </select>
           <select class="form-control" id="genero" formControlName="generoid">
             <option value="">Género</option>
-            <option value="1">Mujer</option>
+            <option *ngFor="let genero of configurarListas.genero" value="{{genero.id}}">{{genero.nombre}}</option>
           </select>
         </div>
       </div>
@@ -130,7 +129,7 @@
     </div>
   </div>
 </fieldset>
-<shared-form-lugar [lugar]="personaForm.get('lugar')" [submitted]="submitted"></shared-form-lugar>
+<shared-form-lugar [lugar]="personaForm.get('lugar')" [localidades]="configurarListas.localidades" [submitted]="submitted"></shared-form-lugar>
 
 <div class="d-flex justify-content-between">
   <button type="button" class="btn btn-outline-danger" (click)="cancelar()"><i class="fas fa-ban"></i> Cancelar</button>

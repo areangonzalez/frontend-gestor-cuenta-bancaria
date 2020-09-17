@@ -30,6 +30,18 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return getPersonas();
               case url.endsWith('/apimock/sub-sucursales') && method === 'GET':
                 return getSubSucurasales();
+              case url.endsWith('/apimock/tipo-documentos') && method === 'GET':
+                return getTipoDocumento();
+              case url.endsWith('/apimock/localidads') && method === 'GET':
+                return getLocalidad();
+              case url.endsWith('/apimock/nacionalidads') && method === 'GET':
+                return getNacionalidad();
+              case url.endsWith('/apimock/estado-civils') && method === 'GET':
+                return getEstadoCivil();
+              case url.endsWith('/apimock/sexos') && method === 'GET':
+                return getSexo();
+              case url.endsWith('/apimock/generos') && method === 'GET':
+                return getGenero();
               case url.match(/\/apimock\/personas\/\d+$/) && method === 'GET':
                 return getPersonasPorId();
             }
@@ -74,6 +86,72 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return ok(subSucrsales);
         }
 
+        function getTipoDocumento() {
+          const tipoDocumento = [
+            {id: 1, nombre: 'cedula de identitad'},{id: 2, nombre: 'DNI'}
+          ];
+
+          if (tipoDocumento) {
+            return ok(tipoDocumento);
+          } else {
+            return error("no se pudo obtener tipoDocumento");
+          }
+        }
+        function getNacionalidad() {
+          const nacionalidad = [
+            {id: 1, nombre: 'argentino/a'},{id: 2, nombre: 'boliviano/a'},{id: 3, nombre: 'brasilero/a'},{id: 4, nombre: 'colombiano/a'},{id: 5, nombre: 'costarrisence/a'},
+          ];
+
+          if (nacionalidad) {
+            return ok(nacionalidad);
+          } else {
+            return error("no se pudo obtener nacionalidad");
+          }
+        }
+        function getEstadoCivil() {
+          const estadoCivil = [
+            {id: 1, nombre: 'soltero'}
+          ];
+
+          if (estadoCivil) {
+            return ok(estadoCivil);
+          } else {
+            return error("no se pudo obtener estadoCivil");
+          }
+        }
+        function getSexo() {
+          const sexo = [
+            {id: 1, nombre: 'Femenino'},{id: 2, nombre: 'Masculino'}
+          ];
+
+          if (sexo) {
+            return ok(sexo)
+          } else {
+            return error("no se pudo obtener sexo");
+          }
+        }
+        function getGenero() {
+          const genero = [
+            {id: 2, nombre: 'Hombre'},{id: 1, nombre: 'Mujer'},{id: 1, nombre: 'Pansexual '}
+          ];
+
+          if (genero) {
+            return ok(genero);
+          } else {
+            return error("no se pudo obtener genero");
+          }
+        }
+        function getLocalidad() {
+          const localidad = [
+            {id: 1, nombre: 'Cipolletti'},{id: 2, nombre: 'Gral. Roca'},{id: 3, nombre: 'San Carlos de Bariloche'},{id: 4, nombre: 'San Javier'},{id: 5, nombre: 'Viedma'}
+          ];
+
+          if (localidad) {
+            return ok(localidad);
+          } else {
+            return error("no se pudo obtener localidad");
+          }
+        }
 
         // helper functions
 

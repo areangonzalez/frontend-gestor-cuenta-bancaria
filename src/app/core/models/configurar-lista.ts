@@ -7,6 +7,7 @@ export interface configurarListas {
   genero?: any;
   tipo_documento?: any;
   seleccionPersona?: any;
+  nacionalidad?: any;
 }
 
 

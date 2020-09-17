@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UtilService } from '../../core/services';
+import { configurarListas } from 'src/app/core/models';
 
 @Component({
   selector: 'busqueda-avanzada-persona',
@@ -9,6 +10,7 @@ import { UtilService } from '../../core/services';
   styleUrls: ['./busqueda-avanzada-persona.component.scss']
 })
 export class BusquedaAvanzadaPersonaComponent implements OnInit {
+  @Input("config-listas") public configurarListas: configurarListas; // array que contiene el/los listados para el componente
   public global_param:string = '';
   public busquedaAvanzada: FormGroup;
   public mostrar: boolean = false;

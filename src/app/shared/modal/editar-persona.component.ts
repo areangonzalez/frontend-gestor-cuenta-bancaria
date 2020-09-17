@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { configurarListas } from 'src/app/core/models';
 
 @Component({
   selector: 'content-editar-persona',
@@ -11,13 +12,16 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
       </button>
     </div>
     <div class="modal-body">
-        <shared-registrar-persona [persona]="persona" (cancelarForm)="cerrarModal($event)"></shared-registrar-persona>
+      {{ configurarListas | json }}
+        <shared-registrar-persona [persona]="persona" [config-listas]="configurarListas" (cancelarForm)="cerrarModal($event)"></shared-registrar-persona>
     </div>
+
 `,
   styleUrls: ['./editar-persona.component.scss']
 })
 export class EditarPersonaContent {
-  @Input("persona") public persona: any;
+  @Input("persona") public persona: any; // objeto que contiene los datos de persona
+  @Input("configurarListas") public configurarListas: any; // array que contiene el/los listados para el componente
 
   constructor(public activeModal: NgbActiveModal) {}
 
@@ -33,13 +37,15 @@ export class EditarPersonaContent {
   styleUrls: ['./editar-persona.component.scss']
 })
 export class EditarPersonaComponent {
-  @Input("persona") public persona: any;
+  @Input("persona") public persona: any; // objeto que contiene los datos de persona
+  @Input("config-listas") public configurarListas: configurarListas; // array que contiene el/los listados para el componente
 
   constructor(private _modalService: NgbModal) {}
 
   open() {
     const modalRef = this._modalService.open(EditarPersonaContent, { size: 'lg' });
     modalRef.componentInstance.persona = this.persona;
+    modalRef.componentInstance.configurarListas = this.configurarListas;
   }
 
 }
