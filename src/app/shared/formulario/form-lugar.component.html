@@ -12,18 +12,27 @@
           <option value="">Seleccionar Localidad</option>
           <option *ngFor="let localidad of localidades" value="{{localidad.id}}">{{localidad.nombre}}</option>
         </select>
+        <div *ngIf="(lugar.get('localidadid').invalid && submitted)" class="text-danger">
+          <small *ngIf="lugar.get('localidadid').hasError('required')">Por favor, seleccione una localidad. </small>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="form-group">
         <label for="calle">Calle:</label>
         <input type="text" id="calle" formControlName="calle" class="form-control" placeholder="Ej.: México" [ngClass]="{'is-invalid': (lugar.get('calle').invalid && submitted)}">
+        <div *ngIf="(lugar.get('calle').invalid && submitted)" class="text-danger">
+          <small *ngIf="lugar.get('calle').hasError('required')">Este campo es requerido. </small>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="form-group">
         <label for="altura">Número:</label>
         <input type="text" id="altura" formControlName="altura" class="form-control" placeholder="Ej.: 345" [ngClass]="{'is-invalid': (lugar.get('altura').invalid && submitted)}">
+        <div *ngIf="(lugar.get('altura').invalid && submitted)" class="text-danger">
+          <small *ngIf="lugar.get('altura').hasError('required')">Este campo es requerido. </small>
+        </div>
       </div>
     </div>
   </div>

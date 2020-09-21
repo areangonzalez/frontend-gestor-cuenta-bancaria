@@ -12,16 +12,19 @@
           <option value="">Seleccionar Tipo Documento</option>
           <option *ngFor="let tipo of configurarListas.tipo_documento" value="{{tipo.id}}">{{tipo.nombre}}</option>
         </select>
+        <div *ngIf="(personaForm.get('tipo_documentoid').invalid && submitted)" class="text-danger">
+          <small *ngIf="personaForm.get('tipo_documentoid').hasError('required')">Por favor, seleccione un tipo de documento. </small>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="form-group">
         <label for="nro_documento">Nro. Documento:</label>
         <input type="text" class="form-control" formControlName="nro_documento" placeholder="Ej.: 3246789" id="nro_documento" minlength="7" maxlength="8" (keyup)="soloNumero($event.target)" (change)="validarCuil($event.target.value)" [ngClass]="{'is-invalid': (personaForm.get('nro_documento').invalid && submitted)}">
-        <!-- <div *ngIf="(personaForm.get('nro_documento').invalid && submitted)" class="text-danger">
+        <div *ngIf="(personaForm.get('nro_documento').invalid && submitted)" class="text-danger">
           <small *ngIf="personaForm.get('nro_documento').hasError('minlength')">El número de documento debe tener al menos 7 digitos.</small>
           <small *ngIf="personaForm.get('nro_documento').hasError('required')">Este campo es requerido. </small>
-        </div> -->
+        </div>
       </div>
     </div>
     <div class="col-md-4">
@@ -42,12 +45,18 @@
       <div class="form-group">
         <label for="apellido">Apellido:</label>
         <input type="text" id="apellido" formControlName="apellido" class="form-control" placeholder="Ej.: Cullumilla" [ngClass]="{'is-invalid': (personaForm.get('apellido').invalid && submitted)}">
+        <div *ngIf="(personaForm.get('apellido').invalid && submitted)" class="text-danger">
+          <small *ngIf="personaForm.get('apellido').hasError('required')">Este campo es requerido. </small>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="form-group">
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" formControlName="nombre" class="form-control" placeholder="EJ.; Pedro" [ngClass]="{'is-invalid': (personaForm.get('nombre').invalid && submitted)}">
+        <div *ngIf="(personaForm.get('nombre').invalid && submitted)" class="text-danger">
+          <small *ngIf="personaForm.get('nombre').hasError('required')">Este campo es requerido. </small>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
@@ -57,6 +66,9 @@
           <option value="">Seleccionar Nacionalidad</option>
           <option *ngFor="let nacionalidad of configurarListas.nacionalidad" value="{{nacionalidad.id}}">{{nacionalidad.nombre}}</option>
         </select>
+        <div *ngIf="(personaForm.get('nacionalidadid').invalid && submitted)" class="text-danger">
+          <small *ngIf="personaForm.get('nacionalidadid').hasError('required')">Por favor, seleccione una nacionalidad. </small>
+        </div>
       </div>
     </div>
   </div>
@@ -71,6 +83,9 @@
               <button class="btn btn-outline-info" (click)="fpd.toggle()" type="button" [ngClass]="{'btn-outline-danger': (personaForm.get('fechaNacimiento').invalid && submitted), 'is-invalid': (personaForm.get('fechaNacimiento').invalid && submitted)}"> <!--  -->
                 <i class="far fa-calendar-alt"></i>
               </button>
+          </div>
+          <div *ngIf="(personaForm.get('fechaNacimiento').invalid && submitted)" class="text-danger">
+            <small *ngIf="personaForm.get('fechaNacimiento').hasError('required')">Por favor, ingrese una fecha de nacimiento. </small>
           </div>
         </div>
       </div>
@@ -96,6 +111,9 @@
             <option value="">Género</option>
             <option *ngFor="let genero of configurarListas.genero" value="{{genero.id}}">{{genero.nombre}}</option>
           </select>
+          <div *ngIf="(personaForm.get('sexoid').invalid && submitted)" class="text-danger">
+            <small *ngIf="personaForm.get('sexoid').hasError('required')">Por favor, seleccione un sexo. </small>
+          </div>
         </div>
       </div>
     </div>
