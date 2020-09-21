@@ -19,11 +19,12 @@ export class RegistrarPersonaComponent implements OnInit {
 
   constructor(private _fb: FormBuilder, private _util: UtilService, private _personaService: PersonaService) {
     this.personaForm = _fb.group({
+      id: 0,
       tipo_documentoid: ['', [Validators.required]],
       nro_documento: ['', [Validators.required, Validators.minLength(7)]],
       cuil: '',
-      cuil_primero: '',
-      cuil_ultimo: '',
+      cuil_primero: ['', [Validators.required]],
+      cuil_ultimo: ['', [Validators.required]],
       apellido: ['', [Validators.required, Validators.minLength(3)]],
       nombre: ['', [Validators.required, Validators.minLength(3)]],
       fechaNacimiento: ['', [Validators.required]],
@@ -97,14 +98,14 @@ export class RegistrarPersonaComponent implements OnInit {
    * @function armarCuil funcion que arma el cuil uniendo las variables de los formularios
    */
   public armarCuil(){
-    const cuil_primero = this.personaForm.get("cuil_prin").value;
-    const cuil_ult = this.personaForm.get("cuil_fin").value;
+    const cuil_primero = this.personaForm.get("cuil_primero").value;
+    const cuil_ult = this.personaForm.get("cuil_ultimo").value;
     // verifico si las variables son distintas a vacio
     // si la validacion es correcta seteo el valor del formulario con el cuil armado
     if (cuil_primero != '' && cuil_ult != '') {
-        return this.personaForm.setValue({"cuil": cuil_primero + this.cuil_medio + cuil_ult});
+        return this.personaForm.patchValue({"cuil": cuil_primero + this.cuil_medio + cuil_ult});
     }else{ // si esta vacio seteo el valor del formulario en vacion
-        return this.personaForm.setValue({"cuil": ''});
+        return this.personaForm.patchValue({'cuil': null});
     }
   }
   /**
@@ -112,7 +113,7 @@ export class RegistrarPersonaComponent implements OnInit {
    * @param obj la fecha viene en formato objeto
    */
   public formatFechaNacimiento(obj:any){
-    this.personaForm.setValue({fecha_nacimiento: this._util.formatearFecha(obj.day, obj.month, obj.year, "yyyy-MM-dd")});
+    this.personaForm.patchValue({fecha_nacimiento: this._util.formatearFecha(obj.day, obj.month, obj.year, "yyyy-MM-dd")});
   }
   /**
    * Convierto el email en minuscula
@@ -129,21 +130,26 @@ export class RegistrarPersonaComponent implements OnInit {
   public validarPersona() {
     this.submitted = true;
     if (this.personaForm.invalid) { // verifico la validación en los campos del formulario
-      /* if (this.formPersona.get('contacto').value.email !== this.formPersona.get('contacto').value.email.toLowerCase()){
-        this._mensajeService.cancelado("El email no puede estar en mayusculas!!", [{name:''}]);
-      }else{
-        this._mensajeService.cancelado("Campos sin completar!!", [{name:''}]);
-      } */
+      //this._mensajeService.cancelado("Campos sin completar!!", [{name:''}]);
       return;
     }else{ // si pasa la validación
       this.submitted = false;
-      console.log(this.personaForm.invalid)
-      /* if (this.formPersona.get('cuil').value.length < 10){
-        this.formPersona.get('cuil').setValue('');
-      }
-      let id = this.formPersona.value.id;
-      let persona = this.personaModel.deserealize(this.formPersona.value);
-      this.guardarPersona(persona,id); */
+      let persona = this.personaForm.value;
+      let id = this.personaForm.value.id;
+      console.log(persona);
+      this.guardarPersona(persona,id);
+
+    }
+  }
+
+  private guardarPersona(persona: object, id: number) {
+    if (id != 0) { // editar persona
+    }else { // crear persona
+      this._personaService.guardar(persona, 0).subscribe(
+        respuesta => {
+          console.log(respuesta);
+        }, error => { console.log(error); }
+      );
 
     }
   }

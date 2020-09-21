@@ -44,6 +44,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return getGenero();
               case url.match(/\/apimock\/personas\/\d+$/) && method === 'GET':
                 return getPersonasPorId();
+              case url.endsWith('/apimock/personas') && method === 'POST':
+                return crearPersona();
             }
         }
 
@@ -60,6 +62,26 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 lastName: user.lastName,
                 token: 'fake-jwt-token'
             })
+        }
+        /*** CREAR PERSONA ***/
+        function crearPersona() {
+          let persona = body;
+          let validar = false;
+          let fechaNacimiento = persona['fecha_nacimiento'].split('-');
+          // verifico la fecha de nacimiento si es valida
+          let personaEsMayor = (2020 - parseInt(fechaNacimiento[0]));
+          console.log(personaEsMayor);
+
+          // valido si la persona es mayor
+          if (personaEsMayor > 18) {
+            validar = true;
+          }
+
+          if (validar) {
+            return ok({ id: 1 });
+          } else {
+            return error("La fecha de nacimiento no es correcta");
+          }
         }
         /*** PERSONA POR ID ***/
         function getPersonasPorId() {

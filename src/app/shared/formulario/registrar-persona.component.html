@@ -32,10 +32,13 @@
         <label for="cuil">Cuil:</label>
         <div class="input-group">
           <input type="text" class="form-control col-3" id="cuil_primero" formControlName="cuil_primero" placeholder="##"  maxlength="2"
-          (change)="armarCuil()" (keyup)="soloNumero($event.target)">
+          (change)="armarCuil()" (keyup)="soloNumero($event.target)" [ngClass]="{'is-invalid': (personaForm.get('cuil_primero').invalid && submitted)}">
           <div class="input-group-addon div-cuil-num-center">{{cuil_medio}}</div>
           <input type="text" class="form-control col-3" id="cuil_ultimo" formControlName="cuil_ultimo" placeholder="#" maxlength="1"
-          (change)="armarCuil()" (keyup)="soloNumero($event.target)">
+          (change)="armarCuil()" (keyup)="soloNumero($event.target)" [ngClass]="{'is-invalid': (personaForm.get('cuil_ultimo').invalid && submitted)}">
+        </div>
+        <div *ngIf="((personaForm.get('cuil_primero').invalid || personaForm.get('cuil_ultimo').invalid) && submitted)" class="text-danger">
+          <small *ngIf="(personaForm.get('cuil_primero').hasError('required') || personaForm.get('cuil_ultimo').hasError('required'))">Por favor, verifique si los campos han sido completados correctamente. </small>
         </div>
       </div>
     </div>
