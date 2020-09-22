@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { configurarListas } from 'src/app/core/models';
-import { PersonaService, UtilService } from 'src/app/core/services';
+import { NotificacionService, PersonaService, UtilService } from 'src/app/core/services';
 
 @Component({
   selector: 'shared-registrar-persona',
@@ -17,7 +17,7 @@ export class RegistrarPersonaComponent implements OnInit {
   public submitted: boolean = false;
   public cuil_medio: string = '';
 
-  constructor(private _fb: FormBuilder, private _util: UtilService, private _personaService: PersonaService) {
+  constructor(private _fb: FormBuilder, private _util: UtilService, private _personaService: PersonaService, private _msj: NotificacionService) {
     this.personaForm = _fb.group({
       id: 0,
       tipo_documentoid: ['', [Validators.required]],
@@ -147,8 +147,9 @@ export class RegistrarPersonaComponent implements OnInit {
     }else { // crear persona
       this._personaService.guardar(persona, 0).subscribe(
         respuesta => {
+          this._msj.exitoso("La persona se ha registrado correctamente!");
           console.log(respuesta);
-        }, error => { console.log(error); }
+        }, error => { this._msj.cancelado(error); }
       );
 
     }

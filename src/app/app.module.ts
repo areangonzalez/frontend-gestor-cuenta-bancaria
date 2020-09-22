@@ -12,7 +12,7 @@ import { CustomDatepickerI18n, NgbDateARParserFormatter } from './core/helpers';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { SharedModule, SistemaComponent, LoginComponent } from './shared';
+import { SharedModule, NotificacionComponent, SistemaComponent, LoginComponent } from './shared';
 
 import { JwtInterceptor, ErrorInterceptor } from './core/helpers';
 
@@ -21,7 +21,7 @@ registerLocaleData(es);
 @NgModule({
   declarations: [
     AppComponent,
-    SistemaComponent, LoginComponent
+    NotificacionComponent, SistemaComponent, LoginComponent
   ],
   imports: [
     BrowserModule,

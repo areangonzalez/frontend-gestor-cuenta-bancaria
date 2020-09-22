@@ -1,0 +1,15 @@
+<div *ngIf="mensaje" class="overlay" ></div>
+<div *ngIf="mensaje" class="mensaje-container">
+  <div *ngIf="mensaje" class="{{ cssClass(tipo) }} mensajes-alert" role="alert">
+    <div class="mensaje-alert-header">
+        <h4 class="alert-heading">{{obtenerTitulo(tipo)}}</h4>
+    </div>
+    <div class="mensaje-alert-body d-flex justify-content-start align-items-center">
+      <span class="{{cssIconColor(tipo)}}" style="font-size: 3em;"><i class="{{iconClass(tipo)}}"></i></span>
+      <div class="ml-3" >{{mensaje}}</div>
+    </div>
+    <div class="float-right">
+      <button type="button" class="btn btn-default" (click)="removeAlert()">Cerrar</button>
+    </div>
+  </div>
+</div>
