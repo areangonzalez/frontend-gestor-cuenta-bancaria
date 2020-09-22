@@ -12,7 +12,6 @@ import { configurarListas } from 'src/app/core/models';
       </button>
     </div>
     <div class="modal-body">
-      {{ configurarListas | json }}
         <shared-registrar-persona [persona]="persona" [config-listas]="configurarListas" (cancelarForm)="cerrarModal($event)"></shared-registrar-persona>
     </div>
 

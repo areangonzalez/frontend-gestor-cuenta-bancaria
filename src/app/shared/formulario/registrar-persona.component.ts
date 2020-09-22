@@ -136,7 +136,6 @@ export class RegistrarPersonaComponent implements OnInit {
       this.submitted = false;
       let persona = this.personaForm.value;
       let id = this.personaForm.value.id;
-      console.log(persona);
       this.guardarPersona(persona,id);
 
     }
@@ -144,14 +143,19 @@ export class RegistrarPersonaComponent implements OnInit {
 
   private guardarPersona(persona: object, id: number) {
     if (id != 0) { // editar persona
+      this._personaService.guardar(persona, id).subscribe(
+        respuesta => {
+          this._msj.exitoso("La persona se ha editado correctamente!");
+          this.cancelarForm.emit(true);
+        }, error => { this._msj.cancelado(error); }
+      );
     }else { // crear persona
       this._personaService.guardar(persona, 0).subscribe(
         respuesta => {
           this._msj.exitoso("La persona se ha registrado correctamente!");
-          console.log(respuesta);
+          this.cancelarForm.emit(true);
         }, error => { this._msj.cancelado(error); }
       );
-
     }
   }
 
