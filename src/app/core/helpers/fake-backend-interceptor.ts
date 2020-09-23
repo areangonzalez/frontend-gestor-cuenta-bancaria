@@ -120,7 +120,20 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
         /*** LISTADO DE PERSONAS ***/
         function getPersonas() {
-            return ok(personas);
+          let page: number = parseInt(request.params.get("page"));
+          let pageSize: number = 2;
+
+          let personas = { pagesize: pageSize, pages: 1, total_filtrado: 5, resultado: [
+            {id: 1,nombre: "Romina",apellido: "Rodríguez",sexoid:1,sexo:"Femenino",generoid:1,genero:"Mujer",nacionalidadid:1,estado_civilid:1,estado_civil:"soltero",fecha_nacimiento:"1988-02-05",nro_documento: "29890098",telefono: "2920430690",celular: "2920412127",tipo_documentoid: 1,email:"",cuil:"20298900988",lugar:{ id:9,barrio:"Don bosco",calle:"Mitre",altura:"327",piso:"",depto:"",escalera:"",localidadid:1, localidad: "Viedma" }
+            },{ id: 2,nombre: "Gonzalo",apellido: "Gimenez",sexoid:2,sexo:"Masculino",generoid:2,genero:"Hombre",nacionalidadid:1,estado_civilid:1,estado_civil:"soltero",fecha_nacimiento:"1988-02-05",nro_documento: "29232132",telefono: "",celular: "2920412762",tipo_documentoid: 1,email:"",cuil:"20292321328",lugar:{ id:9,barrio:"",calle:"Urquiza",altura:"1327",piso:"",depto:"",escalera:"",localidadid:1, localidad: "Viedma" }
+            },{ id: 3,nombre: "Roberto",apellido: "Almendra",sexoid:2,sexo:"Masculino",generoid:2,genero:"Hombre",nacionalidadid:1,estado_civilid:1,estado_civil:"soltero",fecha_nacimiento:"1988-02-05",nro_documento: "29857364",telefono: "",celular: "2920234567",tipo_documentoid: 1,email:"rderoberto@outlook.com.ar",cuil:"20298573648",lugar:{ id:9,barrio:"Fatima",calle:"savedra",altura:"47",piso:"",depto:"",escalera:"",localidadid:1, localidad: "Viedma" }}
+            ]};
+
+          let listado = paginar(personas, personas.resultado, page, pageSize);
+
+          console.log(listado);
+
+          return ok(listado);
         }
         /*** LISTADO DE SUB SUCURSALES ***/
         function getSubSucurasales() {
@@ -219,6 +232,27 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function idFromUrl() {
             const urlParts = url.split('/');
             return parseInt(urlParts[urlParts.length - 1]);
+        }
+
+        function paginar(listadoOrigen: any, listaEncontrados: any, page: number, pageSize: number) {
+          let totalFiltrado:number = listaEncontrados.length;
+          let total:number = totalFiltrado/pageSize;
+          let numEntero = Math.floor(total);
+          let totalPagina:number = (total > numEntero) ? numEntero + 1 : total;
+          console.log(listadoOrigen);
+          listadoOrigen.total_filtrado = listaEncontrados.length;
+          listadoOrigen.pages = totalPagina;
+
+          if (page > 0) {
+            page = page;
+            let pageStart = page * pageSize;
+            let pageEnd = pageStart + pageSize;
+            listadoOrigen.resultado = listaEncontrados.slice(pageStart, pageEnd);
+          }else{
+            listadoOrigen.resultado = listaEncontrados.slice(0,pageSize);
+          }
+
+          return listadoOrigen;
         }
     }
 }

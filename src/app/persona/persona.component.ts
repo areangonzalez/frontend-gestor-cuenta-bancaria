@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { configurarListas } from '../core/models';
+import { configurarListas, ConfigurarPagina } from '../core/models';
 import { ActivatedRoute } from '@angular/router';
-import { NotificacionService, PersonaService } from '../core/services';
+import { ConfiguracionParaPaginarService, NotificacionService, PersonaService } from '../core/services';
 
 @Component({
   selector: 'app-persona',
@@ -12,8 +12,9 @@ export class PersonaComponent implements OnInit {
   public configListas: configurarListas = {};
   public personas: any = [];
   public filtradoBusqueda: any = {};
+  public configPaginacion: ConfigurarPagina = new ConfigurarPagina(); // obteiene el objeto de configuracion de rango y paginado de comprobantes
 
-  constructor(private _route: ActivatedRoute, private _personaService: PersonaService, private _msj: NotificacionService) {}
+  constructor(private _route: ActivatedRoute, private _personaService: PersonaService, private _msj: NotificacionService, private _configurarPaginacion: ConfiguracionParaPaginarService) {}
 
   ngOnInit(): void {
     this.prepararListadoPersona(this._route.snapshot.data["personas"], 1);
@@ -38,7 +39,7 @@ export class PersonaComponent implements OnInit {
 
   prepararListadoPersona(listado:any, pagina: number) {
     // preparo la variable con la configuracion para el paginado
-    /* this.configPaginacion = this._configurarPaginacion.config(listado, pagina); */
+    this.configPaginacion = this._configurarPaginacion.config(listado, pagina);
 
     this.personas = listado.resultado;
   }
@@ -48,6 +49,13 @@ export class PersonaComponent implements OnInit {
    */
   limpiarCampos(e: boolean) {
     this.realizarBusqueda({}, 1);
+  }
+  /**
+   * Solicito el cambio de pagina
+   * @param pagina numero de pagina
+   */
+  cambiarPagina(pagina:any) {
+    this.realizarBusqueda(this.filtradoBusqueda, pagina);
   }
 
 }

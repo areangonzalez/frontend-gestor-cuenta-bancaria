@@ -10,9 +10,9 @@ export class AltaPersonaComponent implements OnInit {
   @Input("personas") public listadoPersonas: any;
   @Input("config-listas") public configurarListas: configurarListas; // array que contiene el/los listados para el componente
   @Input("tipo") public tipo: string;
-  @Output("seleccionDePersona") public seleccionDePersona = new EventEmitter();
-
-  public configPaginacion = { colleccionSize: 30, page: 1, pageSize: 20 }
+  @Input("configPaginacion") public configPaginacion: any;
+  @Output("seleccionDePersona") public seleccionDePersona = new   EventEmitter();
+  @Output("cambioDePagina") public cambioDePagina = new EventEmitter();
 
   constructor() { }
 
@@ -20,7 +20,7 @@ export class AltaPersonaComponent implements OnInit {
   }
 
   cambioPagina(pagina:number){
-    console.log(pagina);
+    this.cambioDePagina.emit(pagina);
   }
 
   obtengoSeleccionDeSucursal(persona: any, sucursal: any) {

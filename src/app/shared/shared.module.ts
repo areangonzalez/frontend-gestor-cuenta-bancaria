@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbTooltipModule, NgbDatepickerModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTooltipModule, NgbDatepickerModule, NgbCollapseModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { CabeceraComponent } from './layout';
 import { AltaPersonaComponent } from './lista';
 import { RegistrarPersonaComponent, FormLugarComponent } from './formulario';
@@ -23,7 +23,7 @@ import { VistaPersonaComponent } from './vista';
   imports: [
     CommonModule,
     FormsModule, ReactiveFormsModule,
-    NgbTooltipModule, NgbDatepickerModule, NgbCollapseModule
+    NgbTooltipModule, NgbDatepickerModule, NgbCollapseModule, NgbPaginationModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
