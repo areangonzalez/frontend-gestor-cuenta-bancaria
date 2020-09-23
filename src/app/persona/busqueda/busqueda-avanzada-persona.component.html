@@ -3,7 +3,7 @@
     <div class="input-group">
       <input class="form-control" [(ngModel)]="global_param" placeholder="Buscar por Nro Documento, Apellido, Nombre, Cuit">
       <div class="input-group-append">
-        <button type="button" class="btn btn-outline-primary"><i class="fas fa-search"></i></button>
+        <button type="button" class="btn btn-outline-primary" (click)="buscar()"><i class="fas fa-search"></i></button>
         <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></button>
         <modal-crear-persona [config-listas]="configurarListas" ></modal-crear-persona>
       </div>
@@ -54,7 +54,7 @@
           </div>
           <div class="col-md-4">
             <label for="localidadid">Localidad</label>
-            <select class="form-control" formControlName="localidadid">
+            <select class="form-control" formControlName="localidadid" [ngClass]="{'campo-seleccionado': marcarCampo(busquedaAvanzada.get('localidadid').value)}">
               <option value="">Seleccionar Localidad</option>
               <option *ngFor="let localidad of configurarListas.localidades" value="{{localidad.id}}">{{localidad.nombre}}</option>
             </select>
