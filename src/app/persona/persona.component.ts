@@ -42,5 +42,12 @@ export class PersonaComponent implements OnInit {
 
     this.personas = listado.resultado;
   }
+  /**
+   * reinicia el listado a sin parametros de busqueda
+   * @param e
+   */
+  limpiarCampos(e: boolean) {
+    this.realizarBusqueda({}, 1);
+  }
 
 }

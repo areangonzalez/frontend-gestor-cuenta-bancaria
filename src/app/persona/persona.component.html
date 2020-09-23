@@ -1,6 +1,6 @@
 <h2>Personas</h2>
 <div class="shadow-sm p-3 mb-3 bg-white rounded">
-  <busqueda-avanzada-persona [config-listas]="configListas" (obtenerBusqueda)="realizarBusqueda($event, 1)" ></busqueda-avanzada-persona>
+  <busqueda-avanzada-persona [config-listas]="configListas" (obtenerBusqueda)="realizarBusqueda($event, 1)" (limpiar)="limpiarCampos($event)" ></busqueda-avanzada-persona>
 </div>
 <div class="shadow-sm p-3 mb-3 bg-white rounded">
   <shared-lista-alta-persona [config-listas]="configListas" [personas]="personas" [tipo]="'persona'" ></shared-lista-alta-persona>

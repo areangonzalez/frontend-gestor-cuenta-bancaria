@@ -12,6 +12,7 @@ import { configurarListas } from 'src/app/core/models';
 export class BusquedaAvanzadaPersonaComponent implements OnInit {
   @Input("config-listas") public configurarListas: configurarListas; // array que contiene el/los listados para el componente
   @Output("obtenerBusqueda") public obtenerBusqueda = new EventEmitter();
+  @Output("limpiar") public limpiar = new EventEmitter();
   public global_param:string = '';
   public busquedaAvanzada: FormGroup;
   public mostrar: boolean = false;
@@ -57,7 +58,27 @@ export class BusquedaAvanzadaPersonaComponent implements OnInit {
     this.btnSeleccion = esTrue;
     this.obtenerBusqueda.emit(apiBusqueda);
   }
-
+  /**
+   * limpia los campos del formulario de búsqueda avanzada
+   * y los parametros de busqueda para el api
+   */
+  public limpiarCampos() {
+    let busqueda: any = this.busquedaAvanzada.value;
+      for (const key in busqueda) {
+        if (key == 'fechaDesde') {
+          busqueda[key] = null;
+        }else if (key == 'fechaHasta') {
+          busqueda[key] = null;
+        }else {
+          busqueda[key] = '';
+        }
+      }
+      this.global_param = '';
+      this.busquedaAvanzada.patchValue(busqueda);
+      this.btnSeleccion = false;
+      this.mostrar = false;
+      this.limpiar.emit(true);
+  }
   /**
    * Muestra/Oculta los campos de busqueda avanzada
    */
