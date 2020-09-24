@@ -3,7 +3,12 @@ import { RouterModule, Routes } from "@angular/router";
 import { SistemaComponent, LoginComponent } from './shared';
 
 const routes: Routes = [
-  { path: '**', redirectTo: 'personas', pathMatch: 'full' },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' },
+  {
+    path: 'login',
+    component: LoginComponent,
+    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+  },
   {
     path: '',
     component: SistemaComponent,
@@ -23,10 +28,6 @@ const routes: Routes = [
     component: LoginComponent
   },
 ];
-    /* {
-      path: 'login',
-      loadChildren: () => import('nombre-path').then(m => m.NombreModulo)
-    } */
 
 
 @NgModule({
