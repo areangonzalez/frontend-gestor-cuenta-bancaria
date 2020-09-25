@@ -26,6 +26,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function handleRoute() {
 
             switch (true) {
+              case url.endsWith('/apimock/usuarios/login') && method === 'POST':
+                  return login();
               case url.endsWith('/apimock/personas') && method === 'GET':
                 return getPersonas();
               case url.endsWith('/apimock/sub-sucursales') && method === 'GET':
@@ -53,17 +55,17 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         // route functions
 
-        function authenticate() {
-            const { username, password } = body;
-            const user = users.find(x => x.username === username && x.password === password);
-            if (!user) return error('Username or password is incorrect');
-            return ok({
-                id: user.id,
-                username: user.username,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                token: 'fake-jwt-token'
-            })
+        function login() {
+          let datos = body;
+          if ( datos.username === 'admin' && datos.password_hash === 'admins' ) {
+            let respuesta = {
+              username: 'Admin', access_token: 'fake-jwt-token'
+            };
+
+            return ok(respuesta);
+          }else{
+            return error("datos mal ingresado");
+          }
         }
         /*** CREAR PERSONA ***/
         function crearPersona() {

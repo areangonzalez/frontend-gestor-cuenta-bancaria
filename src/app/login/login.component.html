@@ -1,1 +1,32 @@
-hola
+<div>
+  <form [formGroup]="loginForm" class="form-signin">
+    <!-- <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
+    <h1 class="h3 mb-3 font-weight-normal text-white text-center">Gestor Inventario</h1>
+
+    <label for="nombre_usuario" class="sr-only">Usuario</label>
+    <input type="text" id="nombre_usuario" class="form-control" placeholder="Usuario" formControlName="username">
+
+    <label for="pass_usuario" class="sr-only">Contraseña</label>
+    <input type="password" id="pass_usuario" class="form-control" placeholder="Contraseña" formControlName="password" (keyup.enter)="ingresar()">
+
+    <div class="mb-3">
+      <div id="login-mensaje" class="text-danger text-center mt-2" *ngIf="huboError"><b>{{mensaje}}</b></div>
+    </div>
+
+    <button id="ingresar-login" class="btn btn-lg btn-primary btn-block" type="button" (click)="ingresar()">Ingresar</button>
+
+    <div class="d-flex justify-content-between mt-2">
+      <div class="d-flex align-items-center">
+        <img src="../../../assets/img/logoRN.svg" width="60" height="40" alt="Ministerio desarrollo social">
+      </div>
+      <div class="d-flex align-items-center mr-5">
+        <p class="text-center text-muted pt-4">
+          <span class="text-uppercase text-white">Desarrollo Humano y Articulación Solidaria</span>
+        </p>
+      </div>
+      <!-- <div class="d-flex align-items-center">
+        <img src="../../../assets/img/manos-grises.png" width="60" height="65" alt="Gestor de prestaciones">
+      </div> -->
+    </div>
+  </form>
+</div>

@@ -1,39 +1,51 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-import { Usuario } from '../models';
 import { JwtService } from "./jwt.service";
-import { environment } from 'src/environments/environment';
+import { ApiService } from './api.service';
 
 @Injectable({ providedIn: 'root' })
 export class AutenticacionService {
-    private currentUserSubject: BehaviorSubject<Usuario>;
-    public currentUser: Observable<Usuario>;
 
-    constructor(private _http: HttpClient, private _jwt: JwtService) {
-        this.currentUserSubject = new BehaviorSubject<Usuario>(this._jwt.getToken());
-        this.currentUser = this.currentUserSubject.asObservable();
+    constructor( private _http: ApiService, private _jwtService: JwtService ) { }
+
+    login(params) {
+      return this._http.post('/usuarios/login', { username: params.username, password_hash: params.password })
+      .pipe(map((res: any) => {
+        console.log(res)
+        // login successful if there's a jwt token in the response
+        if (res && res.access_token) {
+            let data = { username: '', token:'' };
+            data.username = res.username;
+            data.token = res.access_token;
+            this._jwtService.saveToken(data);
+            return true;
+          }
+      }));
     }
-
-    public get currentUserValue(): Usuario {
-        return this.currentUserSubject.value;
-    }
-
-    login(username: string, password: string) {
-        return this._http.post<any>(`${environment.apiUrl}/users/authenticate`, { username, password })
-            .pipe(map(user => {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                this._jwt.saveToken(user);
-                this.currentUserSubject.next(user);
-                return user;
-            }));
-    }
-
+    /**
+     * Cierra la sesion destruyend el token
+     */
     logout() {
-        // remove user from local storage to log user out
-        this._jwt.destroyToken();
-        this.currentUserSubject.next(null);
+      // remove user from local storage to log user out
+      this._jwtService.destroyToken();
+    }
+    /**
+     * Verifica si esta activo el token del usuario
+     */
+    loggedIn() {
+      let userLogin = this._jwtService.getToken();
+      if(userLogin && userLogin.datosToken) {
+        return true;
+      }else{
+        return false;
+      }
+    }
+    /**
+     * Consigue el nombre del usuario
+     */
+    getUserName() {
+      let userLogin = this._jwtService.getToken();
+
+      return userLogin.datosToken.username;
     }
 }
