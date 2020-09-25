@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
 import { PersonaComponent } from './persona.component';
 import { EstadoCivilService, GeneroService, LocalidadService, NacionalidadService, PersonaService, SexoService, TipoDocumentoService } from '../core/services';
+import { AuthGuard } from '../core/guards/auth.guard';
 
 const routes = [
   {
     path: '',
     component: PersonaComponent,
+    canActivateChild: [AuthGuard],
     resolve: {
       personas: PersonaService, tipoDocumentos: TipoDocumentoService, localidades: LocalidadService,
       nacionalidades: NacionalidadService, estadoCiviles: EstadoCivilService, sexos: SexoService,

@@ -3,11 +3,13 @@ import { Routes, RouterModule } from "@angular/router";
 import { CuentaComponent } from './cuenta.component';
 import { AltaCuentaPersonaComponent, ImportacionCbuComponent } from './menu';
 import { PersonaService, SubSucursalService } from '../core/services';
+import { AuthGuard } from '../core/guards/auth.guard';
 
 const routes = [
   {
     path: '',
     component: CuentaComponent,
+    canActivateChild: [AuthGuard],
     children: [
       {
         path: 'alta', component: AltaCuentaPersonaComponent,
