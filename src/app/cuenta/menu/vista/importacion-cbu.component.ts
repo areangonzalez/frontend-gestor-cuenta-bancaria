@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-importacion-cbu',
+  selector: 'vista-importacion-cbu',
   templateUrl: './importacion-cbu.component.html',
   styleUrls: ['./importacion-cbu.component.scss']
 })

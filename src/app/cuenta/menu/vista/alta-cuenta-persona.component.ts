@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { configurarListas } from 'src/app/core/models';
 
 @Component({
-  selector: 'app-alta-cuenta-persona',
+  selector: 'vista-alta-cuenta-persona',
   templateUrl: './alta-cuenta-persona.component.html',
   styleUrls: ['./alta-cuenta-persona.component.scss'],
 })

@@ -3,10 +3,8 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared';
 import { CuentaComponent } from './cuenta.component';
 import { CuentaRoutingModule } from './cuenta-routing.module';
-import { MenuComponent, AltaCuentaPersonaComponent, ImportacionCbuComponent } from './menu';
+import { MenuComponent, AltaCuentaPersonaComponent, ImportacionCbuComponent, ImportarArchivoComponent } from './menu';
 import { ListadoPersonaSelecionadaComponent } from './menu/listado/listado-persona-selecionada.component';
-
-
 
 @NgModule({
   declarations: [
@@ -15,6 +13,7 @@ import { ListadoPersonaSelecionadaComponent } from './menu/listado/listado-perso
     AltaCuentaPersonaComponent,
     ImportacionCbuComponent,
     ListadoPersonaSelecionadaComponent,
+    ImportarArchivoComponent,
   ],
   imports: [
     CommonModule, SharedModule, CuentaRoutingModule
