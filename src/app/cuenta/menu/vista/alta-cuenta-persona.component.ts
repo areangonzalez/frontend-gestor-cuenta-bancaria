@@ -12,7 +12,6 @@ export class AltaCuentaPersonaComponent implements OnInit {
   public global_param: string = '';
   public personas: any = [];
   public listas = {} as configurarListas;
-  public listadoPersonasSeleccionadas: any = [];
   public filtradoBusqueda: any = {};
   public configPaginacion: ConfigurarPagina = new ConfigurarPagina(); // obteiene el objeto de configuracion de rango y paginado de comprobantes
 
@@ -20,12 +19,12 @@ export class AltaCuentaPersonaComponent implements OnInit {
 
   ngOnInit(): void {
     this.prepararListadoPersona(this._route.snapshot.data["personas"], 1);
-    this.listas.seleccionPersona = this.listadoPersonasSeleccionadas;
+    this.listas.seleccionPersona = [];
     this.listas.subSucursales = this._route.snapshot.data["subSucursales"];
   }
 
   obtenerPersona(persona: any) {
-    this.listadoPersonasSeleccionadas.push(persona);
+    this.listas.seleccionPersona.push(persona);
   }
 
   prepararListadoPersona(listado:any, pagina: number) {

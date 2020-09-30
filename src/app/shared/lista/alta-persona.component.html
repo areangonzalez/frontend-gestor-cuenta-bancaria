@@ -25,7 +25,7 @@
       <td class="text-center">
         <modal-info-persona [persona]="persona"></modal-info-persona>
         <modal-editar-persona [config-listas]="configurarListas" [persona]="persona" [tipo]="tipo"></modal-editar-persona>
-        <modal-agregar-sucursal *ngIf="(tipo === 'cuenta')" [subSucursales]="configurarListas.subSucursales" [idPersona]="persona.id" [listaDeSeleccionPersona]="listadoPersonas" (seleccionDeSucursal)="obtengoSeleccionDeSucursal(persona,$event)"></modal-agregar-sucursal>
+        <modal-agregar-sucursal *ngIf="(tipo === 'cuenta')" [subSucursales]="configurarListas.subSucursales" [idPersona]="persona.id" [listaDeSeleccionPersona]="configurarListas.seleccionPersona" (seleccionDeSucursal)="obtengoSeleccionDeSucursal(persona,$event)"></modal-agregar-sucursal>
       </td>
     </tr>
   </tbody>
