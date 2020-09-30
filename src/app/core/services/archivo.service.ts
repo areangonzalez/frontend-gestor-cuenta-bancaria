@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiService } from "./api.service";
 
@@ -9,7 +10,18 @@ export class ArchivoService {
   constructor(private _http: ApiService) { }
 
   exportarCtaSaldo(params: any) {
-    return this._http.getFile("/export/cta-saldo", params);
+    let headers = new Headers();
+    let httpParams = new HttpParams();
+    httpParams = this._http.formatParams(httpParams, params);
+    headers.append('Content-type', 'aplication/json');
+    headers.append('Accept', 'text/plain');
+
+    let options: object = {
+      responseType: 'blob',
+      params: httpParams,
+    };
+
+    return this._http.getFile("/export/cta-saldo", options);
   }
 
 
@@ -27,7 +39,7 @@ export class ArchivoService {
     return this._apiService.getFile('/export/exportar-prestaciones-xls', options);
   } */
 
-  importarArchivo() {
-    console.log("hola");
+  importarArchivo(archivo: any) {
+    return this._http.post("/importar/cta-bps", archivo);
   }
 }

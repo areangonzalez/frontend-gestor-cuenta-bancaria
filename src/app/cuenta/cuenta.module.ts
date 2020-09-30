@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared';
 import { CuentaComponent } from './cuenta.component';
 import { CuentaRoutingModule } from './cuenta-routing.module';
-import { MenuComponent, AltaCuentaPersonaComponent, ImportacionCbuComponent, ImportarArchivoComponent } from './menu';
+import { MenuComponent, AltaCuentaPersonaComponent, ImportacionCbuComponent, ImportarArchivoContent, ImportarArchivoComponent } from './menu';
 import { ListadoPersonaSelecionadaComponent } from './menu/listado/listado-persona-selecionada.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -13,11 +14,12 @@ import { ListadoPersonaSelecionadaComponent } from './menu/listado/listado-perso
     AltaCuentaPersonaComponent,
     ImportacionCbuComponent,
     ListadoPersonaSelecionadaComponent,
-    ImportarArchivoComponent,
+    ImportarArchivoContent, ImportarArchivoComponent
   ],
   imports: [
-    CommonModule, SharedModule, CuentaRoutingModule
+    CommonModule, SharedModule, CuentaRoutingModule, NgbModalModule
   ],
+  exports: [ImportarArchivoContent, ImportarArchivoComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CuentaModule { }

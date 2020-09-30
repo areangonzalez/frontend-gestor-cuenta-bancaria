@@ -1,21 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 
 @Component({
-  selector: 'modal-importar-archivo',
-  templateUrl: './importar-archivo.component.html',
-  styleUrls: ['./importar-archivo.component.scss']
+  selector: 'content-importar-archivo',
+  template: `
+    <div class="modal-header">
+      <h4 class="modal-title">Importar Archivo</h4>
+      <button type="button" class="close" aria-label="Close" (click)="cerrarModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="col-md-12">
+        <div class="custom-file">
+          <input  (change)="fileChange($event)"  type="file"  class="form-control-file" >
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer d-flex justify-content-between">
+      <button type="button" class="btn btn-outline-danger" (click)="cerrarModal()"><i class="fas fa-ban"></i> Cancelar</button>
+      <button type="button" class="btn btn-outline-success btn-md" (click)="agregarAdjunto()" id="btn-agregar-adjunto">Importar archivo</button>
+    </div>
+`,
 })
-export class ImportarArchivoComponent implements OnInit {
+export class ImportarArchivoContent {
   public uploadedFiles: Array < File > ;
   public tipoAdjuntoSeleccionado: any;
   public publicaEnWeb: any = false;
   private _unsubscribeAll: Subject<any>;
   public listaAdjuntos: any;
 
-  constructor() { }
+  constructor(public activeModal: NgbActiveModal) {}
 
-  ngOnInit(): void {
+  cerrarModal() {
+    this.activeModal.close(false);
   }
 
   fileChange(element) {
@@ -46,8 +65,28 @@ export class ImportarArchivoComponent implements OnInit {
         alert('error');
       }
     ); */
-
-
   }
+}
 
+@Component({
+  selector: 'modal-importar-archivo',
+  templateUrl: './importar-archivo.component.html',
+  styleUrls: ['./importar-archivo.component.scss']
+})
+export class ImportarArchivoComponent {
+  @Output("obtenerRespuesta") public obtenerRespuesta = new EventEmitter();
+
+  constructor(private _modalService: NgbModal) { }
+
+  open() {
+    console.log("abro");
+
+    const modalRef = this._modalService.open(ImportarArchivoContent);
+    modalRef.result.then(
+      (result) => {
+        if (result !== false) {
+          return this.obtenerRespuesta.emit(result);
+        }
+      });
+  }
 }
