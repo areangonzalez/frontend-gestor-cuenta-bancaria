@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
+import { ArchivoService } from 'src/app/core/services/archivo.service';
 
 @Component({
   selector: 'content-importar-archivo',
@@ -31,7 +32,7 @@ export class ImportarArchivoContent {
   private _unsubscribeAll: Subject<any>;
   public listaAdjuntos: any;
 
-  constructor(public activeModal: NgbActiveModal) {}
+  constructor(public activeModal: NgbActiveModal, private _archivo: ArchivoService) {}
 
   cerrarModal() {
     this.activeModal.close(false);
@@ -53,18 +54,11 @@ export class ImportarArchivoContent {
     fdata.append('tipo', JSON.stringify(this.tipoAdjuntoSeleccionado));
     fdata.append('publicaEnWeb', JSON.stringify(this.publicaEnWeb));
 
-    /* this.adjuntoService.nuevoAdjunto(fdata, this.idDocumento)
-    .pipe(takeUntil(this._unsubscribeAll))
-    .subscribe(
-      resultado => {
-        this.listaAdjuntos = resultado;
-        this.cdRef.markForCheck();
-        alert('ok');
-      },
-      error => {
-        alert('error');
-      }
-    ); */
+    this._archivo.importarArchivo(fdata).subscribe(
+      respuesta => {
+        this.activeModal.close(respuesta);
+      }, error => { this.activeModal.close(error); }
+    );
   }
 }
 
@@ -79,12 +73,11 @@ export class ImportarArchivoComponent {
   constructor(private _modalService: NgbModal) { }
 
   open() {
-    console.log("abro");
-
     const modalRef = this._modalService.open(ImportarArchivoContent);
     modalRef.result.then(
       (result) => {
         if (result !== false) {
+          console.log(result);
           return this.obtenerRespuesta.emit(result);
         }
       });
