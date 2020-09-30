@@ -30,3 +30,18 @@ td {
   border: #8cc63f;
   box-shadow: 0 0 0 0.2rem #8cc63f;
 }
+.btn-group-center {
+  margin-left: -0.05rem;
+  border-radius: 0 0 0 0;
+}
+.btn-group-left {
+  margin-left: -0.045rem;
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+.btn-group-left-2 {
+  margin-left: -0.063rem !important;
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+.btn-group-right {
+  border-radius: 0.25rem 0 0 0.25rem;
+}

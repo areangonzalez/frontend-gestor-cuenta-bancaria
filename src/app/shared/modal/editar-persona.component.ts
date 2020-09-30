@@ -36,6 +36,7 @@ export class EditarPersonaContent {
   styleUrls: ['./editar-persona.component.scss']
 })
 export class EditarPersonaComponent {
+  @Input("tipo") public tipo:string;
   @Input("persona") public persona: any; // objeto que contiene los datos de persona
   @Input("config-listas") public configurarListas: configurarListas; // array que contiene el/los listados para el componente
 

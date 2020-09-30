@@ -1,1 +1,1 @@
-<button type="button" class="btn btn-sm btn-light" ngbTooltip="Editar Datos de persona" container="'body'" (click)="open()"><i class="far fa-edit"></i></button>
+<button type="button" class="btn btn-sm btn-outline-secondary" [class.btn-group-center]="tipo === 'cuenta'" [class.btn-group-left-2]="tipo === 'persona'" ngbTooltip="Editar Datos de persona" container="'body'" (click)="open()"><i class="far fa-edit"></i></button>

@@ -23,9 +23,9 @@
       <td class="text-center">{{persona.lugar.localidad}}</td>
       <td *ngIf="(tipo === 'cuenta')" class="text-center">{{persona.fecha_ingreso | date: 'dd/MM/yyyy'}}</td>
       <td class="text-center">
-        <modal-agregar-sucursal *ngIf="(tipo === 'cuenta')" [subSucursales]="configurarListas.subSucursales" [idPersona]="persona.id" [listaDeSeleccionPersona]="listadoPersonas" (seleccionDeSucursal)="obtengoSeleccionDeSucursal(persona,$event)"></modal-agregar-sucursal>
         <modal-info-persona [persona]="persona"></modal-info-persona>
-        <modal-editar-persona [config-listas]="configurarListas" [persona]="persona"></modal-editar-persona>
+        <modal-editar-persona [config-listas]="configurarListas" [persona]="persona" [tipo]="tipo"></modal-editar-persona>
+        <modal-agregar-sucursal *ngIf="(tipo === 'cuenta')" [subSucursales]="configurarListas.subSucursales" [idPersona]="persona.id" [listaDeSeleccionPersona]="listadoPersonas" (seleccionDeSucursal)="obtengoSeleccionDeSucursal(persona,$event)"></modal-agregar-sucursal>
       </td>
     </tr>
   </tbody>
