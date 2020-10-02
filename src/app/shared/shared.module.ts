@@ -7,6 +7,7 @@ import { AltaPersonaComponent } from './lista';
 import { RegistrarPersonaComponent, FormLugarComponent } from './formulario';
 import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, NotidicacionModalContent, AgregarSucursalComponent, ConfirmarExportacionModalContent, ConfirmarExportacionComponent, InfoPersonaContent, InfoPersonaComponent, EditarPersonaContent, EditarPersonaComponent } from './modal';
 import { VistaPersonaComponent } from './vista';
+import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { VistaPersonaComponent } from './vista';
     ConfirmarExportacionModalContent, ConfirmarExportacionComponent,
     InfoPersonaContent, InfoPersonaComponent,
     VistaPersonaComponent,
-    EditarPersonaContent, EditarPersonaComponent
+    EditarPersonaContent, EditarPersonaComponent,
+    BusquedaAvanzadaPersonaComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ import { VistaPersonaComponent } from './vista';
     ConfirmarExportacionModalContent, ConfirmarExportacionComponent,
     InfoPersonaContent, InfoPersonaComponent,
     VistaPersonaComponent,
-    EditarPersonaContent, EditarPersonaComponent
+    EditarPersonaContent, EditarPersonaComponent,
+    BusquedaAvanzadaPersonaComponent
   ]
 })
 export class SharedModule { }

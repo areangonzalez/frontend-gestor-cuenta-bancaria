@@ -5,7 +5,7 @@
       <div class="input-group-append">
         <button type="button" class="btn btn-outline-primary" (click)="buscar()"><i class="fas fa-search"></i></button>
         <button type="button" class="btn btn-outline-danger" (click)="limpiarCampos()"><i class="fas fa-trash-alt"></i></button>
-        <modal-crear-persona [config-listas]="configurarListas" ></modal-crear-persona>
+        <modal-crear-persona *ngIf="(tipo !== 'importar')" [config-listas]="configurarListas" ></modal-crear-persona>
       </div>
     </div>
   </div>

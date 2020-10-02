@@ -1,10 +1,13 @@
 <table class="table table-hover table-sm">
   <thead>
     <tr>
-      <th scope="col">Documento</th>
+      <th *ngIf="(tipo !== 'importar')" scope="col">Documento</th>
+      <th *ngIf="(tipo === 'importar')" scope="col">Cuil</th>
       <th scope="col" rowspan="1" colspan="2">Apellido y Nombre</th>
       <th class="text-center">Localidad</th>
-      <th *ngIf="(tipo === 'cuenta')" class="text-center" scope="col">Fecha de Ingreso</th>
+      <th *ngIf="(tipo === 'importar')" scope="col">CBU</th>
+      <th *ngIf="(tipo === 'cuenta' || tipo === 'importar')" class="text-center" scope="col">Fecha de Ingreso</th>
+      <th *ngIf="(tipo === 'importar')" scope="col">Monto</th>
       <th class="text-center">Acción</th>
     </tr>
   </thead>

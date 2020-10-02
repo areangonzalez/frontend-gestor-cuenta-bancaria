@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { PersonaComponent } from './persona.component';
 import { PersonaRoutingModule } from './persona-routing.module';
 import { SharedModule } from '../shared';
-import { BusquedaAvanzadaPersonaComponent } from './busqueda';
+
 
 @NgModule({
-  declarations: [ PersonaComponent, BusquedaAvanzadaPersonaComponent ],
+  declarations: [ PersonaComponent ],
   imports: [
     CommonModule, SharedModule, PersonaRoutingModule
   ],

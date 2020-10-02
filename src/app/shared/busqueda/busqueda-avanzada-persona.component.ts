@@ -10,6 +10,7 @@ import { configurarListas } from 'src/app/core/models';
   styleUrls: ['./busqueda-avanzada-persona.component.scss']
 })
 export class BusquedaAvanzadaPersonaComponent implements OnInit {
+  @Input("tipo") public tipo:string;
   @Input("config-listas") public configurarListas: configurarListas; // array que contiene el/los listados para el componente
   @Output("obtenerBusqueda") public obtenerBusqueda = new EventEmitter();
   @Output("limpiar") public limpiar = new EventEmitter();

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
 import { CuentaComponent } from './cuenta.component';
 import { AltaCuentaPersonaComponent, ImportacionCbuComponent } from './menu';
-import { PersonaService, SubSucursalService } from '../core/services';
+import { LocalidadService, PersonaService, SubSucursalService } from '../core/services';
 import { AuthGuard } from '../core/guards/auth.guard';
 
 const routes = [
@@ -20,7 +20,10 @@ const routes = [
       },
       {
         path: 'importacion', component: ImportacionCbuComponent,
-        data: { title: 'Importación de CBU' }
+        data: { title: 'Importación de CBU' },
+        resolve: {
+          localidades: LocalidadService, personas: PersonaService
+        }
       },
       { path: '**', redirecTo: 'alta', pathMatch: 'full' },
     ]
@@ -30,6 +33,6 @@ const routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [PersonaService, SubSucursalService]
+  providers: [PersonaService, SubSucursalService, LocalidadService]
 })
 export class CuentaRoutingModule { }
