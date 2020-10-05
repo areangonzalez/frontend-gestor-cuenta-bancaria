@@ -51,7 +51,6 @@ export class AltaCuentaPersonaComponent implements OnInit {
 
   public realizarBusqueda(params: any, page: number) {
     Object.assign(params, {page: page-1});
-    console.log(params);
     this.filtradoBusqueda = params;
     this._personaService.buscar(params).subscribe(
       respuesta => {

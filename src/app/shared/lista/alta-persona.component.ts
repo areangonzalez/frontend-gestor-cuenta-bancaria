@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { configurarListas } from 'src/app/core/models';
+import { NotificacionService } from 'src/app/core/services';
 
 @Component({
   selector: 'shared-lista-alta-persona',
@@ -15,7 +16,7 @@ export class AltaPersonaComponent implements OnInit {
   @Output("cambioDePagina") public cambioDePagina = new EventEmitter();
   public copiaDeDatos: any = { existe: false, sucursal_codigo_postal: '', sucursal_codigo: '' };
 
-  constructor() { }
+  constructor(private _msj: NotificacionService) { }
 
   ngOnInit(): void {
   }
@@ -44,9 +45,23 @@ export class AltaPersonaComponent implements OnInit {
     return dir;
   }
 
-  /* pegarCopiaSeleccionada() {
+  pegarCopiaSeleccionada(persona: any, copia: any) {
+    let personaSeleccionada: boolean = false;
+    for (let i = 0; i < this.configurarListas.seleccionPersona.length; i++) {
+      if (this.configurarListas.seleccionPersona[i].id === persona.id) {
+        this._msj.cancelado("¡Esta persona ya ha sido seleccionada!");
+        personaSeleccionada = true;
+      }
+    }
 
-  } */
+    if (!personaSeleccionada) {
+      persona["sucursal_codigo_postal"] = copia.codigo_postal;
+      persona["sucursal_codigo"] = copia.codigo;
+
+      this.seleccionDePersona.emit(persona);
+    }
+
+  }
 
   copiarDatosSeleccionados(copia:any) {
     this.copiaDeDatos.existe = true;

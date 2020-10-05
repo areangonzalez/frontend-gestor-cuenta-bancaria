@@ -80,7 +80,6 @@ export class AgregarSucursalComponent {
   constructor(private _modalService: NgbModal) { }
 
   open() {
-    console.log(this.listaDeSeleccionPersona);
     let existe: boolean = false;
     if (this.listaDeSeleccionPersona.length > 0) {
       for (let i = 0; i < this.listaDeSeleccionPersona.length; i++) {
