@@ -1,3 +1,4 @@
+export * from './loader.service';
 export * from './util.service';
 export * from './configuracion-para-paginar.service';
 export * from './notificacion.service';

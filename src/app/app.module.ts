@@ -4,6 +4,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { registerLocaleData } from "@angular/common";
 import es from "@angular/common/locales/es";
 
+import { RadarSpinnerModule } from "angular-epic-spinners";
+
 import { fakeBackendProvider } from "./core/helpers";
 
 import { NgbModule, NgbDatepickerI18n, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
@@ -12,7 +14,7 @@ import { CustomDatepickerI18n, NgbDateARParserFormatter } from './core/helpers';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { SharedModule, NotificacionComponent, SistemaComponent, LoginComponent } from './shared';
+import { SharedModule, LoaderComponent, NotificacionComponent, SistemaComponent, LoginComponent } from './shared';
 
 import { JwtInterceptor, ErrorInterceptor } from './core/helpers';
 
@@ -21,12 +23,14 @@ registerLocaleData(es);
 @NgModule({
   declarations: [
     AppComponent,
+    LoaderComponent,
     NotificacionComponent, SistemaComponent, LoginComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
     HttpClientModule,
+    RadarSpinnerModule,
     AppRoutingModule,
     SharedModule,
   ],
