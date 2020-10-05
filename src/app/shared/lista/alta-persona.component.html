@@ -13,7 +13,8 @@
   </thead>
   <tbody>
     <tr *ngFor="let persona of listadoPersonas">
-      <td>{{persona.nro_documento}}</td>
+      <td *ngIf="(tipo !== 'importar')" >{{persona.nro_documento}}</td>
+      <td *ngIf="(tipo === 'importar')" >{{persona.cuil}}</td>
       <td rowspan="1" colspan="2">
         {{persona.apellido}}, {{persona.nombre}}
         <div class="btn-group">
@@ -24,11 +25,14 @@
         </div>
       </td>
       <td class="text-center">{{persona.lugar.localidad}}</td>
-      <td *ngIf="(tipo === 'cuenta')" class="text-center">{{persona.fecha_ingreso | date: 'dd/MM/yyyy'}}</td>
+      <td *ngIf="(tipo === 'importar')" class="text-center">{{persona.cbu}}</td>
+      <td *ngIf="(tipo === 'cuenta' || tipo === 'importar')" class="text-center">{{persona.fecha_ingreso | date: 'dd/MM/yyyy'}}</td>
+      <td *ngIf="(tipo === 'importar')" class="text-center">{{persona.monto}}</td>
       <td class="text-center">
         <modal-info-persona [persona]="persona"></modal-info-persona>
         <modal-editar-persona [config-listas]="configurarListas" [persona]="persona" [tipo]="tipo"></modal-editar-persona>
         <modal-agregar-sucursal *ngIf="(tipo === 'cuenta')" [subSucursales]="configurarListas.subSucursales" [idPersona]="persona.id" [listaDeSeleccionPersona]="configurarListas.seleccionPersona" (seleccionDeSucursal)="obtengoSeleccionDeSucursal(persona,$event)"></modal-agregar-sucursal>
+        <button type="button" class="btn btn-sm btn-outline-success btn-group-left" ngbTooltip="Pegar última selección" container="'body'"><i class="fas fa-paste"></i></button>
       </td>
     </tr>
   </tbody>
