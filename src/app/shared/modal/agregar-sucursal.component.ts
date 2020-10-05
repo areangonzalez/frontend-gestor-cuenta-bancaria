@@ -31,12 +31,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
     </div>
     <div class="modal-footer d-flex justify-content-between">
       <button type="button" class="btn btn-outline-danger" (click)="cerrarModal()"><i class="fas fa-ban"></i> Cancelar</button>
+      <button *ngIf="copiaSeleccion.existe" type="button" class="btn btn-outline-dark" (click)="pegarDatosForm(copiaSeleccion)"><i class="fas fa-paste"></i> Pegar datos </button>
       <button type="button" class="btn btn-outline-success" (click)="validarPersona()"><i class="far fa-save"></i> Guardar</button>
     </div>
 `,
 })
 export class AgregarSucursalContent {
   @Input("subSucursales") public subSucursales:any;
+  @Input("copiaSeleccion") public copiaSeleccion: any;
   public sucursalForm: FormGroup;
   public submitted: boolean = false;
   public sucursalSeleccionada: any = { codigo_postal: '', codigo: ''};
@@ -46,21 +48,41 @@ export class AgregarSucursalContent {
       sucursal: ['', Validators.required],
     });
   }
-
+  /**
+   * Cierro el modal
+   */
   cerrarModal() {
     this.activeModal.close(false);
   }
-
+  /**
+   * Validación de los datos del formulario
+   */
   validarPersona() {
     this.submitted = true;
     if ( this.sucursalForm.invalid ) {
       return;
     }else{
+      console.log(this.sucursalForm.value);
       this.sucursalSeleccionada.codigo_postal = this.sucursalForm.value.sucursal.codigo_postal;
       this.sucursalSeleccionada.codigo = this.sucursalForm.value.sucursal.codigo;
 
       this.activeModal.close(this.sucursalSeleccionada);
     }
+  }
+  /**
+   * pego los datos copiados dentro del formulario
+   * @param copia objeto que contiene la copia de datos
+   */
+  pegarDatosForm(copia:any) {
+    let sucursal: any = {};
+    // busco en el listado de subsucursales, la sucursal quecontenga el mismo codigo
+    for (let i = 0; i < this.subSucursales.length; i++) {
+      if (this.subSucursales[i].codigo === copia.codigo){
+        sucursal = this.subSucursales[i];
+      }
+    }
+    // seteo el formulario
+    this.sucursalForm.patchValue({sucursal: sucursal});
   }
 
 }
@@ -75,6 +97,7 @@ export class AgregarSucursalComponent {
   @Input("listaDeSeleccionPersona") public listaDeSeleccionPersona: any;
   @Input("idPersona") public idPersona: number;
   @Input("existeCopia") public existeCopia: boolean;
+  @Input("copiaSeleccion") public copiaSeleccion: any;
   @Output("seleccionDeSucursal") public seleccionDeSucursal = new EventEmitter();
 
   constructor(private _modalService: NgbModal) { }
@@ -88,17 +111,20 @@ export class AgregarSucursalComponent {
         }
       }
     }
-    if (existe) {
+    if (existe) { // si la persona ya fue seleccionada muestra una notificacion
       this.abrirNotificacion();
-    }else {
+    }else { // si no existe la personas abro el formulario
       this.abrirModal();
     }
 
   }
-
+  /**
+   * abro el modal con sus instancias
+   */
   abrirModal() {
     const modalRef = this._modalService.open(AgregarSucursalContent);
     modalRef.componentInstance.subSucursales = this.subSucursales;
+    modalRef.componentInstance.copiaSeleccion = this.copiaSeleccion;
     modalRef.result.then(
       (result) => {
         if (result !== false) {
@@ -106,7 +132,9 @@ export class AgregarSucursalComponent {
         }
       });
   }
-
+  /**
+   * notifico al usuario con un mensaje de error
+   */
   abrirNotificacion() {
     const notidficacion = this._modalService.open(NotidicacionModalContent, { windowClass: 'red-modal' });
   }

@@ -14,17 +14,24 @@ export class AltaPersonaComponent implements OnInit {
   @Input("configPaginacion") public configPaginacion: any;
   @Output("seleccionDePersona") public seleccionDePersona = new   EventEmitter();
   @Output("cambioDePagina") public cambioDePagina = new EventEmitter();
-  public copiaDeDatos: any = { existe: false, sucursal_codigo_postal: '', sucursal_codigo: '' };
+  public copiaDeDatos: any = { existe: false };
 
   constructor(private _msj: NotificacionService) { }
 
   ngOnInit(): void {
   }
-
+  /**
+   * Envio al componente padre el numero de pagina
+   * @param pagina numero de pagina
+   */
   cambioPagina(pagina:number){
     this.cambioDePagina.emit(pagina);
   }
-
+  /**
+   * obtengo los datos guardados en el formulario y los agrego a la persona que se le fue asignada
+   * @param persona objeto que contiene los datos a persona
+   * @param sucursal datos de la sucursal obtenidos del formulario
+   */
   obtengoSeleccionDeSucursal(persona: any, sucursal: any) {
     persona["sucursal_codigo_postal"] = sucursal.codigo_postal;
     persona["sucursal_codigo"] = sucursal.codigo;
@@ -33,7 +40,10 @@ export class AltaPersonaComponent implements OnInit {
 
     this.seleccionDePersona.emit(persona);
   }
-
+  /**
+   * Armo una cadena de texto con los datos de direccion de la persona para el tooltip
+   * @param lugar objeto que contiene los datos de direccion de una persona
+   */
   public direccion(lugar: object){
     let dir = "";
     dir += lugar['localidad'];
@@ -44,7 +54,12 @@ export class AltaPersonaComponent implements OnInit {
 
     return dir;
   }
-
+  /**
+   * Pego los datos copiados en la seleccion anterior en una persona nueva,
+   * si la persona ya ha sido seleccionada se le notifica con un mensaje de error al usuario
+   * @param persona objeto que contiene los datos de la persona seleccionada
+   * @param copia objeto que contiene los datos que han sido copiado en una seleccion anterior
+   */
   pegarCopiaSeleccionada(persona: any, copia: any) {
     let personaSeleccionada: boolean = false;
     for (let i = 0; i < this.configurarListas.seleccionPersona.length; i++) {
@@ -62,11 +77,13 @@ export class AltaPersonaComponent implements OnInit {
     }
 
   }
-
+  /**
+   * copio los datos seleccionados de una persona y los asigno a una nueva variable
+   * @param copia datos obtenidos del formulario
+   */
   copiarDatosSeleccionados(copia:any) {
     this.copiaDeDatos.existe = true;
-    this.copiaDeDatos.sucursal_codigo = copia.sucursal_codigo;
-    this.copiaDeDatos.sucursal_codigo_postal = copia.sucursal_codigo_postal;
+    Object.assign(this.copiaDeDatos, copia);
   }
 
 }
