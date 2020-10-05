@@ -13,6 +13,7 @@ export class AltaPersonaComponent implements OnInit {
   @Input("configPaginacion") public configPaginacion: any;
   @Output("seleccionDePersona") public seleccionDePersona = new   EventEmitter();
   @Output("cambioDePagina") public cambioDePagina = new EventEmitter();
+  public copiaDeDatos: any = { existe: false, sucursal_codigo_postal: '', sucursal_codigo: '' };
 
   constructor() { }
 
@@ -27,6 +28,8 @@ export class AltaPersonaComponent implements OnInit {
     persona["sucursal_codigo_postal"] = sucursal.codigo_postal;
     persona["sucursal_codigo"] = sucursal.codigo;
 
+    this.copiarDatosSeleccionados(sucursal);
+
     this.seleccionDePersona.emit(persona);
   }
 
@@ -39,6 +42,16 @@ export class AltaPersonaComponent implements OnInit {
     dir += (lugar['depto'] != '') ? ' - ' + lugar['depto'] : '';
 
     return dir;
+  }
+
+  /* pegarCopiaSeleccionada() {
+
+  } */
+
+  copiarDatosSeleccionados(copia:any) {
+    this.copiaDeDatos.existe = true;
+    this.copiaDeDatos.sucursal_codigo = copia.sucursal_codigo;
+    this.copiaDeDatos.sucursal_codigo_postal = copia.sucursal_codigo_postal;
   }
 
 }

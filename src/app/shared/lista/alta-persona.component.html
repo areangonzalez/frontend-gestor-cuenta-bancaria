@@ -31,8 +31,8 @@
       <td class="text-center">
         <modal-info-persona [persona]="persona"></modal-info-persona>
         <modal-editar-persona [config-listas]="configurarListas" [persona]="persona" [tipo]="tipo"></modal-editar-persona>
-        <modal-agregar-sucursal *ngIf="(tipo === 'cuenta')" [subSucursales]="configurarListas.subSucursales" [idPersona]="persona.id" [listaDeSeleccionPersona]="configurarListas.seleccionPersona" (seleccionDeSucursal)="obtengoSeleccionDeSucursal(persona,$event)"></modal-agregar-sucursal>
-        <button type="button" class="btn btn-sm btn-outline-success btn-group-left" ngbTooltip="Pegar última selección" container="'body'"><i class="fas fa-paste"></i></button>
+        <modal-agregar-sucursal *ngIf="(tipo === 'cuenta')" [subSucursales]="configurarListas.subSucursales" [idPersona]="persona.id" [existeCopia]="copiaDeDatos.existe" [listaDeSeleccionPersona]="configurarListas.seleccionPersona" (seleccionDeSucursal)="obtengoSeleccionDeSucursal(persona,$event)"></modal-agregar-sucursal>
+        <button *ngIf="copiaDeDatos.existe" type="button" class="btn btn-sm btn-outline-success btn-group-left" ngbTooltip="Pegar última selección" container="'body'"><i class="fas fa-paste"></i></button>
       </td>
     </tr>
   </tbody>

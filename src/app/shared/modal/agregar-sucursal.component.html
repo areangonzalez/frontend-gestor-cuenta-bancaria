@@ -1,1 +1,1 @@
-<button type="button" class="btn btn-sm btn-outline-primary btn-group-center" placement="top" ngbTooltip="Seleccionar Persona" containter="'body'" (click)="open()"><i class="fas fa-check"></i></button>
+<button type="button" class="btn btn-sm btn-outline-primary" [class.btn-group-center]="existeCopia" [class.btn-group-left]="!existeCopia"  placement="top" ngbTooltip="Seleccionar Persona" containter="'body'" (click)="open()"><i class="fas fa-check"></i></button>

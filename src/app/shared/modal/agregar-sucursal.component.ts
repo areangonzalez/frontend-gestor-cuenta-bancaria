@@ -74,6 +74,7 @@ export class AgregarSucursalComponent {
   @Input("subSucursales") public subSucursales: any;
   @Input("listaDeSeleccionPersona") public listaDeSeleccionPersona: any;
   @Input("idPersona") public idPersona: number;
+  @Input("existeCopia") public existeCopia: boolean;
   @Output("seleccionDeSucursal") public seleccionDeSucursal = new EventEmitter();
 
   constructor(private _modalService: NgbModal) { }
