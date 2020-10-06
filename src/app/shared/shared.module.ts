@@ -1,6 +1,8 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { NgbTooltipModule, NgbDatepickerModule, NgbCollapseModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { CabeceraComponent, PieComponent } from './layout';
 import { AltaPersonaComponent } from './lista';
@@ -24,7 +26,7 @@ import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
   ],
   imports: [
     CommonModule,
-    FormsModule, ReactiveFormsModule,
+    FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule,
     NgbTooltipModule, NgbDatepickerModule, NgbCollapseModule, NgbPaginationModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLinkActive } from '@angular/router';
+import { AutenticacionService, LoaderService } from 'src/app/core/services';
 
 @Component({
   selector: 'layout-cabecera',
@@ -10,20 +11,20 @@ export class CabeceraComponent implements OnInit {
   public isCollapsed = true;
   public mostrar: boolean = false;
   public nombreUsuario: string = '';
-  public estoyLogueado:boolean = false;
 
-  constructor( private _router: Router ) { }
+  constructor( private _router: Router, private _loading: LoaderService, private _autenticacion: AutenticacionService ) { }
 
   ngOnInit(): void {
+
   }
 
   cerrarSesion() {
-    /* this._loader.show();
+    this._loading.show();
       setTimeout(() => {
         this._autenticacion.logout();
-        this._loader.hide();
+        this._loading.hide();
         this._router.navigate(['/login']);
-       }, 1000); */
+       }, 1000);
   }
 
   mostrarMenu(){
@@ -32,6 +33,10 @@ export class CabeceraComponent implements OnInit {
 
   ocultarMenu(){
     this.mostrar = false;
+  }
+
+  estoyLogueado(){
+    return true;
   }
 
 }
