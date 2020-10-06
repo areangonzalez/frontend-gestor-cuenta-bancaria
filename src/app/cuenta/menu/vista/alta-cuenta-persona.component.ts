@@ -36,9 +36,8 @@ export class AltaCuentaPersonaComponent implements OnInit {
 
   /**
    * reinicia el listado a sin parametros de busqueda
-   * @param e
    */
-  limpiarCampos(e: boolean) {
+  limpiarCampos() {
     this.realizarBusqueda({}, 1);
   }
   /**

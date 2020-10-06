@@ -6,7 +6,7 @@
   color: #036954 !important;
 
   &:hover {
-    color: #036954 !important
+    color: #036954 !important;
   }
 }
 .navbar-nav {
@@ -47,6 +47,9 @@
       }
     }
   }
+}
+.navbar-toggler {
+  color: #036954 !important;
 }
 .texto-ds {
   font-size:14px;

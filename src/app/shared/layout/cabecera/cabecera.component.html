@@ -16,8 +16,8 @@
         <a class="nav-link" [routerLink]="['/cuentas']" ><i class="fas fa-university"></i> Cuentas</a>
       </li>
     </ul>
-    <ul class="navbar-nav flex-row ml-md-auto d-md-flex" [ngClass]="{'border': !isCollapsed}" *ngIf="estoyLogueado()">
-      <li class="dropdown-item" ><a class="nav-link" (click)="cerrarSesion()"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
+    <ul class="navbar-nav flex-row ml-md-auto d-md-flex" *ngIf="estoyLogueado()">
+      <li class="" ><a class="nav-link" (click)="cerrarSesion()"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
     </ul>
     <!-- <div ngbDropdown display="dynamic" placement="bottom-right" class="d-inline-block">
         <button class="btn btn-outline-primary-dp btn-margin-dropdown" id="dropdownBasic1" ngbDropdownToggle [ngClass]="{'btn-dropdown-menu': isCollapsed}" ><i class="fas fa-user-tie"></i> {{nombreUsuario}}</button>
