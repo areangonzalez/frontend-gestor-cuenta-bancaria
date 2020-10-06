@@ -7,17 +7,19 @@ const routes: Routes = [
   {
     path: '',
     component: SistemaComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'personas',
-        canActivate: [AuthGuard],
+        // canActivateChild: [AuthGuard],
         loadChildren: () => import('./persona/persona.module').then(m => m.PersonaModule)
       },
       {
         path: 'cuentas',
-        canActivate: [AuthGuard],
+        // canActivateChild: [AuthGuard],
         loadChildren: () => import('./cuenta/cuenta.module').then(m => m.CuentaModule)
-      }
+      },
+      { path: '', redirectTo: 'personas', pathMatch: 'full' }
     ]
   },
   {
@@ -25,7 +27,7 @@ const routes: Routes = [
     component: LoginComponent,
     loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
   },
-  { path: '**', redirectTo: 'personas', pathMatch: 'full' }
+  { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 

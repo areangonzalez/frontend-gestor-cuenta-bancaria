@@ -5,7 +5,7 @@ import { AltaCuentaPersonaComponent, ImportacionCbuComponent } from './menu';
 import { LocalidadService, PersonaService, SubSucursalService } from '../core/services';
 import { AuthGuard } from '../core/guards/auth.guard';
 
-const routes = [
+const routes: Routes = [
   {
     path: '',
     component: CuentaComponent,
@@ -25,7 +25,7 @@ const routes = [
           localidades: LocalidadService, personas: PersonaService
         }
       },
-      { path: '**', redirecTo: 'alta', pathMatch: 'full' },
+      { path: '', redirectTo: 'alta', pathMatch: 'full' }
     ]
   }
 ];
