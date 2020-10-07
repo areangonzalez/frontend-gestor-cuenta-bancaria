@@ -1,8 +1,7 @@
-<table class="table table-hover table-sm">
+<table class="table table-hover table-sm table-responsive-md">
   <thead>
     <tr>
-      <th *ngIf="(tipo !== 'importar')" scope="col">Documento</th>
-      <th *ngIf="(tipo === 'importar')" scope="col">Cuil</th>
+      <th scope="col">{{(tipo !== 'importar') ? 'documento' : 'Cuil' }}</th>
       <th scope="col" rowspan="1" colspan="2">Apellido y Nombre</th>
       <th class="text-center">Localidad</th>
       <th *ngIf="(tipo === 'importar')" scope="col">CBU</th>
@@ -13,8 +12,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let persona of listadoPersonas">
-      <td *ngIf="(tipo !== 'importar')" >{{persona.nro_documento}}</td>
-      <td *ngIf="(tipo === 'importar')" >{{persona.cuil}}</td>
+      <td >{{(tipo !== 'importar') ? persona.nro_documento : persona.cuil}}</td>
       <td rowspan="1" colspan="2">
         {{persona.apellido}}, {{persona.nombre}}
         <div class="btn-group">

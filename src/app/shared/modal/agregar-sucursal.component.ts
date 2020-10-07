@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
-import { NgbModal, NgbActiveModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal, NgbModalConfig, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UtilService } from 'src/app/core/services';
 
 @Component({
   selector: 'content-agregar-sucursal',
@@ -14,6 +15,37 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
     <div class="modal-body">
         <fieldset [formGroup]="sucursalForm">
           <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="fecha_nacimiento">Fecha Nacimiento:</label>
+                <div class="input-group">
+                  <input class="form-control" #c1 placeholder="Ej.: dd/mm/yyyy" ngbDatepicker #fpd="ngbDatepicker"
+                  id="fecha_nacimiento" formControlName="fechaIngreso" (ngModelChange)="formatFecha($event)" [ngClass]="{'is-invalid': (sucursalForm.get('fechaIngreso').invalid && submitted)}" >
+                  <div class="input-group-append">
+                      <button class="btn btn-outline-info" (click)="fpd.toggle()" type="button" [ngClass]="{'btn-outline-danger': (sucursalForm.get('fechaIngreso').invalid && submitted), 'is-invalid': (sucursalForm.get('fechaIngreso').invalid && submitted)}"> <!--  -->
+                        <i class="far fa-calendar-alt"></i>
+                      </button>
+                  </div>
+                </div>
+                <div *ngIf="(sucursalForm.get('fechaIngreso').invalid && submitted)" class="text-danger">
+                    <span>Por favor ingrese una fecha.</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="monto">Monto</label>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">$</div>
+                  </div>
+                  <input type="text" id="monto" placeholder="Ej.: 1000" class="form-control" formControlName="monto" (keyup)="validarMoneda($event.target)">
+                </div>
+              </div>
+              <div *ngIf="(sucursalForm.get('monto').invalid && submitted)" class="text-danger">
+                  <span>Por favor ingrese un monto.</span>
+              </div>
+            </div>
             <div class="col-md-12">
               <div class="form-group">
                 <label for="sucursal">Sucursal</label>
@@ -43,10 +75,15 @@ export class AgregarSucursalContent {
   public submitted: boolean = false;
   public sucursalSeleccionada: any = { codigo_postal: '', codigo: ''};
 
-  constructor(public activeModal: NgbActiveModal, private _fb:FormBuilder) {
+  constructor(public activeModal: NgbActiveModal, private _fb:FormBuilder, private _util: UtilService, private _configNgbDate: NgbDatepickerConfig) {
     this.sucursalForm = _fb.group({
-      sucursal: ['', Validators.required],
+      sucursal: ['', [Validators.required]],
+      monto: ['', [Validators.required]],
+      fecha_ingreso: '',
+      fechaIngreso: ['', [Validators.required]]
     });
+
+    _configNgbDate.minDate = {year: 1900, month: 1, day: 1};
   }
   /**
    * Cierro el modal
@@ -83,6 +120,22 @@ export class AgregarSucursalContent {
     }
     // seteo el formulario
     this.sucursalForm.patchValue({sucursal: sucursal});
+  }
+  /**
+   * @function formatFechaNaciento convierte la fecha en un string
+   * @param obj la fecha viene en formato objeto
+   */
+  public formatFecha(obj:any){
+    this.sucursalForm.patchValue({fecha_ingreso: this._util.formatearFecha(obj.day, obj.month, obj.year, "yyyy-MM-dd")});
+  }
+  /**
+   * valido que la moneda sea numero
+   * @param moneda valor a verificar
+   */
+  public validarMoneda(moneda) {
+    if (!this._util.validarMoneda(moneda.value)) {
+      moneda.value = moneda.value.substring(0, moneda.value.length -1);
+    }
   }
 
 }
