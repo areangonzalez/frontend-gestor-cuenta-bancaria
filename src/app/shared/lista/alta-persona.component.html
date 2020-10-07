@@ -24,8 +24,8 @@
       </td>
       <td class="text-center">{{persona.lugar.localidad}}</td>
       <td *ngIf="(tipo === 'importar')" class="text-center">{{persona.cbu}}</td>
-      <td *ngIf="(tipo === 'cuenta' || tipo === 'importar')" class="text-center">{{persona.fecha_ingreso | date: 'dd/MM/yyyy'}}</td>
-      <td *ngIf="(tipo === 'importar')" class="text-center">{{persona.monto}}</td>
+      <td *ngIf="(tipo === 'cuenta' || tipo === 'importar')" class="text-center">{{persona.sucursal_fecha_ingreso | date: 'dd/MM/yyyy'}}</td>
+      <td *ngIf="(tipo === 'importar')" class="text-center">{{persona.sucursal_monto}}</td>
       <td class="text-center">
         <modal-info-persona [persona]="persona"></modal-info-persona>
         <modal-editar-persona [config-listas]="configurarListas" [persona]="persona" [tipo]="tipo"></modal-editar-persona>

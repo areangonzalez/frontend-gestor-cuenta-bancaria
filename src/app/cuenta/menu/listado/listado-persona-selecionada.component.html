@@ -24,8 +24,8 @@
           <button *ngIf="(persona.email !== '')" type="button" class="btn btn-sm btn-light" ngbTooltip="{{persona.email}}" container="body" triggers="click:blur"><i class="far fa-envelope"></i></button>
         </div>
       </td>
-      <td class="text-center">{{persona.ingreso_monto}}</td>
-      <td class="text-center">{{persona.fecha_ingreso}}</td>
+      <td class="text-center">${{persona.sucursal_monto}}</td>
+      <td class="text-center">{{persona.sucursal_fecha_ingreso | date: 'dd/MM/yyyy'}}</td>
       <td class="text-center">
         <button type="button" class="btn btn-sm btn-danger" ngbTooltip="Borrar persona" container="'body'" (click)="borrarPersona(i)"><i class="fas fa-trash-alt"></i></button>
       </td>

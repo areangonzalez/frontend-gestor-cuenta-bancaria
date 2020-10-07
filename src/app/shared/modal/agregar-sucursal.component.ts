@@ -73,7 +73,7 @@ export class AgregarSucursalContent {
   @Input("copiaSeleccion") public copiaSeleccion: any;
   public sucursalForm: FormGroup;
   public submitted: boolean = false;
-  public sucursalSeleccionada: any = { codigo_postal: '', codigo: ''};
+  public sucursalSeleccionada: any = { codigo_postal: '', codigo: '', monto: '', fechaIngreso: '', fecha_ingreso: ''};
 
   constructor(public activeModal: NgbActiveModal, private _fb:FormBuilder, private _util: UtilService, private _configNgbDate: NgbDatepickerConfig) {
     this.sucursalForm = _fb.group({
@@ -99,7 +99,6 @@ export class AgregarSucursalContent {
     if ( this.sucursalForm.invalid ) {
       return;
     }else{
-      console.log(this.sucursalForm.value);
       this.sucursalSeleccionada.codigo_postal = this.sucursalForm.value.sucursal.codigo_postal;
       this.sucursalSeleccionada.codigo = this.sucursalForm.value.sucursal.codigo;
       this.sucursalSeleccionada.monto = this.sucursalForm.value.monto;
@@ -121,7 +120,6 @@ export class AgregarSucursalContent {
         sucursal = this.subSucursales[i];
       }
     }
-    console.log(copia);
     // seteo el formulario
     this.sucursalForm.patchValue({sucursal: sucursal, monto: copia.monto, fechaIngreso: copia.fechaIngreso, fecha_ingreso: copia.fecha_ingreso });
   }
