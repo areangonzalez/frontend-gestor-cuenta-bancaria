@@ -133,8 +133,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
           let listado = paginar(personas, personas.resultado, page, pageSize);
 
-          console.log(listado);
-
           return ok(listado);
         }
         /*** LISTADO DE SUB SUCURSALES ***/
@@ -241,7 +239,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           let total:number = totalFiltrado/pageSize;
           let numEntero = Math.floor(total);
           let totalPagina:number = (total > numEntero) ? numEntero + 1 : total;
-          console.log(listadoOrigen);
           listadoOrigen.total_filtrado = listaEncontrados.length;
           listadoOrigen.pages = totalPagina;
 
@@ -256,7 +253,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
           return listadoOrigen;
         }
-    }
+      }
 }
 
 export const fakeBackendProvider = {

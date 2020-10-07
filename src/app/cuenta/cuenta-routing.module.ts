@@ -13,14 +13,14 @@ const routes: Routes = [
     children: [
       {
         path: 'alta', component: AltaCuentaPersonaComponent,
-        data: { title: 'Alta de cuentas' },
+        data: { title: 'Alta de cuentas', breadcrumb: 'Alta' },
         resolve: {
           personas: PersonaService, subSucursales: SubSucursalService
         }
       },
       {
         path: 'importacion', component: ImportacionCbuComponent,
-        data: { title: 'Importación de CBU' },
+        data: { title: 'Importación de CBU', breadcrumb: 'importación' },
         resolve: {
           localidades: LocalidadService, personas: PersonaService
         }

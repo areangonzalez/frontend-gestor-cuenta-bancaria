@@ -14,9 +14,10 @@ import { CustomDatepickerI18n, NgbDateARParserFormatter } from './core/helpers';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { SharedModule, LoaderComponent, NotificacionComponent, SistemaComponent, LoginComponent } from './shared';
+import { SharedModule, BreadcrumbComponent, LoaderComponent, NotificacionComponent, SistemaComponent, LoginComponent } from './shared';
 
 import { JwtInterceptor, ErrorInterceptor } from './core/helpers';
+import { BreadcrumbsService } from './core/services';
 
 registerLocaleData(es);
 
@@ -24,7 +25,8 @@ registerLocaleData(es);
   declarations: [
     AppComponent,
     LoaderComponent,
-    NotificacionComponent, SistemaComponent, LoginComponent
+    NotificacionComponent, SistemaComponent,
+    BreadcrumbComponent, LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +42,7 @@ registerLocaleData(es);
     { provide: LOCALE_ID, useValue: 'es-AR' },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    BreadcrumbsService,
     // fake-backend
     fakeBackendProvider
   ],

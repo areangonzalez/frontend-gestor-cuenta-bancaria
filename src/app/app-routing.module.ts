@@ -11,12 +11,12 @@ const routes: Routes = [
     children: [
       {
         path: 'personas',
-        // canActivateChild: [AuthGuard],
+        data: { breadcrumb: 'Personas', title: 'Personas' },
         loadChildren: () => import('./persona/persona.module').then(m => m.PersonaModule)
       },
       {
         path: 'cuentas',
-        // canActivateChild: [AuthGuard],
+        data: { breadcrumb: 'Cuentas', title: 'Cuentas' },
         loadChildren: () => import('./cuenta/cuenta.module').then(m => m.CuentaModule)
       },
       { path: '', redirectTo: 'personas', pathMatch: 'full' }
