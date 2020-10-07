@@ -102,6 +102,9 @@ export class AgregarSucursalContent {
       console.log(this.sucursalForm.value);
       this.sucursalSeleccionada.codigo_postal = this.sucursalForm.value.sucursal.codigo_postal;
       this.sucursalSeleccionada.codigo = this.sucursalForm.value.sucursal.codigo;
+      this.sucursalSeleccionada.monto = this.sucursalForm.value.monto;
+      this.sucursalSeleccionada.fecha_ingreso = this.sucursalForm.value.fecha_ingreso;
+      this.sucursalSeleccionada.fechaIngreso = this.sucursalForm.value.fechaIngreso;
 
       this.activeModal.close(this.sucursalSeleccionada);
     }
@@ -118,8 +121,9 @@ export class AgregarSucursalContent {
         sucursal = this.subSucursales[i];
       }
     }
+    console.log(copia);
     // seteo el formulario
-    this.sucursalForm.patchValue({sucursal: sucursal});
+    this.sucursalForm.patchValue({sucursal: sucursal, monto: copia.monto, fechaIngreso: copia.fechaIngreso, fecha_ingreso: copia.fecha_ingreso });
   }
   /**
    * @function formatFechaNaciento convierte la fecha en un string
