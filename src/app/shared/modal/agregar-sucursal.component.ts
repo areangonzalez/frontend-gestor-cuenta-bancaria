@@ -7,17 +7,20 @@ import { UtilService } from 'src/app/core/services';
   selector: 'content-agregar-sucursal',
   template: `
     <div class="modal-header">
-      <h4 class="modal-title">Registrar Persona</h4>
+      <h4 class="modal-title">Alta Cuenta Saldo</h4>
       <button type="button" class="close" aria-label="Close" (click)="cerrarModal()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
+      <div class="d-flex justify-content-end">
+        <small class="text-danger">(*) Campos obligatorios</small>
+      </div>
         <fieldset [formGroup]="sucursalForm">
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <label for="fecha_nacimiento">Fecha Nacimiento:</label>
+                <label for="fecha_nacimiento">Fecha prestación (<span class="text-danger">*</span>)</label>
                 <div class="input-group">
                   <input class="form-control" #c1 placeholder="Ej.: dd/mm/yyyy" ngbDatepicker #fpd="ngbDatepicker"
                   id="fecha_nacimiento" formControlName="fechaIngreso" (ngModelChange)="formatFecha($event)" [ngClass]="{'is-invalid': (sucursalForm.get('fechaIngreso').invalid && submitted)}" >
@@ -34,12 +37,12 @@ import { UtilService } from 'src/app/core/services';
             </div>
             <div class="col-md-12">
               <div class="form-group">
-                <label for="monto">Monto</label>
+                <label for="monto">Monto (<span class="text-danger">*</span>)</label>
                 <div class="input-group mb-2">
                   <div class="input-group-prepend">
                     <div class="input-group-text">$</div>
                   </div>
-                  <input type="text" id="monto" placeholder="Ej.: 1000" class="form-control" formControlName="monto" (keyup)="validarMoneda($event.target)">
+                  <input type="text" id="monto" placeholder="Ej.: 1000" class="form-control" formControlName="monto" (keyup)="validarMoneda($event.target)" [ngClass]="{'is-invalid': (sucursalForm.get('monto').invalid && submitted)}">
                 </div>
               </div>
               <div *ngIf="(sucursalForm.get('monto').invalid && submitted)" class="text-danger">
@@ -48,8 +51,8 @@ import { UtilService } from 'src/app/core/services';
             </div>
             <div class="col-md-12">
               <div class="form-group">
-                <label for="sucursal">Sucursal</label>
-                <select class="form-control" id="sucursal" formControlName="sucursal">
+                <label for="sucursal">Sucursal (<span class="text-danger">*</span>)</label>
+                <select class="form-control" id="sucursal" formControlName="sucursal" [ngClass]="{'is-invalid': (sucursalForm.get('sucursal').invalid && submitted)}">
                   <option value="">Seleccionar Sucursal</option>
                   <option *ngFor="let sucursal of subSucursales" [ngValue]="sucursal">{{sucursal.sucursal_codigo}} - {{sucursal.nombre}}</option>
                 </select>
@@ -64,7 +67,7 @@ import { UtilService } from 'src/app/core/services';
     <div class="modal-footer d-flex justify-content-between">
       <button type="button" class="btn btn-outline-danger" (click)="cerrarModal()"><i class="fas fa-ban"></i> Cancelar</button>
       <button *ngIf="copiaSeleccion.existe" type="button" class="btn btn-outline-dark" (click)="pegarDatosForm(copiaSeleccion)"><i class="fas fa-paste"></i> Pegar datos </button>
-      <button type="button" class="btn btn-outline-success" (click)="validarPersona()"><i class="far fa-save"></i> Guardar</button>
+      <button type="button" class="btn btn-outline-success" (click)="validarPersona()"><i class="fas fa-plus"></i> Agregar</button>
     </div>
 `,
 })
