@@ -5,7 +5,7 @@
       <th scope="col">Cuil</th>
       <th scope="col" rowspan="1" colspan="2">Apellido y Nombre</th>
       <th class="text-center" scope="col">Ingreso Neto</th>
-      <th class="text-center" scope="col">Fecha de Ingreso</th>
+      <th class="text-center" scope="col">Fecha Prestación</th>
       <th class="text-center">Acción</th>
     </tr>
   </thead>
@@ -24,8 +24,8 @@
           <button *ngIf="(persona.email !== '')" type="button" class="btn btn-sm btn-light" ngbTooltip="{{persona.email}}" container="body" triggers="click:blur"><i class="far fa-envelope"></i></button>
         </div>
       </td>
-      <td class="text-center">${{persona.sucursal_monto}}</td>
-      <td class="text-center">{{persona.sucursal_fecha_ingreso | date: 'dd/MM/yyyy'}}</td>
+      <td class="text-center">${{persona.prestacion_monto}}</td>
+      <td class="text-center">{{persona.prestacion_fecha_ingreso | date: 'dd/MM/yyyy'}}</td>
       <td class="text-center">
         <button type="button" class="btn btn-sm btn-danger" ngbTooltip="Borrar persona" container="'body'" (click)="borrarPersona(i)"><i class="fas fa-trash-alt"></i></button>
       </td>
