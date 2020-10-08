@@ -35,8 +35,8 @@ export class AltaPersonaComponent implements OnInit {
   obtengoSeleccionDeSucursal(persona: any, sucursal: any) {
     persona["sucursal_codigo_postal"] = sucursal.codigo_postal;
     persona["sucursal_codigo"] = sucursal.codigo;
-    persona["sucursal_monto"] = sucursal.monto;
-    persona["sucursal_fecha_ingreso"] = sucursal.fecha_ingreso;
+    persona["prestacion_monto"] = sucursal.monto;
+    persona["prestacion_fecha_ingreso"] = sucursal.fecha_ingreso;
 
     this.copiarDatosSeleccionados(sucursal);
 
@@ -74,6 +74,8 @@ export class AltaPersonaComponent implements OnInit {
     if (!personaSeleccionada) {
       persona["sucursal_codigo_postal"] = copia.codigo_postal;
       persona["sucursal_codigo"] = copia.codigo;
+      persona["prestacion_monto"] = copia.monto;
+      persona["prestacion_fecha_ingreso"] = copia.fecha_ingreso;
 
       this.seleccionDePersona.emit(persona);
     }

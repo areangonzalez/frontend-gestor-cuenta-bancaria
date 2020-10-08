@@ -19,7 +19,7 @@
           <button *ngIf="(persona.telefono !== '')" type="button" class="btn btn-sm btn-light" ngbTooltip="{{persona.telefono}}" container="body" triggers="click:blur"><i class="fas fa-phone"></i></button>
           <button *ngIf="(persona.celular !== '')" type="button" class="btn btn-sm btn-light" ngbTooltip="{{persona.celular}}" container="body" triggers="click:blur"><i class="fas fa-mobile-alt"></i></button>
           <button *ngIf="(persona.email !== '')" type="button" class="btn btn-sm btn-light" ngbTooltip="{{persona.email}}" container="body" triggers="click:blur"><i class="far fa-envelope"></i></button>
-          <button *ngIf="(persona.cuenta_cbu !== '')" type="button" class="btn btn-sm btn-light" ngbTooltip="{{persona.cuenta_cbu}}" container="body" triggers="click:blur"><i class="fas fa-university"></i></button>
+          <button *ngIf="(tipo === 'importar' && persona.cuenta_cbu !== '')" type="button" class="btn btn-sm btn-light" ngbTooltip="{{persona.cuenta_cbu}}" container="body" triggers="click:blur"><i class="fas fa-university"></i></button>
         </div>
       </td>
       <td class="text-center">{{persona.lugar.localidad}}</td>
