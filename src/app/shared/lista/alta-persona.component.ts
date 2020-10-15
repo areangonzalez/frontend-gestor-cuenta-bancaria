@@ -33,6 +33,7 @@ export class AltaPersonaComponent implements OnInit {
    * @param sucursal datos de la sucursal obtenidos del formulario
    */
   obtengoSeleccionDeSucursal(persona: any, sucursal: any) {
+    persona["sucursal_id"] = sucursal.id;
     persona["sucursal_codigo_postal"] = sucursal.codigo_postal;
     persona["sucursal_codigo"] = sucursal.codigo;
     persona["prestacion_monto"] = sucursal.monto;
@@ -72,6 +73,7 @@ export class AltaPersonaComponent implements OnInit {
     }
 
     if (!personaSeleccionada) {
+      persona["sucursal_id"] = copia.id;
       persona["sucursal_codigo_postal"] = copia.codigo_postal;
       persona["sucursal_codigo"] = copia.codigo;
       persona["prestacion_monto"] = copia.monto;
