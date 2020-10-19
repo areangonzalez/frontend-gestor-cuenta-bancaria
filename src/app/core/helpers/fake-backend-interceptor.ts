@@ -44,7 +44,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return getSexo();
               case url.endsWith('/apimock/generos') && method === 'GET':
                 return getGenero();
-              case url.match(/\/apimock\/personas\/\d+$/) && method === 'GET':
+                case url.endsWith('/apimock/cuenta-saldos') && method === 'GET':
+                return getListaSeleccionPersona();
+              case url.match(/\/apimock\/cuenta\/\d+$/) && method === 'GET':
                 return getPersonasPorId();
               case url.match(/\/apimock\/personas\/\d+$/) && method === 'PUT':
                 return editarPersona();
@@ -134,6 +136,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           let listado = paginar(personas, personas.resultado, page, pageSize);
 
           return ok(listado);
+        }
+        /****** LISTADO DE SELECCION DE PERSONAS  ******/
+        function getListaSeleccionPersona() {
+          return ok([]);
         }
         /*** LISTADO DE SUB SUCURSALES ***/
         function getSubSucurasales() {

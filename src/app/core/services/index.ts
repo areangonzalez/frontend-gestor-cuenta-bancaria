@@ -14,3 +14,4 @@ export * from './localidad.service';
 export * from './nacionalidad.service';
 export * from './sexo.service';
 export * from './tipo-documento.service';
+export * from './cuenta-saldo.service';

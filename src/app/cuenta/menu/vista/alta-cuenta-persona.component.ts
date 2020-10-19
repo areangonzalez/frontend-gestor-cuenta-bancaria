@@ -19,7 +19,7 @@ export class AltaCuentaPersonaComponent implements OnInit {
 
   ngOnInit(): void {
     this.prepararListadoPersona(this._route.snapshot.data["personas"], 1);
-    this.listas.seleccionPersona = [];
+    this.listas.seleccionPersona = this._route.snapshot.data["seleccionPersona"];
     this.listas.subSucursales = this._route.snapshot.data["subSucursales"];
   }
 
