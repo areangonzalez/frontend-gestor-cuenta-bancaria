@@ -10,6 +10,6 @@ export class SubSucursalService implements Resolve<any> {
   constructor(private _http: ApiService) { }
 
   resolve() {
-    return this._http.get('/sub-sucursales');
+    return this._http.get('/sub-sucursals');
   }
 }
