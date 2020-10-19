@@ -11,10 +11,7 @@ export class CuentaSaldoService implements Resolve<any> {
   constructor(private _http: ApiService) { }
 
   guardarSeleccionPersona(params:any){
-    let httpParams = new HttpParams();
-    httpParams = this._http.formatParams(httpParams, params);
-
-    return this._http.post("cuenta-saldos", httpParams);
+    return this._http.post("/cuenta-saldos", params);
   }
 
   resolve() {
