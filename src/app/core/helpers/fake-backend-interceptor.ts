@@ -44,8 +44,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return getSexo();
               case url.endsWith('/apimock/generos') && method === 'GET':
                 return getGenero();
-                case url.endsWith('/apimock/cuenta-saldos') && method === 'GET':
+              case url.endsWith('/apimock/cuenta-saldos') && method === 'GET':
                 return getListaSeleccionPersona();
+              case url.endsWith('/apimock/cuenta-saldos') && method === 'POST':
+                  return guardarListaSeleccionPersona();
               case url.match(/\/apimock\/cuenta\/\d+$/) && method === 'GET':
                 return getPersonasPorId();
               case url.match(/\/apimock\/personas\/\d+$/) && method === 'PUT':
@@ -139,7 +141,28 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
         /****** LISTADO DE SELECCION DE PERSONAS  ******/
         function getListaSeleccionPersona() {
-          return ok([]);
+          let listaSeleccion = [];
+
+          if (localStorage.getItem("listadoSeleccion")) {
+            listaSeleccion = JSON.parse(localStorage.getItem("listadoSeleccion"));
+          }
+
+          return ok(listaSeleccion);
+        }
+        /****** GUARADR LISTADO DE PERSONAS SELECCIONADAS ******/
+        function guardarListaSeleccionPersona() {
+          let listaSeleccion = body;
+
+          console.log(body);
+
+          localStorage.setItem("listadoSeleccion", JSON.stringify(listaSeleccion));
+
+          if (listaSeleccion.length > 0) {
+            return ok(listaSeleccion);
+          }else{
+            return error("falla al guardar");
+          }
+
         }
         /*** LISTADO DE SUB SUCURSALES ***/
         function getSubSucurasales() {

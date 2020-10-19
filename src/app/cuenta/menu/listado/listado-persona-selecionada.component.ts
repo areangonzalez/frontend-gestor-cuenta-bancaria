@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NotificacionService } from 'src/app/core/services';
+import { CuentaSaldoService, NotificacionService } from 'src/app/core/services';
 
 @Component({
   selector: 'cuenta-listado-persona-selecionada',
@@ -9,7 +9,7 @@ import { NotificacionService } from 'src/app/core/services';
 export class ListadoPersonaSelecionadaComponent implements OnInit {
   @Input("personaSeleccionada") public personaSeleccionada: any;
 
-  constructor(private _msj: NotificacionService) { }
+  constructor(private _msj: NotificacionService, private _cuentaSaldoService: CuentaSaldoService) { }
 
   ngOnInit(): void {
   }
@@ -32,6 +32,11 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
   public guardarListadoSeleccion(seleccion: any) {
     if (seleccion.length > 0) {
       // guardo el listado de las personas seleccionadas
+      this._cuentaSaldoService.guardarSeleccionPersona(seleccion).subscribe(
+        respuesta => {
+          this._msj.exitoso("El listado se ha guardado con exito!!");
+        }, error => { this._msj.cancelado("Fallo al guardar el listado"); }
+      );
     }else{
       this._msj.cancelado("No hay personas seleccionadas dentro del listado.");
     }
