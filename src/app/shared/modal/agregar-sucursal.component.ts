@@ -76,7 +76,7 @@ export class AgregarSucursalContent {
   @Input("copiaSeleccion") public copiaSeleccion: any;
   public sucursalForm: FormGroup;
   public submitted: boolean = false;
-  public sucursalSeleccionada: any = { codigo_postal: '', codigo: '', monto: '', fechaIngreso: '', fecha_ingreso: ''};
+  public prestacion: any = { monto: "", sub_sucursalid: "", fecha_ingreso: "", fechaIngreso: "", localidad: "", codigo_postal: "", codigo: "", sucursalid: "", nombre: "",sucursal_codigo: "" };
 
   constructor(public activeModal: NgbActiveModal, private _fb:FormBuilder, private _util: UtilService, private _configNgbDate: NgbDatepickerConfig) {
     this.sucursalForm = _fb.group({
@@ -102,13 +102,20 @@ export class AgregarSucursalContent {
     if ( this.sucursalForm.invalid ) {
       return;
     }else{
-      this.sucursalSeleccionada.codigo_postal = this.sucursalForm.value.sucursal.codigo_postal;
-      this.sucursalSeleccionada.codigo = this.sucursalForm.value.sucursal.codigo;
-      this.sucursalSeleccionada.monto = this.sucursalForm.value.monto;
-      this.sucursalSeleccionada.fecha_ingreso = this.sucursalForm.value.fecha_ingreso;
-      this.sucursalSeleccionada.fechaIngreso = this.sucursalForm.value.fechaIngreso;
+      this.prestacion = {
+        monto: this.sucursalForm.value.monto,
+        fecha_ingreso: this.sucursalForm.value.fecha_ingreso,
+        fechaIngreso: this.sucursalForm.value.fechaIngreso,
+        sub_sucursalid: this.sucursalForm.value.sucursal.id,
+        localidad: this.sucursalForm.value.sucursal.localidad,
+        codigo_postal: this.sucursalForm.value.sucursal.codigo_postal,
+        codigo: this.sucursalForm.value.sucursal.codigo,
+        sucursalid: this.sucursalForm.value.sucursal.sucursalid,
+        nombre: this.sucursalForm.value.sucursal.nombre,
+        sucursal_codigo: this.sucursalForm.value.sucursal.sucursal_codigo
+      };
 
-      this.activeModal.close(this.sucursalSeleccionada);
+      this.activeModal.close(this.prestacion);
     }
   }
   /**
@@ -156,7 +163,7 @@ export class AgregarSucursalComponent {
   @Input("idPersona") public idPersona: number;
   @Input("existeCopia") public existeCopia: boolean;
   @Input("copiaSeleccion") public copiaSeleccion: any;
-  @Output("seleccionDeSucursal") public seleccionDeSucursal = new EventEmitter();
+  @Output("obtenerPrestacion") public obtenerPrestacion = new EventEmitter();
 
   constructor(private _modalService: NgbModal) { }
 
@@ -186,7 +193,7 @@ export class AgregarSucursalComponent {
     modalRef.result.then(
       (result) => {
         if (result !== false) {
-          return this.seleccionDeSucursal.emit(result);
+          return this.obtenerPrestacion.emit(result);
         }
       });
   }

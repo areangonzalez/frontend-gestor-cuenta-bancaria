@@ -32,15 +32,12 @@ export class AltaPersonaComponent implements OnInit {
    * @param persona objeto que contiene los datos a persona
    * @param sucursal datos de la sucursal obtenidos del formulario
    */
-  obtengoSeleccionDeSucursal(persona: any, sucursal: any) {
-    persona["sucursal_id"] = sucursal.id;
-    persona["sucursal_codigo_postal"] = sucursal.codigo_postal;
-    persona["sucursal_codigo"] = sucursal.codigo;
-    persona["prestacion_monto"] = sucursal.monto;
-    persona["prestacion_fecha_ingreso"] = sucursal.fecha_ingreso;
+  obtengoDatosPrestacion(persona: any, prestacion: any) {
+    persona["prestacion"] = prestacion;
 
-    this.copiarDatosSeleccionados(sucursal);
+    this.copiarDatosSeleccionados(prestacion);
 
+    persona['prestacion']['personaid'] = persona.id;
     this.seleccionDePersona.emit(persona);
   }
   /**
@@ -73,12 +70,8 @@ export class AltaPersonaComponent implements OnInit {
     }
 
     if (!personaSeleccionada) {
-      persona["sucursal_id"] = copia.id;
-      persona["sucursal_codigo_postal"] = copia.codigo_postal;
-      persona["sucursal_codigo"] = copia.codigo;
-      persona["prestacion_monto"] = copia.monto;
-      persona["prestacion_fecha_ingreso"] = copia.fecha_ingreso;
-
+      persona["prestacion"] = copia;
+      persona["prestacion"]["personaid"] = persona.id;
       this.seleccionDePersona.emit(persona);
     }
 

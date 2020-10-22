@@ -30,7 +30,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                   return login();
               case url.endsWith('/apimock/personas') && method === 'GET':
                 return getPersonas();
-              case url.endsWith('/apimock/sub-sucursales') && method === 'GET':
+              case url.endsWith('/apimock/sub-sucursals') && method === 'GET':
                 return getSubSucurasales();
               case url.endsWith('/apimock/tipo-documentos') && method === 'GET':
                 return getTipoDocumento();
@@ -48,7 +48,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return getListaSeleccionPersona();
               case url.endsWith('/apimock/cuenta-saldos') && method === 'POST':
                   return guardarListaSeleccionPersona();
-              case url.match(/\/apimock\/cuenta\/\d+$/) && method === 'GET':
+              case url.match(/\/apimock\/personas\/\d+$/) && method === 'GET':
                 return getPersonasPorId();
               case url.match(/\/apimock\/personas\/\d+$/) && method === 'PUT':
                 return editarPersona();
@@ -167,8 +167,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         /*** LISTADO DE SUB SUCURSALES ***/
         function getSubSucurasales() {
           const subSucrsales = [
-            {id: 1,localidad: "Allen",codigo_postal: "8328",codigo: "161014",sucursalid: 14,nombre: "Allen (Suc. Allen)",sucursal_codigo: "265"},{id: 2,localidad: "Bariloche",codigo_postal: "8400",codigo: "161399",sucursalid: 3,nombre: "Bariloche (Suc. Bariloche)",sucursal_codigo: "255"},{id: 3,localidad: "Pilcaniyeu",codigo_postal: "8412",codigo: "161355",sucursalid: 3,nombre: "Pilcaniyeu (Suc. Bariloche)",sucursal_codigo: "255"}
-          ];
+            {id: 1,localidad: "Allen",codigo_postal: "8328",codigo: "161014",sucursalid: 14,nombre: "Allen (Suc. Allen)",sucursal_codigo: "265"},{id: 2,localidad: "Bariloche",codigo_postal: "8400",codigo: "161399",sucursalid: 3,nombre: "Bariloche (Suc. Bariloche)",sucursal_codigo: "255"},{id: 3,localidad: "Pilcaniyeu",codigo_postal: "8412",codigo: "161355",sucursalid: 3,nombre: "Pilcaniyeu (Suc. Bariloche)",sucursal_codigo: "255"},{id: 4,localidad: "C. Belisle",codigo_postal: "8364",codigo: "161127",sucursalid: 1,nombre: "C. Belisle (Suc. Cinco Saltos)",sucursal_codigo: "256"}
+            ];
 
             return ok(subSucrsales);
         }

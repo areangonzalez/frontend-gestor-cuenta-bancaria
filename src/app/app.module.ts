@@ -44,7 +44,7 @@ registerLocaleData(es);
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     BreadcrumbsService,
     // fake-backend
-    // fakeBackendProvider
+    fakeBackendProvider
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
