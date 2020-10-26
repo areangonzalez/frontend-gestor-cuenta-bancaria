@@ -14,6 +14,7 @@ export class ImportacionCbuComponent implements OnInit {
   public global_param:string = '';
   public configListas: configurarListas = {};
   public filtradoBusqueda: any = {};
+  public activarLista: boolean = false;
 
   constructor( private _route: ActivatedRoute, private _personaService: PersonaService, private _msj: NotificacionService, private _configurarPaginacion: ConfiguracionParaPaginarService ) { }
 
@@ -56,6 +57,10 @@ export class ImportacionCbuComponent implements OnInit {
    */
   cambiarPagina(pagina:any) {
     this.realizarBusqueda(this.filtradoBusqueda, pagina);
+  }
+
+  crearListaSeleccion() {
+    this.activarLista = true;
   }
 
 }

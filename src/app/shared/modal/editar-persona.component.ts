@@ -6,7 +6,7 @@ import { configurarListas } from 'src/app/core/models';
   selector: 'content-editar-persona',
   template: `
     <div class="modal-header">
-      <h4 class="modal-title">Registrar Persona</h4>
+      <h4 class="modal-title">Editar Persona</h4>
       <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>

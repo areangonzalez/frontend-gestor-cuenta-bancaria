@@ -7,7 +7,7 @@ import { UtilService } from 'src/app/core/services';
   selector: 'content-agregar-sucursal',
   template: `
     <div class="modal-header">
-      <h4 class="modal-title">Alta Cuenta Saldo</h4>
+      <h4 class="modal-title">Crear Prestación</h4>
       <button type="button" class="close" aria-label="Close" (click)="cerrarModal()">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -25,7 +25,7 @@ import { UtilService } from 'src/app/core/services';
                   <input class="form-control" #c1 placeholder="Ej.: dd/mm/yyyy" ngbDatepicker #fpd="ngbDatepicker"
                   id="fecha_nacimiento" formControlName="fechaIngreso" (ngModelChange)="formatFecha($event)" [ngClass]="{'is-invalid': (sucursalForm.get('fechaIngreso').invalid && submitted)}" >
                   <div class="input-group-append">
-                      <button class="btn btn-outline-info" (click)="fpd.toggle()" type="button" [ngClass]="{'btn-outline-danger': (sucursalForm.get('fechaIngreso').invalid && submitted), 'is-invalid': (sucursalForm.get('fechaIngreso').invalid && submitted)}"> <!--  -->
+                      <button class="btn btn-outline-info" (click)="fpd.toggle()" type="button" [ngClass]="{'btn-outline-danger': (sucursalForm.get('fechaIngreso').invalid && submitted), 'is-invalid': (sucursalForm.get('fechaIngreso').invalid && submitted)}">
                         <i class="far fa-calendar-alt"></i>
                       </button>
                   </div>

@@ -8,6 +8,7 @@ import { CuentaSaldoService, NotificacionService } from 'src/app/core/services';
 })
 export class ListadoPersonaSelecionadaComponent implements OnInit {
   @Input("personaSeleccionada") public personaSeleccionada: any;
+  @Input("tipo") public tipo: string;
 
   constructor(private _msj: NotificacionService, private _cuentaSaldoService: CuentaSaldoService) { }
 
