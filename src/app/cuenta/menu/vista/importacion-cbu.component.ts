@@ -11,6 +11,7 @@ import { ConfiguracionParaPaginarService, NotificacionService, PersonaService } 
 export class ImportacionCbuComponent implements OnInit {
   public configPaginacion: ConfigurarPagina = new ConfigurarPagina(); // obteiene el objeto de configuracion de rango y paginado de comprobantes
   public personas:any = [];
+  public personasSeleccionadas: any = [];
   public global_param:string = '';
   public configListas: configurarListas = {};
   public filtradoBusqueda: any = {};
