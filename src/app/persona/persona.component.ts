@@ -18,12 +18,7 @@ export class PersonaComponent implements OnInit {
 
   ngOnInit(): void {
     this.prepararListadoPersona(this._route.snapshot.data["personas"], 1);
-    this.configListas.estado_civil = this._route.snapshot.data["estadoCiviles"];
-    this.configListas.genero = this._route.snapshot.data["generos"];
     this.configListas.localidades = this._route.snapshot.data["localidades"];
-    this.configListas.nacionalidad = this._route.snapshot.data["nacionalidades"];
-    this.configListas.sexo = this._route.snapshot.data["sexos"];
-    this.configListas.tipo_documento = this._route.snapshot.data["tipoDocumentos"];
   }
 
   public realizarBusqueda(params: any, page: number) {

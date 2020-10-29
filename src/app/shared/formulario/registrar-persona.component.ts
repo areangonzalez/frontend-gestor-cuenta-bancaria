@@ -13,6 +13,7 @@ export class RegistrarPersonaComponent implements OnInit {
   @Input("persona") public persona: any; // atributo que solo es utilizado para la edicion
   @Input("config-listas") public configurarListas: configurarListas; // array que contiene el/los listados para el componente
   @Output("cancelarForm") public cancelarForm = new EventEmitter(); // cancela el formulario devolviendo un false al componente padre
+  @Output("obtenerRespuesta") public obtenerRespuesta = new EventEmitter(); // obtiene la respuesta del formulario devolviendo el numero de cuil al componente padre
   public personaForm: FormGroup;
   public submitted: boolean = false;
   public cuil_medio: string = '';
@@ -146,14 +147,14 @@ export class RegistrarPersonaComponent implements OnInit {
       this._personaService.guardar(persona, id).subscribe(
         respuesta => {
           this._msj.exitoso("La persona se ha editado correctamente!");
-          this.cancelarForm.emit(true);
+          this.obtenerRespuesta.emit(persona["cuil"]);
         }, error => { this._msj.cancelado(error); }
       );
     }else { // crear persona
       this._personaService.guardar(persona, 0).subscribe(
         respuesta => {
           this._msj.exitoso("La persona se ha registrado correctamente!");
-          this.cancelarForm.emit(true);
+          this.obtenerRespuesta.emit(persona["cuil"]);
         }, error => { this._msj.cancelado(error); }
       );
     }

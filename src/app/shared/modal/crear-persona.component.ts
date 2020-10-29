@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { configurarListas } from 'src/app/core/models';
 
@@ -12,7 +12,7 @@ import { configurarListas } from 'src/app/core/models';
       </button>
     </div>
     <div class="modal-body">
-        <shared-registrar-persona [config-listas]="configurarListas" (cancelarForm)="cerrarModal($event)"></shared-registrar-persona>
+        <shared-registrar-persona [config-listas]="configurarListas" (cancelarForm)="cerrarModal($event)" (obtenerRespuesta)="guardadoExitoso($event)"></shared-registrar-persona>
     </div>
 `,
   styleUrls: ['./crear-persona.component.scss']
@@ -23,7 +23,11 @@ export class CrearPersonaContent {
   constructor(public activeModal: NgbActiveModal) {}
 
   cerrarModal(cerrar:boolean) {
-    this.activeModal.close("cancelar registro")
+    this.activeModal.close(false);
+  }
+
+  guardadoExitoso(nroCuil:string) {
+    this.activeModal.close(nroCuil);
   }
 
 }
@@ -36,12 +40,19 @@ export class CrearPersonaContent {
 })
 export class CrearPersonaComponent {
   @Input("config-listas") public configurarListas: configurarListas; // array que contiene el/los listados para el componente
+  @Output("cuilPersona") public cuilPersona = new EventEmitter();
 
   constructor(private _modalService: NgbModal) {}
 
   open() {
     const modalRef = this._modalService.open(CrearPersonaContent, { size: 'lg' });
     modalRef.componentInstance.configurarListas = this.configurarListas;
+    modalRef.result.then(
+      (result) => {
+        if (result !== false) {
+          return this.cuilPersona.emit(result);
+        }
+      });
   }
 
 }

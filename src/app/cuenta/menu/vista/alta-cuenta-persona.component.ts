@@ -26,6 +26,7 @@ export class AltaCuentaPersonaComponent implements OnInit {
     this.listas.nacionalidad = this._route.snapshot.data["nacionalidades"];
     this.listas.sexo = this._route.snapshot.data["sexos"];
     this.listas.tipo_documento = this._route.snapshot.data["tipoDocumentos"];
+    this.listas.localidades = this._route.snapshot.data["localidades"];
   }
 
   obtenerPersona(persona: any) {
@@ -52,15 +53,27 @@ export class AltaCuentaPersonaComponent implements OnInit {
   cambiarPagina(pagina:any) {
     this.realizarBusqueda(this.filtradoBusqueda, pagina);
   }
-
+  /**
+   * Realiza una busqueda de persona por DNI, nombre, apellido o nro cuil
+   */
   public realizarBusqueda(params: any, page: number) {
-    Object.assign(params, {page: page-1});
+    Object.assign(params, {page: page-1, pagesize: 5});
     this.filtradoBusqueda = params;
     this._personaService.buscar(params).subscribe(
       respuesta => {
         this.prepararListadoPersona(respuesta, page)
       }, error => { this._msj.cancelado(error); }
     )
+  }
+  /**
+   * Actualiza la busqueda priorizando el parametro de busqueda
+   * por número de cuil de la persona
+   * @param nroCuil numero de cuil de la persona que ha sido
+   *                creada o modificada
+   */
+  actualizarBusqueda(nroCuil:string) {
+    this.global_param = nroCuil;
+    this.realizarBusqueda(this.global_param, this.configPaginacion.page);
   }
 
 }

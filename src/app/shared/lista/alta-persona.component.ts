@@ -14,6 +14,7 @@ export class AltaPersonaComponent implements OnInit {
   @Input("configPaginacion") public configPaginacion: any;
   @Output("seleccionDePersona") public seleccionDePersona = new   EventEmitter();
   @Output("cambioDePagina") public cambioDePagina = new EventEmitter();
+  @Output("cuilPersona") public cuilPersona = new EventEmitter();
   public copiaDeDatos: any = { existe: false };
 
   constructor(private _msj: NotificacionService) { }
@@ -83,6 +84,12 @@ export class AltaPersonaComponent implements OnInit {
   copiarDatosSeleccionados(copia:any) {
     this.copiaDeDatos.existe = true;
     Object.assign(this.copiaDeDatos, copia);
+  }
+  /**
+   * al modificar una persona obtengo su numero de cuil
+   */
+  obtenerCuilPersona(nroCuil: string) {
+    this.cuilPersona.emit(nroCuil);
   }
 
 }
