@@ -12,7 +12,6 @@ export class AltaPersonaComponent implements OnInit {
   @Input("config-listas") public configurarListas: configurarListas; // array que contiene el/los listados para el componente
   @Input("tipo") public tipo: string;
   @Input("configPaginacion") public configPaginacion: any;
-  @Input("activarInterbanking") public activarInterbanking: boolean; // activa la seleccion de personas para interbanking
   @Output("seleccionDePersona") public seleccionDePersona = new   EventEmitter();
   @Output("cambioDePagina") public cambioDePagina = new EventEmitter();
   public copiaDeDatos: any = { existe: false };

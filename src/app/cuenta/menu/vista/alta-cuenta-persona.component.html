@@ -8,7 +8,7 @@
       </div>
     </div>
   </div>
-  <shared-lista-alta-persona [tipo]="'cuenta'" [personas]="personas" [config-listas]="listas" [configPaginacion]="configPaginacion" (cambioDePagina)="cambiarPagina($event)" (seleccionDePersona)="obtenerPersona($event)" [activarInterbanking]="false"></shared-lista-alta-persona>
+  <shared-lista-alta-persona [tipo]="'cuenta'" [personas]="personas" [config-listas]="listas" [configPaginacion]="configPaginacion" (cambioDePagina)="cambiarPagina($event)" (seleccionDePersona)="obtenerPersona($event)" ></shared-lista-alta-persona>
 </div>
 <div class="shadow-sm p-3 mb-3 bg-white rounded">
   <cuenta-listado-persona-selecionada [personaSeleccionada]="listas.seleccionPersona" [tipo]="'cuenta-saldo'"></cuenta-listado-persona-selecionada>

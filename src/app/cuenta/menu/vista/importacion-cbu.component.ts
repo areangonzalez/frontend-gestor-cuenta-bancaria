@@ -11,17 +11,16 @@ import { ConfiguracionParaPaginarService, NotificacionService, PersonaService } 
 export class ImportacionCbuComponent implements OnInit {
   public configPaginacion: ConfigurarPagina = new ConfigurarPagina(); // obteiene el objeto de configuracion de rango y paginado de comprobantes
   public personas:any = [];
-  public personasSeleccionadas: any = [];
   public global_param:string = '';
   public configListas: configurarListas = {};
   public filtradoBusqueda: any = {};
-  public activarLista: boolean = false;
 
   constructor( private _route: ActivatedRoute, private _personaService: PersonaService, private _msj: NotificacionService, private _configurarPaginacion: ConfiguracionParaPaginarService ) { }
 
   ngOnInit(): void {
     this.prepararListadoPersona(this._route.snapshot.data["personas"], 1);
     this.configListas.localidades = this._route.snapshot.data["localidades"];
+    this.configListas.seleccionPersona = [];
   }
 
   public realizarBusqueda(params: any, page: number) {
@@ -58,10 +57,6 @@ export class ImportacionCbuComponent implements OnInit {
    */
   cambiarPagina(pagina:any) {
     this.realizarBusqueda(this.filtradoBusqueda, pagina);
-  }
-
-  crearListaSeleccion() {
-    this.activarLista = true;
   }
 
 }

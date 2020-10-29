@@ -22,7 +22,7 @@ import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
     InfoPersonaContent, InfoPersonaComponent,
     VistaPersonaComponent,
     EditarPersonaContent, EditarPersonaComponent,
-    BusquedaAvanzadaPersonaComponent
+    BusquedaAvanzadaPersonaComponent,
   ],
   imports: [
     CommonModule,
