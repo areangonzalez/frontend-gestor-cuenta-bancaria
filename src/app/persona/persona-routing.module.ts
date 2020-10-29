@@ -10,9 +10,7 @@ const routes = [
     component: PersonaComponent,
     canActivateChild: [AuthGuard],
     resolve: {
-      personas: PersonaService, tipoDocumentos: TipoDocumentoService, localidades: LocalidadService,
-      nacionalidades: NacionalidadService, estadoCiviles: EstadoCivilService, sexos: SexoService,
-      generos: GeneroService
+      personas: PersonaService, localidades: LocalidadService
     }
     //data: { title: 'Datos de persona' }
   }
