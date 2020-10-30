@@ -3,8 +3,8 @@
     <div class="input-group">
       <input class="form-control" [(ngModel)]="global_param" placeholder="Buscar por Nro Documento, Apellido, Nombre, Cuil">
       <div class="input-group-append">
-        <button type="button" class="btn btn-outline-primary" (click)="realizarBusqueda(global_param, configPaginacion.page)"><i class="fas fa-search"></i></button>
-        <button type="button" class="btn btn-outline-danger" (click)="limpiarCampos()"><i class="fas fa-trash-alt"></i></button>
+        <button type="button" class="btn btn-outline-primary" (click)="realizarBusqueda(global_param, configPaginacion.page)" ngbTooltip="Buscar"><i class="fas fa-search"></i></button>
+        <button type="button" class="btn btn-outline-danger" (click)="limpiarCampos()" ngbTooltip="limpiar Campos" placement="top-right" ><i class="fas fa-trash-alt"></i></button>
         <modal-crear-persona [config-listas]="listas" (cuilPersona)="actualizarBusqueda($event)" ></modal-crear-persona>
       </div>
     </div>

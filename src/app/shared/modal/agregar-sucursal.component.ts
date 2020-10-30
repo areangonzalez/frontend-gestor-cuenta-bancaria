@@ -163,6 +163,7 @@ export class AgregarSucursalComponent {
   @Input("idPersona") public idPersona: number;
   @Input("existeCopia") public existeCopia: boolean;
   @Input("copiaSeleccion") public copiaSeleccion: any;
+  @Input("nombrePersona") public nombrePersona: string;
   @Output("obtenerPrestacion") public obtenerPrestacion = new EventEmitter();
 
   constructor(private _modalService: NgbModal) { }
