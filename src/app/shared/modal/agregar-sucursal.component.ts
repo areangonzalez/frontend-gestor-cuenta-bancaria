@@ -66,7 +66,7 @@ import { UtilService } from 'src/app/core/services';
     </div>
     <div class="modal-footer d-flex justify-content-between">
       <button type="button" class="btn btn-outline-danger" (click)="cerrarModal()"><i class="fas fa-ban"></i> Cancelar</button>
-      <button *ngIf="copiaSeleccion.existe" type="button" class="btn btn-outline-dark" (click)="pegarDatosForm(copiaSeleccion)"><i class="fas fa-paste"></i> Pegar datos </button>
+      <button *ngIf="copiaSeleccion.existe" type="button" class="btn btn-outline-dark" (click)="pegarDatosForm(copiaSeleccion)" ngbTooltip="{{pegarUltimaSeleccion(copiaSeleccion)}}"><i class="fas fa-paste"></i> Pegar datos </button>
       <button type="button" class="btn btn-outline-success" (click)="validarPersona()"><i class="fas fa-plus"></i> Agregar</button>
     </div>
 `,
@@ -149,6 +149,17 @@ export class AgregarSucursalContent {
       moneda.value = moneda.value.substring(0, moneda.value.length -1);
     }
   }
+  /**
+   * Pega los datos de una copia para armar el tooltip
+   */
+  pegarUltimaSeleccion(ultimaSeleccion: any) {
+    let seleccion: string = "Pergar: ";
+    seleccion += "Fecha de prestación: " + ultimaSeleccion["fechaIngreso"]["day"] + "/" + ultimaSeleccion["fechaIngreso"]["month"] + "/" + ultimaSeleccion["fechaIngreso"]["year"];
+    seleccion += " - Monto: " + ultimaSeleccion["monto"];
+    seleccion += " - Sucursal: " + ultimaSeleccion["sucursal_codigo"] + " - " + ultimaSeleccion["nombre"];
+
+    return seleccion;
+  }
 
 }
 
@@ -163,7 +174,7 @@ export class AgregarSucursalComponent {
   @Input("idPersona") public idPersona: number;
   @Input("existeCopia") public existeCopia: boolean;
   @Input("copiaSeleccion") public copiaSeleccion: any;
-  @Input("nombrePersona") public nombrePersona: string;
+  @Input("persona") public persona: any;
   @Output("obtenerPrestacion") public obtenerPrestacion = new EventEmitter();
 
   constructor(private _modalService: NgbModal) { }
