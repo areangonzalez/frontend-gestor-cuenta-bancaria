@@ -15,3 +15,4 @@ export * from './nacionalidad.service';
 export * from './sexo.service';
 export * from './tipo-documento.service';
 export * from './cuenta-saldo.service';
+export * from './cuenta.service';

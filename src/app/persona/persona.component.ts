@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { configurarListas, ConfigurarPagina } from '../core/models';
 import { ActivatedRoute } from '@angular/router';
-import { ConfiguracionParaPaginarService, NotificacionService, PersonaService } from '../core/services';
+import { ConfiguracionParaPaginarService, NotificacionService, CuentaService } from '../core/services';
 
 @Component({
   selector: 'app-persona',
@@ -14,7 +14,7 @@ export class PersonaComponent implements OnInit {
   public filtradoBusqueda: any = {};
   public configPaginacion: ConfigurarPagina = new ConfigurarPagina(); // obteiene el objeto de configuracion de rango y paginado de comprobantes
 
-  constructor(private _route: ActivatedRoute, private _personaService: PersonaService, private _msj: NotificacionService, private _configurarPaginacion: ConfiguracionParaPaginarService) {}
+  constructor(private _route: ActivatedRoute, private _cuentaService: CuentaService, private _msj: NotificacionService, private _configurarPaginacion: ConfiguracionParaPaginarService) {}
 
   ngOnInit(): void {
     this.prepararListadoPersona(this._route.snapshot.data["personas"], 1);
@@ -25,7 +25,7 @@ export class PersonaComponent implements OnInit {
     Object.assign(params, {page: page-1});
     console.log(params);
     this.filtradoBusqueda = params;
-    this._personaService.buscar(params).subscribe(
+    this._cuentaService.buscar(params).subscribe(
       respuesta => {
         this.prepararListadoPersona(respuesta, page)
       }, error => { this._msj.cancelado(error); }
@@ -33,6 +33,8 @@ export class PersonaComponent implements OnInit {
   }
 
   prepararListadoPersona(listado:any, pagina: number) {
+    console.log(listado);
+
     // preparo la variable con la configuracion para el paginado
     this.configPaginacion = this._configurarPaginacion.config(listado, pagina);
 

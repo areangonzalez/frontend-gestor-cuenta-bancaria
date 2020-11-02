@@ -12,6 +12,7 @@ let personas = { pagesize: 2, pages: 1, total_filtrado: 5, resultado: [
   },{ id: 3,nombre: "Roberto",apellido: "Almendra",sexoid:2,sexo:"Masculino",generoid:2,genero:"Hombre",nacionalidadid:1,estado_civilid:1,estado_civil:"soltero",fecha_nacimiento:"1988-02-05",nro_documento: "29857364",telefono: "",celular: "2920234567",tipo_documentoid: 1,email:"rderoberto@outlook.com.ar",cuil:"20298573648",lugar:{ id:9,barrio:"Fatima",calle:"savedra",altura:"47",piso:"",depto:"",escalera:"",localidadid:1, localidad: "Viedma" }}
   ]};
 
+
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -44,6 +45,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return getSexo();
               case url.endsWith('/apimock/generos') && method === 'GET':
                 return getGenero();
+              case url.endsWith('/apimock/cuentas') && method === 'GET':
+                  return getListaCuentaPersona();
               case url.endsWith('/apimock/cuenta-saldos') && method === 'GET':
                 return getListaSeleccionPersona();
               case url.endsWith('/apimock/cuenta-saldos') && method === 'POST':
@@ -139,6 +142,34 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
           return ok(listado);
         }
+        /****** LISTADO DE CUENTAS - PERSONAS ********/
+        function getListaCuentaPersona() {
+          let page: number = parseInt(request.params.get("page"));
+          let pageSize: number = 2;
+
+          let cuentaPersona = { pagesize: 2, pages: 1, total_filtrado: 5, resultado: [
+            { id: 1, cbu: "0340220908126708871006", personaid: 102, bancoid: 1, tipo_cuentaid: 1, create_at: "2020-10-29 14:10:34", tesoreria_alta: 1, banco: "Patagonia",
+              tipo_cuenta: "Cuenta Corriente", apellido: "Marileo", nombre: "Romina Azucena", cuil: "27351545475", nro_documento: "35154547", telefono: "", celular: "", email: "",
+              lugar: { id: 464, nombre: "", calle: "hipolito yrigoyen", altura: "771", localidadid: 2576, latitud: "", longitud: "", barrio: "", piso: "", depto: "", escalera: "", entre_calle_1: "", entre_calle_2: "", localidad: "General Roca", codigo_postal: 8332 }},
+            { id: 1, cbu: "0340220908126708871006", personaid: 103, bancoid: 1, tipo_cuentaid: 1, create_at: "2020-10-29 14:10:34", tesoreria_alta: 1, banco: "Patagonia",
+              tipo_cuenta: "Cuenta Corriente", apellido: "Fernandez", nombre: "Maria Carla", cuil: "23345546772", nro_documento: "34554677", telefono: "", celular: "298657348", email: "fmcarla@gmail.com",
+              lugar: { id: 464, nombre: "", calle: "san luis", altura: "171", localidadid: 2576, latitud: "", longitud: "", barrio: "", piso: "", depto: "", escalera: "", entre_calle_1: "", entre_calle_2: "", localidad: "General Roca", codigo_postal: 8332 }},
+            { id: 1, cbu: "0340220908126708871006", personaid: 104, bancoid: 1, tipo_cuentaid: 1, create_at: "2020-10-29 14:10:34", tesoreria_alta: 1, banco: "Patagonia",
+              tipo_cuenta: "Cuenta Corriente", apellido: "Gimenez", nombre: "Gabriela Elizabeth", cuil: "22298900984", nro_documento: "29890098", telefono: "2984456876", celular: "", email: "",
+              lugar: { id: 464, nombre: "", calle: "mexico", altura: "61", localidadid: 2576, latitud: "", longitud: "", barrio: "", piso: "", depto: "", escalera: "", entre_calle_1: "", entre_calle_2: "", localidad: "General Roca", codigo_postal: 8332 }},
+            { id: 1, cbu: "0340220908126708871006", personaid: 105, bancoid: 1, tipo_cuentaid: 1, create_at: "2020-10-29 14:10:34", tesoreria_alta: 1, banco: "Patagonia",
+              tipo_cuenta: "Cuenta Corriente", apellido: "Cullumilla", nombre: "Rocio Aldana", cuil: "27292321325", nro_documento: "29232132", telefono: "4376829", celular: "", email: "aldanita@gmail.com",
+              lugar: { id: 464, nombre: "", calle: "roca", altura: "1771", localidadid: 2576, latitud: "", longitud: "", barrio: "", piso: "1", depto: "B", escalera: "", entre_calle_1: "", entre_calle_2: "", localidad: "General Roca", codigo_postal: 8332 }},
+            { id: 1, cbu: "0340220908126708871006", personaid: 106, bancoid: 1, tipo_cuentaid: 1, create_at: "2020-10-29 14:10:34", tesoreria_alta: 1, banco: "Patagonia",
+              tipo_cuenta: "Cuenta Corriente", apellido: "Fernandez", nombre: "Romina Alejandra", cuil: "27298573645", nro_documento: "29857364", telefono: "", celular: "", email: "",
+              lugar: { id: 464, nombre: "", calle: "roca", altura: "1771", localidadid: 2576, latitud: "", longitud: "", barrio: "", piso: "3", depto: "B", escalera: "", entre_calle_1: "", entre_calle_2: "", localidad: "General Roca", codigo_postal: 8332 }},
+          ]};
+
+          let listado = paginar(cuentaPersona, cuentaPersona.resultado, page, pageSize);
+
+          return ok(listado);
+        }
+
         /****** LISTADO DE SELECCION DE PERSONAS  ******/
         function getListaSeleccionPersona() {
           let listaSeleccion = [];

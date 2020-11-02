@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { Resolve } from "@angular/router";
-import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
