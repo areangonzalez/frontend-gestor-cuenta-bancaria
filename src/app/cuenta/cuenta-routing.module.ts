@@ -15,9 +15,7 @@ const routes: Routes = [
         path: 'alta', component: AltaCuentaPersonaComponent,
         data: { title: 'Alta de cuentas', breadcrumb: 'Alta' },
         resolve: {
-          personas: PersonaService, subSucursales: SubSucursalService, seleccionPersona: CuentaSaldoService, tipoDocumentos: TipoDocumentoService, localidades: LocalidadService,
-          nacionalidades: NacionalidadService, estadoCiviles: EstadoCivilService, sexos: SexoService,
-          generos: GeneroService
+          personas: PersonaService, subSucursales: SubSucursalService, seleccionPersona: CuentaSaldoService, tipoDocumentos: TipoDocumentoService, localidades: LocalidadService, nacionalidades: NacionalidadService, estadoCiviles: EstadoCivilService, sexos: SexoService, generos: GeneroService
         }
       },
       {
