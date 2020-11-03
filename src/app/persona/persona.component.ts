@@ -38,8 +38,6 @@ export class PersonaComponent implements OnInit {
   }
 
   prepararListadoPersona(listado:any, pagina: number) {
-    console.log(listado);
-
     // preparo la variable con la configuracion para el paginado
     this.configPaginacion = this._configurarPaginacion.config(listado, pagina);
 

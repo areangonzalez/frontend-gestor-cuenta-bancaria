@@ -10,5 +10,5 @@
       <button class="btn btn-block btn-sm btn-secondary"><i class="fas fa-file-download"></i> Exportar lista completa</button>
     </div>
   </div>
-  <shared-lista-alta-persona [config-listas]="configListas" [personas]="personas" [configPaginacion]="configPaginacion" [tipo]="'importar'" ></shared-lista-alta-persona>
+  <shared-lista-alta-persona [config-listas]="configListas" [personas]="personas" [configPaginacion]="configPaginacion" (cambioDePagina)="cambiarPagina($event)" [tipo]="'importar'" ></shared-lista-alta-persona>
 </div>

@@ -62,7 +62,6 @@ export class AltaPersonaComponent implements OnInit {
    * @param copia objeto que contiene los datos que han sido copiado en una seleccion anterior
    */
   pegarCopiaSeleccionada(persona: any, copia: any) {
-    console.log(copia)
     let personaSeleccionada: boolean = false;
     for (let i = 0; i < this.configurarListas.seleccionPersona.length; i++) {
       if (this.configurarListas.seleccionPersona[i].id === persona.id) {
@@ -81,7 +80,7 @@ export class AltaPersonaComponent implements OnInit {
    * Pega los datos de una copia para armar el tooltip
    */
   pegarUltimaSeleccion(ultimaSeleccion: any) {
-    let seleccion: string = "Pergar: ";
+    let seleccion: string = "Pegar: ";
     seleccion += "Fecha de prestación: " + ultimaSeleccion["fechaIngreso"]["day"] + "/" + ultimaSeleccion["fechaIngreso"]["month"] + "/" + ultimaSeleccion["fechaIngreso"]["year"];
     seleccion += " - Monto: " + ultimaSeleccion["monto"];
     seleccion += " - Sucursal: " + ultimaSeleccion["sucursal_codigo"] + " - " + ultimaSeleccion["nombre"];

@@ -4,6 +4,7 @@ import { CuentaComponent } from './cuenta.component';
 import { AltaCuentaPersonaComponent, ImportacionCbuComponent } from './menu';
 import { CuentaSaldoService, EstadoCivilService, GeneroService, LocalidadService, NacionalidadService, PersonaService, SexoService, SubSucursalService, TipoDocumentoService } from '../core/services';
 import { AuthGuard } from '../core/guards/auth.guard';
+import { ArchivoService } from '../core/services/archivo.service';
 
 const routes: Routes = [
   {
@@ -22,7 +23,7 @@ const routes: Routes = [
         path: 'importacion', component: ImportacionCbuComponent,
         data: { title: 'Importación de CBU', breadcrumb: 'importación' },
         resolve: {
-          localidades: LocalidadService, personas: PersonaService
+          localidades: LocalidadService, personas: ArchivoService
         }
       },
       { path: '', redirectTo: 'alta', pathMatch: 'full' }

@@ -15,6 +15,7 @@ export class CuentaService implements Resolve<any> {
    * @param params parametros asignados sobre api
    */
   buscar(params: object) {
+    Object.assign(params, { tesoreria_alta: 1 });
     let httpParams = new HttpParams();
     httpParams = this._http.formatParams(httpParams, params);
 
@@ -22,6 +23,8 @@ export class CuentaService implements Resolve<any> {
   }
 
   resolve() {
+    let httpParams = new HttpParams();
+    httpParams = this._http.formatParams(httpParams, { tesoreria_alta: 1 });
     return this._http.get('/cuentas');
   }
 }

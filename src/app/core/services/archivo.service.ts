@@ -1,11 +1,12 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Resolve } from '@angular/router';
 import { ApiService } from "./api.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ArchivoService {
+export class ArchivoService implements Resolve<any> {
 
   constructor(private _http: ApiService) { }
 
@@ -39,7 +40,26 @@ export class ArchivoService {
     return this._apiService.getFile('/export/exportar-prestaciones-xls', options);
   } */
 
-  importarArchivo(archivo: any) {
+  importarCuentaBps(archivo: any) {
     return this._http.post("/importar/cta-bps", archivo);
+  }
+  /**
+   * Obtengo el listado que obtengo despues de la importación
+   */
+  listaCuentaBps(params: object) {
+    Object.assign(params, { tesoreria_alta: 0 });
+    let httpParams = new HttpParams();
+    httpParams = this._http.formatParams(httpParams, params);
+
+    return this._http.get('/cuentas');
+  }
+
+  /**
+   * Obtengo el listado que obtengo despues de la importación
+   */
+  resolve() {
+    let httpParams = new HttpParams();
+    httpParams = this._http.formatParams(httpParams, { tesoreria_alta: 0 });
+    return this._http.get('/cuentas');
   }
 }
