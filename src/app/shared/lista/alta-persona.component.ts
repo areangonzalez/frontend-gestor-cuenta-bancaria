@@ -103,4 +103,14 @@ export class AltaPersonaComponent implements OnInit {
     this.cuilPersona.emit(nroCuil);
   }
 
+  obtenerCbu(cuentas: any) {
+    let cbu: string = '';
+    for (let i = 0; i < cuentas.length; i++) {
+      cbu += (cbu != '') ? ' - ' : '';
+      cbu = cuentas[i]["cbu"];
+    }
+
+    return cbu;
+  }
+
 }
