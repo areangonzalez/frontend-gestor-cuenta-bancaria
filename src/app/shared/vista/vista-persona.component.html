@@ -1,76 +1,125 @@
-<div class="row ">
-  <div class="col-md-12 ">
-      <div class="card">
-          <!-- <div *ngIf="(mostrarBoton)" class="card-header">
-            <div class="d-flex justify-content-between">
-              <h5 class="d-flex align-items-center">Datos personales</h5>
-              <modal-form-persona-component class="btn-group" ngbTooltip="Editar persona" [configModal]="configModal" [disenioBoton]="configBotonModal" (obtenerPersona)="personaEditada($event)" [personaid]="persona['id']" ></modal-form-persona-component>
-            </div>
-          </div> -->
-          <div class="card-body">
-              <div class="row">
-                  <div class="col-md-6">
-                    <dl class="row">
-                      <dt class="col-6 col-sm-6 col-md-6 col-lg-6">Nro. Documento:</dt>
-                      <dd class="col-6 col-sm-6 col-md-6 col-lg-6">{{persona.nro_documento}}</dd>
-                    </dl>
-                    <dl class="row">
-                        <dt class="col-6 col-sm-6 col-md-6 col-lg-6">Apellido y nombre:</dt>
-                        <dd class="col-6 col-sm-6 col-md-6 col-lg-6">{{persona.apellido}}, {{persona.nombre}}</dd>
-                    </dl>
-                  </div>
-                  <div class="col-md-6">
-                      <dl class="row">
-                          <dt class="col-6 col-sm-6 col-md-6 col-lg-6">Cuil:</dt>
-                          <dd class="col-6 col-sm-6 col-md-6 col-lg-6">{{persona.cuil}}</dd>
-                      </dl>
-                      <dl class="row">
-                          <dt class="col-6 col-sm-6 col-md-6 col-lg-6">Fecha nacimiento:</dt>
-                          <dd class="col-6 col-sm-6 col-md-6 col-lg-6">{{persona.fecha_nacimiento | date:'dd/MM/yyyy'}}</dd>
-                      </dl>
-                  </div>
-                  <div class="col-md-6">
-                      <dl class="row">
-                          <dt class="col-6 col-sm-6 col-md-6 col-lg-6">Sexo (Genero):</dt>
-                          <dd class="col-6 col-sm-6 col-md-6 col-lg-6">{{persona.sexo}} <span *ngIf="(persona.genero != undefined && persona.genero != '')">({{persona.genero}})</span></dd>
-                      </dl>
-                  </div>
-                  <div class="col-md-6">
-                      <dl class="row">
-                          <dt class="col-6 col-sm-6 col-md-6 col-lg-6">Estado civil:</dt>
-                          <dd class="col-6 col-sm-6 col-md-6 col-lg-6">{{persona.estado_civil}}</dd>
-                      </dl>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="d-flex justify-content-center">
-                      <div class="btn-group">
-                          <ng-template #direccionContent>
-                              {{persona.lugar.localidad}} <br>
-                              <span *ngIf="(persona.lugar.barrio != '')" >{{persona.lugar.barrio}} <br></span>
-                              {{persona.lugar.calle}} {{persona.lugar.altura}}
-                              <span *ngIf="(persona.lugar.escalera != '')">
-                                  <br> Esc/Mod:&nbsp;
-                                  {{(persona.lugar.escalera != "")?persona.lugar.escalera:""}}
-                              </span>
-                              <span *ngIf="(persona.lugar.piso != '')">
-                                <br> Piso:&nbsp;
-                                  {{(persona.lugar.piso != "")?persona.lugar.piso:""}}
-                              </span>
-                              <span *ngIf="(persona.lugar.depto != '')">
-                                <br>Dpto:&nbsp;
-                                {{(persona.lugar.depto != "")?persona.lugar.depto:""}}
-                              </span>
-                          </ng-template>
-                          <button type="button" class="btn btn-sm btn-light" container="body" triggers="click" [autoClose]="'outside'" [ngbTooltip]="direccionContent" container="body"><i class="fas fa-home"></i></button>
-                          <button *ngIf="(persona.telefono != '')" triggers="click" [autoClose]="'outside'" type="button" ngbTooltip="{{persona.telefono}}" class="btn btn-sm btn-light"><i class="fas fa-phone"></i></button>
-                          <button *ngIf="(persona.celular != '')" triggers="click" [autoClose]="'outside'" type="button" ngbTooltip="{{persona.celular}}" class="btn btn-sm btn-light"><i class="fas fa-mobile-alt"></i></button>
-                          <button *ngIf="(persona.email != '')" triggers="click" [autoClose]="'outside'" type="button" ngbTooltip="{{persona.email}}" class="btn btn-sm btn-light"><i class="fas fa-envelope"></i></button>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-          </div>
+<!-- <div class="row ">
+  <div class="col-md-12 "> -->
+<div class="card">
+  <div class="card-header">Datos personales</div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <dl class="row">
+          <dt class="col-6 col-sm-6 col-md-6 col-lg-6">Nro. Documento:</dt>
+          <dd class="col-6 col-sm-6 col-md-6 col-lg-6">{{persona.nro_documento}}</dd>
+        </dl>
+        <dl class="row">
+          <dt class="col-6 col-sm-6 col-md-6 col-lg-6">Apellido:</dt>
+          <dd class="col-6 col-sm-6 col-md-6 col-lg-6">{{persona.apellido}}</dd>
+        </dl>
+        <dl class="row">
+          <dt class="col-6 col-sm-6 col-md-6 col-lg-6">Fecha nacimiento:</dt>
+          <dd class="col-6 col-sm-6 col-md-6 col-lg-6">{{persona.fecha_nacimiento | date:'dd/MM/yyyy'}}</dd>
+        </dl>
+        <dl class="row">
+          <dt class="col-6 col-sm-6 col-md-6 col-lg-6">Sexo:</dt>
+          <dd class="col-6 col-sm-6 col-md-6 col-lg-6">{{persona.sexo}}</dd>
+        </dl>
       </div>
+      <div class="col-md-6">
+        <dl class="row">
+          <dt class="col-6 col-sm-6 col-md-6 col-lg-6">Cuil:</dt>
+          <dd class="col-6 col-sm-6 col-md-6 col-lg-6">{{persona.cuil}}</dd>
+        </dl>
+        <dl class="row">
+          <dt class="col-6 col-sm-6 col-md-6 col-lg-6">Nombre:</dt>
+          <dd class="col-6 col-sm-6 col-md-6 col-lg-6">{{persona.nombre}}</dd>
+        </dl>
+        <dl class="row">
+          <dt class="col-6 col-sm-6 col-md-6 col-lg-6">Estado civil:</dt>
+          <dd class="col-6 col-sm-6 col-md-6 col-lg-6">{{persona.estado_civil}}</dd>
+        </dl>
+        <dl class="row">
+          <dt class="col-6 col-sm-6 col-md-6 col-lg-6">Genero:</dt>
+          <dd class="col-6 col-sm-6 col-md-6 col-lg-6">{{persona.genero}}</dd>
+        </dl>
+      </div>
+      <div class="col-md-12">
+        <div class="d-flex justify-content-center">
+          <div class="btn-group">
+            <ng-template #direccionContent>
+              {{persona.lugar.localidad}} <br>
+              <span *ngIf="(persona.lugar.barrio != '')" >{{persona.lugar.barrio}} <br></span>
+              {{persona.lugar.calle}} {{persona.lugar.altura}}
+              <span *ngIf="(persona.lugar.escalera != '')">
+                <br> Esc/Mod:&nbsp;
+                {{(persona.lugar.escalera != "")?persona.lugar.escalera:""}}
+              </span>
+              <span *ngIf="(persona.lugar.piso != '')">
+                <br> Piso:&nbsp;
+                {{(persona.lugar.piso != "")?persona.lugar.piso:""}}
+              </span>
+              <span *ngIf="(persona.lugar.depto != '')">
+                <br>Dpto:&nbsp;
+                {{(persona.lugar.depto != "")?persona.lugar.depto:""}}
+              </span>
+            </ng-template>
+            <button type="button" class="btn btn-sm btn-light" container="body" triggers="click" [autoClose]="'outside'" [ngbTooltip]="direccionContent" container="body"><i class="fas fa-home"></i></button>
+            <button *ngIf="(persona.telefono != '')" triggers="click" [autoClose]="'outside'" type="button" ngbTooltip="{{persona.telefono}}" class="btn btn-sm btn-light"><i class="fas fa-phone"></i></button>
+            <button *ngIf="(persona.celular != '')" triggers="click" [autoClose]="'outside'" type="button" ngbTooltip="{{persona.celular}}" class="btn btn-sm btn-light"><i class="fas fa-mobile-alt"></i></button>
+            <button *ngIf="(persona.email != '')" triggers="click" [autoClose]="'outside'" type="button" ngbTooltip="{{persona.email}}" class="btn btn-sm btn-light"><i class="fas fa-envelope"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+<div *ngIf="(persona.cbu)" class="card mt-2">
+  <div class="card-header">Datos de la cuenta</div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <dl class="row">
+          <dt class="col-6 col-sm-6 col-md-6 col-lg-6">Banco:</dt>
+          <dd class="col-6 col-sm-6 col-md-6 col-lg-6">{{persona.banco}}</dd>
+        </dl>
+      </div>
+      <div class="col-md-6">
+        <dl class="row">
+          <dt class="col-6 col-sm-6 col-md-6 col-lg-6">Cuenta:</dt>
+          <dd class="col-6 col-sm-6 col-md-6 col-lg-6">{{persona.tipo_cuenta}}</dd>
+        </dl>
+      </div>
+      <div class="col-md-12">
+        <dl class="row">
+          <dt class="col-3 col-sm-3 col-md-3 col-lg-3">CBU:</dt>
+          <dd class="col-9 col-sm-9 col-md-9 col-lg-9">{{persona.cbu}}</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="(persona.tiene_cbu)" class="card mt-2">
+  <div class="card-header">Datos de la cuenta</div>
+  <div class="card-body">
+    <div class="row" *ngFor="let cuenta of persona.lista_cuenta">
+      <div class="col-md-6">
+        <dl class="row">
+          <dt class="col-6 col-sm-6 col-md-6 col-lg-6">Banco:</dt>
+          <dd class="col-6 col-sm-6 col-md-6 col-lg-6">{{cuenta.banco}}</dd>
+        </dl>
+      </div>
+      <div class="col-md-6">
+        <dl class="row">
+          <dt class="col-6 col-sm-6 col-md-6 col-lg-6">Cuenta:</dt>
+          <dd class="col-6 col-sm-6 col-md-6 col-lg-6">{{cuenta.tipo_cuenta}}</dd>
+        </dl>
+      </div>
+      <div class="col-md-12">
+        <dl class="row">
+          <dt class="col-3 col-sm-3 col-md-3 col-lg-3">CBU:</dt>
+          <dd class="col-9 col-sm-9 col-md-9 col-lg-9">{{cuenta.cbu}}</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- </div>
+</div> -->
 
