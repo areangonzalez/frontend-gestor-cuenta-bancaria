@@ -14,14 +14,14 @@ const routes: Routes = [
     children: [
       {
         path: 'alta', component: AltaCuentaPersonaComponent,
-        data: { title: 'Alta de cuentas', breadcrumb: 'Alta' },
+        data: { title: 'Alta de Cuenta Saldo', breadcrumb: 'Alta de Cuenta Saldo' },
         resolve: {
           personas: PersonaService, subSucursales: SubSucursalService, seleccionPersona: CuentaSaldoService, tipoDocumentos: TipoDocumentoService, localidades: LocalidadService, nacionalidades: NacionalidadService, estadoCiviles: EstadoCivilService, sexos: SexoService, generos: GeneroService
         }
       },
       {
         path: 'importacion', component: ImportacionCbuComponent,
-        data: { title: 'Importación de CBU', breadcrumb: 'importación' },
+        data: { title: 'Importación de Cuenta BPS', breadcrumb: 'Importación de Cuenta BPS' },
         resolve: {
           localidades: LocalidadService, personas: ArchivoService
         }

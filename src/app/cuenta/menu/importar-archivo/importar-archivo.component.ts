@@ -7,7 +7,7 @@ import { ArchivoService } from 'src/app/core/services/archivo.service';
   selector: 'content-importar-archivo',
   template: `
     <div class="modal-header">
-      <h4 class="modal-title">Importar Archivo</h4>
+      <h4 class="modal-title">Importar Archivo Cuenta BPS</h4>
       <button type="button" class="close" aria-label="Close" (click)="cerrarModal()">
         <span aria-hidden="true">&times;</span>
       </button>

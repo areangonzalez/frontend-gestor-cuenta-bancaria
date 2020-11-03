@@ -10,8 +10,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'personas',
-        data: { breadcrumb: 'Personas', title: 'Personas' },
+        path: 'tesoreria',
+        data: { breadcrumb: 'Tesorería', title: 'Tesorería' },
         loadChildren: () => import('./persona/persona.module').then(m => m.PersonaModule)
       },
       {
@@ -19,7 +19,7 @@ const routes: Routes = [
         data: { breadcrumb: 'Cuentas', title: 'Cuentas' },
         loadChildren: () => import('./cuenta/cuenta.module').then(m => m.CuentaModule)
       },
-      { path: '', redirectTo: 'personas', pathMatch: 'full' }
+      { path: '', redirectTo: 'tesoreria', pathMatch: 'full' }
     ]
   },
   {

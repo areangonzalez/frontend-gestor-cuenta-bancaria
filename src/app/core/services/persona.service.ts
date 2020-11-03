@@ -41,6 +41,8 @@ export class PersonaService implements Resolve<any> {
   }
 
   resolve() {
+    let httpParams = new HttpParams();
+    httpParams = this._http.formatParams(httpParams, {pagesize: 5});
     return this._http.get('/personas');
   }
 

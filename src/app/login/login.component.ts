@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     // Guardo la ultima ruta a la que se querido acceder
-    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/personas';
+    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/tesoreria';
   }
 
   ingresar() {
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
   estaLogueado() {
     if (this._autenticacion.loggedIn()) {
       console.log("entra");
-      this._router.navigate(['/personas']);
+      this._router.navigate(['/tesoreria']);
     }
   }
 
