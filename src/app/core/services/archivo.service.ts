@@ -22,7 +22,7 @@ export class ArchivoService implements Resolve<any> {
       params: params,
     };
 
-    return this._http.getFile("/export/cta-saldo", options);
+    return this._http.getFile("/cuenta-saldo/exportar", options);
   }
 
   exportarCtaInterbanking(params: any) {
