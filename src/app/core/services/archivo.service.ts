@@ -38,11 +38,11 @@ export class ArchivoService implements Resolve<any> {
       params: httpParams,
     };
 
-    return this._http.getFile("/exportar/cta-saldo", params);
+    return this._http.getFile("/cta-saldo/exportar", params);
   }
 
   exportarCtaSaldo(params: any) {
-    return this._http.post("/exportar/cta-saldo", params);
+    return this._http.post("/cta-saldo/exportar", params);
   }
 
 
@@ -61,7 +61,7 @@ export class ArchivoService implements Resolve<any> {
   } */
 
   importarCuentaBps(archivo: any) {
-    return this._http.post("/importar/cta-bps", archivo);
+    return this._http.post("/cta-bps/importar", archivo);
   }
   /**
    * Obtengo el listado que obtengo despues de la importación
