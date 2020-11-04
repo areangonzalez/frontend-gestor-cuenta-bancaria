@@ -38,11 +38,11 @@ export class ArchivoService implements Resolve<any> {
       params: httpParams,
     };
 
-    return this._http.getFile("/cta-saldo/exportar", params);
+    return this._http.getFile("/cuenta-saldo/exportar", params);
   }
 
   exportarCtaSaldo(params: any) {
-    return this._http.post("/cta-saldo/exportar", params);
+    return this._http.post("/cuenta-saldo/exportar", params);
   }
 
 
