@@ -34,8 +34,8 @@ export class ArchivoService implements Resolve<any> {
     headers.append('Accept', 'text/plain');
 
     let options: object = {
-      //responseType: 'blob',
-      //params: httpParams,
+      responseType: 'blob',
+      params: httpParams,
     };
 
     return this._http.getFile("/export/cta-saldo", params);
