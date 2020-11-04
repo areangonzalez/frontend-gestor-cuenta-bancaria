@@ -52,9 +52,9 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
   public exportarArchivo(exportar:boolean) {
     if (exportar){
       this._descargaService.exportarCtaSaldo(this.personaSeleccionada).subscribe(
-        blob => {
-          let filename = 'cuenta_salto.txt';
-          importedSaveAs(blob, filename);
+        respuesta => {
+          let filename = 'CTASALDO.txt';
+          importedSaveAs(respuesta, filename);
       }, error => { this._msj.cancelado(error); });
     }
   }

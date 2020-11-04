@@ -10,7 +10,7 @@ export class ArchivoService implements Resolve<any> {
 
   constructor(private _http: ApiService) { }
 
-  exportarCtaSaldo(params: any) {
+  /* exportarCtaSaldo(params: any) {
     let headers = new Headers();
     let httpParams = new HttpParams();
     httpParams = this._http.formatParams(httpParams, params);
@@ -23,7 +23,7 @@ export class ArchivoService implements Resolve<any> {
     };
 
     return this._http.getFile("/export/cta-saldo", options);
-  }
+  } */
 
   exportarCtaInterbanking(params: any) {
     let headers = new Headers();
@@ -39,6 +39,10 @@ export class ArchivoService implements Resolve<any> {
     };
 
     return this._http.getFile("/export/cta-saldo", params);
+  }
+
+  exportarCtaSaldo(params: any) {
+    return this._http.post("/export/cta-saldo", params);
   }
 
 
