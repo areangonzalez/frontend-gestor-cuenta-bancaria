@@ -55,7 +55,7 @@ export class ApiService {
     }
     // descarga de archivos
     getFile(path: string, body: object): Observable<any> {
-      return this.http.get(
+      return this.http.post(
         `${environment.apiUrl}${path}`,
         body
       ).pipe(catchError(this.formatErrors));
