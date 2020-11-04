@@ -25,6 +25,21 @@ export class ArchivoService implements Resolve<any> {
     return this._http.getFile("/export/cta-saldo", options);
   }
 
+  exportarCtaInterbanking(params: any) {
+    let headers = new Headers();
+    let httpParams = new HttpParams();
+    httpParams = this._http.formatParams(httpParams, params);
+    headers.append('Content-type', 'aplication/json');
+    headers.append('Accept', 'text/plain');
+
+    let options: object = {
+      responseType: 'blob',
+      params: httpParams,
+    };
+
+    return this._http.getFile("/export/cta-saldo", options);
+  }
+
 
   /* descargarExcel(params) {
     let headers = new Headers();
