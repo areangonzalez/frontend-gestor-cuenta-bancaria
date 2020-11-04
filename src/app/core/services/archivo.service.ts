@@ -28,7 +28,8 @@ export class ArchivoService implements Resolve<any> {
   exportarCtaInterbanking(params: any) {
     let headers = new Headers();
     let httpParams = new HttpParams();
-    httpParams = this._http.formatParams(httpParams, params);
+    let convertParams = { cuenta_saldo: JSON.stringify(params) }
+    httpParams = this._http.formatParams(httpParams, convertParams);
     headers.append('Content-type', 'aplication/json');
     headers.append('Accept', 'text/plain');
 
