@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CuentaSaldoService, NotificacionService } from 'src/app/core/services';
+import { ArchivoService, CuentaSaldoService, NotificacionService } from 'src/app/core/services';
+import {saveAs as importedSaveAs} from "file-saver";
 
 @Component({
   selector: 'cuenta-listado-persona-selecionada',
@@ -10,7 +11,7 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
   @Input("personaSeleccionada") public personaSeleccionada: any;
   @Input("tipo") public tipo: string;
 
-  constructor(private _msj: NotificacionService, private _cuentaSaldoService: CuentaSaldoService) { }
+  constructor(private _msj: NotificacionService, private _cuentaSaldoService: CuentaSaldoService, private _descargaService: ArchivoService) { }
 
   ngOnInit(): void {
   }
@@ -49,13 +50,12 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
    * Permite descargar un archivo de texto
    */
   public exportarArchivo(exportar:boolean) {
-    console.log("se hizo click!");
-    /* if (exportar){
-      this._descargasService.descargar(this.personaSeleccionada).subscribe(
+    if (exportar){
+      this._descargaService.exportarCtaSaldo(this.personaSeleccionada).subscribe(
         blob => {
           let filename = 'cuenta_salto.txt';
           importedSaveAs(blob, filename);
-      }, error => { this._mensajeService.cancelado(error, [{name: ''}]); });
-    } */
+      }, error => { this._msj.cancelado(error); });
+    }
   }
 }

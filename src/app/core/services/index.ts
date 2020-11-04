@@ -16,3 +16,4 @@ export * from './sexo.service';
 export * from './tipo-documento.service';
 export * from './cuenta-saldo.service';
 export * from './cuenta.service';
+export * from './archivo.service';
