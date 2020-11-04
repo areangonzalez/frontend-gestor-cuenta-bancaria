@@ -10,40 +10,40 @@ export class ArchivoService implements Resolve<any> {
 
   constructor(private _http: ApiService) { }
 
-  /* exportarCtaSaldo(params: any) {
+  exportarCtaSaldo(params: any) {
     let headers = new Headers();
-    let httpParams = new HttpParams();
-    httpParams = this._http.formatParams(httpParams, params);
+    /* let httpParams = new HttpParams();
+    httpParams = this._http.formatParams(httpParams, params); */
     headers.append('Content-type', 'aplication/json');
     headers.append('Accept', 'text/plain');
 
     let options: object = {
-      responseType: 'blob',
-      params: httpParams,
+      responseType: 'txt',
+      params: params,
     };
 
     return this._http.getFile("/export/cta-saldo", options);
-  } */
+  }
 
   exportarCtaInterbanking(params: any) {
     let headers = new Headers();
-    let httpParams = new HttpParams();
+    /* let httpParams = new HttpParams();
     let convertParams = { cuenta_saldo: JSON.stringify(params) }
-    httpParams = this._http.formatParams(httpParams, params);
+    httpParams = this._http.formatParams(httpParams, params); */
     headers.append('Content-type', 'aplication/json');
     headers.append('Accept', 'text/plain');
 
     let options: object = {
-      responseType: 'blob',
-      params: httpParams,
+      responseType: 'txt',
+      params: params,
     };
 
     return this._http.getFile("/cuenta-saldo/exportar", params);
   }
 
-  exportarCtaSaldo(params: any) {
+  /* exportarCtaSaldo(params: any) {
     return this._http.post("/cuenta-saldo/exportar", params);
-  }
+  } */
 
 
   /* descargarExcel(params) {
@@ -61,7 +61,7 @@ export class ArchivoService implements Resolve<any> {
   } */
 
   importarCuentaBps(archivo: any) {
-    return this._http.post("/cta-bps/importar", archivo);
+    return this._http.post("/cuenta-bps/importar", archivo);
   }
   /**
    * Obtengo el listado que obtengo despues de la importación
