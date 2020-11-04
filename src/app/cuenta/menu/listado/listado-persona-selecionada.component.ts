@@ -55,8 +55,8 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
         respuesta => {
           console.log(respuesta);
 
-          /* let filename = 'CTASLDO.txt';
-          importedSaveAs(respuesta, filename); */
+          let filename = 'CTASLDO.txt';
+          importedSaveAs(respuesta, filename);
       }, error => { this._msj.cancelado(error); });
     }
   }
