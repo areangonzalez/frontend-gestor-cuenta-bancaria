@@ -57,7 +57,7 @@ export class AltaCuentaPersonaComponent implements OnInit {
    * Realiza una busqueda de persona por DNI, nombre, apellido o nro cuil
    */
   public realizarBusqueda(params: any, page: number) {
-    Object.assign(params, {page: page-1, pagesize: 5});
+    Object.assign(params, {page: page-1, pagesize: 8});
     this.filtradoBusqueda = params;
     this._personaService.buscar(params).subscribe(
       respuesta => {
@@ -68,12 +68,11 @@ export class AltaCuentaPersonaComponent implements OnInit {
   /**
    * Actualiza la busqueda priorizando el parametro de busqueda
    * por número de cuil de la persona
-   * @param nroCuil numero de cuil de la persona que ha sido
-   *                creada o modificada
+   * @param palabra palabra para realizar la busqueda
    */
-  actualizarBusqueda(nroCuil:string) {
-    this.global_param = nroCuil;
-    this.realizarBusqueda(this.global_param, this.configPaginacion.page);
+  actualizarBusqueda(palabra:string) {
+    this.global_param = palabra;
+    this.realizarBusqueda({ global_param: palabra }, this.configPaginacion.page);
   }
 
 }

@@ -31,7 +31,7 @@
       <td rowspan="1" colspan="2">
         {{persona.apellido}}, {{persona.nombre}}
         <div class="btn-group">
-          <button type="button" class="btn btn-sm btn-light" ngbTooltip="{{direccion(persona.lugar)}}" container="body" triggers="click:blur" ><i class="fas fa-home"></i></button>
+          <button *ngIf="(persona.lugar !== undefined)" type="button" class="btn btn-sm btn-light" ngbTooltip="{{direccion(persona.lugar)}}" container="body" triggers="click:blur" ><i class="fas fa-home"></i></button>
           <button *ngIf="(persona.telefono !== '')" type="button" class="btn btn-sm btn-light" ngbTooltip="{{persona.telefono}}" container="body" triggers="click:blur"><i class="fas fa-phone"></i></button>
           <button *ngIf="(persona.celular !== '')" type="button" class="btn btn-sm btn-light" ngbTooltip="{{persona.celular}}" container="body" triggers="click:blur"><i class="fas fa-mobile-alt"></i></button>
           <button *ngIf="(persona.email !== '')" type="button" class="btn btn-sm btn-light" ngbTooltip="{{persona.email}}" container="body" triggers="click:blur"><i class="far fa-envelope"></i></button>

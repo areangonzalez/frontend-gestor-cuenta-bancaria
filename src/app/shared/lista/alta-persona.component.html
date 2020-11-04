@@ -14,7 +14,7 @@
       <td rowspan="1" colspan="2">
         {{persona.apellido}}, {{persona.nombre}}
         <div class="btn-group">
-          <button type="button" class="btn btn-sm btn-light" [autoClose]="'outside'" ngbTooltip="{{direccion(persona.lugar)}}" container="body" triggers="click" ><i class="fas fa-home"></i></button>
+          <button *ngIf="(persona.lugar !== undefined)" type="button" class="btn btn-sm btn-light" [autoClose]="'outside'" ngbTooltip="{{direccion(persona.lugar)}}" container="body" triggers="click" ><i class="fas fa-home"></i></button>
           <button *ngIf="(persona.telefono !== '')" type="button" class="btn btn-sm btn-light" [autoClose]="'outside'" ngbTooltip="{{persona.telefono}}" container="body" triggers="click"><i class="fas fa-phone"></i></button>
           <button *ngIf="(persona.celular !== '')" type="button" class="btn btn-sm btn-light" [autoClose]="'outside'" ngbTooltip="{{persona.celular}}" container="body" triggers="click"><i class="fas fa-mobile-alt"></i></button>
           <button *ngIf="(persona.email !== '')" type="button" class="btn btn-sm btn-light" [autoClose]="'outside'" ngbTooltip="{{persona.email}}" container="body" triggers="click"><i class="far fa-envelope"></i></button>
@@ -22,7 +22,7 @@
           <button *ngIf="(persona.tiene_cbu)" type="button" class="btn btn-sm btn-light" [autoClose]="'outside'" ngbTooltip="{{obtenerCbu(persona.lista_cuenta)}}" container="body" triggers="click"><i class="fas fa-university"></i></button>
         </div>
       </td>
-      <td class="text-center">{{persona.lugar.localidad}}</td>
+      <td class="text-center">{{(persona.lugar !== undefined) ? persona.lugar.localidad : ""}}</td>
       <td *ngIf="(persona.create_at)" class="text-center">{{persona.create_at | date: 'dd/MM/yyyy'}}</td>
       <td class="text-center">
         <modal-info-persona [persona]="persona"></modal-info-persona>
