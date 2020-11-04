@@ -53,8 +53,10 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
     if (exportar){
       this._descargaService.exportarCtaSaldo(this.personaSeleccionada).subscribe(
         respuesta => {
-          let filename = 'CTASLDO.txt';
-          importedSaveAs(respuesta, filename);
+          console.log(respuesta);
+
+          /* let filename = 'CTASLDO.txt';
+          importedSaveAs(respuesta, filename); */
       }, error => { this._msj.cancelado(error); });
     }
   }
