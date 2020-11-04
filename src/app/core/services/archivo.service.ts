@@ -17,12 +17,12 @@ export class ArchivoService implements Resolve<any> {
     headers.append('Content-type', 'aplication/json');
     headers.append('Accept', 'text/plain');
 
-    let options: object = {
+    /* let options: object = {
       responseType: 'txt',
       params: params,
-    };
+    }; */
 
-    return this._http.getFile("/cuenta-saldo/exportar", options);
+    return this._http.getFile("/cuenta-saldo/exportar", params);
   }
 
   exportarCtaInterbanking(params: any) {
