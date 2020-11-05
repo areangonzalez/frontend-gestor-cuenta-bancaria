@@ -30,25 +30,6 @@ export class ArchivoService implements Resolve<any> {
     return this._http.getFile("/cuenta-saldo/exportar", params);
   }
 
-  /* exportarCtaSaldo(params: any) {
-    return this._http.post("/cuenta-saldo/exportar", params);
-  } */
-
-
-  /* descargarExcel(params) {
-    let headers = new Headers();
-    let httpParams = new HttpParams();
-    httpParams = this._apiService.formatParams(httpParams, params);
-    headers.append('Content-type', 'aplication/json');
-    headers.append('Accept', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-
-    let options: object = {
-      responseType: 'blob',
-      params: httpParams,
-    };
-    return this._apiService.getFile('/export/exportar-prestaciones-xls', options);
-  } */
-
   importarCuentaBps(archivo: any) {
     return this._http.post("/cuenta-bps/importar", archivo);
   }

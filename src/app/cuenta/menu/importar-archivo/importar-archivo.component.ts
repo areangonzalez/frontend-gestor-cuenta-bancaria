@@ -77,7 +77,6 @@ export class ImportarArchivoComponent {
     modalRef.result.then(
       (result) => {
         if (result !== false) {
-          console.log(result);
           return this.obtenerRespuesta.emit(result);
         }
       });
