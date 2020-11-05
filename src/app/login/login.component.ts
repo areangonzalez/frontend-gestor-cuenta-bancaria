@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
     .subscribe({
       next: () => {
         this.huboError = false;
-        console.log(this.returnUrl);
         this._router.navigate([this.returnUrl]);
       },
       error: error => {
@@ -49,7 +48,6 @@ export class LoginComponent implements OnInit {
 
   estaLogueado() {
     if (this._autenticacion.loggedIn()) {
-      console.log("entra");
       this._router.navigate(['/tesoreria']);
     }
   }
