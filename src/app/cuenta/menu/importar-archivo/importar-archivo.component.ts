@@ -54,7 +54,7 @@ export class ImportarArchivoContent {
     }
     fdata.append('tipo', JSON.stringify(this.tipoAdjuntoSeleccionado));
     fdata.append('publicaEnWeb', JSON.stringify(this.publicaEnWeb));
-
+    console.log(fdata);
     this._archivo.importarCuentaBps(fdata).subscribe(
       respuesta => {
         this.activeModal.close(respuesta);
