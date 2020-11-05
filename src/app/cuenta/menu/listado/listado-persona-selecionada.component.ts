@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ArchivoService, CuentaSaldoService, NotificacionService } from 'src/app/core/services';
 import {saveAs as importedSaveAs} from "file-saver";
+import { configurarListas } from 'src/app/core/models';
 
 @Component({
   selector: 'cuenta-listado-persona-selecionada',
@@ -8,6 +9,7 @@ import {saveAs as importedSaveAs} from "file-saver";
   styleUrls: ['./listado-persona-selecionada.component.scss']
 })
 export class ListadoPersonaSelecionadaComponent implements OnInit {
+  @Input("config-listas") public configurarListas: configurarListas; // array que contiene el/los listados para el componente
   @Input("personaSeleccionada") public personaSeleccionada: any;
   @Input("tipo") public tipo: string;
 

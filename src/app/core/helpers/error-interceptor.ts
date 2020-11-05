@@ -34,6 +34,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             }
           }),
           catchError(err => {
+            this._loading.hide();
             if (err.status === 401) {
                 // auto logout if 401 response returned from api
                 this._auth.logout();
