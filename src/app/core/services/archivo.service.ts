@@ -32,7 +32,7 @@ export class ArchivoService implements Resolve<any> {
 
   importarCuentaBps(archivo: any) {
     let headers = new Headers();
-    headers.append('Content-type', 'multipart/form-data');
+    headers.set('Content-type', 'multipart/form-data');
     return this._http.post("/cuenta-bps/importar", archivo);
   }
   /**
