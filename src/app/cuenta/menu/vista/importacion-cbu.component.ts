@@ -59,4 +59,11 @@ export class ImportacionCbuComponent implements OnInit {
     this.realizarBusqueda(this.filtradoBusqueda, pagina);
   }
 
+  actualizarListado(datos: any) {
+    console.log(datos);
+
+    this.realizarBusqueda({}, 1);
+
+  }
+
 }
