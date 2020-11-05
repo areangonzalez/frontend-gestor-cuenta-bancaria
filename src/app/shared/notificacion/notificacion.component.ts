@@ -45,6 +45,10 @@ export class NotificacionComponent implements OnInit {
     });
   }
 
+  msjEsCadena(mensaje:any) {
+    return (typeof mensaje === 'string');
+  }
+
   ngOnDestroy() {
       // unsubscribe to avoid memory leaks
       this.alertSubscription.unsubscribe();
@@ -63,7 +67,8 @@ export class NotificacionComponent implements OnInit {
           [AlertType.Cancelado]: 'alert alert-danger',
           [AlertType.Confirmar]: 'alert alert-success',
           [AlertType.Info]: 'alert alert-info',
-          [AlertType.Warning]: 'alert alert-warning'
+          [AlertType.Warning]: 'alert alert-warning',
+          [AlertType.ErrorMultiple]: 'alert alert-danger',
       }
 
       classes.push(alertTypeClass[tipo]);
@@ -80,6 +85,8 @@ export class NotificacionComponent implements OnInit {
             return 'far fa-times-circle';
           case AlertType.Confirmar:
             return 'far fa-check-circle';
+          case AlertType.ErrorMultiple:
+            return 'far fa-times-circle';
       }
   }
 
@@ -91,6 +98,8 @@ export class NotificacionComponent implements OnInit {
           case AlertType.Cancelado:
             return 'text-danger';
           case AlertType.Confirmar:
+            return 'text-success';
+          case AlertType.ErrorMultiple:
             return 'text-success';
       }
   }
@@ -106,6 +115,8 @@ export class NotificacionComponent implements OnInit {
             return 'Cancelado';
           case AlertType.Confirmar:
             return 'Exitoso';
+          case AlertType.ErrorMultiple:
+            return 'Cancelado';
       }
   }
 

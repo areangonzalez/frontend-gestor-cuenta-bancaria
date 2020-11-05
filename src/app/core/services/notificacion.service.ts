@@ -31,4 +31,11 @@ export class NotificacionService {
     confirmar(mensaje: string){
       this.alert(AlertType.Confirmar, mensaje);
     }
+    /**
+     * Sirve para notificar multiples errores que vienen en un array de objetos
+     * @param arrayMsj mensaje de array
+     */
+    erroresMultiples(arrMsj: any) {
+      this.alert(AlertType.ErrorMultiple, arrMsj);
+  }
 }

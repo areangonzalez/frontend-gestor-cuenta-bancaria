@@ -64,7 +64,10 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
           setTimeout(() => {
             this._msj.exitoso(respuesta["message"]);
           }, 800);
-      }, error => { this._msj.cancelado(error); });
+      }, error => {
+        let msjObject = JSON.parse(error);
+        this._msj.cancelado(error);
+      });
     }
   }
 }

@@ -8,5 +8,6 @@ export enum AlertType {
   Cancelado,
   Confirmar,
   Info,
-  Warning
+  Warning,
+  ErrorMultiple
 }
