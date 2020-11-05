@@ -51,7 +51,7 @@ export class ImportarArchivoContent {
       return;
     } */
     for (let i = 0; i < this.uploadedFiles.length; i++) {
-      fdata.append('adjuntos', this.uploadedFiles[i], this.uploadedFiles[i].name);
+      fdata.append('ctabps', this.uploadedFiles[i], this.uploadedFiles[i].name);
     }
     fdata.append('tipo', JSON.stringify(this.tipoAdjuntoSeleccionado));
     fdata.append('publicaEnWeb', JSON.stringify(this.publicaEnWeb));
