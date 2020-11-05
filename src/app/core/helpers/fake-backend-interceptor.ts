@@ -57,6 +57,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return editarPersona();
               case url.endsWith('/apimock/personas') && method === 'POST':
                 return crearPersona();
+              case url.endsWith('/apimock/cuenta-saldo/exportar') && method === 'POST':
+                return exportacionCtaSaldo();
             }
         }
 
@@ -273,6 +275,17 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           } else {
             return error("no se pudo obtener localidad");
           }
+        }
+
+        function exportacionCtaSaldo() {
+          let param = body;
+
+          let respuesta = {
+            respuesta: "8180SANDOVAL                      LUISA ESTER     0010000000000620239000A26021950FSNACIONES UNIDAS    01500    CIPOLLETTI                    08324162                              0082706202390820000                  02082020251            08324                         000000000                       "
+          };
+
+          return ok(respuesta);
+
         }
 
         // helper functions
