@@ -47,6 +47,7 @@ export class ImportarArchivoContent {
     console.log(this.uploadedFiles);
     const fdata = new FormData();
     if (!this.uploadedFiles || !this.tipoAdjuntoSeleccionado) {
+      console.log('entra')
       return;
     }
     for (let i = 0; i < this.uploadedFiles.length; i++) {
