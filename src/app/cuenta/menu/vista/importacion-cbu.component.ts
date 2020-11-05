@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { configurarListas, ConfigurarPagina } from 'src/app/core/models';
-import { ConfiguracionParaPaginarService, NotificacionService, PersonaService } from 'src/app/core/services';
+import { ArchivoService, ConfiguracionParaPaginarService, NotificacionService, PersonaService } from 'src/app/core/services';
 
 @Component({
   selector: 'vista-importacion-cbu',
@@ -15,7 +15,7 @@ export class ImportacionCbuComponent implements OnInit {
   public configListas: configurarListas = {};
   public filtradoBusqueda: any = {};
 
-  constructor( private _route: ActivatedRoute, private _personaService: PersonaService, private _msj: NotificacionService, private _configurarPaginacion: ConfiguracionParaPaginarService ) { }
+  constructor( private _route: ActivatedRoute, private _cuentaService: ArchivoService, private _msj: NotificacionService, private _configurarPaginacion: ConfiguracionParaPaginarService ) { }
 
   ngOnInit(): void {
     this.prepararListadoPersona(this._route.snapshot.data["personas"], 1);
@@ -27,7 +27,7 @@ export class ImportacionCbuComponent implements OnInit {
     Object.assign(params, {page: page-1});
     console.log(params);
     this.filtradoBusqueda = params;
-    this._personaService.buscar(params).subscribe(
+    this._cuentaService.listaCuentaBps(params).subscribe(
       respuesta => {
         this.prepararListadoPersona(respuesta, page)
       }, error => { this._msj.cancelado(error); }
