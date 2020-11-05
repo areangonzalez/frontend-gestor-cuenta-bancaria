@@ -66,7 +66,7 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
           }, 800);
       }, error => {
         let msjObject = JSON.parse(error);
-        this._msj.cancelado(error);
+        this._msj.cancelado(msjObject);
       });
     }
   }
