@@ -46,10 +46,10 @@ export class ImportarArchivoContent {
   agregarAdjunto() {
     console.log(this.uploadedFiles);
     const fdata = new FormData();
-    if (this.uploadedFiles || !this.tipoAdjuntoSeleccionado) {
+    /* if (this.uploadedFiles || !this.tipoAdjuntoSeleccionado) {
       console.log('entra')
       return;
-    }
+    } */
     for (let i = 0; i < this.uploadedFiles.length; i++) {
       fdata.append('adjuntos', this.uploadedFiles[i], this.uploadedFiles[i].name);
     }
