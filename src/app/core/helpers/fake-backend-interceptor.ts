@@ -61,6 +61,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return exportacionCtaSaldo();
               case url.endsWith('/apimock/cuenta-bps/importar') && method === 'POST':
                 return importarBps();
+              case url.endsWith('/apimock/interbanking/exportar') && method === 'POST':
+                return exportacionInterbanking();
             }
         }
 
@@ -307,11 +309,19 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           let param = body;
 
           let respuesta = {
-            respuesta: "8180SANDOVAL                      LUISA ESTER     0010000000000620239000A26021950FSNACIONES UNIDAS    01500    CIPOLLETTI                    08324162                              0082706202390820000                  02082020251            08324                         000000000                       "
+            cuenta_saldo: "8180SANDOVAL                      LUISA ESTER     0010000000000620239000A26021950FSNACIONES UNIDAS    01500    CIPOLLETTI                    08324162                              0082706202390820000                  02082020251            08324                         000000000                       "
           };
 
           return ok(respuesta);
+        }
 
+        function exportacionInterbanking() {
+
+          let respuesta = {
+            interbanking: "8180SANDOVAL                      LUISA ESTER     0010000000000620239000A26021950FSNACIONES UNIDAS    01500    CIPOLLETTI                    08324162                              0082706202390820000                  02082020251            08324                         000000000                       "
+          };
+
+          return ok(respuesta);
         }
 
         // helper functions

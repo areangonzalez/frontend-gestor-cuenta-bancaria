@@ -14,20 +14,8 @@ export class ArchivoService implements Resolve<any> {
     return this._http.post("/cuenta-saldo/exportar", params);
   }
 
-  exportarCtaInterbanking(params: any) {
-    let headers = new Headers();
-    /* let httpParams = new HttpParams();
-    let convertParams = { cuenta_saldo: JSON.stringify(params) }
-    httpParams = this._http.formatParams(httpParams, params); */
-    headers.append('Content-type', 'aplication/json');
-    headers.append('Accept', 'text/plain');
-
-    let options: object = {
-      responseType: 'txt',
-      params: params,
-    };
-
-    return this._http.getFile("/cuenta-saldo/exportar", params);
+  exportarCtaInterbanking() {
+    return this._http.post("/interbanking/exportar");
   }
 
   importarCuentaBps(archivo: any) {

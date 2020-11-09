@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { configurarListas, ConfigurarPagina } from 'src/app/core/models';
-import { ArchivoService, ConfiguracionParaPaginarService, NotificacionService, PersonaService } from 'src/app/core/services';
+import { ArchivoService, ConfiguracionParaPaginarService, NotificacionService } from 'src/app/core/services';
+import {saveAs as importedSaveAs} from "file-saver";
 
 @Component({
   selector: 'vista-importacion-cbu',
@@ -72,12 +73,12 @@ export class ImportacionCbuComponent implements OnInit {
    */
   public exportarArchivo(exportar:boolean) {
     if (exportar){
-      /* this._cuentaService.exportarCtaInterbanking(this.personaSeleccionada).subscribe(
+      this._cuentaService.exportarCtaInterbanking().subscribe(
         respuesta => {
           console.log(respuesta);
-          let blob = new Blob([respuesta["cuenta_saldo"]], {type:"text/plain;charset=utf-8"});
+          let blob = new Blob([respuesta["interbanking"]], {type:"text/plain;charset=utf-8"});
 
-          let filename = 'CTASLDO.txt';
+          let filename = 'interbanking.txt';
           importedSaveAs(blob, filename);
 
           setTimeout(() => {
@@ -86,7 +87,7 @@ export class ImportacionCbuComponent implements OnInit {
       }, error => {
         let msjObject = JSON.parse(error);
         this._msj.cancelado(msjObject);
-      }); */
+      });
     }
   }
 
