@@ -25,7 +25,6 @@ export class ImportacionCbuComponent implements OnInit {
 
   public realizarBusqueda(params: any, page: number) {
     Object.assign(params, {page: page-1});
-    console.log(params);
     this.filtradoBusqueda = params;
     this._cuentaService.listaCuentaBps(params).subscribe(
       respuesta => {
@@ -41,7 +40,7 @@ export class ImportacionCbuComponent implements OnInit {
   prepararListadoPersona(listado:any, pagina: number) {
     // preparo la variable con la configuracion para el paginado
     this.configPaginacion = this._configurarPaginacion.config(listado, pagina);
-
+    console.log(listado);
     this.personas = listado.resultado;
   }
   /**
@@ -61,9 +60,30 @@ export class ImportacionCbuComponent implements OnInit {
 
   actualizarListado(datos: any) {
     console.log(datos);
-
     this.realizarBusqueda({}, 1);
+  }
 
+  /**
+   * Permite descargar un archivo de texto
+   */
+  public exportarArchivo(exportar:boolean) {
+    if (exportar){
+      /* this._cuentaService.exportarCtaInterbanking(this.personaSeleccionada).subscribe(
+        respuesta => {
+          console.log(respuesta);
+          let blob = new Blob([respuesta["cuenta_saldo"]], {type:"text/plain;charset=utf-8"});
+
+          let filename = 'CTASLDO.txt';
+          importedSaveAs(blob, filename);
+
+          setTimeout(() => {
+            this._msj.exitoso(respuesta["message"]);
+          }, 800);
+      }, error => {
+        let msjObject = JSON.parse(error);
+        this._msj.cancelado(msjObject);
+      }); */
+    }
   }
 
 }

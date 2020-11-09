@@ -31,8 +31,10 @@ export class ConfirmarExportacionModalContent {
   styleUrls: ['./confirmar-exportacion.component.scss']
 })
 export class ConfirmarExportacionComponent {
-  @Input("listaPersonaSeleccionada") public listaPersonaSeleccionada: any;
+  @Input("listaPersona") public listaPersona: any;
+  @Input("TituloBtn") public tituloBtn: string;
   @Output("confirmar") public confirmar = new EventEmitter();
+
 
   constructor(private _modalService: NgbModal) { }
 

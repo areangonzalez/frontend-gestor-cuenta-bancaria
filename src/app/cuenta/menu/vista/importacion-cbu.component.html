@@ -7,7 +7,7 @@
       <modal-importar-archivo (obtenerRespuesta)="actualizarListado($event)"></modal-importar-archivo>
     </div>
     <div class="col">
-      <button class="btn btn-block btn-sm btn-secondary"><i class="fas fa-file-download"></i> Exportar Archvio Interbanking</button>
+      <modal-confirmar-exportacion [listaPersona]="personas" [TituloBtn]="'Exportar Archivo Interbanking'" (confirmar)="exportarArchivo($event)"></modal-confirmar-exportacion>
     </div>
   </div>
   <shared-lista-alta-persona [config-listas]="configListas" [personas]="personas" [configPaginacion]="configPaginacion" (cambioDePagina)="cambiarPagina($event)" [tipo]="'importar'" ></shared-lista-alta-persona>
