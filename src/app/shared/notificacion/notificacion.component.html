@@ -4,19 +4,29 @@
     <div class="mensaje-alert-header">
         <h4 class="alert-heading">{{obtenerTitulo(tipo)}}</h4>
     </div>
-    <div class="mensaje-alert-body d-flex justify-content-start align-items-center">
-      <span class="{{cssIconColor(tipo)}}" style="font-size: 3em;"><i class="{{iconClass(tipo)}}"></i></span>
-      <div *ngIf="(msjEsCadena(mensaje))" class="ml-3" >{{mensaje}}</div>
-      <div *ngIf="!(msjEsCadena(mensaje))" class="ml-3" >
-        <ul *ngFor="let msj of mensaje">
-          <li>{{msj.persona}}</li>
-          <li *ngIf="(msj.calle !== undefined)">{{msj.calle}}</li>
-          <li *ngIf="(msj.altura !== undefined)">{{msj.altura}}</li>
+    <div class="mensaje-alert-body">
+      <div class="d-flex justify-content-start align-items-center">
+        <span class="{{cssIconColor(tipo)}}" style="font-size: 3em;"><i class="{{iconClass(tipo)}}"></i></span>
+        <div *ngIf="(msjEsCadena(mensaje))" class="ml-3" >{{mensaje}}</div>
+        <div *ngIf="!(msjEsCadena(mensaje) && tipo === 6)" class="ml-3" >
+          <ul *ngFor="let msj of mensaje">
+            <li>{{msj.persona}}</li>
+            <li *ngIf="(msj.calle !== undefined)">{{msj.calle}}</li>
+            <li *ngIf="(msj.altura !== undefined)">{{msj.altura}}</li>
+          </ul>
+        </div>
+        <div *ngIf="!(msjEsCadena(mensaje) && tipo === 7)" class="ml-3" >
+          Se han importado {{mensaje.cuenta.creadas}} cuenta/s en el sistema.
+        </div>
+      </div>
+      <div *ngIf="!(msjEsCadena(mensaje) && tipo === 7)" class="ml-3" class="bg-info border-rounded text-white altura-info-adicional" >
+        <ul *ngIf="(mensaje.importacion_error.length > 0)">
+          <li *ngFor="let msj of mensaje.importacion_error">{{msj}}</li>
         </ul>
       </div>
     </div>
-    <div class="float-right">
-      <button type="button" class="btn btn-default" (click)="removeAlert()">Cerrar</button>
+    <div class="float-right mt-3">
+      <button type="button" class="btn btn-default border-dark" (click)="removeAlert()">Cerrar</button>
     </div>
   </div>
 </div>

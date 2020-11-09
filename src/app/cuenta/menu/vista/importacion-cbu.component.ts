@@ -40,7 +40,6 @@ export class ImportacionCbuComponent implements OnInit {
   prepararListadoPersona(listado:any, pagina: number) {
     // preparo la variable con la configuracion para el paginado
     this.configPaginacion = this._configurarPaginacion.config(listado, pagina);
-    console.log(listado);
     this.personas = listado.resultado;
   }
   /**
@@ -60,7 +59,12 @@ export class ImportacionCbuComponent implements OnInit {
 
   actualizarListado(datos: any) {
     console.log(datos);
-    this.realizarBusqueda({}, 1);
+    if (!datos["esError"]) { // si no es error muestro mensaje exitoso
+      this._msj.importacionExitoso(datos["mensaje"]);
+      this.realizarBusqueda({}, 1);
+    }else{ // si es error notifico al usuario
+      this._msj.cancelado("Se ha cancelado la operacion");
+    }
   }
 
   /**

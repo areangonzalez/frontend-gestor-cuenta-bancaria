@@ -69,6 +69,7 @@ export class NotificacionComponent implements OnInit {
           [AlertType.Info]: 'alert alert-info',
           [AlertType.Warning]: 'alert alert-warning',
           [AlertType.ErrorMultiple]: 'alert alert-danger',
+          [AlertType.ImportacionExitoso]: 'alert alert-success'
       }
 
       classes.push(alertTypeClass[tipo]);
@@ -87,6 +88,8 @@ export class NotificacionComponent implements OnInit {
             return 'far fa-check-circle';
           case AlertType.ErrorMultiple:
             return 'far fa-times-circle';
+          case AlertType.ImportacionExitoso:
+            return 'far fa-check-circle';
       }
   }
 
@@ -100,6 +103,8 @@ export class NotificacionComponent implements OnInit {
           case AlertType.Confirmar:
             return 'text-success';
           case AlertType.ErrorMultiple:
+            return 'text-success';
+          case AlertType.ImportacionExitoso:
             return 'text-success';
       }
   }
@@ -117,6 +122,8 @@ export class NotificacionComponent implements OnInit {
             return 'Exitoso';
           case AlertType.ErrorMultiple:
             return 'Cancelado';
+          case AlertType.ImportacionExitoso:
+            return 'Se a importado con exito';
       }
   }
 

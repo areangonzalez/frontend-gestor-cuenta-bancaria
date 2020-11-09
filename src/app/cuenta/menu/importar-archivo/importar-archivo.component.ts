@@ -55,11 +55,10 @@ export class ImportarArchivoContent {
     }
     fdata.append('tipo', JSON.stringify(this.tipoAdjuntoSeleccionado));
     fdata.append('publicaEnWeb', JSON.stringify(this.publicaEnWeb));
-    console.log(fdata);
     this._archivo.importarCuentaBps(fdata).subscribe(
       respuesta => {
-        this.activeModal.close(respuesta);
-      }, error => { this.activeModal.close(error); }
+        this.activeModal.close({esError: false, mensaje: respuesta});
+      }, error => { this.activeModal.close({esError: true, mensaje: error}); }
     );
   }
 }

@@ -59,6 +59,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return crearPersona();
               case url.endsWith('/apimock/cuenta-saldo/exportar') && method === 'POST':
                 return exportacionCtaSaldo();
+              case url.endsWith('/apimock/cuenta-bps/importar') && method === 'POST':
+                return importarBps();
             }
         }
 
@@ -174,6 +176,30 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           let listado = paginar(cuentaPersona, cuentaPersona.resultado, page, pageSize);
 
           return ok(listado);
+        }
+
+        /******* IMPORTACION DE CUENTA BPS ***********/
+
+        function importarBps() {
+
+          let msjExitoso = {
+            cuenta: {
+                creadas: 59,
+                errors: []
+            },
+            importacion_error: [
+                "No se encuentra registrada la persona ROSA DEL CARMEN CHANDIA cuil:27120571929",
+                "No se encuentra registrada la persona CARLOS FRANCISC SINIGUAL cuil:20200486812",
+                "No se encuentra registrada la persona MIGUEL ANGEL ACU\\D1A cuil:08231681635",
+                "No se encuentra registrada la persona MERCEDES ANABE PE\\D1A cuil:08273058425",
+                "No se encuentra registrada la persona ROSA DEL CARMEN CHANDIA cuil:27120571929",
+                "No se encuentra registrada la persona CARLOS FRANCISC SINIGUAL cuil:20200486812",
+                "No se encuentra registrada la persona MIGUEL ANGEL ACU\\D1A cuil:08231681635",
+                "No se encuentra registrada la persona MERCEDES ANABE PE\\D1A cuil:08273058425"
+            ]};
+
+            return ok(msjExitoso);
+
         }
 
         /****** LISTADO DE SELECCION DE PERSONAS  ******/

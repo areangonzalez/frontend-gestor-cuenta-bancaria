@@ -9,5 +9,6 @@ export enum AlertType {
   Confirmar,
   Info,
   Warning,
-  ErrorMultiple
+  ErrorMultiple,
+  ImportacionExitoso
 }
