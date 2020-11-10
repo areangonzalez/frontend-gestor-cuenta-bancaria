@@ -83,6 +83,7 @@ export class ImportacionCbuComponent implements OnInit {
 
           setTimeout(() => {
             this._msj.exitoso(respuesta["message"]);
+            this.realizarBusqueda({}, 1);
           }, 800);
       }, error => {
         let msjObject = JSON.parse(error);
