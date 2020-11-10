@@ -31,7 +31,7 @@ export class ArchivoService implements Resolve<any> {
     let httpParams = new HttpParams();
     httpParams = this._http.formatParams(httpParams, params);
 
-    return this._http.get('/cuentas');
+    return this._http.get('/cuentas', httpParams);
   }
 
   /**
@@ -40,6 +40,6 @@ export class ArchivoService implements Resolve<any> {
   resolve() {
     let httpParams = new HttpParams();
     httpParams = this._http.formatParams(httpParams, { tesoreria_alta: 0 });
-    return this._http.get('/cuentas');
+    return this._http.get('/cuentas', httpParams);
   }
 }
