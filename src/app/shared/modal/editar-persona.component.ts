@@ -29,8 +29,8 @@ export class EditarPersonaContent {
     this.activeModal.close(false);
   }
 
-  guardadoExitoso(nroCuil: string) {
-    this.activeModal.close(nroCuil);
+  guardadoExitoso(persona: any) {
+    this.activeModal.close(persona);
   }
 
 }
@@ -44,7 +44,7 @@ export class EditarPersonaComponent {
   @Input("tipo") public tipo:string;
   @Input("persona") public persona: any; // objeto que contiene los datos de persona
   @Input("config-listas") public configurarListas: configurarListas; // array que contiene el/los listados para el componente
-  @Output("cuilPersona") public cuilPersona = new EventEmitter();
+  @Output("obtenerDatosPersona") public obtenerDatosPersona = new EventEmitter();
 
   constructor(private _modalService: NgbModal, private _personaService: PersonaService, private _msj: NotificacionService) {}
 
@@ -71,7 +71,7 @@ export class EditarPersonaComponent {
     modalRef.result.then(
       (result) => {
         if (result !== false) {
-          return this.cuilPersona.emit(result);
+          return this.obtenerDatosPersona.emit(persona);
         }
       });
   }

@@ -147,7 +147,7 @@ export class RegistrarPersonaComponent implements OnInit {
       this._personaService.guardar(persona, id).subscribe(
         respuesta => {
           this._msj.exitoso("La persona se ha editado correctamente!");
-          this.obtenerRespuesta.emit(persona["cuil"]);
+          this.obtenerRespuesta.emit(persona);// obtengo datos de persona
         }, error => { this._msj.cancelado(error); }
       );
     }else { // crear persona

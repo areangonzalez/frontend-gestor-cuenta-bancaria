@@ -98,8 +98,9 @@ export class AltaPersonaComponent implements OnInit {
   /**
    * al modificar una persona obtengo su numero de cuil
    */
-  obtenerCuilPersona(nroCuil: string) {
-    this.cuilPersona.emit(nroCuil);
+  obtenerCuilPersona(datosPersona: any) {
+    console.log(datosPersona);
+    this.cuilPersona.emit(datosPersona.cuil);
   }
 
   obtenerCbu(cuentas: any) {

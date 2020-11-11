@@ -46,7 +46,11 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
     }
   }
 
+  editarPersona(datosPersona: any) {
+   console.log(datosPersona);
 
+
+  }
 
   /**
    * Permite descargar un archivo de texto

@@ -8,18 +8,18 @@
       <div class="d-flex justify-content-start align-items-center">
         <span class="{{cssIconColor(tipo)}}" style="font-size: 3em;"><i class="{{iconClass(tipo)}}"></i></span>
         <div *ngIf="(msjEsCadena(mensaje))" class="ml-3" >{{mensaje}}</div>
-        <div *ngIf="!(msjEsCadena(mensaje) && tipo === 6)" class="ml-3" >
+        <div *ngIf="(!msjEsCadena(mensaje) && tipo === 6)" class="ml-3" >
           <ul *ngFor="let msj of mensaje">
             <li>{{msj.persona}}</li>
             <li *ngIf="(msj.calle !== undefined)">{{msj.calle}}</li>
             <li *ngIf="(msj.altura !== undefined)">{{msj.altura}}</li>
           </ul>
         </div>
-        <div *ngIf="!(msjEsCadena(mensaje) && tipo === 7)" class="ml-3" >
+        <div *ngIf="(!msjEsCadena(mensaje) && tipo === 7)" class="ml-3" >
           Se han importado {{mensaje.cuenta.creadas}} cuenta/s en el sistema.
         </div>
       </div>
-      <div *ngIf="!(msjEsCadena(mensaje) && tipo === 7)" class="ml-3" class="bg-info border-rounded text-white altura-info-adicional" >
+      <div *ngIf="(!msjEsCadena(mensaje) && tipo === 7)" class="ml-3" class="bg-info border-rounded text-white altura-info-adicional" >
         <ul *ngIf="(mensaje.importacion_error.length > 0)">
           <li *ngFor="let msj of mensaje.importacion_error">{{msj}}</li>
         </ul>
