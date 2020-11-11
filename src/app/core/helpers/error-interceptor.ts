@@ -45,10 +45,11 @@ export class ErrorInterceptor implements HttpInterceptor {
               this.recibidos++;
               this._loading.hide();
               // auto logout if 401 response returned from api
-          }
-            const error = err.error.message || err.statusText;
-            this._loading.hide();
-            return throwError(error);
+            }else {
+              const error = err.message || err.error.message || err.statusText;
+              this._loading.hide();
+              return throwError(error);
+            }
         }))
     }
 }
