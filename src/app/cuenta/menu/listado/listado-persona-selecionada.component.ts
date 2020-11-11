@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ArchivoService, CuentaSaldoService, NotificacionService } from 'src/app/core/services';
 import {saveAs as importedSaveAs} from "file-saver";
 import { configurarListas } from 'src/app/core/models';
@@ -59,6 +59,16 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
     }
   }
 
+  actualizarListaSeleccion(actualizar: boolean) {
+    if (actualizar) {
+      this._cuentaSaldoService.listado().subscribe(
+        respuesta => {
+          this.personaSeleccionada = respuesta.resultado;
+        }, error => { this._msj.cancelado(error); }
+      );
+    }
+  }
+
   /**
    * Permite descargar un archivo de texto
    */
@@ -74,8 +84,10 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
 
           setTimeout(() => {
             this._msj.exitoso(respuesta["message"]);
+            this.actualizarListaSeleccion(true);
           }, 800);
       }, error => {
+        this.actualizarListaSeleccion(false);
         let msjObject = JSON.parse(error);
         this._msj.cancelado(msjObject);
       });

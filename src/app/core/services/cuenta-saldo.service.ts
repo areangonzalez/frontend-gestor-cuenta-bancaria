@@ -13,6 +13,10 @@ export class CuentaSaldoService implements Resolve<any> {
     return this._http.post("/cuenta-saldos", params);
   }
 
+  listado() {
+    return this._http.get('/cuenta-saldos');
+  }
+
   resolve() {
     return this._http.get('/cuenta-saldos');
   }
