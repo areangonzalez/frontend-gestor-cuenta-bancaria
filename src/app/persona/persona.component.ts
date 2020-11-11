@@ -27,8 +27,7 @@ export class PersonaComponent implements OnInit {
   }
 
   public realizarBusqueda(params: any, page: number) {
-    Object.assign(params, {page: page-1});
-    console.log(params);
+    Object.assign(params, {page: page-1, pagesize: 20});
     this.filtradoBusqueda = params;
     this._cuentaService.buscar(params).subscribe(
       respuesta => {

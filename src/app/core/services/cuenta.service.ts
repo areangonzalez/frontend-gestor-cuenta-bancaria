@@ -24,7 +24,7 @@ export class CuentaService implements Resolve<any> {
 
   resolve() {
     let httpParams = new HttpParams();
-    httpParams = this._http.formatParams(httpParams, { tesoreria_alta: 1 });
+    httpParams = this._http.formatParams(httpParams, { tesoreria_alta: 1, page: 0, pagesize: 20 });
     return this._http.get('/cuentas', httpParams);
   }
 }
