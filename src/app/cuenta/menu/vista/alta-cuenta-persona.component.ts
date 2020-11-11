@@ -72,7 +72,7 @@ export class AltaCuentaPersonaComponent implements OnInit {
    */
   actualizarBusqueda(palabra:string) {
     this.global_param = palabra;
-    this.realizarBusqueda({ global_param: palabra }, this.configPaginacion.page);
+    this.realizarBusqueda({ global_param: palabra }, 1);
   }
 
 }
