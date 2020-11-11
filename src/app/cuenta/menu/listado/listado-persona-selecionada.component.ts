@@ -45,11 +45,18 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
       this._msj.cancelado("No hay personas seleccionadas dentro del listado.");
     }
   }
-
+  /**
+   * Edito los datos de una persona
+   * @param datosPersona datos editados de una persona
+   */
   editarPersona(datosPersona: any) {
-   console.log(datosPersona);
-
-
+    // busco la persona en listaod y agrego los cambios a la persona encontrada
+    for (let i = 0; i < this.personaSeleccionada.length; i++) {
+      if (this.personaSeleccionada[i].id == datosPersona.id) {
+        Object.assign(datosPersona, { prestacion: this.personaSeleccionada[i].prestacion, tiene_cbu: this.personaSeleccionada[i].tiene_cbu });
+        this.personaSeleccionada[i] = datosPersona;
+      }
+    }
   }
 
   /**

@@ -26,7 +26,7 @@
       <td *ngIf="(persona.create_at)" class="text-center">{{persona.create_at | date: 'dd/MM/yyyy'}}</td>
       <td class="text-center">
         <modal-info-persona [persona]="persona"></modal-info-persona>
-        <modal-editar-persona [config-listas]="configurarListas" [persona]="persona" [tipo]="tipo" (cuilPersona)="obtenerCuilPersona($event)"></modal-editar-persona>
+        <modal-editar-persona [config-listas]="configurarListas" [persona]="persona" [tipo]="tipo" (obtenerDatosPersona)="obtenerCuilPersona($event)"></modal-editar-persona>
         <modal-agregar-sucursal *ngIf="(tipo === 'cuenta' && (persona.tiene_cbu !== 'undefinded' && !persona.tiene_cbu))" [subSucursales]="configurarListas.subSucursales" [idPersona]="persona.id" [existeCopia]="copiaDeDatos.existe" [copiaSeleccion]="copiaDeDatos" [listaDeSeleccionPersona]="configurarListas.seleccionPersona" [persona]="persona" (obtenerPrestacion)="obtengoDatosPrestacion(persona,$event)"></modal-agregar-sucursal>
         <button *ngIf="copiaDeDatos.existe && (!persona.tiene_cbu)" type="button" class="btn btn-sm btn-outline-success rounded-circle" (click)="pegarCopiaSeleccionada(persona, copiaDeDatos)" ngbTooltip="{{pegarUltimaSeleccion(copiaDeDatos)}}" container="body"><i class="fas fa-paste"></i></button>
       </td>

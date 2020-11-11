@@ -52,8 +52,6 @@ export class EditarPersonaComponent {
     if (this.persona.personaid) {
       this._personaService.buscarPorId(this.persona.personaid).subscribe(
         respuesta => {
-          console.log(respuesta);
-
           this.abrirModal(respuesta);
         }, error => { this._msj.cancelado(error); })
     } else {
@@ -71,7 +69,11 @@ export class EditarPersonaComponent {
     modalRef.result.then(
       (result) => {
         if (result !== false) {
-          return this.obtenerDatosPersona.emit(persona);
+          this._personaService.buscarPorId(result.id).subscribe(
+            respuesta => {
+              return this.obtenerDatosPersona.emit(respuesta);
+            }, error => { this._msj.cancelado(error); }
+          )
         }
       });
   }
