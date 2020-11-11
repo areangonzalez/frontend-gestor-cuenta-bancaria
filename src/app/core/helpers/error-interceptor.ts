@@ -39,14 +39,15 @@ export class ErrorInterceptor implements HttpInterceptor {
                 // auto logout if 401 response returned from api
                 this._auth.logout();
                 this._router.navigate(["/login"]);
+                this._loading.hide();
             }
             if (err.status === 400) {
               this.recibidos++;
               this._loading.hide();
               // auto logout if 401 response returned from api
           }
-            console.log(err);
             const error = err.error.message || err.statusText;
+            this._loading.hide();
             return throwError(error);
         }))
     }
