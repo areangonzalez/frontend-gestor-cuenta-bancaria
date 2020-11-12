@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpEventType } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { AutenticacionService, LoaderService } from '../services';
+import { AutenticacionService, JwtService, LoaderService } from '../services';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 
@@ -12,7 +12,7 @@ export class ErrorInterceptor implements HttpInterceptor {
   private envios = 0;
   private recibidos = 0;
 
-  constructor(private _auth: AutenticacionService, private _loading: LoaderService, private _router: Router) { }
+  constructor(private _auth: AutenticacionService, private _loading: LoaderService, private _router: Router, private _jwtService: JwtService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       this._loading.show();
@@ -35,10 +35,14 @@ export class ErrorInterceptor implements HttpInterceptor {
             }
           }),
           catchError(err => {
+            let accessUser = this._jwtService.getToken();
+            if (accessUser && accessUser.datosToken){
+              this.recibidos++;
+            }
             if (err.status === 401) {
                 // auto logout if 401 response returned from api
                 this._auth.logout();
-                this._router.navigate(["/login"]);
+                location.reload(true);
                 this._loading.hide();
             }
             if (err.status === 400) {
