@@ -19,6 +19,8 @@ export class NotificacionComponent implements OnInit {
   routeSubscription: Subscription;
   mensaje: any;
   tipo: number;
+  errors: any = [];
+  existen: any = false;
 
   constructor(private router: Router, private alertService: NotificacionService) { }
 
@@ -32,8 +34,12 @@ export class NotificacionComponent implements OnInit {
               this.mensaje = false;
                 return;
             }else{
-              this.mensaje = alert.mensaje;
               this.tipo = alert.tipo;
+              if (this.tipo === 6) {
+                this.crearNotificacion(alert.mensaje);
+              }else{
+                this.mensaje = alert.mensaje;
+              }
             }
        });
 
@@ -43,6 +49,13 @@ export class NotificacionComponent implements OnInit {
             this.alertService.clearMessage();
         }
     });
+  }
+
+  crearNotificacion(arrMsj: any) {
+    console.log(arrMsj);
+    this.mensaje = "Se han importado " + arrMsj["creadas"] + " cuenta/s en el sistema.";
+    this.existen = (arrMsj["existen"]) ? "Se han encontrado " + arrMsj["existen"] + " cuenta/s que ya existen dentro del sistema.": false;
+    this.errors.push(arrMsj.errors);
   }
 
   msjEsCadena(mensaje:any) {

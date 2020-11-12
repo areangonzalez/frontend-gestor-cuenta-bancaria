@@ -3,6 +3,6 @@
   <busqueda-avanzada-persona [tipo]="'persona'" [config-listas]="configListas" (obtenerBusqueda)="realizarBusqueda($event, configPaginacion.page)" (limpiar)="limpiarCampos($event)" ></busqueda-avanzada-persona>
 </div>
 <div class="shadow-sm p-3 mb-3 bg-white rounded">
-  <shared-lista-alta-persona [config-listas]="configListas" [personas]="personas" [tipo]="'personas'" [configPaginacion]="configPaginacion" (cambioDePagina)="cambiarPagina($event)" ></shared-lista-alta-persona>
+  <shared-lista-alta-persona [config-listas]="configListas" (cuilPersona)="actualizarLista($event)" [personas]="personas" [tipo]="'personas'" [configPaginacion]="configPaginacion" (cambioDePagina)="cambiarPagina($event)" ></shared-lista-alta-persona>
 </div>
 

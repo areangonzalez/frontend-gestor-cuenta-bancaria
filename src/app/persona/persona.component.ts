@@ -57,4 +57,8 @@ export class PersonaComponent implements OnInit {
     this.realizarBusqueda(this.filtradoBusqueda, pagina);
   }
 
+  actualizarLista(cuil: string) {
+    this.realizarBusqueda({}, 1);
+  }
+
 }

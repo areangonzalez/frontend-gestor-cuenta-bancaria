@@ -59,7 +59,6 @@ export class ImportacionCbuComponent implements OnInit {
   }
 
   actualizarListado(datos: any) {
-    console.log(datos);
     if (!datos["esError"]) { // si no es error muestro mensaje exitoso
       this._msj.importacionExitoso(datos["mensaje"]);
       this.realizarBusqueda({}, 1);
@@ -75,7 +74,6 @@ export class ImportacionCbuComponent implements OnInit {
     if (exportar){
       this._cuentaService.exportarCtaInterbanking().subscribe(
         respuesta => {
-          console.log(respuesta);
           let blob = new Blob([respuesta["interbanking"]], {type:"text/plain;charset=utf-8"});
 
           let filename = 'interbanking.txt';

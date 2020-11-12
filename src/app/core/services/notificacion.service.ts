@@ -38,7 +38,8 @@ export class NotificacionService {
     erroresMultiples(arrMsj: any) {
       this.alert(AlertType.ErrorMultiple, arrMsj);
     }
-    importacionExitoso(mensaje: any){
-      this.alert(AlertType.ImportacionExitoso, mensaje);
+    //
+    importacionExitoso(arrMsj: any){
+      this.alert(AlertType.ImportacionExitoso, arrMsj);
     }
 }

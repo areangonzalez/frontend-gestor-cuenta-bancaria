@@ -27,7 +27,7 @@ export class ArchivoService implements Resolve<any> {
    * Obtengo el listado que obtengo despues de la importación
    */
   listaCuentaBps(params: object) {
-    Object.assign(params, { tesoreria_alta: 0 });
+    Object.assign(params, { tesoreria_alta: 0, pagesize: 20 });
     let httpParams = new HttpParams();
     httpParams = this._http.formatParams(httpParams, params);
 
@@ -39,7 +39,7 @@ export class ArchivoService implements Resolve<any> {
    */
   resolve() {
     let httpParams = new HttpParams();
-    httpParams = this._http.formatParams(httpParams, { tesoreria_alta: 0 });
+    httpParams = this._http.formatParams(httpParams, { tesoreria_alta: 0, pagesize: 20, page: 0 });
     return this._http.get('/cuentas', httpParams);
   }
 }

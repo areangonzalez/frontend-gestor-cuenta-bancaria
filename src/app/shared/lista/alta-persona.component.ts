@@ -99,7 +99,6 @@ export class AltaPersonaComponent implements OnInit {
    * al modificar una persona obtengo su numero de cuil
    */
   obtenerCuilPersona(datosPersona: any) {
-    console.log(datosPersona);
     this.cuilPersona.emit(datosPersona.cuil);
   }
 
