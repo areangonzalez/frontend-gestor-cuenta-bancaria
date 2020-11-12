@@ -63,7 +63,7 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
     if (actualizar) {
       this._cuentaSaldoService.listado().subscribe(
         respuesta => {
-          this.personaSeleccionada = respuesta.resultado;
+          this.personaSeleccionada = respuesta;
         }, error => { this._msj.cancelado(error); }
       );
     }
@@ -76,11 +76,11 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
     if (exportar){
       this._descargaService.exportarCtaSaldo(this.personaSeleccionada).subscribe(
         respuesta => {
-          console.log(respuesta);
           let blob = new Blob([respuesta["cuenta_saldo"]], {type:"text/plain;charset=utf-8"});
 
           let filename = 'CTASLDO.txt';
           importedSaveAs(blob, filename);
+          this.personaSeleccionada = [];
 
           setTimeout(() => {
             this._msj.exitoso(respuesta["message"]);
