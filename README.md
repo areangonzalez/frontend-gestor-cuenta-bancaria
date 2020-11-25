@@ -1,7 +1,7 @@
 # FrontendGestorCuentaBancaria
 
 Este proyecto esta generado con imagen de docker  [Angular CLI](https://github.com/angular/angular-cli) version 9.1.5.
- - [Angular CLI](https://github.com/angular/angular-cli) version 9.1.5.
+ - [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
  - [Ng Bootstrap](https://github.com/ng-bootstrap/ng-bootstrap) v4.4.1
 
 ## Instalacion del proyecto via docker
@@ -12,9 +12,9 @@ Descargamos la imagen de docker:
 
 Nos dirigimos al directorio donde tenemos el proyecto y seguimos los siguientes pasos:
 
- - Utilizamos el siguiente comando a instalar, que nos proporcionara la instalación de las dependencias del proyecto:
+ - Utilizamos el siguiente comando a instalar, que nos proporcionara la instalación continua del proyecto:
     
-    `docker run -u $(id -u) --rm -v "$PWD":/app trion/ng-cli:9.1.5 npm install`
+    `docker run -u $(id -u) --rm -v "$PWD":/app trion/ng-cli:9.1.5 npm install ci`
 
  - Compilamos el codigo con el siguiente comando:
     
