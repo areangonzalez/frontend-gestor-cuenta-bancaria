@@ -46,7 +46,7 @@ Creamos una red para los contenedores de docker:
 
 Iniciamos el docker para testing:
 
-  `docker run -u $(id -u) --rm --network=front --name=miangular2 -v "$PWD":/app trion/ng-cli-e2e:6.0.7 ng serve --port 4200 --host miangular2`
+  `docker run -u $(id -u) --rm --network=front --name=miangular2 -v "$PWD":/app trion/ng-cli-e2e:9.1.5 ng serve --port 4200 --host miangular2`
 
 Ingresar al servicio que ejecuta angular-cli y ejecutar el siguiente comando:
 
