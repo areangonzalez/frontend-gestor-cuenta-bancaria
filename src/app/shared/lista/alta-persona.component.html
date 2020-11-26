@@ -1,3 +1,12 @@
+<div class="d-flex justify-content-between">
+  <div class="d-flex align-items-center p-2 font-weight-bold">
+    <span *ngIf="configPaginacion.totalRegistros > 0">Personas: {{configPaginacion.cantRegistros}} - {{configPaginacion.totalRegistros}} de {{configPaginacion.colleccionSize}}</span>
+    <span *ngIf="configPaginacion.totalRegistros == 0">Personas: 0</span>
+  </div>
+  <div class="d-flex align-items-center font-weight-bold">
+    <ngb-pagination *ngIf="(configPaginacion.colleccionSize > 0)"  [collectionSize]="configPaginacion.colleccionSize" [(page)]="configPaginacion.page" [pageSize]="configPaginacion.pageSize" [maxSize]="10" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="cambioPagina(configPaginacion.page)" aria-label="lisado de stock"></ngb-pagination>
+  </div>
+</div>
 <table class="table table-hover table-sm table-responsive-md">
   <thead>
     <tr>
@@ -33,8 +42,14 @@
     </tr>
   </tbody>
 </table>
-<div class=" d-flex justify-content-center">
-  <ngb-pagination *ngIf="(configPaginacion.colleccionSize > 0)"  [collectionSize]="configPaginacion.colleccionSize" [(page)]="configPaginacion.page" [pageSize]="configPaginacion.pageSize" [maxSize]="10" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="cambioPagina(configPaginacion.page)" aria-label="lisado de stock"></ngb-pagination>
+<div class="d-flex justify-content-between border-top">
+  <div class="d-flex align-items-center p-2 font-weight-bold">
+    <span *ngIf="configPaginacion.totalRegistros > 0">Personas: {{configPaginacion.cantRegistros}} - {{configPaginacion.totalRegistros}} de {{configPaginacion.colleccionSize}}</span>
+    <span *ngIf="configPaginacion.totalRegistros == 0">Personas: 0</span>
+  </div>
+  <div class="d-flex align-items-center pt-3   font-weight-bold">
+    <ngb-pagination *ngIf="(configPaginacion.colleccionSize > 0)"  [collectionSize]="configPaginacion.colleccionSize" [(page)]="configPaginacion.page" [pageSize]="configPaginacion.pageSize" [maxSize]="10" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="cambioPagina(configPaginacion.page)" aria-label="lisado de stock"></ngb-pagination>
+  </div>
 </div>
 
 
