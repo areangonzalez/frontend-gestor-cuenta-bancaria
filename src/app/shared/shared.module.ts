@@ -10,6 +10,7 @@ import { RegistrarPersonaComponent, FormLugarComponent } from './formulario';
 import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, NotidicacionModalContent, AgregarSucursalComponent, ConfirmarExportacionModalContent, ConfirmarExportacionComponent, InfoPersonaContent, InfoPersonaComponent, EditarPersonaContent, EditarPersonaComponent } from './modal';
 import { VistaPersonaComponent } from './vista';
 import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
+import { DashboardComponent } from './layout/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
     VistaPersonaComponent,
     EditarPersonaContent, EditarPersonaComponent,
     BusquedaAvanzadaPersonaComponent,
+    DashboardComponent,
   ],
   imports: [
     CommonModule,
