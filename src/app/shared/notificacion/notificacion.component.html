@@ -16,9 +16,9 @@
           </ul>
         </div> -->
       </div>
-      <div *ngIf="(tipo === 6 && existen !== false)" class="d-flex justify-content-start align-items-center bg-warning border-rounded" >
-        <!-- <span class="text-warning" style="font-size: 3em;"><i class="fas fa-exclamation"></i></span> -->
-          <div>{{existen}}</div>
+      <div *ngIf="(tipo === 6 && existen !== false)" class="d-flex justify-content-start align-items-center bg-warning mod-border-rounded" >
+        <span style="font-size: 3em; color:yellow;"><i class="fas fa-exclamation-triangle"></i></span>
+          <div class="ml-3">{{existen}}</div>
       </div>
       <div *ngIf="(tipo === 6 && errors.length > 0)"class="ml-3 bg-info border-rounded text-white altura-info-adicional" >
           <div *ngFor="let msj of errors" class="text-center m-2">{{msj}}</div>

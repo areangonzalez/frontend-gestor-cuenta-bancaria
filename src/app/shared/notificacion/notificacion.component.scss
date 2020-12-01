@@ -36,3 +36,10 @@
   overflow-y: auto;
   max-height: 230px !important;
 }
+.mod-border-rounded {
+  border-radius: 10px !important;
+  -moz-border-radius: 10px !important;
+  -webkit-border-radius: 10px !important;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
