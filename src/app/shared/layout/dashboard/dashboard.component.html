@@ -1,1 +1,27 @@
-<p>dashboard works!</p>
+<nav class="col-md-2 d-none d-md-block bg-ds sidebar">
+  <div class="logorn-nombre">
+    <img src="../../../../assets/img/logoRN.svg" alt="rio_negro" >
+    <p class="nombre-ds">Ministerio de Desarrollo Humano y Articulación Solidaria</p>
+  </div>
+  <div class="sidebar-sticky">
+    <ul class="nav flex-column">
+      <li class="nav-item" [routerLinkActive]="['active']">
+        <a class="nav-link" [routerLink]="['gestor-usuarios']">Gesti&oacute;n de Usuarios</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']">
+        <a class="nav-link" [routerLink]="['plan']">Alta de permisos</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']">
+        <a class="nav-link" [routerLink]="['profesion']">Profesi&oacute;n</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']">
+        <a class="nav-link" [routerLink]="['tipo-ambiente-trabajo']">Cerrar Sesión</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<main class="col-md-9 ml-sm-auto col-lg-10">
+  <router-outlet></router-outlet>
+</main>
+
+
