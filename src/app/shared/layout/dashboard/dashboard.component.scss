@@ -1,12 +1,4 @@
-.sidebar {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 100;
-  padding: 5px 0 0;
-  box-shadow: 0 0 0 0.1rem #ddd;
-}
+
 .sidebar-sticky {
   position: -webkit-sticky;
   position: sticky;
@@ -36,6 +28,7 @@
 .logorn-nombre {
   padding-left: 5px;
   border-bottom: 1px solid #036954;
+  max-width: 195px !important;
 }
 img {
   float: left;
@@ -46,4 +39,7 @@ img {
   color: #036954;
   font-size: 12px;
   margin-bottom: 0 !important;
+}
+.container-fluid {
+  margin-top: 0;
 }
