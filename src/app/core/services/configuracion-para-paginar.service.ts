@@ -21,7 +21,7 @@ export class ConfiguracionParaPaginarService {
     return rangoInicial;
   }
 
-  /**
+    /**
      * @function rangoFinalXpagina funcion que calcula el rango final
      * @param pagina numero de pagina
      * @param total cantidad de registros
