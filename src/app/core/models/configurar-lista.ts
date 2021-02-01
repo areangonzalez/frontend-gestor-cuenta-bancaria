@@ -8,6 +8,11 @@ export interface configurarListas {
   tipo_documento?: any;
   seleccionPersona?: any;
   nacionalidad?: any;
+  usuarios?: any;
+  permisos?: any;
+  roles?: any;
+  tamanioPagina?:any;
+  programas?: any;
 }
 
 

@@ -28,15 +28,15 @@
         <th class="text-center columna-160" scope="col">// agregar usuario</th>
       </tr>
     </thead>
-    <tbody *ngIf="(usuarioLista.length == 0)">
+    <tbody *ngIf="(listados.usuario.length == 0)">
       <tr>
         <td class="text-center bg-warning" rowspan="1" colspan="6">
           <strong>No se han encontrado resultado</strong>
         </td>
       </tr>
     </tbody>
-    <tbody *ngIf="(usuarioLista.length > 0)" >
-      <tr *ngFor="let user of usuarioLista;" [ngClass]="{'table-danger': (user.baja)}" ngbTooltip="{{infoAdicional(user.fecha_baja | date:'dd/MM/yyyy')}}">
+    <tbody *ngIf="(listados.usuario.length > 0)" >
+      <tr *ngFor="let user of listados.usuario;" [ngClass]="{'table-danger': (user.baja)}" ngbTooltip="{{infoAdicional(user.fecha_baja | date:'dd/MM/yyyy')}}">
         <td>{{user.apellido}}, {{user.nombre}}</td>
         <td class="text-center">{{user.username}}</td>
         <td class="text-center">{{user.localidad}}</td>

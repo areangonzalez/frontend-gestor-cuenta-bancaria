@@ -4,10 +4,11 @@ import { SharedModule } from "../shared";
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { UsuariosComponent, BusquedaAvanzadaComponent } from './componentes';
+import { GestorUsuarioComponent } from './gestor-usuario';
 
 
 @NgModule({
-  declarations: [AdminComponent, UsuariosComponent, BusquedaAvanzadaComponent],
+  declarations: [AdminComponent, UsuariosComponent, BusquedaAvanzadaComponent, GestorUsuarioComponent],
   imports: [
     CommonModule,
     SharedModule,
