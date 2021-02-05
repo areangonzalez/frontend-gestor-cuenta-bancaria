@@ -65,16 +65,26 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return importarBps();
               case url.endsWith('/apimock/interbanking/exportar') && method === 'POST':
                 return exportacionInterbanking();
+              case url.endsWith('/apimock/permisos') && method === 'GET':
+                return getPermisos();
             }
         }
 
         // route functions
+        /*** LISTADO DE PERMISOS ***/
+        function getPermisos() {
+          let listaPermisos = [
+            { "name": "persona_crear" },{ "name": "persona_modificar" },{ "name": "prestacion_acreditar" },
+            { "name": "prestacion_baja" },{ "name": "prestacion_crear" },{ "name": "prestacion_ver" }
+          ];
+
+          return ok(listaPermisos);
+        }
         /*** LISTADO DE Usuarios ***/
         function getUsuarios() {
           let params = request.params.get('global_param');
           let page: number = parseInt(request.params.get("page"));
           let pageSize: number = 2;
-          console.log("llego");
 
           let usuarios = { pagesize: pageSize, pages: 1, total_filtrado: 5, resultado: [
             {id: 1, nombre: "Carlos", apellido: "Garcia", username: "cgarcia", created_at: "1560617468681", fecha_baja: "", baja: false, last_login_at: "2020-12-30",  direccion_ip: "192.10.10.8" },
