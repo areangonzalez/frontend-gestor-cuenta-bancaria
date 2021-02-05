@@ -67,6 +67,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return exportacionInterbanking();
               case url.endsWith('/apimock/permisos') && method === 'GET':
                 return getPermisos();
+              case url.endsWith('/apimock/rols') && method === 'GET':
+                return getRols();
             }
         }
 
@@ -80,7 +82,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
           return ok(listaPermisos);
         }
-        /*** LISTADO DE Usuarios ***/
+        /*** LISTADO DE ROLES ***/
+        function getRols() {
+          let listaRoles = [{id: 3, name: "usuario" }];
+          return ok(listaRoles);
+        }
+        /*** LISTADO DE USUARIOS ***/
         function getUsuarios() {
           let params = request.params.get('global_param');
           let page: number = parseInt(request.params.get("page"));
