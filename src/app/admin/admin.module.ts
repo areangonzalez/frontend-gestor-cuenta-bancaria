@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from "../shared";
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
@@ -10,7 +10,7 @@ import { GestorUsuarioComponent } from './gestor-usuario';
 @NgModule({
   declarations: [AdminComponent, UsuariosComponent, BusquedaAvanzadaComponent, GestorUsuarioComponent],
   imports: [
-    CommonModule,
+    NgbModule,
     SharedModule,
     AdminRoutingModule
   ]

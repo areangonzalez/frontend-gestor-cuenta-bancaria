@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { GestorUsuarioComponent } from './gestor-usuario';
+import { LocalidadService, UsuarioService } from '../core/services';
 
 
 const routes: Routes = [
@@ -12,12 +13,14 @@ const routes: Routes = [
   },{
     path: 'gestor-usuarios', component: GestorUsuarioComponent,
     data: { loading: true, preload: true, title: 'Gestión de Usuarios', rol: ['soporte', 'admin'] },
-    //resolve: { usuarios: UsuarioService, localidades: LocalidadService, programas: ProgramaService, permisos: PermisosService, roles: RolService}
+    resolve: { usuarios: UsuarioService }
+    //resolve: { usuarios: UsuarioService, localidades: LocalidadService, permisos: PermisosService, roles: RolService}
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [LocalidadService]
 })
 export class AdminRoutingModule { }

@@ -29,6 +29,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             switch (true) {
               case url.endsWith('/apimock/usuarios/login') && method === 'POST':
                   return login();
+              case url.endsWith('/apimock/usuarios') && method === 'GET':
+                  return getUsuarios();
               case url.endsWith('/apimock/personas') && method === 'GET':
                 return getPersonas();
               case url.endsWith('/apimock/sub-sucursals') && method === 'GET':
@@ -67,6 +69,25 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         // route functions
+        /*** LISTADO DE Usuarios ***/
+        function getUsuarios() {
+          let params = request.params.get('global_param');
+          let page: number = parseInt(request.params.get("page"));
+          let pageSize: number = 2;
+          console.log("llego");
+
+          let usuarios = { pagesize: pageSize, pages: 1, total_filtrado: 5, resultado: [
+            {id: 1, nombre: "Carlos", apellido: "Garcia", username: "cgarcia", created_at: "1560617468681", fecha_baja: "", baja: false, last_login_at: "2020-12-30",  direccion_ip: "192.10.10.8" },
+            {id: 2, nombre: "Maria", apellido: "Gonzalez", username: "mgonzalez", created_at: "2019-04-02", fecha_baja: "", baja: false, last_login_at: "2020-12-20", direccion_ip: "192.10.10.8" },
+            {id: 3, nombre: "Graciela", apellido: "Perez", username: "gperez", created_at: "2019-05-03", fecha_baja: "2020-12-05", baja: true, last_login_at: "2020-12-30", direccion_ip: "192.10.10.8" },
+            {id: 4, nombre: "Paola", apellido: "Rodriguez", username: "prodriguez", created_at: "2019-08-06", fecha_baja: "", baja: false, last_login_at: "2020-12-23", direccion_ip: "192.10.10.8" },
+            {id: 5, nombre: "Gustavo", apellido: "Acosta", username: "gacosta", created_at: "2019-11-21", fecha_baja: "", baja: false, last_login_at: "2020-12-29", direccion_ip: "192.10.10.8" },
+          ]};
+
+          let listado = paginar(usuarios, usuarios.resultado, page, pageSize);
+
+          return ok(listado);
+        }
 
         function login() {
           let datos = body;

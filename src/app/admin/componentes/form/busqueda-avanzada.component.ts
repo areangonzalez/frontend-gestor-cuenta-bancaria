@@ -29,7 +29,6 @@ export class BusquedaAvanzadaComponent implements OnInit {
   ) {
     this.busquedaAvanzada = _fb.group({
       global_param: '',
-      localidadid: '',
       fecha_ingreso_desde: '',
       fechaDesde: '',
       fecha_ingreso_hasta: '',

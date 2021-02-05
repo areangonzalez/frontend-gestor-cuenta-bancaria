@@ -1,17 +1,15 @@
 <div class="d-flex justify-content-between">
-  <div class="d-flex align-items-center p-2 font-weight-bold">
-    // Resultado de usuarios encontrados
-    <!-- <span *ngIf="configPaginacion.totalRegistros > 0">Usuarios: {{configPaginacion.cantRegistros}} - {{configPaginacion.totalRegistros}} de {{configPaginacion.colleccionSize}}</span> -->
-    <!-- <span *ngIf="configPaginacion.totalRegistros == 0">Usuarios: 0</span> -->
-    <!-- <div class="col-md-4">
+  <div class="d-flex align-items-center p-2 font-weight-bold ancho-fijo">
+    <span *ngIf="configPaginacion.totalRegistros > 0">Usuarios: {{configPaginacion.cantRegistros}} - {{configPaginacion.totalRegistros}} de {{configPaginacion.colleccionSize}}</span>
+    <span *ngIf="configPaginacion.totalRegistros == 0">Usuarios: 0</span>
+    <div class="col-3 col-sm-3 col-md-3 col-lg-3 pr-0" >
       <select class="form-control form-control-sm" id="page_size" [(ngModel)]="tamanioPagina" (change)="cambioTamanioPagina($event.target.value)">
         <option *ngFor="let tamanio of listados.tamanioPagina" value="{{tamanio.size}}">{{tamanio.size}}</option>
       </select>
-    </div> -->
+    </div>
   </div>
   <div class="d-flex align-items-center p-2 font-weight-bold">
-    // paginado
-    <!-- <ngb-pagination *ngIf="(configPaginacion.colleccionSize > 0)"  [collectionSize]="configPaginacion.colleccionSize" [(page)]="configPaginacion.page" [pageSize]="configPaginacion.pageSize" [maxSize]="10" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="cambioPagina(configPaginacion.page)" aria-label="Default pagination" style="margin-bottom: -15px;" ></ngb-pagination> -->
+    <ngb-pagination *ngIf="(configPaginacion.colleccionSize > 0)"  [collectionSize]="configPaginacion.colleccionSize" [(page)]="configPaginacion.page" [pageSize]="configPaginacion.pageSize" [maxSize]="10" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="cambioPagina(configPaginacion.page)" aria-label="Default pagination" style="margin-bottom: -15px;" ></ngb-pagination>
   </div>
 </div>
 <div class="row pl-3 pr-3">
@@ -28,15 +26,15 @@
         <th class="text-center columna-160" scope="col">// agregar usuario</th>
       </tr>
     </thead>
-    <tbody *ngIf="(listados.usuario.length == 0)">
+    <tbody *ngIf="(listados.usuarios.length == 0)">
       <tr>
         <td class="text-center bg-warning" rowspan="1" colspan="6">
           <strong>No se han encontrado resultado</strong>
         </td>
       </tr>
     </tbody>
-    <tbody *ngIf="(listados.usuario.length > 0)" >
-      <tr *ngFor="let user of listados.usuario;" [ngClass]="{'table-danger': (user.baja)}" ngbTooltip="{{infoAdicional(user.fecha_baja | date:'dd/MM/yyyy')}}">
+    <tbody *ngIf="(listados.usuarios.length > 0)" >
+      <tr *ngFor="let user of listados.usuarios;" [ngClass]="{'table-danger': (user.baja)}" ngbTooltip="{{infoAdicional(user.fecha_baja | date:'dd/MM/yyyy')}}">
         <td>{{user.apellido}}, {{user.nombre}}</td>
         <td class="text-center">{{user.username}}</td>
         <td class="text-center">{{user.localidad}}</td>
@@ -53,19 +51,17 @@
   </table>
 </div>
 <div class="d-flex justify-content-between border-top">
-  <div class="d-flex align-items-center p-2 font-weight-bold">
-    // resultado de usuarios encontrados
-    <!-- <span *ngIf="configPaginacion.totalRegistros > 0">Usuarios: {{configPaginacion.cantRegistros}} - {{configPaginacion.totalRegistros}} de {{configPaginacion.colleccionSize}}</span> -->
-    <!-- <span *ngIf="configPaginacion.totalRegistros == 0">Usuarios: 0</span> -->
-    <!-- <div class="col-md-4">
+  <div class="d-flex align-items-center p-2 font-weight-bold ancho-fijo">
+    <span *ngIf="configPaginacion.totalRegistros > 0">Usuarios: {{configPaginacion.cantRegistros}} - {{configPaginacion.totalRegistros}} de {{configPaginacion.colleccionSize}}</span>
+    <span *ngIf="configPaginacion.totalRegistros == 0">Usuarios: 0</span>
+    <div class="col-3 col-sm-3 col-md-3 col-lg-3 pr-0" >
       <select class="form-control form-control-sm" id="page_size" [(ngModel)]="tamanioPagina" (change)="cambioTamanioPagina($event.target.value)">
         <option *ngFor="let tamanio of listados.tamanioPagina" value="{{tamanio.size}}">{{tamanio.size}}</option>
       </select>
-    </div> -->
+    </div>
   </div>
   <div class="d-flex align-items-center p-2 font-weight-bold">
-    // paginado
-    <!-- <ngb-pagination *ngIf="(configPaginacion.colleccionSize > 0)"  [collectionSize]="configPaginacion.colleccionSize" [(page)]="configPaginacion.page" [pageSize]="configPaginacion.pageSize" [maxSize]="10" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="cambioPagina(configPaginacion.page)" aria-label="Default pagination" style="margin-bottom: -15px;" ></ngb-pagination> -->
+    <ngb-pagination *ngIf="(configPaginacion.colleccionSize > 0)"  [collectionSize]="configPaginacion.colleccionSize" [(page)]="configPaginacion.page" [pageSize]="configPaginacion.pageSize" [maxSize]="10" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="cambioPagina(configPaginacion.page)" aria-label="Default pagination" style="margin-bottom: -15px;" ></ngb-pagination>
   </div>
 </div>
 
