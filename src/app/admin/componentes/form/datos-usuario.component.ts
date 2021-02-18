@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'admin-datos-usuario-form',
+  selector: 'admin-usuario-pass-form',
   templateUrl: './datos-usuario.component.html',
   styleUrls: ['./datos-usuario.component.scss']
 })

@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from "../shared";
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
-import { UsuariosComponent, BusquedaAvanzadaComponent, DatosPersonaComponent } from './componentes';
+import { UsuariosComponent, BusquedaAvanzadaComponent, DatosPersonaComponent, DatosUsuarioComponent } from './componentes';
 import { GestorUsuarioComponent } from './gestor-usuario';
-import { DatosUsuarioComponent } from './componentes/form/datos-usuario.component';
 
 
 @NgModule({
@@ -14,6 +13,7 @@ import { DatosUsuarioComponent } from './componentes/form/datos-usuario.componen
     NgbModule,
     SharedModule,
     AdminRoutingModule
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AdminModule { }
