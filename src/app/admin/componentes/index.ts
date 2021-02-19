@@ -1,2 +1,3 @@
 export * from './form';
-export * from './lista'
+export * from './lista';
+export * from './modal';

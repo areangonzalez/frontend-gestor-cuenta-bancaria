@@ -22,8 +22,8 @@
         <th class="text-center" scope="col">Fecha de Alta</th>
         <th class="text-center" scope="col">Ultimo Ingreso</th>
         <th class="text-center" scope="col">Dirección IP</th>
-        <!-- <th class="text-center columna-160" scope="col"><admin-usuario-modal [configModal]="configModalAgregar" (confirmarGuardado)="cambioPagina($event)" [disenioBoton]="configBotonModalAgregar"></admin-usuario-modal></th> -->
-        <th class="text-center columna-160" scope="col">// agregar usuario</th>
+        <th class="text-center columna-160" scope="col"><admin-agregar-usuario-modal [listas]="listados" (confirmarGuardado)="cambioPagina($event)"></admin-agregar-usuario-modal></th>
+        <!-- <th class="text-center columna-160" scope="col">// agregar usuario</th> -->
       </tr>
     </thead>
     <tbody *ngIf="(listados.usuarios.length == 0)">

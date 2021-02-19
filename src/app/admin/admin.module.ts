@@ -3,12 +3,18 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from "../shared";
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
-import { UsuariosComponent, BusquedaAvanzadaComponent, DatosPersonaComponent, DatosUsuarioComponent } from './componentes';
+import {
+  UsuariosComponent, BusquedaAvanzadaComponent, DatosPersonaComponent, DatosUsuarioComponent,
+  AgregarUsuarioModalContent, AgregarUsuarioModalComponent
+} from './componentes';
 import { GestorUsuarioComponent } from './gestor-usuario';
 
 
 @NgModule({
-  declarations: [AdminComponent, UsuariosComponent, BusquedaAvanzadaComponent, GestorUsuarioComponent, DatosPersonaComponent, DatosUsuarioComponent],
+  declarations: [
+    AdminComponent, UsuariosComponent, BusquedaAvanzadaComponent, GestorUsuarioComponent, DatosPersonaComponent, DatosUsuarioComponent,
+    AgregarUsuarioModalContent, AgregarUsuarioModalComponent
+  ],
   imports: [
     NgbModule,
     SharedModule,
