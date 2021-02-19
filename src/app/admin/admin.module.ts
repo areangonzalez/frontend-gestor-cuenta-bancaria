@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { SharedModule } from "../shared";
 import { AdminRoutingModule } from './admin-routing.module';
+import { SharedModule } from "../shared";
 import { AdminComponent } from './admin.component';
 import {
   UsuariosComponent, BusquedaAvanzadaComponent, DatosPersonaComponent, DatosUsuarioComponent,

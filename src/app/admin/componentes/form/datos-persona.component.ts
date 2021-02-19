@@ -46,6 +46,33 @@ export class DatosPersonaComponent implements OnInit {
     this.cancelarForm.emit(true);
   }
   /**
+   * valida los datos del formulario
+   * si los campos no han sido compoletados muestra un mensaje de error y los campos resaltados.
+   * si se han completado los campos correctamente se aplica el guardado de datos, y se notifica si se ha guardado correctamete
+   */
+  validarForm() {
+    this.submitted = true;
+    if (this.persona.invalid && this.persona.get('usuario').invalid) { // verifico la validación en los campos del formulario
+      this._msj.cancelado("Campos sin completar!!");
+      return;
+    }else{ // si pasa la validación
+      let usuario = this.persona.value;
+      this.guardarUsuario(usuario);
+    }
+  }
+  /**
+   * guardado de usuario al completar y ser validado del formulario
+   * @param params valores utilizados para el guardado de un usuario
+   */
+  public guardarUsuario(params: object) {
+    this._usuarioService.guardar(params).subscribe(
+      respuesta => {
+        this._msj.exitoso("Se ha guardado el usuario con exito.");
+        this.cancelarForm.emit(false);
+      }, error => { this._msj.cancelado(error); }
+    )
+  }
+  /**
    * Checkea la comparacion de las contraseñas para validar
    * @param group formulario que contiene los valores a comparar
    */

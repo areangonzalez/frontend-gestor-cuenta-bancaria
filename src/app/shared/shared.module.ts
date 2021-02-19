@@ -7,10 +7,9 @@ import { NgbTooltipModule, NgbDatepickerModule, NgbCollapseModule, NgbPagination
 import { CabeceraComponent, PieComponent } from './layout';
 import { AltaPersonaComponent } from './lista';
 import { RegistrarPersonaComponent, FormLugarComponent } from './formulario';
-import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, NotidicacionModalContent, AgregarSucursalComponent, ConfirmarExportacionModalContent, ConfirmarExportacionComponent, InfoPersonaContent, InfoPersonaComponent, EditarPersonaContent, EditarPersonaComponent } from './modal';
+import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, NotificacionModalContent, AgregarSucursalComponent, ConfirmarExportacionModalContent, ConfirmarExportacionComponent, InfoPersonaContent, InfoPersonaComponent, EditarPersonaContent, EditarPersonaComponent } from './modal';
 import { VistaPersonaComponent } from './vista';
 import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
-import { DashboardComponent } from './layout/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +17,12 @@ import { DashboardComponent } from './layout/dashboard/dashboard.component';
     AltaPersonaComponent,
     RegistrarPersonaComponent, FormLugarComponent,
     CrearPersonaContent, CrearPersonaComponent,
-    AgregarSucursalContent, NotidicacionModalContent, AgregarSucursalComponent,
+    AgregarSucursalContent, NotificacionModalContent, AgregarSucursalComponent,
     ConfirmarExportacionModalContent, ConfirmarExportacionComponent,
     InfoPersonaContent, InfoPersonaComponent,
     VistaPersonaComponent,
     EditarPersonaContent, EditarPersonaComponent,
-    BusquedaAvanzadaPersonaComponent,
-    DashboardComponent,
+    BusquedaAvanzadaPersonaComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +38,7 @@ import { DashboardComponent } from './layout/dashboard/dashboard.component';
     AltaPersonaComponent,
     RegistrarPersonaComponent, FormLugarComponent,
     CrearPersonaContent, CrearPersonaComponent,
-    AgregarSucursalContent, NotidicacionModalContent, AgregarSucursalComponent,
+    AgregarSucursalContent, NotificacionModalContent, AgregarSucursalComponent,
     ConfirmarExportacionModalContent, ConfirmarExportacionComponent,
     InfoPersonaContent, InfoPersonaComponent,
     VistaPersonaComponent,

@@ -1,3 +1,4 @@
+import { DashboardComponent } from './shared/layout/dashboard/dashboard.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -23,10 +24,9 @@ registerLocaleData(es);
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoaderComponent,
-    NotificacionComponent, SistemaComponent,
-    BreadcrumbComponent, LoginComponent
+    AppComponent, DashboardComponent, SistemaComponent,
+    NotificacionComponent, BreadcrumbComponent, LoginComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

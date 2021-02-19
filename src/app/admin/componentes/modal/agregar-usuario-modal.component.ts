@@ -34,9 +34,8 @@ export class AgregarUsuarioModalContent {
 })
 export class AgregarUsuarioModalComponent {
   /**
-   * @var disenioBoton {Object} define el diseño del boton por Ej.: {class: "", iconoClass: "",  text: ""}
-   * @var configModal {Object} define la configuracion del modal y diseño Ej.: {title: ""}
    * @var usuarioid {number} identificador de un usuario
+   * @var listas {object} objeto que contiene listados
    */
   @Input("usuarioid") public usuarioid: number;
   @Input("listas") public listas: configurarListas;

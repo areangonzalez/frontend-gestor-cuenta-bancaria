@@ -213,7 +213,7 @@ export class AgregarSucursalComponent {
    * notifico al usuario con un mensaje de error
    */
   abrirNotificacion() {
-    const notidficacion = this._modalService.open(NotidicacionModalContent, { windowClass: 'red-modal' });
+    const notidficacion = this._modalService.open(NotificacionModalContent, { windowClass: 'red-modal' });
   }
 }
 
@@ -232,7 +232,7 @@ export class AgregarSucursalComponent {
   styleUrls: ['./agregar-sucursal.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class NotidicacionModalContent {
+export class NotificacionModalContent {
 
   constructor(private modalService: NgbModal, public activeModal: NgbActiveModal, config: NgbModalConfig) {
     config.backdrop = 'static';

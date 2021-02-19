@@ -11,8 +11,6 @@ export class UsuarioService {
 
   constructor(private _api: ApiService) { }
 
-
-
   public guardar(params: object) {
     return this._api.post('/usuarios', params);
   }

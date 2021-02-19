@@ -31,6 +31,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                   return login();
               case url.endsWith('/apimock/usuarios') && method === 'GET':
                   return getUsuarios();
+              case url.match(/\/apimock\/usuarios\/buscar-persona-por-cuil\/\d+$/) && method === 'GET':
+                  return getUsuarioCuil();
+              case url.endsWith('/apimock/usuarios') && method === 'POST':
+                  return crearUsuario();
               case url.endsWith('/apimock/personas') && method === 'GET':
                 return getPersonas();
               case url.endsWith('/apimock/sub-sucursals') && method === 'GET':
@@ -106,6 +110,35 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           return ok(listado);
         }
 
+        function getUsuarioCuil() {
+          let urlParts = request.url.split('/');
+          let cuil = urlParts[urlParts.length - 1];
+
+          let listaUsuarios = [
+            {personaid: 1, id: 1, nombre: "Carlos", apellido: "Garcia", nro_documento: "23159753", cuil: "20231597538", usuario: { id: 1, email:"cgarcia@desarrollohumano.rionegro.gov.ar", localidadid: "9", localidad: "Viedma", username: "cgarcia", rol: 'usuario', fecha_inicial: "2019-03-25", fecha_ultimo_ingreso: "2020-12-30", direccion_ip: "192.10.10.8" }},
+            {personaid: 2, id: 2, nombre: "Pedro", apellido: "Gonzalez", nro_documento: "15156783", cuil: "20151567835" },
+          ];
+
+          let usuario = listaUsuarios.filter(usu => { return usu.cuil === cuil; });
+          let usuarioEncontrado = usuario.length ? usuario[0] : null;
+
+          if (usuarioEncontrado) {
+            return ok({success: true, resultado: usuarioEncontrado});
+          }else{
+            return ok({success: false, resultado: []});
+          }
+        }
+
+        function crearUsuario() {
+          let usuario = body;
+
+          if (usuario["password"] === usuario["confirmPass"]) {
+            return ok();
+          } else {
+            return error('No se puede registrar este usuario');
+          }
+        }
+
         function login() {
           let datos = body;
           if ( datos.username === 'admin' && datos.password_hash === 'admins' ) {
@@ -164,7 +197,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           let urlParts = request.url.split('/');
           let id = parseInt(urlParts[urlParts.length - 1]);
           let personaEncontrada = personas.resultado.filter(p => { return p.id === id });
-          console.log(id);
 
           if (personaEncontrada !== null) {
             return ok(personaEncontrada[0]);

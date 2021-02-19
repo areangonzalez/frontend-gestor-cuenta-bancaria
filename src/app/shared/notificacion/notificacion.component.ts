@@ -28,7 +28,6 @@ export class NotificacionComponent implements OnInit {
     // subscribe to new alert notifications
     this.alertSubscription = this.alertService.getMessage()
         .subscribe((alert: Alert) => {
-
             // clear alerts when an empty alert is received
             if (!alert) {
               this.mensaje = false;
@@ -52,11 +51,9 @@ export class NotificacionComponent implements OnInit {
   }
 
   crearNotificacion(arrMsj: any) {
-    console.log(arrMsj);
     this.mensaje = "Se han importado " + arrMsj["creadas"] + " cuenta/s en el sistema.";
     this.existen = (arrMsj["existen"]) ? "Se han encontrado " + arrMsj["existen"] + " cuenta/s que ya existen dentro del sistema.": false;
     this.errors = arrMsj.errors;
-    console.log(this.errors);
   }
 
   msjEsCadena(mensaje:any) {
