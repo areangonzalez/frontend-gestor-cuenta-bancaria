@@ -1,6 +1,6 @@
-import { map } from 'rxjs/operators';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { map } from 'rxjs/operators';
 import { NotificacionService, UsuarioService } from './../../../core/services';
 
 @Component({
@@ -13,7 +13,7 @@ import { NotificacionService, UsuarioService } from './../../../core/services';
       </button>
     </div>
     <div class="modal-body">
-      <admin-configuracion-tab></admin-configuracion-tab>
+      <admin-configuracion-tab [datosUsuario]="datosUsuario"></admin-configuracion-tab>
     </div>
   `
 })
@@ -46,14 +46,13 @@ export class ConfigurarUsuarioModalComponent {
     config.keyboard = false;
   }
 
-  // abrirModal(datosUsuario: any) {
-  abrirModal() {
+  abrirModal(datosUsuario: any) {
     const modalRef = this.modalService.open(ConfigurarUsuarioModalContent, { size: 'lg' });
     modalRef.componentInstance.listados = this.listasConfig;
-    // modalRef.componentInstance.datosUsuario = datosUsuario;
+    modalRef.componentInstance.datosUsuario = datosUsuario;
   }
 
-  /* configurarModal() {
+  configurarModal() {
     // pido usuario por api
     this._usuarioService.buscarPorId(this.usuarioid)
     .pipe(map(vDatos => {
@@ -82,6 +81,6 @@ export class ConfigurarUsuarioModalComponent {
       datos => { this.abrirModal(datos); },
       error => { this._msj.cancelado(error)}
     );
-  } */
+  }
 
 }

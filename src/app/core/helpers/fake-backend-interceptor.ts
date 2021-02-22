@@ -57,6 +57,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return getListaSeleccionPersona();
               case url.endsWith('/apimock/cuenta-saldos') && method === 'POST':
                   return guardarListaSeleccionPersona();
+              case url.match(/\/apimock\/usuarios\/\d+$/) && method === 'GET':
+                return getUsuarioPorId();
               case url.match(/\/apimock\/personas\/\d+$/) && method === 'GET':
                 return getPersonasPorId();
               case url.match(/\/apimock\/personas\/\d+$/) && method === 'PUT':
@@ -136,6 +138,27 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return ok();
           } else {
             return error('No se puede registrar este usuario');
+          }
+        }
+
+        function getUsuarioPorId() {
+          let urlParts = request.url.split('/');
+          let id = parseInt(urlParts[urlParts.length - 1]);
+          let listaUsuarios = [
+            {personaid: 1, id: 1, nombre: "Carlos", apellido: "Garcia", nro_documento: "23159753", cuil: "20231597538", email:"cgarcia@desarrollohumano.rionegro.gov.ar", localidadid: "9", localidad: "Viedma", rol: 'usuario', username: "cgarcia", created_at: "2019-03-25", fecha_baja: "", baja: false, direccion_ip: "192.10.10.8", descripcion_baja: "" },
+            {personaid: 2, id: 2, nombre: "Maria", apellido: "Gonzalez", nro_documento: "14156783", cuil: "20141567835", email:"mgonzalez@desarrollohumano.rionegro.gov.ar", localidadid: "9", localidad: "Viedma", rol: 'usuario', username: "mgonzalez", created_at: "2019-04-02", fecha_baja: "", baja: false, direccion_ip: "192.10.10.8", descripcion_baja: "" },
+            {personaid: 3, id: 3, nombre: "Graciela", apellido: "Perez", nro_documento: "16358248", cuil: "20163582485", email:"gperez@desarrollohumano.rionegro.gov.ar", localidadid: "9", localidad: "Viedma", rol: 'usuario', username: "gperez", created_at: "2019-05-03", fecha_baja: "2020-12-05", baja: true, direccion_ip: "192.10.10.8", descripcion_baja: "Por pedido del coordinador de subsidio" },
+            {personaid: 4, id: 4, nombre: "Paola", apellido: "Rodriguez", nro_documento: "16322448", cuil: "20163224485", email:"prodriguez@desarrollohumano.rionegro.gov.ar", localidadid: "9", localidad: "Viedma", rol: 'usuario', username: "prodriguez", created_at: "2019-08-06", fecha_baja: "", baja: false, direccion_ip: "192.10.10.8", descripcion_baja: "" },
+            {personaid: 5, id: 5, nombre: "Gustavo", apellido: "Acosta", nro_documento: "18334826", cuil: "20183348265", email:"gacosta@desarrollohumano.rionegro.gov.ar", localidadid: "9", localidad: "Viedma", rol: 'usuario', username: "gacosta", created_at: "2019-11-21", fecha_baja: "", baja: false, direccion_ip: "192.10.10.8", descripcion_baja: "" },
+          ];
+
+          let usuario = listaUsuarios.filter(usu => { return usu.id === id; });
+          let usuarioEncontrado = usuario.length ? usuario[0] : null;
+
+          if (usuarioEncontrado) {
+            return ok(usuarioEncontrado);
+          }else{
+            return error("No se ha podido encontrar este usuario");
           }
         }
 

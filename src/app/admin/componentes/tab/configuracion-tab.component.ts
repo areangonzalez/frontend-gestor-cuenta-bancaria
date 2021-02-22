@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'admin-configuracion-tab',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./configuracion-tab.component.scss']
 })
 export class ConfiguracionTabComponent implements OnInit {
+  @Input("datosUsuario") public datosUsuario: any;
 
   constructor() { }
 

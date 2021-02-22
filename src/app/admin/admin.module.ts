@@ -6,7 +6,7 @@ import { AdminComponent } from './admin.component';
 import {
   UsuariosComponent, BusquedaAvanzadaComponent, DatosPersonaComponent, DatosUsuarioComponent,
   AgregarUsuarioModalContent, AgregarUsuarioModalComponent, ConfiguracionTabComponent,
-  ConfigurarUsuarioModalContent, ConfigurarUsuarioModalComponent
+  ConfigurarUsuarioModalContent, ConfigurarUsuarioModalComponent, UsuarioInfoComponent
 } from './componentes';
 import { GestorUsuarioComponent } from './gestor-usuario';
 
@@ -14,7 +14,7 @@ import { GestorUsuarioComponent } from './gestor-usuario';
 @NgModule({
   declarations: [
     AdminComponent, UsuariosComponent, BusquedaAvanzadaComponent, GestorUsuarioComponent, DatosPersonaComponent, DatosUsuarioComponent,
-    AgregarUsuarioModalContent, AgregarUsuarioModalComponent, ConfigurarUsuarioModalContent, ConfigurarUsuarioModalComponent, ConfiguracionTabComponent
+    AgregarUsuarioModalContent, AgregarUsuarioModalComponent, ConfigurarUsuarioModalContent, ConfigurarUsuarioModalComponent, ConfiguracionTabComponent, UsuarioInfoComponent
   ],
   imports: [
     NgbModule,
