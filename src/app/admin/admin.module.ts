@@ -5,7 +5,8 @@ import { SharedModule } from "../shared";
 import { AdminComponent } from './admin.component';
 import {
   UsuariosComponent, BusquedaAvanzadaComponent, DatosPersonaComponent, DatosUsuarioComponent,
-  AgregarUsuarioModalContent, AgregarUsuarioModalComponent
+  AgregarUsuarioModalContent, AgregarUsuarioModalComponent, ConfiguracionTabComponent,
+  ConfigurarUsuarioModalContent, ConfigurarUsuarioModalComponent
 } from './componentes';
 import { GestorUsuarioComponent } from './gestor-usuario';
 
@@ -13,7 +14,7 @@ import { GestorUsuarioComponent } from './gestor-usuario';
 @NgModule({
   declarations: [
     AdminComponent, UsuariosComponent, BusquedaAvanzadaComponent, GestorUsuarioComponent, DatosPersonaComponent, DatosUsuarioComponent,
-    AgregarUsuarioModalContent, AgregarUsuarioModalComponent
+    AgregarUsuarioModalContent, AgregarUsuarioModalComponent, ConfigurarUsuarioModalContent, ConfigurarUsuarioModalComponent, ConfiguracionTabComponent
   ],
   imports: [
     NgbModule,
