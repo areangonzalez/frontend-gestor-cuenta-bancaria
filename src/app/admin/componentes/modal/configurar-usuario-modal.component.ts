@@ -13,7 +13,7 @@ import { NotificacionService, UsuarioService } from './../../../core/services';
       </button>
     </div>
     <div class="modal-body">
-      <admin-configuracion-tab [datosUsuario]="datosUsuario"></admin-configuracion-tab>
+      <admin-configuracion-tab [datosUsuario]="datosUsuario" [configListas]="listados" ></admin-configuracion-tab>
     </div>
   `
 })
