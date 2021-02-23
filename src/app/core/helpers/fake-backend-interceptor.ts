@@ -11,6 +11,13 @@ let personas = { pagesize: 2, pages: 1, total_filtrado: 5, resultado: [
   },{ id: 103,nombre: "Gonzalo",apellido: "Gimenez",sexoid:2,sexo:"Masculino",generoid:2,genero:"Hombre",nacionalidadid:1,estado_civilid:1,estado_civil:"soltero",fecha_nacimiento:"1988-02-05",nro_documento: "29232132",telefono: "",celular: "2920412762",tipo_documentoid: 1,email:"",cuil:"20292321328",lugar:{ id:9,barrio:"",calle:"Urquiza",altura:"1327",piso:"",depto:"",escalera:"",localidadid:1, localidad: "Viedma" }
   },{ id: 104,nombre: "Roberto",apellido: "Almendra",sexoid:2,sexo:"Masculino",generoid:2,genero:"Hombre",nacionalidadid:1,estado_civilid:1,estado_civil:"soltero",fecha_nacimiento:"1988-02-05",nro_documento: "29857364",telefono: "",celular: "2920234567",tipo_documentoid: 1,email:"rderoberto@outlook.com.ar",cuil:"20298573648",lugar:{ id:9,barrio:"Fatima",calle:"savedra",altura:"47",piso:"",depto:"",escalera:"",localidadid:1, localidad: "Viedma" }}
   ]};
+let listaUsuarios = [
+  {personaid: 1, id: 1, nombre: "Carlos", apellido: "Garcia", nro_documento: "23159753", cuil: "20231597538", email:"cgarcia@desarrollohumano.rionegro.gov.ar", localidadid: "5", localidad: "Viedma", rol: 'usuario', username: "cgarcia", created_at: "2019-03-25", fecha_baja: "", baja: false, direccion_ip: "192.10.10.8", descripcion_baja: "" },
+  {personaid: 2, id: 2, nombre: "Maria", apellido: "Gonzalez", nro_documento: "14156783", cuil: "20141567835", email:"mgonzalez@desarrollohumano.rionegro.gov.ar", localidadid: "5", localidad: "Viedma", rol: 'usuario', username: "mgonzalez", created_at: "2019-04-02", fecha_baja: "", baja: false, direccion_ip: "192.10.10.8", descripcion_baja: "" },
+  {personaid: 3, id: 3, nombre: "Graciela", apellido: "Perez", nro_documento: "16358248", cuil: "20163582485", email:"gperez@desarrollohumano.rionegro.gov.ar", localidadid: "5", localidad: "Viedma", rol: 'usuario', username: "gperez", created_at: "2019-05-03", fecha_baja: "2020-12-05", baja: true, direccion_ip: "192.10.10.8", descripcion_baja: "Por pedido del coordinador de subsidio" },
+  {personaid: 4, id: 4, nombre: "Paola", apellido: "Rodriguez", nro_documento: "16322448", cuil: "20163224485", email:"prodriguez@desarrollohumano.rionegro.gov.ar", localidadid: "5", localidad: "Viedma", rol: 'usuario', username: "prodriguez", created_at: "2019-08-06", fecha_baja: "", baja: false, direccion_ip: "192.10.10.8", descripcion_baja: "" },
+  {personaid: 5, id: 5, nombre: "Gustavo", apellido: "Acosta", nro_documento: "18334826", cuil: "20183348265", email:"gacosta@desarrollohumano.rionegro.gov.ar", localidadid: "5", localidad: "Viedma", rol: 'usuario', username: "gacosta", created_at: "2019-11-21", fecha_baja: "", baja: false, direccion_ip: "192.10.10.8", descripcion_baja: "" },
+];
 
 
 @Injectable()
@@ -59,6 +66,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return guardarListaSeleccionPersona();
               case url.endsWith('/apimock/usuarios/crear-asignacion') && method === 'POST':
                 return agregarPermisosAusuario();
+              case url.match(/\/apimock\/usuarios\/baja\/\d+$/) && method === 'PUT':
+                return bajaUsuario();
               case url.match(/\/apimock\/usuarios\/listar-asignacion\/\d+$/) && method === 'GET':
                 return listarPermisosDeUsuario();
               case url.match(/\/apimock\/usuarios\/\d+$/) && method === 'PUT':
@@ -147,16 +156,25 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           }
         }
 
+        function bajaUsuario() {
+          let urlParts = request.url.split('/');
+          let id = parseInt(urlParts[urlParts.length - 1]);
+
+          let usuario = listaUsuarios.filter(usu => { return usu.id === id; });
+          let usuarioEncontrado = usuario.length ? usuario[0] : null;
+
+          let f = new Date();
+          let fechaHoy = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate();
+
+          usuarioEncontrado["fecha_baja"] = fechaHoy;
+          usuarioEncontrado["baja"] = true;
+
+          return ok({id: id});
+        }
+
         function getUsuarioPorId() {
           let urlParts = request.url.split('/');
           let id = parseInt(urlParts[urlParts.length - 1]);
-          let listaUsuarios = [
-            {personaid: 1, id: 1, nombre: "Carlos", apellido: "Garcia", nro_documento: "23159753", cuil: "20231597538", email:"cgarcia@desarrollohumano.rionegro.gov.ar", localidadid: "5", localidad: "Viedma", rol: 'usuario', username: "cgarcia", created_at: "2019-03-25", fecha_baja: "", baja: false, direccion_ip: "192.10.10.8", descripcion_baja: "" },
-            {personaid: 2, id: 2, nombre: "Maria", apellido: "Gonzalez", nro_documento: "14156783", cuil: "20141567835", email:"mgonzalez@desarrollohumano.rionegro.gov.ar", localidadid: "5", localidad: "Viedma", rol: 'usuario', username: "mgonzalez", created_at: "2019-04-02", fecha_baja: "", baja: false, direccion_ip: "192.10.10.8", descripcion_baja: "" },
-            {personaid: 3, id: 3, nombre: "Graciela", apellido: "Perez", nro_documento: "16358248", cuil: "20163582485", email:"gperez@desarrollohumano.rionegro.gov.ar", localidadid: "5", localidad: "Viedma", rol: 'usuario', username: "gperez", created_at: "2019-05-03", fecha_baja: "2020-12-05", baja: true, direccion_ip: "192.10.10.8", descripcion_baja: "Por pedido del coordinador de subsidio" },
-            {personaid: 4, id: 4, nombre: "Paola", apellido: "Rodriguez", nro_documento: "16322448", cuil: "20163224485", email:"prodriguez@desarrollohumano.rionegro.gov.ar", localidadid: "5", localidad: "Viedma", rol: 'usuario', username: "prodriguez", created_at: "2019-08-06", fecha_baja: "", baja: false, direccion_ip: "192.10.10.8", descripcion_baja: "" },
-            {personaid: 5, id: 5, nombre: "Gustavo", apellido: "Acosta", nro_documento: "18334826", cuil: "20183348265", email:"gacosta@desarrollohumano.rionegro.gov.ar", localidadid: "5", localidad: "Viedma", rol: 'usuario', username: "gacosta", created_at: "2019-11-21", fecha_baja: "", baja: false, direccion_ip: "192.10.10.8", descripcion_baja: "" },
-          ];
 
           let usuario = listaUsuarios.filter(usu => { return usu.id === id; });
           let usuarioEncontrado = usuario.length ? usuario[0] : null;

@@ -10,13 +10,15 @@ import {
   UsuariosComponent, BusquedaAvanzadaComponent, DatosPersonaComponent, DatosUsuarioComponent,
   AgregarUsuarioModalContent, AgregarUsuarioModalComponent, ConfiguracionTabComponent,
   ConfigurarUsuarioModalContent, ConfigurarUsuarioModalComponent, UsuarioInfoComponent,
-  AdministrarRolPermisoComponent, UsuarioPermisoListaComponent
+  AdministrarRolPermisoComponent, UsuarioPermisoListaComponent, BajaUsuarioModalContent, BajaUsuarioModalComponent
 } from './componentes';
+import {  } from './componentes/modal/baja-usuario-modal.component';
 
 @NgModule({
   declarations: [
     AdminComponent, UsuariosComponent, BusquedaAvanzadaComponent, GestorUsuarioComponent, DatosPersonaComponent, DatosUsuarioComponent,
-    AgregarUsuarioModalContent, AgregarUsuarioModalComponent, ConfigurarUsuarioModalContent, ConfigurarUsuarioModalComponent, ConfiguracionTabComponent, UsuarioInfoComponent, AdministrarRolPermisoComponent, UsuarioPermisoListaComponent
+    AgregarUsuarioModalContent, AgregarUsuarioModalComponent, ConfigurarUsuarioModalContent, ConfigurarUsuarioModalComponent, ConfiguracionTabComponent, UsuarioInfoComponent, AdministrarRolPermisoComponent, UsuarioPermisoListaComponent,
+    BajaUsuarioModalContent, BajaUsuarioModalComponent
   ],
   imports: [
     NgbModule,

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { UsuarioService, NotificacionService } from './../../../core/services';
 
 @Component({
   selector: 'admin-usuarios-lista',
@@ -12,7 +13,7 @@ export class UsuariosComponent implements OnInit {
   @Output("cambioDeTamanioPagina") public cambioDeTamanioPagina = new EventEmitter();
   public tamanioPagina: number = 20;
 
-  constructor() { }
+  constructor(private _usuarioService: UsuarioService, private _msj: NotificacionService) { }
 
   ngOnInit(): void {
   }
@@ -31,18 +32,18 @@ export class UsuariosComponent implements OnInit {
   }
 
 
-  /*darBajaUsuario(baja:any, usuarioid: number) {
+  darBajaUsuario(baja:any, usuarioid: number) {
     if (baja.confirmacion) {
       baja['baja'] = true;
       this._usuarioService.baja(baja, usuarioid).subscribe(
         resultado => {
-          this._msj.exitoso("El usuario a sido dado de baja correctamente.", [{name:""}]);
+          this._msj.exitoso("El usuario a sido dado de baja correctamente.");
           this.cambioPagina(this.configPaginacion.page);
-        }, error => { this._msj.cancelado(error, [{name:''}]); })
+        }, error => { this._msj.cancelado(error); })
     }
   }
 
-  darAltaUsuario(alta:any, usuarioid: number) {
+  /*darAltaUsuario(alta:any, usuarioid: number) {
     if (alta.confirmacion) {
       alta["baja"] = false;
       console.log(alta);
