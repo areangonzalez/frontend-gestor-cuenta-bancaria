@@ -56,7 +56,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
               case url.endsWith('/apimock/cuenta-saldos') && method === 'GET':
                 return getListaSeleccionPersona();
               case url.endsWith('/apimock/cuenta-saldos') && method === 'POST':
-                  return guardarListaSeleccionPersona();
+                return guardarListaSeleccionPersona();
+              case url.endsWith('/apimock/usuarios/crear-asignacion') && method === 'POST':
+                return agregarPermisosAusuario();
+              case url.match(/\/apimock\/usuarios\/listar-asignacion\/\d+$/) && method === 'GET':
+                return listarPermisosDeUsuario();
               case url.match(/\/apimock\/usuarios\/\d+$/) && method === 'PUT':
                 return actualizarUsuario();
               case url.match(/\/apimock\/usuarios\/\d+$/) && method === 'GET':
@@ -172,6 +176,42 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           }else {
             return error('No se puedo actualizar este usuario');
           }
+        }
+
+        function listarPermisosDeUsuario() {
+          let urlParts = request.url.split('/');
+          let id = parseInt(urlParts[urlParts.length - 1]);
+          let listaAsignacion = [];
+          if (localStorage.getItem("asignacion")) {
+            listaAsignacion = JSON.parse(localStorage.getItem("asignacion"));
+          }
+
+          if (listaAsignacion.length > 0) {
+            let asignacion = listaAsignacion.filter(asig => { return asig.usuarioid === id; });
+            /* let asignacionEncontrado = asignacion.length ? asignacion[0] : null; */
+
+            return ok(asignacion);
+          } else {
+            return ok([]);
+          }
+        }
+
+        function agregarPermisosAusuario() {
+          let newPermisos = request.body;
+          let listaAsignacion: any = [];
+          if (localStorage.getItem("asignacion")) {
+            listaAsignacion = JSON.parse(localStorage.getItem("asignacion"));
+          }
+
+          listaAsignacion.push({
+            usuarioid: newPermisos.usuarioid, programaid: newPermisos.programaid, rolid: newPermisos.rolid,
+            lista_permiso: newPermisos.lista_permiso,
+            //programa: nombrePorId(parseInt(newPermisos.programaid), programas)
+          });
+
+          localStorage.setItem("asignacion", JSON.stringify(listaAsignacion));
+
+          return of(new HttpResponse({ status: 200 }));
         }
 
         function login() {
@@ -468,6 +508,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           }
 
           return listadoOrigen;
+        }
+
+        function nombrePorId(id, lista){
+          for (let i = 0; i < lista.length; i++) {
+            if (lista[i].id == id){
+              return lista[i].nombre;
+            }
+          }
         }
       }
 }

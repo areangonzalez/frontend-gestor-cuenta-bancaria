@@ -1,0 +1,26 @@
+<div class="row m-1">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label for="permisos">Permiso/s:</label>
+      <ng-select [items]="listaPermisos"
+        bindLabel="name"
+        placeholder="Seleccione uno o varios permiso/s."
+        appendTo="body"
+        multiple="true"
+        [(ngModel)]="permisosSeleccionados">
+      </ng-select>
+    </div>
+  </div>
+  <div *ngIf="!baja" class="col-md-12">
+    <button type="button" class="btn btn-success btn-block" (click)="validarDatos()"><i class="far fa-save"></i> Guardar</button>
+  </div>
+  <div *ngIf="!baja" class="col-md-12 mt-1 mb-2">
+    <!-- <admin-programa-permiso-tabla [listaUsuarioConPermisos]="listaUsuarioConPermisos"></admin-programa-permiso-tabla> -->
+  </div>
+  <div *ngIf="baja" class="col-md-12">
+    <div class="alert alert-danger text-center" role="alert">
+      El usuario ha sido dado de baja. En estos momentos no se le pueden asignar Permisos.
+    </div>
+  </div>
+</div>
+
