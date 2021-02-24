@@ -114,13 +114,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           let page: number = parseInt(request.params.get("page"));
           let pageSize: number = 2;
 
-          let usuarios = { pagesize: pageSize, pages: 1, total_filtrado: 5, resultado: [
-            {id: 1, nombre: "Carlos", apellido: "Garcia", username: "cgarcia", created_at: "1560617468681", fecha_baja: "", baja: false, last_login_at: "2020-12-30",  direccion_ip: "192.10.10.8" },
-            {id: 2, nombre: "Maria", apellido: "Gonzalez", username: "mgonzalez", created_at: "2019-04-02", fecha_baja: "", baja: false, last_login_at: "2020-12-20", direccion_ip: "192.10.10.8" },
-            {id: 3, nombre: "Graciela", apellido: "Perez", username: "gperez", created_at: "2019-05-03", fecha_baja: "2020-12-05", baja: true, last_login_at: "2020-12-30", direccion_ip: "192.10.10.8" },
-            {id: 4, nombre: "Paola", apellido: "Rodriguez", username: "prodriguez", created_at: "2019-08-06", fecha_baja: "", baja: false, last_login_at: "2020-12-23", direccion_ip: "192.10.10.8" },
-            {id: 5, nombre: "Gustavo", apellido: "Acosta", username: "gacosta", created_at: "2019-11-21", fecha_baja: "", baja: false, last_login_at: "2020-12-29", direccion_ip: "192.10.10.8" },
-          ]};
+          if (localStorage.getItem("ususarios")) {
+            listaUsuarios = JSON.parse(localStorage.getItem("usuarios"));
+          }
+
+          let usuarios = { pagesize: pageSize, pages: 1, total_filtrado: 5, resultado: listaUsuarios};
 
           let listado = paginar(usuarios, usuarios.resultado, page, pageSize);
 
@@ -159,15 +157,27 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function bajaUsuario() {
           let urlParts = request.url.split('/');
           let id = parseInt(urlParts[urlParts.length - 1]);
-
-          let usuario = listaUsuarios.filter(usu => { return usu.id === id; });
-          let usuarioEncontrado = usuario.length ? usuario[0] : null;
-
+          let param = request.body;
           let f = new Date();
           let fechaHoy = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate();
 
-          usuarioEncontrado["fecha_baja"] = fechaHoy;
-          usuarioEncontrado["baja"] = true;
+          if (localStorage.getItem("ususarios")) {
+            listaUsuarios = JSON.parse(localStorage.getItem("usuarios"));
+          }
+
+          for (let i = 0; i < listaUsuarios.length; i++) {
+            if (listaUsuarios[i].id == id) {
+              if (param.baja) {
+                listaUsuarios[i]["fecha_baja"] = fechaHoy;
+                listaUsuarios[i]["baja"] = true;
+              }else {
+                listaUsuarios[i]["fecha_baja"] = "";
+                listaUsuarios[i]["baja"] = true;
+              }
+            }
+          }
+
+          localStorage.setItem("usuarios", JSON.stringify(listaUsuarios));
 
           return ok({id: id});
         }

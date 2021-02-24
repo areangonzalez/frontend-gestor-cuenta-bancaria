@@ -43,18 +43,18 @@ export class UsuariosComponent implements OnInit {
     }
   }
 
-  /*darAltaUsuario(alta:any, usuarioid: number) {
+  darAltaUsuario(alta:any, usuarioid: number) {
     if (alta.confirmacion) {
       alta["baja"] = false;
       console.log(alta);
 
       this._usuarioService.baja(alta, usuarioid).subscribe(
         resultado => {
-          this._msj.exitoso("El usuario a sido habilitado correctamente.", [{name:""}]);
+          this._msj.exitoso("El usuario a sido habilitado correctamente.");
           this.cambioPagina(this.configPaginacion.page);
-        }, error => { this._msj.cancelado(error, [{name:''}]); })
+        }, error => { this._msj.cancelado(error); })
     }
-  } */
+  }
   public infoAdicional(fecha_baja) {
     if (fecha_baja) {
       return "Fecha de Baja: " + fecha_baja;
