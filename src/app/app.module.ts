@@ -1,5 +1,4 @@
-import { DashboardComponent } from './shared/layout/dashboard/dashboard.component';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { registerLocaleData } from "@angular/common";
@@ -15,7 +14,7 @@ import { CustomDatepickerI18n, NgbDateARParserFormatter } from './core/helpers';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { SharedModule, BreadcrumbComponent, LoaderComponent, NotificacionComponent, SistemaComponent, LoginComponent } from './shared';
+import { SharedModule, BreadcrumbComponent, LoaderComponent, NotificacionComponent, DashboardComponent, SistemaComponent, LoginComponent } from './shared';
 
 import { JwtInterceptor, ErrorInterceptor } from './core/helpers';
 import { BreadcrumbsService } from './core/services';
@@ -37,11 +36,12 @@ registerLocaleData(es);
     SharedModule,
   ],
   providers: [
-    { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n },
-    { provide: NgbDateParserFormatter, useClass: NgbDateARParserFormatter },
-    { provide: LOCALE_ID, useValue: 'es-AR' },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: LOCALE_ID, useValue: 'es-AR' },
+    { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n },
+    { provide: NgbDateParserFormatter, useClass: NgbDateARParserFormatter },
+    Title,
     BreadcrumbsService,
     // fake-backend
     fakeBackendProvider

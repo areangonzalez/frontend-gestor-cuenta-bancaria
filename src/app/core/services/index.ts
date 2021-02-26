@@ -1,5 +1,6 @@
 export * from './loader.service';
 export * from './breadcrumbs.service';
+export * from './title.service';
 export * from './util.service';
 export * from './configuracion-para-paginar.service';
 export * from './notificacion.service';

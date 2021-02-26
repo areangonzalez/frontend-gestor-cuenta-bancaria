@@ -11,8 +11,8 @@ const routes = [
     canActivateChild: [AuthGuard],
     resolve: {
       personas: CuentaService, localidades: LocalidadService, tipoDocumentos: TipoDocumentoService, nacionalidades: NacionalidadService, estadoCiviles: EstadoCivilService, sexos: SexoService, generos: GeneroService
-    }
-    //data: { title: 'Datos de persona' }
+    },
+    data: { title: 'Tesorería' }
   }
 ];
 

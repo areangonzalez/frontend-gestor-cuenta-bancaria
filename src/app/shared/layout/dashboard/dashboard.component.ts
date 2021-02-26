@@ -18,13 +18,11 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private _router: Router,
-//    private _titleService: TitleService,
     private _auth: AutenticacionService,
     private _loaderService: LoaderService
   ) { }
 
   ngOnInit() {
-  //  this._titleService.init();
     this.setNombreUsuario();
   }
 

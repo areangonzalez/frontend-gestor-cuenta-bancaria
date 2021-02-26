@@ -7,7 +7,7 @@
     <td scope="row" class="text-center bg-warning" rowspan="1" colspan="2"><strong>El usuario no tiene programa/s y permiso/s</strong></td>
   </tbody>
   <tbody *ngIf="(listaUsuarioConPermisos.length > 0)">
-    <tr *ngFor="let item of listaProgramaPermisos">
+    <!-- <tr *ngFor="let item of listaProgramaPermisos">
       <td scope="row">{{item.programa}}</td>
       <td scope="row">
         <span *ngFor="let permiso of item.lista_permiso" class="badge badge-pill badge-info m-1">{{permiso}}</span>
@@ -15,6 +15,6 @@
       <td>
         <admin-confirmar-borrar-permiso-usuario-modal (confirmarBorrado)="borrarDato(item, $event)"></admin-confirmar-borrar-permiso-usuario-modal>
       </td>
-    </tr>
+    </tr> -->
   </tbody>
 </table>

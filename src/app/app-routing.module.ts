@@ -30,6 +30,7 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    data: { title: 'Iniciar Sesión' },
     loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
   },
   { path: '**', redirectTo: 'login', pathMatch: 'full' }
