@@ -113,6 +113,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           let params = request.params.get('global_param');
           let page: number = parseInt(request.params.get("page"));
           let pageSize: number = 2;
+          console.log(params);
 
           if (localStorage.getItem("ususarios")) {
             listaUsuarios = JSON.parse(localStorage.getItem("usuarios"));
@@ -160,6 +161,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           let param = request.body;
           let f = new Date();
           let fechaHoy = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate();
+          console.log(param);
 
           if (localStorage.getItem("ususarios")) {
             listaUsuarios = JSON.parse(localStorage.getItem("usuarios"));
@@ -172,7 +174,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 listaUsuarios[i]["baja"] = true;
               }else {
                 listaUsuarios[i]["fecha_baja"] = "";
-                listaUsuarios[i]["baja"] = true;
+                listaUsuarios[i]["baja"] = false;
               }
             }
           }

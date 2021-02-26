@@ -9,7 +9,6 @@ import { NotificacionService, UtilService } from '../../../core/services';
   styleUrls: ['./busqueda-avanzada.component.scss']
 })
 export class BusquedaAvanzadaComponent implements OnInit {
-  @Input("listaLocalidades") public listaLocalidades: any;
   @Output("obtenerBusqueda") public obtenerBusqueda = new EventEmitter();
   public btnSeleccion: boolean = false;
   public mostrar: boolean = false;
