@@ -1,7 +1,8 @@
 export class Usuario {
-  id: number;
-  usuario: string;
-  nombre: string;
-  apellido: string;
-  token: string;
+  username: string;
+  access_token: string;
+  rol: string;
+  nombre?: string;
+  apellido?: string;
+  email?: string;
 }

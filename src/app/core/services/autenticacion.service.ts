@@ -2,11 +2,20 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { JwtService } from "./jwt.service";
 import { ApiService } from './api.service';
+import { Usuario } from './../models/usuario';
 
 @Injectable({ providedIn: 'root' })
 export class AutenticacionService {
 
     constructor( private _http: ApiService, private _jwtService: JwtService ) { }
+
+  /**
+   * verifico si esta logueado el usuario
+   */
+  public get loggedIn(): Usuario {
+    let user: Usuario = this._jwtService.getToken();
+    return user;
+  }
 
     login(params) {
       return this._http.post('/usuarios/login', { username: params.username, password_hash: params.password })
@@ -27,17 +36,6 @@ export class AutenticacionService {
     logout() {
       // remove user from local storage to log user out
       this._jwtService.destroyToken();
-    }
-    /**
-     * Verifica si esta activo el token del usuario
-     */
-    loggedIn() {
-      let userLogin = this._jwtService.getToken();
-      if(userLogin && userLogin.datosToken) {
-        return true;
-      }else{
-        return false;
-      }
     }
     /**
      * Consigue el nombre del usuario

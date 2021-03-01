@@ -1,4 +1,3 @@
-import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -47,8 +46,16 @@ export class LoginComponent implements OnInit {
   }
 
   estaLogueado() {
-    if (this._autenticacion.loggedIn()) {
+    if (this._autenticacion.loggedIn) {
       this._router.navigate(['/tesoreria']);
+    }
+  }
+
+  redirigirUsuario(userRol: string) {
+    if ( userRol === 'usuario' || userRol === 'admin' ) {
+      this._router.navigate(['./inicio']);
+    }else if ( userRol === 'usuario' || userRol === 'admin' ) {
+      this._router.navigate(['./admin']);
     }
   }
 
