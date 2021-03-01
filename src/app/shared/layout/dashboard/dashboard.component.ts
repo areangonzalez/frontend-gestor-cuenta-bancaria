@@ -48,11 +48,11 @@ export class DashboardComponent implements OnInit {
   }
 
   setNombreUsuario() {
-    /* if (this._auth.loggedIn.apellido && this._auth.loggedIn.nombre && this._auth.loggedIn.rol !== 'admin') {
+    if (this._auth.loggedIn.apellido && this._auth.loggedIn.nombre && this._auth.loggedIn.rol !== 'admin') {
       this.nombreUsuario = this._auth.loggedIn.apellido + ", " + this._auth.loggedIn.nombre;
-    }else{ */
+    }else{
       this.nombreUsuario = "Admin";
-    // }
+    }
   }
 
 }
