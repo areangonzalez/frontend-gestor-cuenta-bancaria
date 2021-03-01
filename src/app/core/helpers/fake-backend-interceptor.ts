@@ -246,15 +246,26 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function login() {
           let datos = body;
+          let respuesta: any = {};
           if ( datos.username === 'admin' && datos.password_hash === 'admins' ) {
-            let respuesta = {
-              username: 'Admin', access_token: 'fake-jwt-token'
+            respuesta = {
+              username: 'Admin', access_token: 'fake-jwt-token', rol: 'admin'
             };
 
-            return ok(respuesta);
+          }else if ( datos.username === 'soporte' && datos.password_hash === 'soportes' ){
+            respuesta = {
+              username: 'soporte', access_token: 'fake-jwt-token', rol: 'soporte',
+              nombre: 'Pedro', apellido: 'Alvarez'
+            };
+          }else if ( datos.username === 'usuario' && datos.password_hash === 'usuarios' ) {
+            respuesta = {
+              username: 'usuario', access_token: 'fake-jwt-token', rol: 'usuario',
+              nombre: 'Carla', apellido: 'Benitez'
+            };
           }else{
             return error("datos mal ingresado");
           }
+          return ok(respuesta);
         }
         /*** CREAR PERSONA ***/
         function crearPersona() {
