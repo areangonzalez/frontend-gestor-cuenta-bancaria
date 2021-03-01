@@ -12,10 +12,10 @@ export class CabeceraComponent implements OnInit {
   public mostrar: boolean = false;
   public nombreUsuario: string = '';
 
-  constructor( private _router: Router, private _loading: LoaderService, private _autenticacion: AutenticacionService ) { }
+  constructor( private _router: Router,  private _auth: AutenticacionService, private _loading: LoaderService, private _autenticacion: AutenticacionService ) { }
 
   ngOnInit(): void {
-
+    this.setNombreUsuario();
   }
 
   cerrarSesion() {
@@ -37,6 +37,14 @@ export class CabeceraComponent implements OnInit {
 
   estoyLogueado(){
     return true;
+  }
+
+  setNombreUsuario() {
+    if (this._auth.loggedIn.apellido && this._auth.loggedIn.nombre && this._auth.loggedIn.rol !== 'admin') {
+      this.nombreUsuario = this._auth.loggedIn.apellido + ", " + this._auth.loggedIn.nombre;
+    }else{
+      this.nombreUsuario = "Admin";
+    }
   }
 
 }

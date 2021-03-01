@@ -33,27 +33,25 @@ export class LoginComponent implements OnInit {
   ingresar() {
     this._autenticacion.login((this.loginForm.value))
     .pipe(first())
-    .subscribe({
-      next: () => {
-        this.huboError = false;
-        this._router.navigate([this.returnUrl]);
+    .subscribe(
+      user => {
+        this.redirigirUsuario(user.rol);
       },
-      error: error => {
+      error => {
         this.huboError = true;
         this.mensaje = "Por favor verifique sus datos.";
-      }
-    });
+      });
   }
 
   estaLogueado() {
     if (this._autenticacion.loggedIn) {
-      this._router.navigate(['/tesoreria']);
+      this._autenticacion.loggedIn.rol;
     }
   }
 
   redirigirUsuario(userRol: string) {
     if ( userRol === 'usuario' || userRol === 'admin' ) {
-      this._router.navigate(['./inicio']);
+      this._router.navigate(['./tesoreria']);
     }else if ( userRol === 'usuario' || userRol === 'admin' ) {
       this._router.navigate(['./admin']);
     }

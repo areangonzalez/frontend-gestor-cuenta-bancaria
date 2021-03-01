@@ -27,6 +27,7 @@
     "@ng-select/ng-select": "^6.1.0",
     "angular-epic-spinners": "^2.0.0",
     "bootstrap": "^4.5.2",
+    "bootstrap-scss": "^4.6.0",
     "ci": "^1.0.0",
     "file-saver": "^2.0.2",
     "font-awesome": "^4.7.0",

@@ -19,15 +19,12 @@ export class AutenticacionService {
 
     login(params) {
       return this._http.post('/usuarios/login', { username: params.username, password_hash: params.password })
-      .pipe(map((res: any) => {
+      .pipe(map(user => {
         // login successful if there's a jwt token in the response
-        if (res && res.access_token) {
-            let data = { username: '', token:'' };
-            data.username = res.username;
-            data.token = res.access_token;
-            this._jwtService.saveToken(data);
-            return true;
+        if (user && user.access_token) {
+            this._jwtService.saveToken(user);
           }
+          return user;
       }));
     }
     /**
@@ -42,7 +39,6 @@ export class AutenticacionService {
      */
     getUserName() {
       let userLogin = this._jwtService.getToken();
-
       return userLogin.datosToken.username;
     }
 }
