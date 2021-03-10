@@ -6,7 +6,7 @@ import es from "@angular/common/locales/es";
 
 import { RadarSpinnerModule } from "angular-epic-spinners";
 
-import { fakeBackendProvider } from "./core/helpers";
+// import { fakeBackendProvider } from "./core/helpers";
 
 import { NgbModule, NgbDatepickerI18n, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { CustomDatepickerI18n, NgbDateARParserFormatter } from './core/helpers';
@@ -44,7 +44,7 @@ registerLocaleData(es);
     Title,
     BreadcrumbsService,
     // fake-backend
-    fakeBackendProvider
+    // fakeBackendProvider
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
