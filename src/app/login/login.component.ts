@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     // Guardo la ultima ruta a la que se querido acceder
-    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/tesoreria';
+    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/cuentas';
   }
 
   ingresar() {
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
 
   redirigirUsuario(userRol: string) {
     if ( userRol === 'usuario' || userRol === 'admin' ) {
-      this._router.navigate(['./tesoreria']);
+      this._router.navigate(['./cuentas']);
     }else if ( userRol === 'soporte' ) {
       this._router.navigate(['./admin']);
     }

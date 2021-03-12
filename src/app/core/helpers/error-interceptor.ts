@@ -21,12 +21,12 @@ export class ErrorInterceptor implements HttpInterceptor {
             if (err.status === 401) {
                 // auto logout if 401 response returned from api
                 this._auth.logout();
-                //location.reload(true);
+                location.reload(true);
             }
             if (err.status === 403) {
               // auto logout if 401 response returned from api
-              let mensaje = "No tiene permitido ejecutar esta accion";
-              return throwError(mensaje);
+              const error = err.message || err.error.message || err.statusText;
+              return throwError(error);
             }
             if (err.status === 400) {
               const error = err.message || err.error.message || err.statusText;

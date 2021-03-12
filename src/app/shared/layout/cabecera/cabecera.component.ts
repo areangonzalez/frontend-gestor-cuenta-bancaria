@@ -11,6 +11,7 @@ export class CabeceraComponent implements OnInit {
   public isCollapsed = true;
   public mostrar: boolean = false;
   public nombreUsuario: string = '';
+  public isAdmin: boolean = false;
 
   constructor( private _router: Router,  private _auth: AutenticacionService, private _loading: LoaderService, private _autenticacion: AutenticacionService ) { }
 
@@ -44,6 +45,7 @@ export class CabeceraComponent implements OnInit {
       this.nombreUsuario = this._auth.loggedIn.apellido + ", " + this._auth.loggedIn.nombre;
     }else{
       this.nombreUsuario = "Admin";
+      this.isAdmin = true;
     }
   }
 

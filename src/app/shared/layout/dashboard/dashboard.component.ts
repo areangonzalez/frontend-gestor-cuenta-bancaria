@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   public isCollapsed = true;
   public mostrar: boolean = false;
   public nombreUsuario: string = "";
+  public isAdmin: boolean = false;
 
   constructor(
     private _router: Router,
@@ -52,6 +53,7 @@ export class DashboardComponent implements OnInit {
       this.nombreUsuario = this._auth.loggedIn.apellido + ", " + this._auth.loggedIn.nombre;
     }else{
       this.nombreUsuario = "Admin";
+      this.isAdmin = true;
     }
   }
 

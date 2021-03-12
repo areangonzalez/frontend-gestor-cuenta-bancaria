@@ -10,11 +10,12 @@
     <span class="texto-ds" >Gestor Cuenta Bancaria</span>
     <ul class="navbar-nav mr-auto ml-auto" *ngIf="estoyLogueado()">
       <li class="nav-item" [routerLinkActive]="['active']" (click)="isCollapsed = !isCollapsed;">
-        <a class="nav-link" [routerLink]="['/tesoreria']" ><i class="fas fa-coins"></i> Tesoreía</a>
-      </li>
-      <li class="nav-item" [routerLinkActive]="['active']" (click)="isCollapsed = !isCollapsed;">
         <a class="nav-link" [routerLink]="['/cuentas']" ><i class="fas fa-university"></i> Cuentas</a>
       </li>
+      <li class="nav-item" [routerLinkActive]="['active']" (click)="isCollapsed = !isCollapsed;">
+        <a class="nav-link" [routerLink]="['/tesoreria']" ><i class="fas fa-coins"></i> Tesoreía</a>
+      </li>
+      <li *ngIf="isAdmin" class="" ><a class="nav-link"  [routerLink]="['/admin/gestor-usuarios']" ><i class="fas fa-users-cog"></i>Gestionar usuario</a></li>
     </ul>
     <ul class="navbar-nav flex-row ml-md-auto d-md-flex" *ngIf="estoyLogueado()">
       <li class="" ><a class="nav-name-user"><i class="fas fa-user-tie"></i> {{nombreUsuario}}</a></li>
