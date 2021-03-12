@@ -19,7 +19,7 @@ const routes: Routes = [
         data: { breadcrumb: 'Cuentas', title: 'Cuentas', rol: ['usuario', 'admin'] },
         loadChildren: () => import('./cuenta/cuenta.module').then(m => m.CuentaModule)
       },
-      { path: '', redirectTo: 'tesoreria', pathMatch: 'full' }
+      { path: '', redirectTo: 'cuentas', pathMatch: 'full' }
     ]
   },
   {
