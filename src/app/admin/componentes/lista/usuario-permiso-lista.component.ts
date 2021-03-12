@@ -19,6 +19,8 @@ export class UsuarioPermisoListaComponent implements OnInit {
    * @param confirmacion confirmacion de parte del usuario para dar o no acceso al borrado
    */
   borrarDato(datos: any, confirmacion: boolean) {
+    console.log(datos);
+
     if (confirmacion) {
       let idUsuario = datos.usuarioid;
       this._usuarioService.borrarAsignacion(datos).subscribe(

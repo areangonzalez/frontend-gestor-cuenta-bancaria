@@ -213,16 +213,13 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           let id = parseInt(urlParts[urlParts.length - 1]);
           let listaAsignacion = [];
           if (localStorage.getItem("asignacion")) {
-            listaAsignacion = JSON.parse(localStorage.getItem("asignacion"));
+            listaAsignacion = (JSON.parse(localStorage.getItem("asignacion")) !== undefined) ? JSON.parse(localStorage.getItem("asignacion")) : undefined;
           }
-
-          if (listaAsignacion.length > 0) {
-            let asignacion = listaAsignacion.filter(asig => { return asig.usuarioid === id; });
-            /* let asignacionEncontrado = asignacion.length ? asignacion[0] : null; */
-
-            return ok(asignacion);
+          console.log(listaAsignacion)
+          if (listaAsignacion !== undefined) {
+            return ok(listaAsignacion);
           } else {
-            return ok([]);
+            return ok({usuarioid: id, lista_permiso: []});
           }
         }
 
@@ -232,12 +229,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           if (localStorage.getItem("asignacion")) {
             listaAsignacion = JSON.parse(localStorage.getItem("asignacion"));
           }
-
-          listaAsignacion.push({
+          listaAsignacion = {
             usuarioid: newPermisos.usuarioid, programaid: newPermisos.programaid, rolid: newPermisos.rolid,
-            lista_permiso: newPermisos.lista_permiso,
-            //programa: nombrePorId(parseInt(newPermisos.programaid), programas)
-          });
+            lista_permiso: newPermisos.lista_permiso
+          };
 
           localStorage.setItem("asignacion", JSON.stringify(listaAsignacion));
 

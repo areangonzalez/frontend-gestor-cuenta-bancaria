@@ -10,7 +10,7 @@ export class AdministrarRolPermisoComponent implements OnInit {
   @Input("idUsuario") private idUsuario: number;
   @Input("listaPermisos") public listaPermisos: any;
   @Input("baja") public baja: boolean;
-  public listaUsuarioConPermisos: any = [];
+  public listaUsuarioConPermisos: any = {lista_permiso: []};
   public permisosSeleccionados: any = [];
 
   constructor(private _msj: NotificacionService, private _usuarioService: UsuarioService) {}
