@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, PRIMARY_OUTLET, Router } from '@angular/router';
 import { IBreadcrumb } from 'src/app/core/models';
-import { BreadcrumbsService } from 'src/app/core/services';
+import { BreadcrumbsService, AutenticacionService } from 'src/app/core/services';
 
 @Component({
   selector: 'breadcrumb',
@@ -21,7 +21,7 @@ export class BreadcrumbComponent implements OnInit {
   public addClass: string;
 
 
-  public constructor(private breadcrumbService: BreadcrumbsService, private activatedRoute: ActivatedRoute, private router: Router) {
+  public constructor(private breadcrumbService: BreadcrumbsService, private activatedRoute: ActivatedRoute, private router: Router, private _auth: AutenticacionService) {
     breadcrumbService.get().subscribe((breadcrumbs: IBreadcrumb[]) => {
       this.breadcrumbs = breadcrumbs as IBreadcrumb[];
     });
@@ -68,8 +68,6 @@ export class BreadcrumbComponent implements OnInit {
           const hasDynamicBreadcrumb: boolean = route.snapshot.params.hasOwnProperty(ROUTE_PARAM_BREADCRUMB);
           // console.log("hasDynamicBreadcrumb: ", hasDynamicBreadcrumb);
           if (hasData || hasDynamicBreadcrumb) {
-
-
             /*
              Verify the custom data property "breadcrumb"
              is specified on the route or in its parameters.
@@ -91,7 +89,6 @@ export class BreadcrumbComponent implements OnInit {
             if (routeURL.length === 0) {
               route.snapshot.params = {};
             }
-
 
             // Add breadcrumb
             let breadcrumb: IBreadcrumb = {
@@ -120,6 +117,6 @@ export class BreadcrumbComponent implements OnInit {
   }// fin ngOnInit
 
   estoyLogueado(){
-    return (localStorage.getItem('token-pril')) ? true : false;
+    return (this._auth.loggedIn) ? true : false;
   }
 }
