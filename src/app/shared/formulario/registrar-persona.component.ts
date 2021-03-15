@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { configurarListas } from 'src/app/core/models';
@@ -18,7 +19,8 @@ export class RegistrarPersonaComponent implements OnInit {
   public submitted: boolean = false;
   public cuil_medio: string = '';
 
-  constructor(private _fb: FormBuilder, private _util: UtilService, private _personaService: PersonaService, private _msj: NotificacionService) {
+  constructor(private _fb: FormBuilder, private _util: UtilService, private _personaService: PersonaService, private _msj: NotificacionService, private _configNgbDate: NgbDatepickerConfig) {
+    _configNgbDate.minDate = {year: 1910, month: 1, day: 1};
     this.personaForm = _fb.group({
       id: 0,
       tipo_documentoid: ['', [Validators.required]],
