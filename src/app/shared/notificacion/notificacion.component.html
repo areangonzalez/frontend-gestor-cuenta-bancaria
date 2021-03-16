@@ -8,13 +8,13 @@
       <div class="d-flex justify-content-start align-items-center">
         <span class="{{cssIconColor(tipo)}}" style="font-size: 3em;"><i class="{{iconClass(tipo)}}"></i></span>
         <div *ngIf="(msjEsCadena(mensaje))" class="ml-3" >{{mensaje}}</div>
-        <div *ngIf="(tipo === 5)" class="ml-3 pt-3">
+        <!-- <div *ngIf="(tipo === 5)" class="ml-3 pt-3">
           <ul *ngFor="let msj of mensaje">
             <li>{{msj.persona}}</li>
             <li *ngIf="(msj.calle !== undefined)">{{msj.calle}}</li>
             <li *ngIf="(msj.altura !== undefined)">{{msj.altura}}</li>
           </ul>
-        </div>
+        </div> -->
       </div>
       <div *ngIf="(tipo === 6 && existen !== false)" class="d-flex justify-content-start align-items-center bg-warning mod-border-rounded" >
         <span style="font-size: 3em; color:yellow;"><i class="fas fa-exclamation-triangle"></i></span>
