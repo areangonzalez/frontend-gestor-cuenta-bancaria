@@ -25,7 +25,7 @@ export class NotificacionService {
     exitoso(mensaje: string){
         this.alert(AlertType.Exitoso, mensaje);
     }
-    cancelado(mensaje: string) {
+    cancelado(mensaje: any) {
         this.alert(AlertType.Cancelado, mensaje);
     }
     confirmar(mensaje: string){
