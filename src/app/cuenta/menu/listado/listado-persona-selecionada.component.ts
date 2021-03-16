@@ -90,7 +90,7 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
         this.actualizarListaSeleccion(false);
 
         /* let msjObject = JSON.parse(error); */
-        this._msj.cancelado(error);
+        this._msj.erroresMultiples(error);
       });
     }
   }
