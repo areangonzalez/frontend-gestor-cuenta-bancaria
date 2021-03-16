@@ -29,7 +29,6 @@ export class ErrorInterceptor implements HttpInterceptor {
               return throwError(error);
             }
             if (err.status === 400) {
-              console.log(err);
               const error = err.error.message;
               return throwError(error);
             }else {
