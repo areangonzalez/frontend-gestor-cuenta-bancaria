@@ -29,7 +29,7 @@ export class ErrorInterceptor implements HttpInterceptor {
               return throwError(error);
             }
             if (err.status === 400) {
-              const error = err.message || this.convertArray(err.error.message) || err.statusText;
+              const error = this.convertArray(err.error.message) || err.statusText;
               return throwError(error);
             }else {
               const error = err.message || err.error.message || err.statusText;
