@@ -29,7 +29,7 @@ export class ErrorInterceptor implements HttpInterceptor {
               return throwError(error);
             }
             if (err.status === 400) {
-              const error = err.error.message;
+              const error = err.message || this.convertArray(err.error.message) || err.statusText;
               return throwError(error);
             }else {
               const error = err.message || err.error.message || err.statusText;
@@ -41,5 +41,21 @@ export class ErrorInterceptor implements HttpInterceptor {
             this._loading.hide();
           }
         }))
+    }
+
+
+    convertArray(mensaje: any) {
+      try {
+        const error = JSON.parse(mensaje);
+
+        return error;
+      }catch {
+        return mensaje
+      }
+
+
+      /* if (error.error.message typeof Array) {
+
+      } */
     }
 }

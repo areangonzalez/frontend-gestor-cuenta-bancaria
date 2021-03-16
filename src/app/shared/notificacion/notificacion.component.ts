@@ -36,8 +36,6 @@ export class NotificacionComponent implements OnInit {
               this.tipo = alert.tipo;
               if (this.tipo === 6) {
                 this.crearNotificacion(alert.mensaje);
-              } if (this.tipo === 5) {
-                this.notificacionCuentaSaldo(alert.mensaje);
               }else{
                 this.mensaje = alert.mensaje;
               }
@@ -60,10 +58,6 @@ export class NotificacionComponent implements OnInit {
 
   msjEsCadena(mensaje:any) {
     return (typeof mensaje === 'string');
-  }
-
-  notificacionCuentaSaldo(mensaje: any) {
-    return JSON.parse(mensaje);
   }
 
   ngOnDestroy() {
