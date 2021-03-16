@@ -26,12 +26,11 @@ export class ErrorInterceptor implements HttpInterceptor {
             if (err.status === 403) {
               // auto logout if 401 response returned from api
               const error = err.message || err.error.message || err.statusText;
-              console.log(error);
-
               return throwError(error);
             }
             if (err.status === 400) {
               const error = err.message || err.error.message || err.statusText;
+              console.log(error);
               return throwError(error);
             }else {
               const error = err.message || err.error.message || err.statusText;
