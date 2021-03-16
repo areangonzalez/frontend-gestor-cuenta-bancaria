@@ -91,7 +91,7 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
         console.log(error);
 
         // let msjObject = JSON.parse(error);
-        this._msj.erroresMultiples(error);
+        /* this._msj.erroresMultiples(error); */
       });
     }
   }
