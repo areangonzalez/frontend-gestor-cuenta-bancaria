@@ -114,7 +114,7 @@ export class NotificacionComponent implements OnInit {
           case AlertType.Confirmar:
             return 'text-success';
           case AlertType.ErrorMultiple:
-            return 'text-success';
+            return 'text-danger';
           case AlertType.ImportacionExitoso:
             return 'text-success';
       }

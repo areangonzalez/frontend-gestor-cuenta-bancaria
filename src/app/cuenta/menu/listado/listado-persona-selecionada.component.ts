@@ -88,6 +88,8 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
           }, 800);
       }, error => {
         this.actualizarListaSeleccion(false);
+        console.log(error);
+
         let msjObject = JSON.parse(error);
         this._msj.erroresMultiples(msjObject);
       });

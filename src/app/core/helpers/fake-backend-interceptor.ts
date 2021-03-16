@@ -491,7 +491,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             cuenta_saldo: "8180SANDOVAL                      LUISA ESTER     0010000000000620239000A26021950FSNACIONES UNIDAS    01500    CIPOLLETTI                    08324162                              0082706202390820000                  02082020251            08324                         000000000                       "
           };
 
-          return ok(respuesta);
+          //return ok(respuesta);
+          return error('[{"persona":"Ana Paula Díaz cuil:20201391999","altura":"El campo número se encuentra vacío"}]');
+
         }
 
         function exportacionInterbanking() {
