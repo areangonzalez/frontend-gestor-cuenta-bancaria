@@ -69,7 +69,10 @@ export class DatosPersonaComponent implements OnInit {
       respuesta => {
         this._msj.exitoso("Se ha guardado el usuario con exito.");
         this.cancelarForm.emit(false);
-      }, error => { this._msj.cancelado(error); }
+      }, error => {
+        console.log(error);
+        this._msj.erroresAdmin(error);
+      }
     )
   }
   /**

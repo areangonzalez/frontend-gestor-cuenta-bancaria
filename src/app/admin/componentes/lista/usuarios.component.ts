@@ -46,8 +46,6 @@ export class UsuariosComponent implements OnInit {
   darAltaUsuario(alta:any, usuarioid: number) {
     if (alta.confirmacion) {
       alta["baja"] = false;
-      console.log(alta);
-
       this._usuarioService.baja(alta, usuarioid).subscribe(
         resultado => {
           this._msj.exitoso("El usuario a sido habilitado correctamente.");

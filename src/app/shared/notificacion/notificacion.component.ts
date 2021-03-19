@@ -30,12 +30,14 @@ export class NotificacionComponent implements OnInit {
         .subscribe((alert: Alert) => {
             // clear alerts when an empty alert is received
             if (!alert) {
-              this.mensaje = false;
+              this.mensaje = undefined;
                 return;
             }else{
               this.tipo = alert.tipo;
               if (this.tipo === 6) {
                 this.crearNotificacion(alert.mensaje);
+              } if (this.tipo === 7) {
+                this.crearNotificacionAdmin(alert.mensaje);
               }else{
                 this.mensaje = alert.mensaje;
               }
@@ -54,6 +56,27 @@ export class NotificacionComponent implements OnInit {
     this.mensaje = "Se han importado " + arrMsj["creadas"] + " cuenta/s en el sistema.";
     this.existen = (arrMsj["existen"]) ? "Se han encontrado " + arrMsj["existen"] + " cuenta/s que ya existen dentro del sistema.": false;
     this.errors = arrMsj.errors;
+  }
+
+  crearNotificacionAdmin(objMsj: any) {
+    this.mensaje = '';
+    if (this.msjEsCadena(objMsj)){
+      this.mensaje = objMsj;
+    }else{
+      for (let i = 0; i < objMsj.length; i++) {
+        for (const key in objMsj[i]) {
+          this.mensaje += (this.mensaje != '') ? ' - ' : '';
+          if (key != undefined) {
+            let msj = '';
+            for (let j = 0; j < objMsj[i][key].length; j++) {
+              msj += (msj != undefined && msj != '') ? ', ' : '';
+              msj += objMsj[i][key][j];
+            }
+            this.mensaje += msj;
+          }
+        }
+      }
+    }
   }
 
   msjEsCadena(mensaje:any) {
@@ -80,7 +103,8 @@ export class NotificacionComponent implements OnInit {
           [AlertType.Info]: 'alert alert-info',
           [AlertType.Warning]: 'alert alert-warning',
           [AlertType.ErrorMultiple]: 'alert alert-danger',
-          [AlertType.ImportacionExitoso]: 'alert alert-success'
+          [AlertType.ImportacionExitoso]: 'alert alert-success',
+          [AlertType.ErrorAdmin]: 'alert alert-danger'
       }
 
       classes.push(alertTypeClass[tipo]);
@@ -101,6 +125,8 @@ export class NotificacionComponent implements OnInit {
             return 'far fa-times-circle';
           case AlertType.ImportacionExitoso:
             return 'far fa-check-circle';
+          case AlertType.ErrorAdmin:
+            return 'far fa-times-circle';
       }
   }
 
@@ -117,6 +143,8 @@ export class NotificacionComponent implements OnInit {
             return 'text-danger';
           case AlertType.ImportacionExitoso:
             return 'text-success';
+          case AlertType.ErrorAdmin:
+            return 'text-danger';
       }
   }
 
@@ -135,6 +163,8 @@ export class NotificacionComponent implements OnInit {
             return 'Cancelado';
           case AlertType.ImportacionExitoso:
             return 'Se a importado con exito';
+          case AlertType.ErrorAdmin:
+            return 'Cancelado';
       }
   }
 

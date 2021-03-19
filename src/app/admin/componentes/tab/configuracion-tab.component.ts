@@ -70,7 +70,7 @@ export class ConfiguracionTabComponent implements OnInit {
         this._msj.exitoso("Los datos del usuario han sido actualizados correctamente.");
         this.usuario.patchValue({"password": ""});
         this.usuario.patchValue({"confirmPass": ""});
-      }, error => { this._msj.cancelado(error); }
+      }, error => { this._msj.erroresAdmin(error); }
     );
   }
 }

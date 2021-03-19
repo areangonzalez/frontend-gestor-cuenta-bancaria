@@ -7,7 +7,7 @@ import { NotificacionService, UsuarioService } from './../../../core/services';
   selector: 'admin-configurar-usuario-content',
   template: `
     <div class="modal-header">
-      <h4 class="modal-title">Agregar Usuario</h4>
+      <h4 class="modal-title">Configurar Usuario</h4>
       <button type="button" class="close" aria-label="Close" (click)="cancelar()">
         <span aria-hidden="true">&times;</span>
       </button>

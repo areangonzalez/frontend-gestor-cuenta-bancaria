@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpEventType } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap, finalize } from 'rxjs/operators';
-import { AutenticacionService, JwtService, LoaderService } from '../services';
+import { AutenticacionService, NotificacionService, LoaderService } from '../services';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
   private service_count = 0;
-  constructor(private _auth: AutenticacionService, private _loading: LoaderService, private _router: Router, private _jwtService: JwtService) { }
+  constructor(private _auth: AutenticacionService, private _loading: LoaderService, private _router: Router, private _msj: NotificacionService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       this._loading.show();
@@ -25,10 +25,13 @@ export class ErrorInterceptor implements HttpInterceptor {
             }
             if (err.status === 403) {
               // auto logout if 401 response returned from api
-              const error = err.message || err.error.message || err.statusText;
+              const error = err.error.message || err.statusText;
+              this._msj.cancelado(error);
               return throwError(error);
             }
             if (err.status === 400) {
+              console.log(err);
+
               const error = this.convertArray(err.error.message) || err.statusText;
               return throwError(error);
             }else {
@@ -52,10 +55,5 @@ export class ErrorInterceptor implements HttpInterceptor {
       }catch {
         return mensaje
       }
-
-
-      /* if (error.error.message typeof Array) {
-
-      } */
     }
 }

@@ -42,4 +42,8 @@ export class NotificacionService {
     importacionExitoso(arrMsj: any){
       this.alert(AlertType.ImportacionExitoso, arrMsj);
     }
+
+    erroresAdmin(objMsj: any) {
+      this.alert(AlertType.ErrorAdmin, objMsj);
+    }
 }

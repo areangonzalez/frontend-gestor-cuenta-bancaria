@@ -10,5 +10,6 @@ export enum AlertType {
   Info,
   Warning,
   ErrorMultiple,
-  ImportacionExitoso
+  ImportacionExitoso,
+  ErrorAdmin
 }

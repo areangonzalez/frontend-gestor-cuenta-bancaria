@@ -148,11 +148,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function crearUsuario() {
           let usuario = body;
 
-          if (usuario["password"] === usuario["confirmPass"]) {
+          /* if (usuario["password"] === usuario["confirmPass"]) {
             return ok();
-          } else {
-            return error('No se puede registrar este usuario');
-          }
+          } else { */
+            return error("{\"email\":[\"Esta direcci\\u00f3n de correo electr\\u00f3nico ya ha sido utilizada\"]}");
+          /* } */
         }
 
         function bajaUsuario() {
