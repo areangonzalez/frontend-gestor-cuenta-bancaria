@@ -11,6 +11,7 @@
         <div *ngIf="(tipo === 5)" class="ml-3 pt-3">
           <ul *ngFor="let msj of mensaje">
             <li>{{msj.persona}}</li>
+            <li *ngIf="(msj.direccion !== undefined)">{{msj.direccion}}</li>
             <li *ngIf="(msj.calle !== undefined)">{{msj.calle}}</li>
             <li *ngIf="(msj.altura !== undefined)">{{msj.altura}}</li>
           </ul>
