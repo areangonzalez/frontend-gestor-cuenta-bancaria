@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://api.gcb.local'
+  apiUrl: 'https://gestor-bancario-api.rionegro.com.ar'
 };
