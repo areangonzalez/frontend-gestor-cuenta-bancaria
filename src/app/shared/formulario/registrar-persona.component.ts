@@ -96,6 +96,7 @@ export class RegistrarPersonaComponent implements OnInit {
     }else{
       this.cuil_medio = nroDocumento;
     }
+    this.armarCuil();
   }
   /**
    * @function armarCuil funcion que arma el cuil uniendo las variables de los formularios

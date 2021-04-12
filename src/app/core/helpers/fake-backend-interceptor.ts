@@ -265,21 +265,30 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         /*** CREAR PERSONA ***/
         function crearPersona() {
           let persona = body;
-          let validar = false;
+          let validar = true;
           let fechaNacimiento = persona['fecha_nacimiento'].split('-');
           // verifico la fecha de nacimiento si es valida
           let personaEsMayor = (2020 - parseInt(fechaNacimiento[0]));
-          console.log(personaEsMayor);
-
+          let errorMsj = '';
           // valido si la persona es mayor
-          if (personaEsMayor > 18) {
-            validar = true;
+          if (personaEsMayor < 18) {
+            errorMsj = "La fecha de nacimiento no es correcta";
+            validar = false;
           }
+
+          let personaIgual = personas.resultado.filter(per => { return per.cuil === persona.cuil; })
+          let personaEncontrada = personaIgual.length ? personaIgual[0] : null;
+          console.log(personaEncontrada.cuil);
+          if (personaEncontrada) {
+            validar = false;
+            errorMsj = "Ya existe la persona";
+          }
+
 
           if (validar) {
             return ok({ id: 1 });
           } else {
-            return error("La fecha de nacimiento no es correcta");
+            return error(errorMsj);
           }
         }
 
@@ -491,8 +500,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             cuenta_saldo: "8180SANDOVAL                      LUISA ESTER     0010000000000620239000A26021950FSNACIONES UNIDAS    01500    CIPOLLETTI                    08324162                              0082706202390820000                  02082020251            08324                         000000000                       "
           };
 
-          //return ok(respuesta);
-          return error('[{"persona":"Ana Paula Díaz cuil:20201391999","altura":"El campo número se encuentra vacío"}]');
+          return ok(respuesta);
+          //return error('[{"persona":"Ana Paula Díaz cuil:20201391999","altura":"El campo número se encuentra vacío"}]');
 
         }
 
