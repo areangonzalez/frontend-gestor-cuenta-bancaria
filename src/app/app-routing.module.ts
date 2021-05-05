@@ -4,6 +4,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { SistemaComponent, LoginComponent, DashboardComponent } from './shared';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: '',
     component: SistemaComponent,
