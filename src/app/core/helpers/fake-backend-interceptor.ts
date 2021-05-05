@@ -375,9 +375,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function importarBps() {
 
           let msjExitoso = {
-            creadas: 59,
-            existen: 5,
-            errors: [
+            creadas: 5,
+            existen: 0,
+            /* errors: [
                 "No se encuentra registrada la persona ROSA DEL CARMEN CHANDIA cuil:27120571929",
                 "No se encuentra registrada la persona CARLOS FRANCISC SINIGUAL cuil:20200486812",
                 "No se encuentra registrada la persona MIGUEL ANGEL ACU\\D1A cuil:08231681635",
@@ -386,7 +386,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 "No se encuentra registrada la persona CARLOS FRANCISC SINIGUAL cuil:20200486812",
                 "No se encuentra registrada la persona MIGUEL ANGEL ACU\\D1A cuil:08231681635",
                 "No se encuentra registrada la persona MERCEDES ANABE PE\\D1A cuil:08273058425"
-            ]};
+            ] */};
 
             return ok(msjExitoso);
 
