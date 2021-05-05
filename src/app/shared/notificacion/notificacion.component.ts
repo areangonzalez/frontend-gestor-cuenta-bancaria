@@ -55,7 +55,7 @@ export class NotificacionComponent implements OnInit {
   crearNotificacion(arrMsj: any) {
     this.mensaje = "Se han importado " + arrMsj["creadas"] + " cuenta/s en el sistema.";
     this.existen = (arrMsj["existen"]) ? "Se han encontrado " + arrMsj["existen"] + " cuenta/s que ya existen dentro del sistema.": false;
-    this.errors = arrMsj.errors;
+    this.errors = (arrMsj.errors !== undefined) ? arrMsj.errors : [];
   }
 
   crearNotificacionAdmin(objMsj: any) {
