@@ -20,6 +20,11 @@ const routes: Routes = [
         data: { breadcrumb: 'Cuentas', title: 'Cuentas', rol: ['usuario', 'admin'] },
         loadChildren: () => import('./cuenta/cuenta.module').then(m => m.CuentaModule)
       },
+      {
+        path: 'historial-exportacion',
+        data: { breadcrumb: 'Historial de exportación', title: 'Historial de Exportación', rol: ['usuario', 'admin'] },
+        loadChildren: () => import('./historial-exportacion/historial-exportacion.module').then(m => m.HistorialExportacionModule)
+      },
       { path: '', redirectTo: 'cuentas', pathMatch: 'full' }
     ]
   },
