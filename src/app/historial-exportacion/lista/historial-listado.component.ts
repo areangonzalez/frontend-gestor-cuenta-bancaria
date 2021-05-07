@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NotificacionService } from 'src/app/core/services';
 
 @Component({
@@ -9,6 +9,7 @@ import { NotificacionService } from 'src/app/core/services';
 export class HistorialListadoComponent {
   @Input("historial") public historial: any;
   @Input("configPaginacion") public configPaginacion: any;
+  @Output("cambiarPagina") public cambiarPagina = new EventEmitter();
   page = 4;
 
   constructor(private _msj: NotificacionService) { }
@@ -18,6 +19,6 @@ export class HistorialListadoComponent {
   }
 
   cambioPagina(pagina:number) {
-    console.log(pagina);
+    this.cambiarPagina.emit(pagina);
   }
 }
