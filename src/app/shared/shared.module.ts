@@ -33,7 +33,7 @@ import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
   exports: [
     CommonModule,
     FormsModule, ReactiveFormsModule,
-    NgbTooltipModule, NgbDatepickerModule, NgbCollapseModule,
+    NgbTooltipModule, NgbDatepickerModule, NgbCollapseModule, NgbPaginationModule,
     CabeceraComponent, PieComponent,
     AltaPersonaComponent,
     RegistrarPersonaComponent, FormLugarComponent,

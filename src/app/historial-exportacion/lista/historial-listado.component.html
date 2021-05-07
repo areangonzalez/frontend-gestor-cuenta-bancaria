@@ -20,5 +20,7 @@
     </tr>
   </tbody>
 </table>
-
+<div class="d-flex justify-content-center border-top pt-4 font-weight-bold">
+  <ngb-pagination *ngIf="(configPaginacion.colleccionSize > 0)" [collectionSize]="configPaginacion.colleccionSize" [(page)]="configPaginacion.page" [pageSize]="configPaginacion.pageSize" [maxSize]="10" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="cambioPagina(configPaginacion.page)" aria-label="lisado de exportacion"></ngb-pagination>
+</div>
 

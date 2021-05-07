@@ -21,3 +21,4 @@ export * from './usuario.service';
 export * from './archivo.service';
 export * from './permisos.service';
 export * from './rol.service';
+export * from './export.service';

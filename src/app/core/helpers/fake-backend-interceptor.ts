@@ -90,6 +90,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return getPermisos();
               case url.endsWith('/apimock/rols') && method === 'GET':
                 return getRols();
+              case url.endsWith('/apimock/exports') && method === 'GET':
+                return getListaHistorialExport();
             }
         }
 
@@ -366,6 +368,25 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           ]};
 
           let listado = paginar(cuentaPersona, cuentaPersona.resultado, page, pageSize);
+
+          return ok(listado);
+        }
+
+        /****** LISTADO DE CUENTAS - PERSONAS ********/
+        function getListaHistorialExport() {
+          let page: number = parseInt(request.params.get("page"));
+          let pageSize: number = 2;
+
+          let Listado = { pagesize: 2, pages: 1, total_filtrado: 6, resultado: [
+            { id: 1, create_at: "2020-04-03", tipo_exportacion: "Cuenta Saldo", cantidad: 40 },
+            { id: 2, create_at: "2020-03-25", tipo_exportacion: "Cuenta Saldo", cantidad: 45 },
+            { id: 3, create_at: "2020-03-12", tipo_exportacion: "Interbanking", cantidad: 35 },
+            { id: 4, create_at: "2020-03-01", tipo_exportacion: "Cuenta Saldo", cantidad: 35 },
+            { id: 5, create_at: "2020-02-24", tipo_exportacion: "Interbanking", cantidad: 20 },
+            { id: 6, create_at: "2020-02-15", tipo_exportacion: "Cuenta Saldo", cantidad: 20 }
+          ]};
+
+          let listado = paginar(Listado, Listado.resultado, page, pageSize);
 
           return ok(listado);
         }
