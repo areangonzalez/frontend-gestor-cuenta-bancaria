@@ -1,1 +1,24 @@
-<p>historial-listado works!</p>
+
+<table class="table table-hover table-sm">
+  <thead>
+    <tr>
+      <th class="text-center" scope="col">Fecha de Exportación</th>
+      <th class="text-center" scope="col">Archivo</th>
+      <th class="text-center" scope="col">Cantidad de Cuentas</th>
+      <th class="text-center" scope="col"></th>
+    </tr>
+  </thead>
+  <tbody *ngIf="(historial.length == 0)">
+    <tr colspan="4" rowspan="1" class="bg-warning"><strong>NO SE HA ENCONTRADO RESULTADO</strong></tr>
+  </tbody>
+  <tbody *ngIf="(historial.length > 0)">
+    <tr *ngFor="let archivo of historial">
+      <td class="text-center">{{archivo.create_at | date: 'dd/MM/yyyy'}}</td>
+      <td class="text-center">{{archivo.tipo_exportacion}}</td>
+      <td class="text-center">{{archivo.cantidad}}</td>
+      <td class="text-center"><button type="button" class="btn btn-sm btn-secondary" ngbTooltip="Descargar Archivo" (click)="descargarArchivo(archivo.id)"><i class="fas fa-file-download"></i></button></td>
+    </tr>
+  </tbody>
+</table>
+
+
