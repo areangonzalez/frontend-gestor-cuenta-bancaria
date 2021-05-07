@@ -1,5 +1,60 @@
 <h2>Historial de Exportación</h2>
-
+<div class="shadow-sm p-3 mb-3 bg-white rounded">
+  <fieldset [formGroup]="busquedaAvanzada">
+    <div class="form-row ml-4 mt-3">
+      <div class="form-group col-auto">
+        <label for="export_at_desde" class="sr-only">Ingreso Desde/Hasta:</label>
+        <div class="input-group">
+          <input class="form-control input-append"
+          placeholder="Desde: dd/mm/yyyy"
+          ngbDatepicker
+          #datePicker="ngbDatepicker"
+          id="export_at_desde"
+          formControlName="exportAtDesde"
+          (ngModelChange)="formatFecha($event, 'export_at_desde');"
+          [ngClass]="{'campo-seleccionado': marcarCampo(busquedaAvanzada.get('exportAtDesde').value)}"
+          [displayMonths]="2"
+          [navigation]="'select'"
+          [dayTemplate]="t"
+          [autoClose]="false" >
+          <input class="form-control" #c1 placeholder="Hasta: dd/mm/yyyy" ngbDatepicker #fb="ngbDatepicker"
+          id="export_at_hasta" formControlName="exportAtHasta" (ngModelChange)="formatFecha($event, 'export_at_hasta')" [ngClass]="{'campo-seleccionado': marcarCampo(busquedaAvanzada.get('exportAtHasta').value)}"
+          >
+          <div class="input-group-prepend">
+              <button class="btn btn-outline-info" (click)="abrirDp()" type="button">
+                <i class="far fa-calendar-alt" title="Fecha desde/hasta" aria-hidden="true"></i>
+              </button>
+          </div>
+          <ngb-datepicker #db (select)="onDateSelection($event)" class="dp-style" [ngClass]="{'d-block': mostrarDp, 'd-none': !mostrarDp}" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" [container]="'body'" ></ngb-datepicker>
+          <ng-template #t let-date let-focused="focused">
+              <span class="custom-day"
+                    [class.focused]="focused"
+                    [class.range]="isRange(date)"
+                    [class.faded]="isHovered(date) || isInside(date)"
+                    (mouseenter)="hoveredDate = date"
+                    (mouseleave)="hoveredDate = null">
+                {{ date.day }}
+              </span>
+            </ng-template>
+        </div>
+      </div>
+      <div class="col-6">
+        <label for="tipo" class="sr-only">Tipo de Archivo</label>
+        <select class="form-control " formControlName="tipo" [ngClass]="{'campo-seleccionado': marcarCampo(busquedaAvanzada.get('tipo').value)}">
+          <option value="">Seleccionar Tipo de Archivo</option>
+          <option value="ctasaldo">ctasaldo</option>
+          <option value="interbanking">interbanking</option>
+        </select>
+      </div>
+      <div class="col-auto">
+        <div class="btn-group">
+          <button type="button" class="btn btn-outline-primary" (click)="buscar()" ngbTooltip="Buscar" ><i class="fas fa-search"></i></button>
+          <button type="button" class="btn btn-outline-danger" (click)="limpiarCampos()" placement="top-right" ngbTooltip="Limpiar Campos"><i class="fas fa-trash-alt"></i></button>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>
 <div class="shadow-sm p-3 mb-3 bg-white rounded">
   <he-historial-listado [historial]="historial" [configPaginacion]="configPaginacion" (cambiarPagina)="cambiarPagina($event)"></he-historial-listado>
 </div>
