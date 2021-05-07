@@ -13,10 +13,12 @@
   </tbody>
   <tbody *ngIf="(historial.length > 0)">
     <tr *ngFor="let archivo of historial">
-      <td class="text-center">{{archivo.create_at | date: 'dd/MM/yyyy'}}</td>
-      <td class="text-center">{{archivo.tipo_exportacion}}</td>
+      <td class="text-center">{{archivo.export_at | date: 'dd/MM/yyyy'}}</td>
+      <td class="text-center">{{archivo.tipo}}</td>
       <td class="text-center">{{archivo.cantidad}}</td>
-      <td class="text-center"><button type="button" class="btn btn-sm btn-secondary" ngbTooltip="Descargar Archivo" (click)="descargarArchivo(archivo.id)"><i class="fas fa-file-download"></i></button></td>
+      <td class="text-center">
+        <modal-confirmar-exportacion [tipoBoton]="'boton-icono'" (confirmar)="descargarArchivo($event, archivo.id, archivo.tipo)"></modal-confirmar-exportacion>
+      </td>
     </tr>
   </tbody>
 </table>

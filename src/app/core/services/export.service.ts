@@ -22,6 +22,10 @@ export class ExportService implements Resolve<any> {
     return this._http.get('/exports', httpParams);
   }
 
+  descargarArchivo(id:number) {
+    return this._http.get('/exports/' + id);
+  }
+
   resolve() {
     let httpParams = new HttpParams();
     httpParams = this._http.formatParams(httpParams, { sort: '-export_at', page: 0, pagesize: 20 });

@@ -33,6 +33,7 @@ export class ConfirmarExportacionModalContent {
 export class ConfirmarExportacionComponent {
   @Input("listaPersona") public listaPersona: any;
   @Input("TituloBtn") public tituloBtn: string;
+  @Input("tipoBoton") public tipoBoton: string;
   @Output("confirmar") public confirmar = new EventEmitter();
 
 

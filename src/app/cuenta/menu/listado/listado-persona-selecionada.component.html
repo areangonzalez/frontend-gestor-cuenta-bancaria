@@ -3,7 +3,7 @@
     <button type="button" class="btn btn-sm btn-success btn-block" (click)="guardarListadoSeleccion(personaSeleccionada)" [disabled]="(personaSeleccionada.length == 0)" ><i class="fas fa-save"></i> Guardar Listado Cuenta Saldo</button>
   </div>
   <div class="col">
-    <modal-confirmar-exportacion [listaPersona]="personaSeleccionada" [TituloBtn]="'Exportar Archivo Cuenta Saldo'" (confirmar)="exportarArchivo($event)"></modal-confirmar-exportacion>
+    <modal-confirmar-exportacion [listaPersona]="personaSeleccionada" [TituloBtn]="'Exportar Archivo Cuenta Saldo'" [tipoBoton]="'boton-largo'" (confirmar)="exportarArchivo($event)"></modal-confirmar-exportacion>
   </div>
 </div>
 <div class="row mb-1" *ngIf="(tipo === 'interbanking')">

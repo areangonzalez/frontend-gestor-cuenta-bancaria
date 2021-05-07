@@ -92,6 +92,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return getRols();
               case url.endsWith('/apimock/exports') && method === 'GET':
                 return getListaHistorialExport();
+              case url.match(/\/apimock\/exports\/\d+$/) && method === 'GET':
+                return getHistorialExport();
             }
         }
 
@@ -378,17 +380,25 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           let pageSize: number = 2;
 
           let Listado = { pagesize: 2, pages: 1, total_filtrado: 6, resultado: [
-            { id: 1, create_at: "2020-04-03", tipo_exportacion: "Cuenta Saldo", cantidad: 40 },
-            { id: 2, create_at: "2020-03-25", tipo_exportacion: "Cuenta Saldo", cantidad: 45 },
-            { id: 3, create_at: "2020-03-12", tipo_exportacion: "Interbanking", cantidad: 35 },
-            { id: 4, create_at: "2020-03-01", tipo_exportacion: "Cuenta Saldo", cantidad: 35 },
-            { id: 5, create_at: "2020-02-24", tipo_exportacion: "Interbanking", cantidad: 20 },
-            { id: 6, create_at: "2020-02-15", tipo_exportacion: "Cuenta Saldo", cantidad: 20 }
+            { id: 1, export_at: "2020-04-03", tipo: "ctasaldo", cantidad: 40 },
+            { id: 2, export_at: "2020-03-25", tipo: "ctasaldo", cantidad: 45 },
+            { id: 3, export_at: "2020-03-12", tipo: "interbanking", cantidad: 35 },
+            { id: 4, export_at: "2020-03-01", tipo: "ctasaldo", cantidad: 35 },
+            { id: 5, export_at: "2020-02-24", tipo: "interbanking", cantidad: 20 },
+            { id: 6, export_at: "2020-02-15", tipo: "ctasaldo", cantidad: 20 }
           ]};
 
           let listado = paginar(Listado, Listado.resultado, page, pageSize);
 
           return ok(listado);
+        }
+
+        function getHistorialExport() {
+          let respuesta = {
+            exportacion: "8180SANDOVAL                      LUISA ESTER     0010000000000620239000A26021950FSNACIONES UNIDAS    01500    CIPOLLETTI                    08324162                              0082706202390820000                  02082020251            08324                         000000000                       "
+          };
+
+          return ok(respuesta);
         }
 
         /******* IMPORTACION DE CUENTA BPS ***********/
