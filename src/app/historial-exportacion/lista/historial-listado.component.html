@@ -4,7 +4,7 @@
     <tr>
       <th class="text-center" scope="col">Fecha de Exportación</th>
       <th class="text-center" scope="col">Archivo</th>
-      <th class="text-center" scope="col">Cantidad de Cuentas</th>
+      <th class="text-center" scope="col">Cantidad</th>
       <th class="text-center" scope="col"></th>
     </tr>
   </thead>
@@ -14,8 +14,10 @@
   <tbody *ngIf="(historial.length > 0)">
     <tr *ngFor="let archivo of historial">
       <td class="text-center">{{archivo.export_at | date: 'dd/MM/yyyy'}}</td>
-      <td class="text-center">{{archivo.tipo}}</td>
-      <td class="text-center">{{archivo.cantidad}}</td>
+      <td class="text-center text-capitalize">{{archivo.tipo}}</td>
+      <td class="text-center">
+        {{archivo.cantidad}} <span *ngIf="(archivo.tipo == 'ctasaldo')">Persona/s</span> <span *ngIf="(archivo.tipo == 'interbanking')"> Cuenta/s</span>
+      </td>
       <td class="text-center">
         <modal-confirmar-exportacion [tipoBoton]="'boton-icono'" (confirmar)="descargarArchivo($event, archivo.id, archivo.tipo)"></modal-confirmar-exportacion>
       </td>
