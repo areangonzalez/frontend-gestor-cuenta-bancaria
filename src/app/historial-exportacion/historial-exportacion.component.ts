@@ -99,15 +99,17 @@ export class HistorialExportacionComponent implements OnInit {
   public limpiarCampos() {
     let busqueda: any = this.busquedaAvanzada.value;
       for (const key in busqueda) {
-        if (key == 'fechaDesde') {
+        if (key == 'exportAtDesde') {
           busqueda[key] = null;
-        }else if (key == 'fechaHasta') {
+        }else if (key == 'exportAtHasta') {
           busqueda[key] = null;
         }else {
           busqueda[key] = '';
         }
       }
       this.busquedaAvanzada.patchValue(busqueda);
+      this.configPaginacion.page = 1;
+      this.buscar();
   }
 
   /**

@@ -380,12 +380,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           let pageSize: number = 2;
 
           let Listado = { pagesize: 2, pages: 1, total_filtrado: 6, resultado: [
-            { id: 1, export_at: "2020-04-03", tipo: "ctasaldo", cantidad: 40 },
+            /* { id: 1, export_at: "2020-04-03", tipo: "ctasaldo", cantidad: 40 },
             { id: 2, export_at: "2020-03-25", tipo: "ctasaldo", cantidad: 45 },
             { id: 3, export_at: "2020-03-12", tipo: "interbanking", cantidad: 35 },
             { id: 4, export_at: "2020-03-01", tipo: "ctasaldo", cantidad: 35 },
             { id: 5, export_at: "2020-02-24", tipo: "interbanking", cantidad: 20 },
-            { id: 6, export_at: "2020-02-15", tipo: "ctasaldo", cantidad: 20 }
+            { id: 6, export_at: "2020-02-15", tipo: "ctasaldo", cantidad: 20 } */
           ]};
 
           let listado = paginar(Listado, Listado.resultado, page, pageSize);
