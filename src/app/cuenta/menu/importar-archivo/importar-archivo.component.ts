@@ -44,7 +44,6 @@ export class ImportarArchivoContent {
 
 
   agregarAdjunto() {
-    console.log(this.uploadedFiles);
     const fdata = new FormData();
     for (let i = 0; i < this.uploadedFiles.length; i++) {
       fdata.append('ctabps', this.uploadedFiles[i], this.uploadedFiles[i].name);
@@ -54,7 +53,7 @@ export class ImportarArchivoContent {
     this._archivo.importarCuentaBps(fdata).subscribe(
       respuesta => {
         this.activeModal.close({esError: false, mensaje: respuesta });
-      }, error => { this.activeModal.close({esError: true, mensaje: error}); }
+      }, error => { console.log(error); this.activeModal.close({esError: true, mensaje: error}); }
     );
   }
 }

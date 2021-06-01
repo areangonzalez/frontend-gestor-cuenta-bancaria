@@ -46,6 +46,8 @@ export class LoginComponent implements OnInit {
   estaLogueado() {
     if (this._autenticacion.loggedIn) {
       this._autenticacion.loggedIn.rol;
+    }else{
+      this._router.navigate(['./login']);
     }
   }
 

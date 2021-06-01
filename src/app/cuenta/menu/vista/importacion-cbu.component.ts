@@ -63,7 +63,7 @@ export class ImportacionCbuComponent implements OnInit {
       this._msj.importacionExitoso(datos["mensaje"]);
       this.realizarBusqueda({}, 1);
     }else{ // si es error notifico al usuario
-      this._msj.cancelado("Se ha cancelado la operacion");
+      this._msj.cancelado(datos["mensaje"]);
     }
   }
 
@@ -89,5 +89,14 @@ export class ImportacionCbuComponent implements OnInit {
       });
     }
   }
+
+  /* private tipoError(error: any) {
+    if (typeof error === 'string') {
+      this._msj.cancelado(error);
+    }else{
+      let msjObject = JSON.parse(error);
+      this._msj.cancelado(msjObject);
+    }
+  } */
 
 }
