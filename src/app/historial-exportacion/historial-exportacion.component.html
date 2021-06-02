@@ -9,14 +9,14 @@
           placeholder="Desde: dd/mm/yyyy"
           ngbDatepicker
           #datePicker="ngbDatepicker"
+          [autoClose]="'outside'"
           id="export_at_desde"
           formControlName="exportAtDesde"
           (ngModelChange)="formatFecha($event, 'export_at_desde');"
           [ngClass]="{'campo-seleccionado': marcarCampo(busquedaAvanzada.get('exportAtDesde').value)}"
           [displayMonths]="2"
           [navigation]="'select'"
-          [dayTemplate]="t"
-          [autoClose]="false" >
+          [dayTemplate]="t" >
           <input class="form-control" #c1 placeholder="Hasta: dd/mm/yyyy" ngbDatepicker #fb="ngbDatepicker"
           id="export_at_hasta" formControlName="exportAtHasta" (ngModelChange)="formatFecha($event, 'export_at_hasta')" [ngClass]="{'campo-seleccionado': marcarCampo(busquedaAvanzada.get('exportAtHasta').value)}"
           >
