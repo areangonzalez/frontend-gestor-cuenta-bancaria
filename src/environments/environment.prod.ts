@@ -1,5 +1,5 @@
 /**
- * ultimo commit 9654861d014e3dc1ae8b23da12dae16555f8243a
+ * ultimo commit 6706d2c478ae937db6f6b7aeff646a363182061d
  */
 export const environment = {
   production: true,
