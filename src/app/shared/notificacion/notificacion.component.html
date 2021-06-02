@@ -22,7 +22,7 @@
         <span style="font-size: 3em; color:yellow;"><i class="fas fa-exclamation-triangle"></i></span>
           <div class="ml-3">{{existen}}</div>
       </div>
-      <div *ngIf="(tipo === 6 && errors.length > 0)"class="ml-3 bg-info border-rounded text-white altura-info-adicional" >
+      <div *ngIf="(tipo === 6 && errors.length > 0)"class="bg-info border-rounded text-white altura-info-adicional mod-border-rounded" >
           <div *ngFor="let msj of errors" class="text-center m-2">{{msj}}</div>
       </div>
     </div>
