@@ -84,19 +84,18 @@ export class ImportacionCbuComponent implements OnInit {
             this.realizarBusqueda({}, 1);
           }, 800);
       }, error => {
-        let msjObject = JSON.parse(error);
-        this._msj.cancelado(msjObject);
+        this.tipoError(error);
       });
     }
   }
 
-  /* private tipoError(error: any) {
+  private tipoError(error: any) {
     if (typeof error === 'string') {
       this._msj.cancelado(error);
     }else{
       let msjObject = JSON.parse(error);
       this._msj.cancelado(msjObject);
     }
-  } */
+  }
 
 }
