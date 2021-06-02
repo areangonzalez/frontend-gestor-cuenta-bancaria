@@ -75,7 +75,7 @@ export class EditarPersonaComponent {
             }, error => { this._msj.cancelado(error); }
           )
         }
-      });
+      }, (reason) => {/* Cual es la razon de que angular mande un cero */});
   }
 
 }

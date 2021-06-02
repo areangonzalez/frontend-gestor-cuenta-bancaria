@@ -52,7 +52,7 @@ export class CrearPersonaComponent {
         if (result !== false) {
           return this.cuilPersona.emit(result);
         }
-      });
+      }, (reason) => {/* Cual es la razon de que angular mande un cero */});
   }
 
 }

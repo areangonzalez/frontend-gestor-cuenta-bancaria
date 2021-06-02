@@ -44,7 +44,7 @@ export class ConfirmarExportacionComponent {
     modalRef.result.then(
       (result) => {
           return this.confirmar.emit(result);
-      });
+      }, (reason) => {/* Cual es la razon de que angular mande un cero */});
   }
 }
 

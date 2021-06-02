@@ -207,7 +207,7 @@ export class AgregarSucursalComponent {
         if (result !== false) {
           return this.obtenerPrestacion.emit(result);
         }
-      });
+      }, (reason) => {/* Cual es la razon de que angular mande un cero */});
   }
   /**
    * notifico al usuario con un mensaje de error
