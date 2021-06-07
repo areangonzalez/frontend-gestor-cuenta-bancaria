@@ -1,7 +1,7 @@
 /**
- * ultimo commit 5aa253e1cc439e347a8172d19769b53655085d77
+ * ultimo commit 1e9ecff6f260bb926a48a87ce50fb163f1e683b6
  */
 export const environment = {
   production: true,
-  apiUrl: 'https://gestor-bancario-api.rionegro.gov.ar'
+  apiUrl: 'http://api.local'
 };
