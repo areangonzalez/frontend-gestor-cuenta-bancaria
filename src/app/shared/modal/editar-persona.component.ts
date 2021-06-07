@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { configurarListas } from 'src/app/core/models';
 import { NotificacionService, PersonaService } from 'src/app/core/services';
 
@@ -8,7 +8,7 @@ import { NotificacionService, PersonaService } from 'src/app/core/services';
   template: `
     <div class="modal-header">
       <h4 class="modal-title">Editar Persona</h4>
-      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.close(false)">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -46,7 +46,10 @@ export class EditarPersonaComponent {
   @Input("config-listas") public configurarListas: configurarListas; // array que contiene el/los listados para el componente
   @Output("obtenerDatosPersona") public obtenerDatosPersona = new EventEmitter();
 
-  constructor(private _modalService: NgbModal, private _personaService: PersonaService, private _msj: NotificacionService) {}
+  constructor(private _modalService: NgbModal, private _personaService: PersonaService, private _msj: NotificacionService, private _config: NgbModalConfig) {
+    _config.backdrop = 'static';
+    _config.keyboard = false;
+  }
 
   buscarPersonaPorId() {
     if (this.persona.personaid) {
@@ -75,7 +78,7 @@ export class EditarPersonaComponent {
             }, error => { this._msj.cancelado(error); }
           )
         }
-      }, (reason) => {/* Cual es la razon de que angular mande un cero */});
+      });
   }
 
 }

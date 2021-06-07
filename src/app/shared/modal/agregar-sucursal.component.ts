@@ -177,7 +177,10 @@ export class AgregarSucursalComponent {
   @Input("persona") public persona: any;
   @Output("obtenerPrestacion") public obtenerPrestacion = new EventEmitter();
 
-  constructor(private _modalService: NgbModal) { }
+  constructor(private _modalService: NgbModal, private _config: NgbModalConfig) {
+    _config.backdrop = 'static';
+    _config.keyboard = false;
+  }
 
   open() {
     let existe: boolean = false;
@@ -207,7 +210,7 @@ export class AgregarSucursalComponent {
         if (result !== false) {
           return this.obtenerPrestacion.emit(result);
         }
-      }, (reason) => {/* Cual es la razon de que angular mande un cero */});
+      });
   }
   /**
    * notifico al usuario con un mensaje de error

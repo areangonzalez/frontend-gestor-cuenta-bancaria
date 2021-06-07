@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'content-info-persona',
   template: `
     <div class="modal-header">
       <h4 class="modal-title">Información de {{persona.apellido}}, {{persona.nombre}}</h4>
-      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.close(false)">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -22,7 +22,7 @@ export class InfoPersonaContent {
   constructor(public activeModal: NgbActiveModal) {}
 
   cerrarModal(cerrar:boolean) {
-    this.activeModal.close("cancelar registro");
+    this.activeModal.close(false);
   }
 }
 
@@ -34,7 +34,10 @@ export class InfoPersonaContent {
 export class InfoPersonaComponent {
   @Input("persona") public persona: any;
 
-  constructor(private _modalService: NgbModal) {}
+  constructor(private _modalService: NgbModal, private _config: NgbModalConfig) {
+    _config.backdrop = 'static';
+    _config.keyboard = false;
+  }
 
   open() {
     const modalRef = this._modalService.open(InfoPersonaContent, { size: 'lg' });

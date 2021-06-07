@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { configurarListas } from 'src/app/core/models';
 
 @Component({
@@ -7,7 +7,7 @@ import { configurarListas } from 'src/app/core/models';
   template: `
     <div class="modal-header">
       <h4 class="modal-title">Registrar Persona</h4>
-      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.close(false)">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -42,7 +42,10 @@ export class CrearPersonaComponent {
   @Input("config-listas") public configurarListas: configurarListas; // array que contiene el/los listados para el componente
   @Output("cuilPersona") public cuilPersona = new EventEmitter();
 
-  constructor(private _modalService: NgbModal) {}
+  constructor(private _modalService: NgbModal, private _config: NgbModalConfig) {
+    _config.backdrop = 'static';
+    _config.keyboard = false;
+  }
 
   open() {
     const modalRef = this._modalService.open(CrearPersonaContent, { size: 'lg' });
@@ -52,7 +55,7 @@ export class CrearPersonaComponent {
         if (result !== false) {
           return this.cuilPersona.emit(result);
         }
-      }, (reason) => {/* Cual es la razon de que angular mande un cero */});
+      });
   }
 
 }

@@ -37,14 +37,17 @@ export class ConfirmarExportacionComponent {
   @Output("confirmar") public confirmar = new EventEmitter();
 
 
-  constructor(private _modalService: NgbModal) { }
+  constructor(private _modalService: NgbModal, private _config: NgbModalConfig) {
+    _config.backdrop = 'static';
+    _config.keyboard = false;
+  }
 
   open() {
     const modalRef = this._modalService.open(ConfirmarExportacionModalContent);
     modalRef.result.then(
       (result) => {
           return this.confirmar.emit(result);
-      }, (reason) => {/* Cual es la razon de que angular mande un cero */});
+      });
   }
 }
 
