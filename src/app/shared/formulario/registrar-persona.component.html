@@ -145,7 +145,7 @@
     <div class="col-md-4">
       <div class="form-group">
         <label for="email">Mail:</label>
-        <input type="text" id="email" formControlName="email" class="form-control" placeholder="Ej.: 2920 - 254693" (keyup)="aMinuscula($event.target)" [ngClass]="{'is-invalid': (personaForm.get('email').invalid && submitted)}">
+        <input type="text" id="email" formControlName="email" class="form-control" placeholder="Ej.: ejemplo@correo.com" (keyup)="aMinuscula($event.target)" [ngClass]="{'is-invalid': (personaForm.get('email').invalid && submitted)}">
         <div *ngIf="(personaForm.get('email').invalid && submitted)" class="text-danger">
           <div *ngIf="personaForm.get('email').hasError('pattern')">El email es invalido.</div>
         </div>

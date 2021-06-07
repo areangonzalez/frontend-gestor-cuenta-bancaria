@@ -162,5 +162,4 @@ export class RegistrarPersonaComponent implements OnInit {
       );
     }
   }
-
 }
