@@ -47,6 +47,10 @@ export class RegistrarPersonaComponent implements OnInit {
         piso: '',
         depto: '',
         escalera: ''
+      }),
+      cuenta: _fb.group({
+        bancoid: '',
+        cbu: ''
       })
     });
   }

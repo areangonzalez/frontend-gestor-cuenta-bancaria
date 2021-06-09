@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { NgbTooltipModule, NgbDatepickerModule, NgbCollapseModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { CabeceraComponent, PieComponent } from './layout';
 import { AltaPersonaComponent } from './lista';
-import { RegistrarPersonaComponent, FormLugarComponent } from './formulario';
+import { RegistrarPersonaComponent, FormLugarComponent, FormCuentaComponent } from './formulario';
 import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, NotificacionModalContent, AgregarSucursalComponent, ConfirmarExportacionModalContent, ConfirmarExportacionComponent, InfoPersonaContent, InfoPersonaComponent, EditarPersonaContent, EditarPersonaComponent } from './modal';
 import { VistaPersonaComponent } from './vista';
 import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
@@ -15,7 +15,7 @@ import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
   declarations: [
     CabeceraComponent, PieComponent,
     AltaPersonaComponent,
-    RegistrarPersonaComponent, FormLugarComponent,
+    RegistrarPersonaComponent, FormLugarComponent, FormCuentaComponent,
     CrearPersonaContent, CrearPersonaComponent,
     AgregarSucursalContent, NotificacionModalContent, AgregarSucursalComponent,
     ConfirmarExportacionModalContent, ConfirmarExportacionComponent,
@@ -36,7 +36,7 @@ import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
     NgbTooltipModule, NgbDatepickerModule, NgbCollapseModule, NgbPaginationModule,
     CabeceraComponent, PieComponent,
     AltaPersonaComponent,
-    RegistrarPersonaComponent, FormLugarComponent,
+    RegistrarPersonaComponent, FormLugarComponent, FormCuentaComponent,
     CrearPersonaContent, CrearPersonaComponent,
     AgregarSucursalContent, NotificacionModalContent, AgregarSucursalComponent,
     ConfirmarExportacionModalContent, ConfirmarExportacionComponent,

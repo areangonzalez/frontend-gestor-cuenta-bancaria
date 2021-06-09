@@ -1,0 +1,31 @@
+<div class="d-flex justify-content-between">
+  <div class="col-4 pt-1"><hr></div>
+  <div class="col-4 text-center"><h3><small class="text-muted">Dirección</small></h3></div>
+  <div class="col-4 pt-1"><hr></div>
+</div>
+<fieldset [formGroup]="cuenta">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="form-group">
+        <label for="banco">Banco:</label>
+        <select class="form-control" id="banco" formControlName="bancoid" [ngClass]="{'is-invalid': (submitted)}">
+          <option value="">Seleccionar banco</option>
+          <option *ngFor="let banco of listadoBanco" value="{{banco.id}}">{{banco.nombre}}</option>
+        </select>
+        <!-- <div *ngIf="(submitted)" class="text-danger">
+          <small *ngIf="cuenta.get('bancoid').hasError('required')">Por favor, seleccione una banco. </small>
+        </div> -->
+      </div>
+    </div>
+    <div class="col-md-7">
+      <div class="form-group">
+        <label for="cbu">CBU:</label>
+        <input type="text" id="cbu" formControlName="cbu" class="form-control" placeholder="Ej.: 02990504222248863489129" [ngClass]="{'is-invalid': (submitted)}">
+        <!-- <div *ngIf="(cuenta.get('cbu').invalid && submitted)" class="text-danger">
+          <small *ngIf="cuenta.get('cbu').hasError('required')">Este campo es requerido. </small>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</fieldset>
+
