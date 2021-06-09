@@ -19,7 +19,6 @@ let listaUsuarios = [
   {personaid: 5, id: 5, nombre: "Gustavo", apellido: "Acosta", nro_documento: "18334826", cuil: "20183348265", email:"gacosta@desarrollohumano.rionegro.gov.ar", localidadid: "5", localidad: "Viedma", rol: 'usuario', username: "gacosta", created_at: "2019-11-21", fecha_baja: "", baja: false, direccion_ip: "192.10.10.8", descripcion_baja: "" },
 ];
 
-
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -90,6 +89,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return getPermisos();
               case url.endsWith('/apimock/rols') && method === 'GET':
                 return getRols();
+              case url.endsWith('/apimock/bancos') && method === 'GET':
+                return getBancos();
               case url.endsWith('/apimock/exports') && method === 'GET':
                 return getListaHistorialExport();
               case url.match(/\/apimock\/exports\/\d+$/) && method === 'GET':
@@ -98,6 +99,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         // route functions
+        /*** LISTADO DE BANCOS ***/
+        function getBancos() {
+          let listadoBancos = [
+            {id: 3, nombre: "Nación",},{id: 1, nombre: "Patagonia"}, {id: 1, nombre: "Santander"}
+          ];
+
+          return ok(listadoBancos);
+        }
         /*** LISTADO DE PERMISOS ***/
         function getPermisos() {
           let listaPermisos = [

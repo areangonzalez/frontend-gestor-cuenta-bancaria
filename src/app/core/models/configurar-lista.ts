@@ -13,6 +13,7 @@ export interface configurarListas {
   roles?: any;
   tamanioPagina?:any;
   programas?: any;
+  bancos?: any;
 }
 
 

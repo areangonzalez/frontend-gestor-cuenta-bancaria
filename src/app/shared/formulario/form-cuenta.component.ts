@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-form-cuenta',
+  selector: 'shared-form-cuenta',
   templateUrl: './form-cuenta.component.html',
   styleUrls: ['./form-cuenta.component.scss']
 })
