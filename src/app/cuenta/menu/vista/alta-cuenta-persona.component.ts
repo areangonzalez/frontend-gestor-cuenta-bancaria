@@ -27,6 +27,7 @@ export class AltaCuentaPersonaComponent implements OnInit {
     this.listas.sexo = this._route.snapshot.data["sexos"];
     this.listas.tipo_documento = this._route.snapshot.data["tipoDocumentos"];
     this.listas.localidades = this._route.snapshot.data["localidades"];
+    this.listas.bancos = this._route.snapshot.data["bancos"]
   }
 
   obtenerPersona(persona: any) {
