@@ -23,7 +23,7 @@ const routes: Routes = [
         path: 'importacion', component: ImportacionCbuComponent,
         data: { title: 'Importación de Cuenta BPS', breadcrumb: 'Importación de Cuenta BPS', rol: ['usuario', 'admin'] },
         resolve: {
-          localidades: LocalidadService, personas: ArchivoService, tipoDocumentos: TipoDocumentoService, nacionalidades: NacionalidadService, estadoCiviles: EstadoCivilService, sexos: SexoService, generos: GeneroService, bancos: BancoServiceService
+          localidades: LocalidadService, personas: ArchivoService, tipoDocumentos: TipoDocumentoService, nacionalidades: NacionalidadService, estadoCiviles: EstadoCivilService, sexos: SexoService, generos: GeneroService
         }
       },
       { path: '', redirectTo: 'alta', pathMatch: 'full' }
