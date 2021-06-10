@@ -7,7 +7,7 @@ import { NgbTooltipModule, NgbDatepickerModule, NgbCollapseModule, NgbPagination
 import { CabeceraComponent, PieComponent } from './layout';
 import { AltaPersonaComponent } from './lista';
 import { RegistrarPersonaComponent, FormLugarComponent, FormCuentaComponent } from './formulario';
-import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, NotificacionModalContent, AgregarSucursalComponent, ConfirmarExportacionModalContent, ConfirmarExportacionComponent, InfoPersonaContent, InfoPersonaComponent, EditarPersonaContent, EditarPersonaComponent } from './modal';
+import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, NotificacionModalContent, AgregarSucursalComponent, ConfirmarExportacionModalContent, ConfirmarExportacionComponent, InfoPersonaContent, InfoPersonaComponent, EditarPersonaContent, EditarPersonaComponent, RegistrarCbuContent, RegistrarCbuComponent } from './modal';
 import { VistaPersonaComponent } from './vista';
 import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
 
@@ -22,7 +22,8 @@ import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
     InfoPersonaContent, InfoPersonaComponent,
     VistaPersonaComponent,
     EditarPersonaContent, EditarPersonaComponent,
-    BusquedaAvanzadaPersonaComponent
+    BusquedaAvanzadaPersonaComponent,
+    RegistrarCbuContent, RegistrarCbuComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +44,8 @@ import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
     InfoPersonaContent, InfoPersonaComponent,
     VistaPersonaComponent,
     EditarPersonaContent, EditarPersonaComponent,
-    BusquedaAvanzadaPersonaComponent
+    BusquedaAvanzadaPersonaComponent,
+    RegistrarCbuContent, RegistrarCbuComponent
   ]
 })
 export class SharedModule { }
