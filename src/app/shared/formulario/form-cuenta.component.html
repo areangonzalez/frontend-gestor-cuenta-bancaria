@@ -3,22 +3,25 @@
     <div class="col-md-12">
       <div class="form-group">
         <label for="banco">Banco:</label>
-        <select class="form-control" id="banco" formControlName="bancoid" [ngClass]="{'is-invalid': (submitted)}">
+        <select class="form-control" id="banco" formControlName="bancoid" [ngClass]="{'is-invalid': (cuenta.get('bancoid').invalid && submitted)}">
           <option value="">Seleccionar banco</option>
           <option *ngFor="let banco of listaBanco" value="{{banco.id}}">{{banco.nombre}}</option>
         </select>
-        <!-- <div *ngIf="(submitted)" class="text-danger">
+        <div *ngIf="(cuenta.get('bancoid').invalid && submitted)" class="text-danger">
           <small *ngIf="cuenta.get('bancoid').hasError('required')">Por favor, seleccione una banco. </small>
-        </div> -->
+        </div>
       </div>
     </div>
     <div class="col-md-12">
       <div class="form-group">
         <label for="cbu">CBU:</label>
-        <input type="text" id="cbu" formControlName="cbu" class="form-control" placeholder="Ej.: 02990504222248863489129" [ngClass]="{'is-invalid': (submitted)}">
-        <!-- <div *ngIf="(cuenta.get('cbu').invalid && submitted)" class="text-danger">
+        <input type="text" id="cbu" formControlName="cbu" class="form-control" maxlength="22" placeholder="Ej.: 02990504222248863489129"
+        (keyup)="esNumero($event.target)"
+        [ngClass]="{'is-invalid': (cuenta.get('cbu').invalid && submitted)}">
+        <div *ngIf="(cuenta.get('cbu').invalid && submitted)" class="text-danger">
+          <small *ngIf="cuenta.get('cbu').hasError('minlength')">El número de CBU debe contener 22 dígitos.</small>
           <small *ngIf="cuenta.get('cbu').hasError('required')">Este campo es requerido. </small>
-        </div> -->
+        </div>
       </div>
     </div>
   </div>

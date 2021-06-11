@@ -134,7 +134,6 @@ export class RegistrarPersonaComponent implements OnInit {
   public validarPersona() {
     this.submitted = true;
     if (this.personaForm.invalid) { // verifico la validación en los campos del formulario
-      //this._mensajeService.cancelado("Campos sin completar!!", [{name:''}]);
       return;
     }else{ // si pasa la validación
       this.submitted = false;
