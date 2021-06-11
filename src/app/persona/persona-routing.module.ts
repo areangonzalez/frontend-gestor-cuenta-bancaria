@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from "@angular/router";
 import { PersonaComponent } from './persona.component';
-import { CuentaService, EstadoCivilService, GeneroService, LocalidadService, NacionalidadService, SexoService, TipoDocumentoService } from '../core/services';
+import { BancoServiceService, CuentaService, EstadoCivilService, GeneroService, LocalidadService, NacionalidadService, SexoService, TipoDocumentoService } from '../core/services';
 import { AuthGuard } from '../core/guards/auth.guard';
 
 const routes = [
@@ -10,7 +10,7 @@ const routes = [
     component: PersonaComponent,
     canActivateChild: [AuthGuard],
     resolve: {
-      personas: CuentaService, localidades: LocalidadService, tipoDocumentos: TipoDocumentoService, nacionalidades: NacionalidadService, estadoCiviles: EstadoCivilService, sexos: SexoService, generos: GeneroService
+      personas: CuentaService, localidades: LocalidadService, tipoDocumentos: TipoDocumentoService, nacionalidades: NacionalidadService, estadoCiviles: EstadoCivilService, sexos: SexoService, generos: GeneroService, bancos: BancoServiceService
     },
     data: { title: 'Tesorería', rol: ['usuario', 'admin'] }
   }
@@ -19,6 +19,6 @@ const routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [LocalidadService, CuentaService]
+  providers: [LocalidadService, CuentaService, EstadoCivilService, GeneroService, NacionalidadService, SexoService, TipoDocumentoService, BancoServiceService]
 })
 export class PersonaRoutingModule { }
