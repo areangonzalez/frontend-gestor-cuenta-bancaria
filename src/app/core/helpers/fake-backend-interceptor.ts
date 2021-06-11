@@ -85,6 +85,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return importarBps();
               case url.endsWith('/apimock/interbanking/exportar') && method === 'POST':
                 return exportacionInterbanking();
+              case url.endsWith('/apimock/cuentas') && method === 'POST':
+                return crearCuentaBancaria();
+              case url.match(/\/apimock\/cuentas\/\d+$/) && method === 'PUT':
+                return editarCuentaBancaria();
               case url.endsWith('/apimock/permisos') && method === 'GET':
                 return getPermisos();
               case url.endsWith('/apimock/rols') && method === 'GET':
@@ -137,6 +141,22 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           let listado = paginar(usuarios, usuarios.resultado, page, pageSize);
 
           return ok(listado);
+        }
+
+        function crearCuentaBancaria() {
+          let cuenta = body;
+          console.log("Crear cuenta bancaria: ",cuenta);
+
+          return ok({id:1});
+        }
+
+        function editarCuentaBancaria() {
+          let urlParts = request.url.split('/');
+          let id = parseInt(urlParts[urlParts.length - 1]);
+          let cuenta = body;
+          console.log("Editar cuenta bancaria: ",id);
+
+          return ok({id:1});
         }
 
         function getUsuarioCuil() {

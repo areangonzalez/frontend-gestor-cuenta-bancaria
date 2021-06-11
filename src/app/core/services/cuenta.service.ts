@@ -24,7 +24,7 @@ export class CuentaService implements Resolve<any> {
 
   guardar(params: object, id?: number) {
     if (id) {
-      return this._http.put('/cuenta/' + id, params);
+      return this._http.put('/cuentas/' + id, params);
     }else {
       return this._http.post('/cuentas', params);
     }
