@@ -11,7 +11,7 @@ import { NgbModal, NgbActiveModal, NgbModalConfig } from '@ng-bootstrap/ng-boots
       </button>
     </div>
     <div class="modal-body">
-      <shared-form-cuenta [listaBanco]="listadoBancos" [personaid]="personaid" (obtenerRespuesta)="cerrarModal($event)"></shared-form-cuenta>
+      <shared-form-cuenta [listaBanco]="listadoBancos" [personaid]="personaid" [datosCuenta]="datosCuenta" (obtenerRespuesta)="cerrarModal($event)"></shared-form-cuenta>
     </div>
 `,
   styleUrls: ['./registrar-cbu.component.scss']
@@ -19,6 +19,7 @@ import { NgbModal, NgbActiveModal, NgbModalConfig } from '@ng-bootstrap/ng-boots
 export class RegistrarCbuContent {
   @Input("listadoBancos") public listadoBancos: any; // array que contiene el listado de los bancos
   @Input("personaid") public personaid: number; // array que contiene el listado de los bancos
+  @Input("datosCuenta") public datosCuenta: any; // objeto que contiene los datos de cuenta bancaria
 
   constructor(public activeModal: NgbActiveModal) {}
 
@@ -40,6 +41,8 @@ export class RegistrarCbuContent {
 export class RegistrarCbuComponent {
   @Input("listadoBancos") public listadoBancos: any; // array que contiene el listado de los bancos
   @Input("personaid") public personaid: number;
+  @Input("botonCircular") public botonCircular: boolean;
+  @Input("datosCuenta") public datosCuenta: any; // objeto que contiene los datos de cuenta bancaria
 
   constructor(private _modalService: NgbModal, private _config: NgbModalConfig) {
     _config.backdrop = 'static';
@@ -50,6 +53,7 @@ export class RegistrarCbuComponent {
     const modalRef = this._modalService.open(RegistrarCbuContent);
     modalRef.componentInstance.listadoBancos = this.listadoBancos;
     modalRef.componentInstance.personaid = this.personaid;
+    modalRef.componentInstance.datosCuenta = this.datosCuenta;
   }
 
 }

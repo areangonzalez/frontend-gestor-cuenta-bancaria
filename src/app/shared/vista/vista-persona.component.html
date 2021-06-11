@@ -71,7 +71,14 @@
   </div>
 </div>
 <div *ngIf="(persona.cbu)" class="card mt-2">
-  <div class="card-header">Datos de la cuenta</div>
+  <div class="card-header">
+    <div class="d-flex justify-content-between">
+      <span class="d-flex align-items-center">Datos de la cuenta</span>
+      <span class="d-flex align-items-center">
+        <modal-registrar-cbu [listadoBancos]="listaBancos" [personaid]="persona.id" [datosCuenta]="persona"></modal-registrar-cbu>
+      </span>
+    </div>
+  </div>
   <div class="card-body">
     <div class="row">
       <div class="col-md-6">

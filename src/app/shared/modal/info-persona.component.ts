@@ -11,13 +11,14 @@ import { NgbModal, NgbActiveModal, NgbModalConfig } from '@ng-bootstrap/ng-boots
       </button>
     </div>
     <div class="modal-body">
-       <vista-persona [persona]="persona"></vista-persona>
+       <vista-persona [persona]="persona" [listaBancos]="listadoBancos"></vista-persona>
     </div>
 `,
   styleUrls: ['./info-persona.component.scss']
 })
 export class InfoPersonaContent {
   @Input("persona") public persona: any;
+  @Input("listadoBancos") public listadoBancos: any;
 
   constructor(public activeModal: NgbActiveModal) {}
 
@@ -33,6 +34,7 @@ export class InfoPersonaContent {
 })
 export class InfoPersonaComponent {
   @Input("persona") public persona: any;
+  @Input("listadoBancos") public listadoBancos: any;
 
   constructor(private _modalService: NgbModal, private _config: NgbModalConfig) {
     _config.backdrop = 'static';
@@ -42,6 +44,7 @@ export class InfoPersonaComponent {
   open() {
     const modalRef = this._modalService.open(InfoPersonaContent, { size: 'lg' });
     modalRef.componentInstance.persona = this.persona;
+    modalRef.componentInstance.listadoBancos = this.listadoBancos;
   }
 
 }

@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class VistaPersonaComponent implements OnInit {
   @Input("persona") public persona: any;
+  @Input("listaBancos") public listaBancos: any;
 
   constructor() { }
 

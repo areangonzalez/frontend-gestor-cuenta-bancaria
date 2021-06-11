@@ -26,6 +26,7 @@ export class ImportacionCbuComponent implements OnInit {
     this.configListas.sexo = this._route.snapshot.data["sexos"];
     this.configListas.tipo_documento = this._route.snapshot.data["tipoDocumentos"];
     this.configListas.localidades = this._route.snapshot.data["localidades"];
+    this.configListas.bancos = this._route.snapshot.data["bancos"];
     this.configListas.seleccionPersona = [];
   }
 
