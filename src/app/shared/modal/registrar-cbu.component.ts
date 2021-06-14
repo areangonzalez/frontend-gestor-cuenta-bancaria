@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { NgbModal, NgbActiveModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -24,13 +24,8 @@ export class RegistrarCbuContent {
   constructor(public activeModal: NgbActiveModal) {}
 
   cerrarModal(valor:boolean) {
-    if (valor) {
-      this.activeModal.close(false);
-    }else {
-      this.activeModal.close(false);
-    }
+      this.activeModal.close(valor);
   }
-
 }
 
 @Component({
@@ -43,6 +38,7 @@ export class RegistrarCbuComponent {
   @Input("personaid") public personaid: number;
   @Input("botonCircular") public botonCircular: boolean;
   @Input("datosCuenta") public datosCuenta: any; // objeto que contiene los datos de cuenta bancaria
+  @Output("actualizarDatos") public actualizarDatos = new EventEmitter();
 
   constructor(private _modalService: NgbModal, private _config: NgbModalConfig) {
     _config.backdrop = 'static';
@@ -54,6 +50,10 @@ export class RegistrarCbuComponent {
     modalRef.componentInstance.listadoBancos = this.listadoBancos;
     modalRef.componentInstance.personaid = this.personaid;
     modalRef.componentInstance.datosCuenta = this.datosCuenta;
+    modalRef.result.then(
+      (result) => {
+        return this.actualizarDatos.emit(result);
+      });
   }
 
 }

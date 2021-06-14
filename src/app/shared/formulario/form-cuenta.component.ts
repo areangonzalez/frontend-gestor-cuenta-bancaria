@@ -50,12 +50,14 @@ export class FormCuentaComponent implements OnInit {
     if (id) {
       this._cuentaService.guardar(params, id).subscribe(
         respuesta => {
+          this.obtenerRespueta.emit(true);
           this._msj.exitoso("Se ha registrado el CBU de la persona correctamente.");
         }, error => { this._msj.cancelado(error); }
       )
     }else{
       this._cuentaService.guardar(params).subscribe(
         respuesta => {
+          this.obtenerRespueta.emit(true);
           this._msj.exitoso("Se ha registrado el CBU de la persona correctamente.");
         }, error => { this._msj.cancelado(error); }
       )

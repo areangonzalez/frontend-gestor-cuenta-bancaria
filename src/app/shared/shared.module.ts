@@ -8,7 +8,7 @@ import { CabeceraComponent, PieComponent } from './layout';
 import { AltaPersonaComponent } from './lista';
 import { RegistrarPersonaComponent, FormLugarComponent, FormCuentaComponent } from './formulario';
 import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, NotificacionModalContent, AgregarSucursalComponent, ConfirmarExportacionModalContent, ConfirmarExportacionComponent, InfoPersonaContent, InfoPersonaComponent, EditarPersonaContent, EditarPersonaComponent, RegistrarCbuContent, RegistrarCbuComponent } from './modal';
-import { VistaPersonaComponent } from './vista';
+import { InfoCuentaPersonaComponent, VistaPersonaComponent } from './vista';
 import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
 
 @NgModule({
@@ -20,7 +20,7 @@ import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
     AgregarSucursalContent, NotificacionModalContent, AgregarSucursalComponent,
     ConfirmarExportacionModalContent, ConfirmarExportacionComponent,
     InfoPersonaContent, InfoPersonaComponent,
-    VistaPersonaComponent,
+    VistaPersonaComponent, InfoCuentaPersonaComponent,
     EditarPersonaContent, EditarPersonaComponent,
     BusquedaAvanzadaPersonaComponent,
     RegistrarCbuContent, RegistrarCbuComponent
@@ -42,7 +42,7 @@ import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
     AgregarSucursalContent, NotificacionModalContent, AgregarSucursalComponent,
     ConfirmarExportacionModalContent, ConfirmarExportacionComponent,
     InfoPersonaContent, InfoPersonaComponent,
-    VistaPersonaComponent,
+    VistaPersonaComponent, InfoCuentaPersonaComponent,
     EditarPersonaContent, EditarPersonaComponent,
     BusquedaAvanzadaPersonaComponent,
     RegistrarCbuContent, RegistrarCbuComponent

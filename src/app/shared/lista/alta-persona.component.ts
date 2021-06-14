@@ -112,4 +112,10 @@ export class AltaPersonaComponent implements OnInit {
     return cbu;
   }
 
+  actualizarListado(actualizar: boolean, cuilPersona: string) {
+    if (actualizar) {
+      this.cuilPersona.emit(cuilPersona);
+    }
+  }
+
 }
