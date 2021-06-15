@@ -73,7 +73,7 @@
     <div class="d-flex justify-content-between">
       <span class="d-flex align-items-center">Datos de la cuenta</span>
       <span class="d-flex align-items-center">
-        <modal-registrar-cbu [listadoBancos]="listaBancos" [personaid]="persona.id" [edicion]="true" [datosCuenta]="persona"></modal-registrar-cbu>
+        <modal-registrar-cbu [listadoBancos]="listaBancos" [personaid]="persona.id" [edicion]="true" [datosCuenta]="persona" (actualizarDatos)="actualizacion($event)"></modal-registrar-cbu>
       </span>
     </div>
   </div>
@@ -100,5 +100,5 @@
     </div>
   </div>
 </div>
-<shared-vista-component-info-cuenta-persona *ngIf="(persona.tiene_cbu)" [listaBancos]="listaBancos" [listaCuentas]="persona.lista_cuenta"></shared-vista-component-info-cuenta-persona>
+<shared-vista-component-info-cuenta-persona *ngIf="(persona.tiene_cbu)" [listaBancos]="listaBancos" [listaCuentas]="persona.lista_cuenta" (actualizarLista)="actualizacion($event)"></shared-vista-component-info-cuenta-persona>
 

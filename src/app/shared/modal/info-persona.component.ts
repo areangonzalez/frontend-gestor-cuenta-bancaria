@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbModal, NgbActiveModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -11,7 +11,7 @@ import { NgbModal, NgbActiveModal, NgbModalConfig } from '@ng-bootstrap/ng-boots
       </button>
     </div>
     <div class="modal-body">
-       <vista-persona [persona]="persona" [listaBancos]="listadoBancos"></vista-persona>
+       <vista-persona [persona]="persona" [listaBancos]="listadoBancos" (actualizarDatos)="actualizacionDeDatos($event)"></vista-persona>
     </div>
 `,
   styleUrls: ['./info-persona.component.scss']
@@ -21,6 +21,10 @@ export class InfoPersonaContent {
   @Input("listadoBancos") public listadoBancos: any;
 
   constructor(public activeModal: NgbActiveModal) {}
+
+  actualizacionDeDatos(dato: boolean) {
+    this.activeModal.close(dato);
+  }
 
   cerrarModal(cerrar:boolean) {
     this.activeModal.close(false);
@@ -35,6 +39,7 @@ export class InfoPersonaContent {
 export class InfoPersonaComponent {
   @Input("persona") public persona: any;
   @Input("listadoBancos") public listadoBancos: any;
+  @Output("actualizarDatos") public actualizarDatos = new EventEmitter();
 
   constructor(private _modalService: NgbModal, private _config: NgbModalConfig) {
     _config.backdrop = 'static';
@@ -45,6 +50,11 @@ export class InfoPersonaComponent {
     const modalRef = this._modalService.open(InfoPersonaContent, { size: 'lg' });
     modalRef.componentInstance.persona = this.persona;
     modalRef.componentInstance.listadoBancos = this.listadoBancos;
+    modalRef.result.then((result) => {
+      if (result) {
+        this.actualizarDatos.emit(result);
+      }
+    })
   }
 
 }
