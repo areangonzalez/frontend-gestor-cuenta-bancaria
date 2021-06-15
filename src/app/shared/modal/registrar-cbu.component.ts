@@ -5,7 +5,7 @@ import { NgbModal, NgbActiveModal, NgbModalConfig } from '@ng-bootstrap/ng-boots
   selector: 'content-registrar-cbu',
   template: `
     <div class="modal-header">
-      <h4 class="modal-title">Registrar Cuenta Bancaria</h4>
+      <h4 class="modal-title">{{titulo}} Cuenta Bancaria</h4>
       <button type="button" class="close" aria-label="Close" (click)="activeModal.close(false)">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -20,6 +20,7 @@ export class RegistrarCbuContent {
   @Input("listadoBancos") public listadoBancos: any; // array que contiene el listado de los bancos
   @Input("personaid") public personaid: number; // array que contiene el listado de los bancos
   @Input("datosCuenta") public datosCuenta: any; // objeto que contiene los datos de cuenta bancaria
+  @Input("titulo") public titulo: string; // titulo para el Editar o Registrar
 
   constructor(public activeModal: NgbActiveModal) {}
 
@@ -51,6 +52,7 @@ export class RegistrarCbuComponent {
     modalRef.componentInstance.listadoBancos = this.listadoBancos;
     modalRef.componentInstance.personaid = this.personaid;
     modalRef.componentInstance.datosCuenta = this.datosCuenta;
+    modalRef.componentInstance.titulo = (this.edicion) ? "Editar" : "Registrar";
     modalRef.result.then(
       (result) => {
         return this.actualizarDatos.emit(result);
