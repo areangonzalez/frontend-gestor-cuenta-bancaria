@@ -37,6 +37,7 @@ export class RegistrarCbuComponent {
   @Input("listadoBancos") public listadoBancos: any; // array que contiene el listado de los bancos
   @Input("personaid") public personaid: number;
   @Input("botonCircular") public botonCircular: boolean;
+  @Input("edicion") public edicion: boolean; // si es true cambia el diseño del boton e icono
   @Input("datosCuenta") public datosCuenta: any; // objeto que contiene los datos de cuenta bancaria
   @Output("actualizarDatos") public actualizarDatos = new EventEmitter();
 

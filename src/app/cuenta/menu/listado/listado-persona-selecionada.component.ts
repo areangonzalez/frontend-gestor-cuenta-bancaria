@@ -10,7 +10,7 @@ import { configurarListas } from 'src/app/core/models';
 })
 export class ListadoPersonaSelecionadaComponent implements OnInit {
   @Input("config-listas") public configurarListas: configurarListas; // array que contiene el/los listados para el componente
-  @Input("personaSeleccionada") public personaSeleccionada: any;
+  /* @Input("personaSeleccionada") public personaSeleccionada: any; */
   @Input("tipo") public tipo: string;
 
   constructor(private _msj: NotificacionService, private _cuentaSaldoService: CuentaSaldoService, private _descargaService: ArchivoService) { }
@@ -19,7 +19,7 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
   }
 
   borrarPersona(index: number) {
-    this.personaSeleccionada.splice(index, 1);
+    this.configurarListas.seleccionPersona.splice(index, 1);
   }
 
   public direccion(lugar: object){
@@ -51,10 +51,10 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
    */
   editarPersona(datosPersona: any) {
     // busco la persona en listaod y agrego los cambios a la persona encontrada
-    for (let i = 0; i < this.personaSeleccionada.length; i++) {
-      if (this.personaSeleccionada[i].id == datosPersona.id) {
-        Object.assign(datosPersona, { prestacion: this.personaSeleccionada[i].prestacion, tiene_cbu: this.personaSeleccionada[i].tiene_cbu });
-        this.personaSeleccionada[i] = datosPersona;
+    for (let i = 0; i < this.configurarListas.seleccionPersona.length; i++) {
+      if (this.configurarListas.seleccionPersona[i].id == datosPersona.id) {
+        Object.assign(datosPersona, { prestacion: this.configurarListas.seleccionPersona[i].prestacion, tiene_cbu: this.configurarListas.seleccionPersona[i].tiene_cbu });
+        this.configurarListas.seleccionPersona[i] = datosPersona;
       }
     }
   }
@@ -63,7 +63,7 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
     if (actualizar) {
       this._cuentaSaldoService.listado().subscribe(
         respuesta => {
-          this.personaSeleccionada = respuesta;
+          this.configurarListas.seleccionPersona = respuesta;
         }, error => { this._msj.cancelado(error); }
       );
     }
@@ -74,13 +74,13 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
    */
   public exportarArchivo(exportar:boolean) {
     if (exportar){
-      this._descargaService.exportarCtaSaldo(this.personaSeleccionada).subscribe(
+      this._descargaService.exportarCtaSaldo(this.configurarListas.seleccionPersona).subscribe(
         respuesta => {
           let blob = new Blob([respuesta["cuenta_saldo"]], {type:"text/plain;charset=utf-8"});
 
           let filename = 'CTASLDO.txt';
           importedSaveAs(blob, filename);
-          this.personaSeleccionada = [];
+          this.configurarListas.seleccionPersona = [];
 
           setTimeout(() => {
             this._msj.exitoso(respuesta["message"]);
