@@ -7,9 +7,11 @@ import { NgbTooltipModule, NgbDatepickerModule, NgbCollapseModule, NgbPagination
 import { CabeceraComponent, PieComponent } from './layout';
 import { AltaPersonaComponent } from './lista';
 import { RegistrarPersonaComponent, FormLugarComponent, FormCuentaComponent } from './formulario';
-import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, NotificacionModalContent, AgregarSucursalComponent, ConfirmarExportacionModalContent, ConfirmarExportacionComponent, InfoPersonaContent, InfoPersonaComponent, EditarPersonaContent, EditarPersonaComponent, RegistrarCbuContent, RegistrarCbuComponent } from './modal';
+import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, NotificacionModalContent, AgregarSucursalComponent, ConfirmarExportacionModalContent, ConfirmarExportacionComponent, InfoPersonaContent, InfoPersonaComponent,
+   EditarPersonaContent, EditarPersonaComponent, RegistrarCbuContent, RegistrarCbuComponent, BorrarCbuContent, BorrarCbuComponent } from './modal';
 import { InfoCuentaPersonaComponent, VistaPersonaComponent } from './vista';
 import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
+import {  } from './modal/borrar-cbu.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
     VistaPersonaComponent, InfoCuentaPersonaComponent,
     EditarPersonaContent, EditarPersonaComponent,
     BusquedaAvanzadaPersonaComponent,
-    RegistrarCbuContent, RegistrarCbuComponent
+    RegistrarCbuContent, RegistrarCbuComponent,
+    BorrarCbuContent, BorrarCbuComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +48,8 @@ import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
     VistaPersonaComponent, InfoCuentaPersonaComponent,
     EditarPersonaContent, EditarPersonaComponent,
     BusquedaAvanzadaPersonaComponent,
-    RegistrarCbuContent, RegistrarCbuComponent
+    RegistrarCbuContent, RegistrarCbuComponent,
+    BorrarCbuContent, BorrarCbuComponent
   ]
 })
 export class SharedModule { }

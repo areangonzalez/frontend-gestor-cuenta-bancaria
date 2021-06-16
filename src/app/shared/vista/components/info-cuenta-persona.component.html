@@ -3,6 +3,7 @@
       <div class="d-flex justify-content-between">
         <span class="d-flex align-items-center">Datos de la cuenta</span>
         <span class="d-flex align-items-center">
+          <modal-borrar-cbu (confirmarBorrado)="confirmacion($event, cuenta.id)"></modal-borrar-cbu>
           <modal-registrar-cbu [listadoBancos]="listaBancos" [personaid]="cuenta.personaid" [edicion]="true" [datosCuenta]="cuenta" (actualizarDatos)="actualizarDatos($event)"></modal-registrar-cbu>
         </span>
       </div>

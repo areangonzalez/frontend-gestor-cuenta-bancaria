@@ -30,6 +30,10 @@ export class CuentaService implements Resolve<any> {
     }
   }
 
+  borrar(id: number) {
+    return this._http.delete('/cuentas/' + id);
+  }
+
   resolve() {
     let httpParams = new HttpParams();
     httpParams = this._http.formatParams(httpParams, { tesoreria_alta: 1, page: 0, pagesize: 20 });
