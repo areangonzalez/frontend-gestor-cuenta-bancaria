@@ -77,4 +77,10 @@ export class AltaCuentaPersonaComponent implements OnInit {
     this.realizarBusqueda({ global_param: palabra }, 1);
   }
 
+  actualizarListado(valor:boolean) {
+    if (valor) {
+      this.actualizarBusqueda('');
+    }
+  }
+
 }

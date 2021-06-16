@@ -12,6 +12,7 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
   @Input("config-listas") public configurarListas: configurarListas; // array que contiene el/los listados para el componente
   /* @Input("personaSeleccionada") public personaSeleccionada: any; */
   @Input("tipo") public tipo: string;
+  @Output("actualizarListadoPersonas") public actualizarListadoPersonas = new EventEmitter();
 
   constructor(private _msj: NotificacionService, private _cuentaSaldoService: CuentaSaldoService, private _descargaService: ArchivoService) { }
 
@@ -55,6 +56,7 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
       if (this.configurarListas.seleccionPersona[i].id == datosPersona.id) {
         Object.assign(datosPersona, { prestacion: this.configurarListas.seleccionPersona[i].prestacion, tiene_cbu: this.configurarListas.seleccionPersona[i].tiene_cbu });
         this.configurarListas.seleccionPersona[i] = datosPersona;
+        this.actualizarListadoPersonas.emit(true);
       }
     }
   }

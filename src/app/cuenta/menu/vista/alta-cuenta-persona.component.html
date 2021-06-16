@@ -12,6 +12,6 @@
   <shared-lista-alta-persona [tipo]="'cuenta'" [personas]="personas" [config-listas]="listas" [configPaginacion]="configPaginacion" (cambioDePagina)="cambiarPagina($event)" (seleccionDePersona)="obtenerPersona($event)" (cuilPersona)="actualizarBusqueda($event)" ></shared-lista-alta-persona>
 </div>
 <div class="shadow-sm p-3 mb-3 bg-white rounded">
-  <cuenta-listado-persona-selecionada [config-listas]="listas" [tipo]="'cuenta-saldo'"></cuenta-listado-persona-selecionada>
+  <cuenta-listado-persona-selecionada [config-listas]="listas" [tipo]="'cuenta-saldo'" (actualizarListadoPersonas)="actualizarListado($event)"></cuenta-listado-persona-selecionada>
 </div>
 
