@@ -42,7 +42,7 @@ export class RegistrarPersonaComponent implements OnInit {
       lugar: _fb.group({
         localidadid: ['', [Validators.required]],
         calle: ['', [Validators.required, Validators.minLength(3)]],
-        altura: ['', [Validators.required]],
+        altura: '',
         barrio: '',
         piso: '',
         depto: '',
