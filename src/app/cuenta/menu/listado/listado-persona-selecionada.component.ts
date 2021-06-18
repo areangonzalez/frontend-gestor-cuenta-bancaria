@@ -49,6 +49,7 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
       // guardo el listado de las personas seleccionadas
       this._cuentaSaldoService.guardarSeleccionPersona(seleccion).subscribe(
         respuesta => {
+          this.actualizarListaSeleccion(true);
           this._msj.exitoso("El listado se ha guardado con exito!!");
         }, error => { this._msj.cancelado(error); }
       );
