@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: '/apimock'
+  apiUrl: 'http://api.gcb.local'
 };
 
 /*
