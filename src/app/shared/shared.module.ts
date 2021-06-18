@@ -8,10 +8,9 @@ import { CabeceraComponent, PieComponent } from './layout';
 import { AltaPersonaComponent } from './lista';
 import { RegistrarPersonaComponent, FormLugarComponent, FormCuentaComponent } from './formulario';
 import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, NotificacionModalContent, AgregarSucursalComponent, ConfirmarExportacionModalContent, ConfirmarExportacionComponent, InfoPersonaContent, InfoPersonaComponent,
-   EditarPersonaContent, EditarPersonaComponent, RegistrarCbuContent, RegistrarCbuComponent, BorrarCbuContent, BorrarCbuComponent } from './modal';
+   EditarPersonaContent, EditarPersonaComponent, RegistrarCbuContent, RegistrarCbuComponent, BorrarCbuContent, BorrarCbuComponent, BorrarPrestacionContent, BorrarPrestacionComponent } from './modal';
 import { InfoCuentaPersonaComponent, VistaPersonaComponent } from './vista';
 import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
-import {  } from './modal/borrar-cbu.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +25,8 @@ import {  } from './modal/borrar-cbu.component';
     EditarPersonaContent, EditarPersonaComponent,
     BusquedaAvanzadaPersonaComponent,
     RegistrarCbuContent, RegistrarCbuComponent,
-    BorrarCbuContent, BorrarCbuComponent
+    BorrarCbuContent, BorrarCbuComponent,
+    BorrarPrestacionContent, BorrarPrestacionComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +49,8 @@ import {  } from './modal/borrar-cbu.component';
     EditarPersonaContent, EditarPersonaComponent,
     BusquedaAvanzadaPersonaComponent,
     RegistrarCbuContent, RegistrarCbuComponent,
-    BorrarCbuContent, BorrarCbuComponent
+    BorrarCbuContent, BorrarCbuComponent,
+    BorrarPrestacionContent, BorrarPrestacionComponent
   ]
 })
 export class SharedModule { }

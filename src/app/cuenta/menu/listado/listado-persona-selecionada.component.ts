@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ArchivoService, CuentaSaldoService, NotificacionService } from 'src/app/core/services';
+import { ArchivoService, CuentaSaldoService, NotificacionService, PrestacionService } from 'src/app/core/services';
 import {saveAs as importedSaveAs} from "file-saver";
 import { configurarListas } from 'src/app/core/models';
 
@@ -14,12 +14,22 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
   @Input("tipo") public tipo: string;
   @Output("actualizarListadoPersonas") public actualizarListadoPersonas = new EventEmitter();
 
-  constructor(private _msj: NotificacionService, private _cuentaSaldoService: CuentaSaldoService, private _descargaService: ArchivoService) { }
+  constructor(private _msj: NotificacionService, private _cuentaSaldoService: CuentaSaldoService, private _descargaService: ArchivoService, private _prestacionService: PrestacionService) { }
 
   ngOnInit(): void {
   }
 
-  borrarPersona(index: number) {
+  borrarPersona(confirmacion: boolean, index: number, idPrestacion:number) {
+    if (idPrestacion !== undefined) {
+      if (confirmacion) {
+        this._prestacionService.borrar(idPrestacion).subscribe(
+          respuesta => {
+            this._msj.exitoso("Se ha quitado el pedido de convenio de la persona.");
+          },
+          error => { this._msj.cancelado(error); });
+      }
+    }
+
     this.configurarListas.seleccionPersona.splice(index, 1);
   }
 

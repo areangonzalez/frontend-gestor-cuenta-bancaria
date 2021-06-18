@@ -5,3 +5,4 @@ export * from './info-persona.component';
 export * from './editar-persona.component';
 export * from './registrar-cbu.component';
 export * from './borrar-cbu.component';
+export * from './borrar-prestacion.component';

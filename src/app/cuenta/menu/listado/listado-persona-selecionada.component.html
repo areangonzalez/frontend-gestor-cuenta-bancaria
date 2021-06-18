@@ -45,7 +45,7 @@
       <td class="text-center" *ngIf="(tipo == 'cuenta-saldo')">{{persona.prestacion.fecha_ingreso | date: 'dd/MM/yyyy'}}</td>
       <td class="text-center">
         <modal-editar-persona [config-listas]="configurarListas" [persona]="persona" (obtenerDatosPersona)="editarPersona($event)" [tipo]="tipo"></modal-editar-persona>
-        <button type="button" class="btn btn-sm btn-outline-danger rounded-circle" ngbTooltip="Borrar persona" container="'body'" (click)="borrarPersona(i)"><i class="fas fa-trash-alt"></i></button>
+        <modal-borrar-prestacion (confirmarBorrado)="borrarPersona($event, i, persona.prestacion['id'])"></modal-borrar-prestacion>
       </td>
     </tr>
   </tbody>
