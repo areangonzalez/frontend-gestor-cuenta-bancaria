@@ -20,17 +20,17 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
   }
 
   borrarPersona(confirmacion: boolean, index: number, idPrestacion:number) {
-    if (idPrestacion !== undefined) {
-      if (confirmacion) {
+    if (confirmacion) {
+      if (idPrestacion !== undefined) {
         this._prestacionService.borrar(idPrestacion).subscribe(
           respuesta => {
             this._msj.exitoso("Se ha quitado el pedido de convenio de la persona.");
           },
           error => { this._msj.cancelado(error); });
       }
+      this.configurarListas.seleccionPersona.splice(index, 1);
     }
 
-    this.configurarListas.seleccionPersona.splice(index, 1);
   }
 
   public direccion(lugar: object){
