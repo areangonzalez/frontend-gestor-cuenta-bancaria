@@ -51,7 +51,7 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
         respuesta => {
           this.actualizarListaSeleccion(true);
           this._msj.exitoso("El listado se ha guardado con exito!!");
-        }, error => { this._msj.cancelado(error); }
+        }, error => { this.tipoError(error); }
       );
     }else{
       this._msj.cancelado("No hay personas seleccionadas dentro del listado.");
