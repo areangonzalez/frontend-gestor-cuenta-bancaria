@@ -64,25 +64,37 @@ export class FormCuentaComponent implements OnInit {
       )
     }
   }
-
+  /**
+   * cancela el formulario
+   */
   public cancelarForm() {
     this.obtenerRespueta.emit(false);
   }
-
+  /**
+   * verifica que los datos ingresados sean numericos
+   * @param datos valores a verificar
+   */
   public esNumero(datos: any) {
     if (!this._util.validarNumero(datos.value)) {
       datos.value = datos.value.substring(0,datos.value.length - 1);
     }
   }
-
+  /**
+   * Completa el formulario para el editado de una cuenta
+   * @param cuenta objeto que se obtien mediante el api
+   */
   private completarFormulario(cuenta: object) {
     this.cuenta.patchValue({bancoid: cuenta["bancoid"]});
     this.cuenta.patchValue({cbu: cuenta["cbu"]});
     this.idCuenta = cuenta["id"];
   }
-
-  public esCvu(banco) {
-    return this.mostrarTextoCvu = (banco == 999) ? true : false;
+  /**
+   * si el id del banco es 999 se mostrara el cambio de nombre del TAG CBU/CVU
+   * @param bancoid identificador del banco
+   * @returns booleano respuesta que mostrar un texto
+   */
+  public esCvu(bancoid: number) {
+    return this.mostrarTextoCvu = (bancoid == 999) ? true : false;
   }
 
 }
