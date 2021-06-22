@@ -1,9 +1,12 @@
+<div class="d-flex justify-content-end">
+  <small class="text-danger">(*) Campos obligatorios</small>
+</div>
 <fieldset [formGroup]="cuenta">
   <div class="row">
     <div class="col-md-12">
       <div class="form-group">
-        <label for="banco">Banco:</label>
-        <select class="form-control" id="banco" formControlName="bancoid" [ngClass]="{'is-invalid': (cuenta.get('bancoid').invalid && submitted)}">
+        <label for="banco">Banco (<span class="text-danger">*</span>):</label>
+        <select class="form-control" id="banco" formControlName="bancoid" (change)="esCvu($event.target.value)" [ngClass]="{'is-invalid': (cuenta.get('bancoid').invalid && submitted)}">
           <option value="">Seleccionar banco</option>
           <option *ngFor="let banco of listaBanco" value="{{banco.id}}">{{banco.nombre}}</option>
         </select>
@@ -14,7 +17,7 @@
     </div>
     <div class="col-md-12">
       <div class="form-group">
-        <label for="cbu">CBU:</label>
+        <label for="cbu">CBU<span *ngIf="(mostrarTextoCvu)">/CVU</span> (<span class="text-danger">*</span>):</label>
         <input type="text" id="cbu" formControlName="cbu" class="form-control" maxlength="22" placeholder="Ej.: 02990504222248863489129"
         (keyup)="esNumero($event.target)"
         [ngClass]="{'is-invalid': (cuenta.get('cbu').invalid && submitted)}">

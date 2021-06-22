@@ -11,6 +11,7 @@ export class FormCuentaComponent implements OnInit {
   public cuenta: FormGroup; /** formulario de cuenta {object} los valores del objeto de cuenta son: bancoid, cbu  */
   public submitted: boolean; /** estado de validacion de formulario {boolean} */
   private idCuenta: number;
+  public mostrarTextoCvu: boolean = false;
   @Input("listaBanco") listaBanco: any; /** listado que contiene los bancos */
   @Input("personaid") public personaid: number /**identificador de una persona */
   @Input("datosCuenta") public datosCuenta: any; /** datos de la cuenta solo para edicion */
@@ -78,6 +79,10 @@ export class FormCuentaComponent implements OnInit {
     this.cuenta.patchValue({bancoid: cuenta["bancoid"]});
     this.cuenta.patchValue({cbu: cuenta["cbu"]});
     this.idCuenta = cuenta["id"];
+  }
+
+  public esCvu(banco) {
+    return this.mostrarTextoCvu = (banco == 999) ? true : false;
   }
 
 }
