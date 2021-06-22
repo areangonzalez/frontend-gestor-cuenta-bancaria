@@ -3,8 +3,8 @@
       <div class="d-flex justify-content-between">
         <span class="d-flex align-items-center">Datos de la cuenta</span>
         <span class="d-flex align-items-center btn-group">
-          <modal-borrar-cbu class="btn-group" (confirmarBorrado)="confirmacion($event, cuenta.id)"></modal-borrar-cbu>
-          <modal-registrar-cbu class="btn-group" [listadoBancos]="listaBancos" [personaid]="cuenta.personaid" [edicion]="true" [datosCuenta]="cuenta" (actualizarDatos)="actualizarDatos($event)"></modal-registrar-cbu>
+          <modal-borrar-cbu *ngIf="(cuenta.origen_convenio)" class="btn-group" (confirmarBorrado)="confirmacion($event, cuenta.id)"></modal-borrar-cbu>
+          <modal-registrar-cbu *ngIf="(cuenta.origen_convenio)" class="btn-group" [listadoBancos]="listaBancos" [personaid]="cuenta.personaid" [edicion]="true" [datosCuenta]="cuenta" (actualizarDatos)="actualizarDatos($event)"></modal-registrar-cbu>
         </span>
       </div>
     </div>
