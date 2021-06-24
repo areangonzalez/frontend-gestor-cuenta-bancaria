@@ -118,4 +118,10 @@ export class AltaPersonaComponent implements OnInit {
     }
   }
 
+  esPendiente(estado: boolean) {
+    if (estado == true) {
+      return "Esperando respuesta del banco.";
+    }
+  }
+
 }
