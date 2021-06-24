@@ -6,3 +6,4 @@ export * from './editar-persona.component';
 export * from './registrar-cbu.component';
 export * from './borrar-cbu.component';
 export * from './borrar-prestacion.component';
+export * from './borrar-prestacion-pendiente.component';

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { configurarListas } from 'src/app/core/models';
 import { NotificacionService } from 'src/app/core/services';
+import { PrestacionService } from './../../core/services';
 
 @Component({
   selector: 'shared-lista-alta-persona',
@@ -17,7 +18,7 @@ export class AltaPersonaComponent implements OnInit {
   @Output("cuilPersona") public cuilPersona = new EventEmitter();
   public copiaDeDatos: any = { existe: false };
 
-  constructor(private _msj: NotificacionService) { }
+  constructor(private _msj: NotificacionService, private _prestacionService: PrestacionService) { }
 
   ngOnInit(): void {
   }
@@ -121,6 +122,15 @@ export class AltaPersonaComponent implements OnInit {
   esPendiente(estado: boolean) {
     if (estado == true) {
       return "Esperando respuesta del banco.";
+    }
+  }
+
+  rechazarPrestacion(confirmacion: boolean, idPersona: number, cuilPersona: string) {
+    if (confirmacion === true) {
+      this._prestacionService.borrarPendiente(idPersona).subscribe(
+        respuesta => {
+          this.cuilPersona.emit(cuilPersona);
+        }, error => { this._msj.cancelado(error); })
     }
   }
 

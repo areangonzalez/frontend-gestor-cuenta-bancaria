@@ -8,7 +8,7 @@ import { CabeceraComponent, PieComponent } from './layout';
 import { AltaPersonaComponent } from './lista';
 import { RegistrarPersonaComponent, FormLugarComponent, FormCuentaComponent } from './formulario';
 import { CrearPersonaContent, CrearPersonaComponent, AgregarSucursalContent, NotificacionModalContent, AgregarSucursalComponent, ConfirmarExportacionModalContent, ConfirmarExportacionComponent, InfoPersonaContent, InfoPersonaComponent,
-   EditarPersonaContent, EditarPersonaComponent, RegistrarCbuContent, RegistrarCbuComponent, BorrarCbuContent, BorrarCbuComponent, BorrarPrestacionContent, BorrarPrestacionComponent } from './modal';
+   EditarPersonaContent, EditarPersonaComponent, RegistrarCbuContent, RegistrarCbuComponent, BorrarCbuContent, BorrarCbuComponent, BorrarPrestacionContent, BorrarPrestacionComponent, BorrarPrestacionPendienteContent, BorrarPrestacionPendienteComponent } from './modal';
 import { InfoCuentaPersonaComponent, VistaPersonaComponent } from './vista';
 import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
 
@@ -26,7 +26,8 @@ import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
     BusquedaAvanzadaPersonaComponent,
     RegistrarCbuContent, RegistrarCbuComponent,
     BorrarCbuContent, BorrarCbuComponent,
-    BorrarPrestacionContent, BorrarPrestacionComponent
+    BorrarPrestacionContent, BorrarPrestacionComponent,
+    BorrarPrestacionPendienteContent, BorrarPrestacionPendienteComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +51,8 @@ import { BusquedaAvanzadaPersonaComponent } from "./busqueda";
     BusquedaAvanzadaPersonaComponent,
     RegistrarCbuContent, RegistrarCbuComponent,
     BorrarCbuContent, BorrarCbuComponent,
-    BorrarPrestacionContent, BorrarPrestacionComponent
+    BorrarPrestacionContent, BorrarPrestacionComponent,
+    BorrarPrestacionPendienteContent, BorrarPrestacionPendienteComponent
   ]
 })
 export class SharedModule { }

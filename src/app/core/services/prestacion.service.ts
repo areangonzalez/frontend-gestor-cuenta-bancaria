@@ -12,4 +12,8 @@ export class PrestacionService {
     return this._http.delete('/prestacions/' + id);
   }
 
+  borrarPendiente(id:number) {
+    return this._http.delete('/prestacions/borrar-pendiente/' + id);
+  }
+
 }
