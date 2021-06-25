@@ -77,6 +77,7 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
       this._cuentaSaldoService.listado().subscribe(
         respuesta => {
           this.configurarListas.seleccionPersona = respuesta;
+          this.actualizarListadoPersonas.emit(true);
         }, error => { this._msj.cancelado(error); }
       );
     }
