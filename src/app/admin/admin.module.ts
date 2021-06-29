@@ -6,6 +6,7 @@ import { SharedModule } from "../shared";
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { GestorUsuarioComponent } from './gestor-usuario';
+import { GestorLocalidadComponent } from './gestor-localidad';
 import {
   UsuariosComponent, BusquedaAvanzadaComponent, DatosPersonaComponent, DatosUsuarioComponent,
   AgregarUsuarioModalContent, AgregarUsuarioModalComponent, ConfiguracionTabComponent,
@@ -19,7 +20,8 @@ import {
   declarations: [
     AdminComponent, UsuariosComponent, BusquedaAvanzadaComponent, GestorUsuarioComponent, DatosPersonaComponent, DatosUsuarioComponent,
     AgregarUsuarioModalContent, AgregarUsuarioModalComponent, ConfigurarUsuarioModalContent, ConfigurarUsuarioModalComponent, ConfiguracionTabComponent, UsuarioInfoComponent, AdministrarRolPermisoComponent, UsuarioPermisoListaComponent,
-    BajaUsuarioModalContent, BajaUsuarioModalComponent, AltaUsuarioModalContent, AltaUsuarioModalComponent, BorrarPermisoUsuarioModalContent, BorrarPermisoUsuarioModalComponent, LocalidadListaComponent
+    BajaUsuarioModalContent, BajaUsuarioModalComponent, AltaUsuarioModalContent, AltaUsuarioModalComponent, BorrarPermisoUsuarioModalContent, BorrarPermisoUsuarioModalComponent, LocalidadListaComponent, GestorLocalidadComponent,
+    GestorLocalidadComponent
   ],
   imports: [
     NgbModule,
