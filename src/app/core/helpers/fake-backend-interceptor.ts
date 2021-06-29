@@ -557,7 +557,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
         function getLocalidad() {
           const localidad = [
-            {id: 1, nombre: 'Cipolletti'},{id: 2, nombre: 'Gral. Roca'},{id: 3, nombre: 'San Carlos de Bariloche'},{id: 4, nombre: 'San Javier'},{id: 5, nombre: 'Viedma'}
+            {id: 1, nombre: 'Cipolletti', codigo_postal: "8324", departamento: "General Roca"},
+            {id: 2, nombre: 'Gral. Roca', codigo_postal: "8332", departamento: "General Roca"},
+            {id: 3, nombre: 'San Carlos de Bariloche', codigo_postal: "8400", departamento: "Bariloche"},
+            {id: 4, nombre: 'San Javier', codigo_postal: "8501", departamento: "Adolfo Alsina"},
+            {id: 5, nombre: 'Viedma', codigo_postal: "8500", departamento: "Adolfo Alsina"}
           ];
 
           if (localidad) {

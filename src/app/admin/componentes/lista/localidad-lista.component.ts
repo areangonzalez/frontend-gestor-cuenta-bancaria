@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'admin-localidad-lista',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./localidad-lista.component.scss']
 })
 export class LocalidadListaComponent implements OnInit {
+  @Input("localidad") public localidad: any;
 
   constructor() { }
 

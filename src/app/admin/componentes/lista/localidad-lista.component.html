@@ -1,29 +1,28 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">nombre</th>
+      <th class="text-center" scope="col">Codigo Postal</th>
+      <th class="text-center" scope="col">Departamento</th>
+      <th class="text-center" scope="col">
+        <button type="button" class="btn btn-sm btn-outline-success" ngbTooltip="Agregar Localidad"><i class="fas fa-plus"></i> Localidad</button>
+      </th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf="(localidad.length == 0)">
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td colspan="4" class="bg-warning text-center">No se han encontrado ninguna Localidad</td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
+  </tbody>
+  <tbody *ngIf="(localidad.length > 0)">
+    <tr *ngFor="let loc of localidad" >
+      <td>{{loc.nombre}}</td>
+      <td class="text-center">{{loc.codigo_postal}}</td>
+      <td class="text-center">{{loc.departamento}}</td>
+      <td class="text-center">
+        <button type="button" class="btn btn-sm btn-outline-secondary rounded-circle" ngbTooltip="Editar Localidad"><i class="far fa-edit"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-info rounded-circle" ngbTooltip="Agregar Excepción"><i class="fas fa-exchange-alt"></i></button>
+      </td>
     </tr>
   </tbody>
 </table>
