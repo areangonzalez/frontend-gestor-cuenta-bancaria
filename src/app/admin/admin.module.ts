@@ -15,13 +15,14 @@ import {
   AltaUsuarioModalContent, AltaUsuarioModalComponent, BorrarPermisoUsuarioModalContent, BorrarPermisoUsuarioModalComponent,
   LocalidadListaComponent, RegistrarLocalidadContent, RegistrarLocalidadComponent
 } from './componentes';
+import { LocalidadFormComponent } from './componentes/form/localidad-form.component';
 
 @NgModule({
   declarations: [
     AdminComponent, UsuariosComponent, BusquedaAvanzadaComponent, GestorUsuarioComponent, DatosPersonaComponent, DatosUsuarioComponent,
     AgregarUsuarioModalContent, AgregarUsuarioModalComponent, ConfigurarUsuarioModalContent, ConfigurarUsuarioModalComponent, ConfiguracionTabComponent, UsuarioInfoComponent, AdministrarRolPermisoComponent, UsuarioPermisoListaComponent,
     BajaUsuarioModalContent, BajaUsuarioModalComponent, AltaUsuarioModalContent, AltaUsuarioModalComponent, BorrarPermisoUsuarioModalContent, BorrarPermisoUsuarioModalComponent, LocalidadListaComponent, GestorLocalidadComponent,
-    GestorLocalidadComponent, RegistrarLocalidadContent, RegistrarLocalidadComponent
+    GestorLocalidadComponent, RegistrarLocalidadContent, RegistrarLocalidadComponent, LocalidadFormComponent
   ],
   imports: [
     NgbModule,

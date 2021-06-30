@@ -1,26 +1,25 @@
 import { Injectable } from '@angular/core';
-import { HttpParams } from '@angular/common/http';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class LocalidadService implements Resolve<any> {
+export class ProvinciaService implements Resolve<any> {
 
   constructor(private _http: ApiService) { }
 
-  public buscarPorDepartamentoId(departamentoid: number) {
-    let httpParams = new HttpParams();
-    httpParams = this._http.formatParams(httpParams, {"departamentoid": departamentoid});
-    return this._http.get("/departamentos", httpParams);
+  public buscar() {
+    return this._http.get("/provincias");
   }
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
     ): Observable<any>|Promise<any>|any {
-    return this._http.get('/localidads');
+    return this._http.get('/provincias');
   }
+
 }

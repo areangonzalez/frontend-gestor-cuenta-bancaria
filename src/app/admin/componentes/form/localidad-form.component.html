@@ -1,0 +1,31 @@
+<fieldset [formGroup]="localidadForm">
+  <div class="row" >
+    <div class="form-group col-md-12">
+      <label for="provinciaid" class="prioridad">Provincia:</label>
+      <select class="form-control" id="provinciaid" formControlName="provinciaid">
+        <option value="">Seleccione una Provincia</option>
+        <option *ngFor="let prov of configurarListas.provincias" value="{{prov.id}}">{{prov.name}}</option>
+      </select>
+    </div>
+    <div class="form-group col-md-12">
+      <label for="departamentoid" class="prioridad">Departamento (<span>*</span>):</label>
+      <select class="form-control" id="departamentoid" formControlName="departamentoid">
+        <option value="">Seleccione un Departamento</option>
+        <option *ngFor="let depto of departamentos" value="{{depto.id}}">{{depto.nombre}}</option>
+      </select>
+      <div *ngIf="(localidadForm.get('departamentoid').invalid && submitted)" class="text-danger">
+          <div *ngIf="localidadForm.get('departamentoid').hasError('required')">Este campo es requerido. </div>
+      </div>
+    </div>
+    <div class="form-group col-md-12">
+      <label for="localidadid" class="prioridad">Provincia (<span>*</span>):</label>
+      <select class="form-control" id="localidadid" formControlName="localidadid">
+        <option value="">Seleccione un Rol</option>
+        <option *ngFor="let prov of configurarListas.localidades" value="{{prov.nombre}}">{{prov.name}}</option>
+      </select>
+      <div *ngIf="(localidadForm.get('localidadid').invalid && submitted)" class="text-danger">
+          <div *ngIf="localidadForm.get('localidadid').hasError('required')">Este campo es requerido. </div>
+      </div>
+    </div>
+  </div>
+</fieldset>

@@ -14,6 +14,8 @@ export interface configurarListas {
   tamanioPagina?:any;
   programas?: any;
   bancos?: any;
+  provincias?: any;
+  departamentos?: any;
 }
 
 

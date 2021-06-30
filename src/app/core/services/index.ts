@@ -24,3 +24,5 @@ export * from './rol.service';
 export * from './export.service';
 export * from './banco-service.service';
 export * from './prestacion.service';
+export * from './provincia.service';
+export * from './departamento.service';

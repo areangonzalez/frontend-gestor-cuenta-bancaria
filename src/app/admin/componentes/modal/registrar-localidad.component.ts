@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { NotificacionService } from 'src/app/core/services';
+import { configurarListas } from '../../../core/models';
+
 
 @Component({
   selector: 'admin-registrar-localidad-content',
@@ -13,35 +15,7 @@ import { NotificacionService } from 'src/app/core/services';
       </button>
     </div>
     <div class="modal-body">
-      <!-- <div class="row" [formGroup]="localidadForm">
-        <div class="form-group col-md-12">
-          <label for="provinciaid" class="prioridad">Provincia:</label>
-          <select class="form-control" id="provinciaid" formControlName="provinciaid">
-            <option value="">Seleccione una Provincia</option>
-            <option *ngFor="let prov of provincias" value="{{prov.id}}">{{prov.name}}</option>
-          </select>
-        </div>
-        <div class="form-group col-md-12">
-          <label for="departamentoid" class="prioridad">Departamento (<span>*</span>):</label>
-          <select class="form-control" id="departamentoid" formControlName="departamentoid">
-            <option value="">Seleccione un Departamento</option>
-            <option *ngFor="let depto of departamentos" value="{{depto.id}}">{{depto.nombre}}</option>
-          </select>
-          <div *ngIf="(localidadForm.get('departamentoid').invalid && submitted)" class="text-danger">
-              <div *ngIf="localidadForm.get('departamentoid').hasError('required')">Este campo es requerido. </div>
-          </div>
-        </div>
-        <div class="form-group col-md-12">
-          <label for="localidadid" class="prioridad">Provincia (<span>*</span>):</label>
-          <select class="form-control" id="localidadid" formControlName="localidadid">
-            <option value="">Seleccione un Rol</option>
-            <option *ngFor="let prov of provincia" value="{{prov.nombre}}">{{prov.name}}</option>
-          </select>
-          <div *ngIf="(localidadForm.get('localidadid').invalid && submitted)" class="text-danger">
-              <div *ngIf="localidadForm.get('localidadid').hasError('required')">Este campo es requerido. </div>
-          </div>
-        </div>
-      </div> -->
+
     </div>
     <div class=modal-footer>
     <button type="button" class="btn btn-danger" (click)="cerrarModal()"><span class="oi oi-ban" title="Cancelar" aria-hidden="true"></span> Cancelar</button>
@@ -51,20 +25,11 @@ import { NotificacionService } from 'src/app/core/services';
   styleUrls: ['./registrar-localidad.component.scss']
 })
 export class RegistrarLocalidadContent {
+  @Input("config-listas") public configurarListas: configurarListas; // array que contiene el/los listados para el componente
   @Input("localidad") public localidad?: any;
   @Input("titulo") public titulo: string;
-  /* public localidadForm: FormGroup;
-  public submitted: boolean = false; */
 
-  constructor(public _activeModal: NgbActiveModal, /* private _fb: FormBuilder */) {
-    /* this.localidadForm = _fb.group({
-      id: ['', [Validators.required]],
-      nombre: ['', [Validators.required]],
-      codigo_postal: ['', [Validators.required]],
-      departamentoid: ['', [Validators.required]],
-      provinciaid: ''
-    }); */
-  }
+  constructor(public _activeModal: NgbActiveModal) { }
 
   public cerrarModal() {
     this._activeModal.close('closed');
@@ -81,6 +46,7 @@ export class RegistrarLocalidadContent {
   styleUrls: ['./registrar-localidad.component.scss']
 })
 export class RegistrarLocalidadComponent {
+  @Input("config-listas") public configurarListas: configurarListas; // array que contiene el/los listados para el componente
   @Input("localidad") public localidad?: any;
   @Input("titulo") public titulo: string;
 
@@ -92,6 +58,7 @@ export class RegistrarLocalidadComponent {
 
   abrirModal() {
     const modalRef = this._modalService.open(RegistrarLocalidadContent);
+    modalRef.componentInstance.configurarListas = this.configurarListas;
     modalRef.componentInstance.localidad = this.localidad;
     modalRef.componentInstance.titulo = this.titulo;
   }
