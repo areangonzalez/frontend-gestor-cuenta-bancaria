@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { NotificacionService } from 'src/app/core/services';
-import { configurarListas } from '../../../core/models';
 
 
 @Component({
@@ -15,17 +13,13 @@ import { configurarListas } from '../../../core/models';
       </button>
     </div>
     <div class="modal-body">
-
-    </div>
-    <div class=modal-footer>
-    <button type="button" class="btn btn-danger" (click)="cerrarModal()"><span class="oi oi-ban" title="Cancelar" aria-hidden="true"></span> Cancelar</button>
-    <button type="button" class="btn btn-success" (click)="confirmar()"><i class="fas fa-save-o"></i> Guardar</button>
+      <admin-localidad-form [localidad]="localidad" [provincias]="provincias" (cancelarForm)="confirmar($event)"></admin-localidad-form>
     </div>
   `,
   styleUrls: ['./registrar-localidad.component.scss']
 })
 export class RegistrarLocalidadContent {
-  @Input("config-listas") public configurarListas: configurarListas; // array que contiene el/los listados para el componente
+  @Input("provincias") public provincias: any; // array que contiene el/los listados para el componente
   @Input("localidad") public localidad?: any;
   @Input("titulo") public titulo: string;
 
@@ -35,8 +29,12 @@ export class RegistrarLocalidadContent {
     this._activeModal.close('closed');
   }
 
-  public confirmar() {
-    console.log('confirmo');
+  public confirmar(confirmacion: boolean) {
+    if (confirmacion) {
+      this._activeModal.close('close');
+    }else {
+      this._activeModal.close('close');
+    }
   }
 }
 
@@ -46,7 +44,7 @@ export class RegistrarLocalidadContent {
   styleUrls: ['./registrar-localidad.component.scss']
 })
 export class RegistrarLocalidadComponent {
-  @Input("config-listas") public configurarListas: configurarListas; // array que contiene el/los listados para el componente
+  @Input("provincias") public provincias: any; // array que contiene el/los listados para el componente
   @Input("localidad") public localidad?: any;
   @Input("titulo") public titulo: string;
 
@@ -58,7 +56,7 @@ export class RegistrarLocalidadComponent {
 
   abrirModal() {
     const modalRef = this._modalService.open(RegistrarLocalidadContent);
-    modalRef.componentInstance.configurarListas = this.configurarListas;
+    modalRef.componentInstance.provincias = this.provincias;
     modalRef.componentInstance.localidad = this.localidad;
     modalRef.componentInstance.titulo = this.titulo;
   }

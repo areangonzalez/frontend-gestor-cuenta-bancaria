@@ -5,22 +5,22 @@
       <th class="text-center" scope="col">Codigo Postal</th>
       <th class="text-center" scope="col">Departamento</th>
       <th class="text-center" scope="col">
-        <admin-registrar-localidad-modal [titulo]="'Agregar'"></admin-registrar-localidad-modal>
+        <admin-registrar-localidad-modal [provincias]="provincias" [titulo]="'Agregar'"></admin-registrar-localidad-modal>
       </th>
     </tr>
   </thead>
-  <tbody *ngIf="(localidad.length == 0)">
+  <tbody *ngIf="(localidades.length == 0)">
     <tr>
       <td colspan="4" class="bg-warning text-center">No se han encontrado ninguna Localidad</td>
     </tr>
   </tbody>
-  <tbody *ngIf="(localidad.length > 0)">
-    <tr *ngFor="let loc of localidad" >
+  <tbody *ngIf="(localidades.length > 0)">
+    <tr *ngFor="let loc of localidades" >
       <td>{{loc.nombre}}</td>
       <td class="text-center">{{loc.codigo_postal}}</td>
       <td class="text-center">{{loc.departamento}}</td>
       <td class="text-center">
-        <admin-registrar-localidad-modal [localidad]="loc" [titulo]="'Editar'"></admin-registrar-localidad-modal>
+        <admin-registrar-localidad-modal [provincias]="provincias" [localidad]="loc" [titulo]="'Editar'"></admin-registrar-localidad-modal>
         <button type="button" class="btn btn-sm btn-outline-info rounded-circle" ngbTooltip="Crear Excepción"><i class="fas fa-exchange-alt"></i></button>
       </td>
     </tr>

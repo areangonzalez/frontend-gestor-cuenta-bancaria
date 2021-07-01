@@ -19,7 +19,7 @@ export class ProvinciaService implements Resolve<any> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
     ): Observable<any>|Promise<any>|any {
-    return this._http.get('/provincias');
+    return this._http.get("/provincias");
   }
 
 }

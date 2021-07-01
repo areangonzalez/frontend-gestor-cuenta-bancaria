@@ -114,10 +114,33 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return getListaHistorialExport();
               case url.match(/\/apimock\/exports\/\d+$/) && method === 'GET':
                 return getHistorialExport();
+              case url.endsWith('/apimock/provincias') && method === 'GET':
+                return getProvincias();
+              case url.match('/apimock/departamentos') && method === 'GET':
+                return getDepartamentos();
             }
         }
 
         // route functions
+        /*** LISTADO DE PROVINCIAS ***/
+        function getProvincias() {
+          let listadoProvincias = [
+            {id: 1, nombre: "Buenos aires",},{id: 2, nombre: "Neuquén"}, {id: 3, nombre: "Río Negro"}
+          ];
+
+          return ok(listadoProvincias);
+        }
+        /*** LISTADO DE DEPARTAMENTOS ***/
+        function getDepartamentos() {
+          let provinciaid = request.params.get('provinciaid');
+          let listadoDepartamentos = [
+            {id: 3, nombre: "partido de patagones", provinciaid: 1},{id: 1, nombre: "Confluencia", provinciaid:2}, {id: 2, nombre: "Adolfo Alsina", provinciaid: 3}
+          ];
+
+          let depto = listadoDepartamentos.filter(usu => { return usu.provinciaid === parseInt(provinciaid); });
+
+          return ok(depto);
+        }
         /*** LISTADO DE BANCOS ***/
         function getBancos() {
           let listadoBancos = [
@@ -557,11 +580,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
         function getLocalidad() {
           const localidad = [
-            {id: 1, nombre: 'Cipolletti', codigo_postal: "8324", departamento: "General Roca"},
-            {id: 2, nombre: 'Gral. Roca', codigo_postal: "8332", departamento: "General Roca"},
-            {id: 3, nombre: 'San Carlos de Bariloche', codigo_postal: "8400", departamento: "Bariloche"},
-            {id: 4, nombre: 'San Javier', codigo_postal: "8501", departamento: "Adolfo Alsina"},
-            {id: 5, nombre: 'Viedma', codigo_postal: "8500", departamento: "Adolfo Alsina"}
+            {id: 1, nombre: 'Cipolletti', codigo_postal: "8324", provinciaid: 3, departamentoid: 2, departamento: "General Roca"},
+            {id: 2, nombre: 'Gral. Roca', codigo_postal: "8332", provinciaid: 3, departamentoid: 2, departamento: "General Roca"},
+            {id: 3, nombre: 'San Carlos de Bariloche', codigo_postal: "8400", provinciaid: 3, departamentoid: 2, departamento: "Bariloche"},
+            {id: 4, nombre: 'San Javier', codigo_postal: "8501", provinciaid: 3, departamentoid: 2, departamento: "Adolfo Alsina"},
+            {id: 5, nombre: 'Viedma', codigo_postal: "8500", provinciaid: 3, departamentoid: 2, departamento: "Adolfo Alsina"}
           ];
 
           if (localidad) {
