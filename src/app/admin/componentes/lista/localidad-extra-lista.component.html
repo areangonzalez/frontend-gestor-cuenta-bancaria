@@ -1,0 +1,26 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">nombre</th>
+      <th class="text-center" scope="col">Codigo Postal</th>
+      <th class="text-center" scope="col">Departamento</th>
+      <th class="text-center" scope="col">
+      </th>
+    </tr>
+  </thead>
+  <tbody *ngIf="(localidadesExtra.length == 0)">
+    <tr>
+      <td colspan="4" class="bg-warning text-center">No se han encontrado ninguna Localidad</td>
+    </tr>
+  </tbody>
+  <tbody *ngIf="(localidadesExtra.length > 0)">
+    <tr *ngFor="let loc of localidadesExtra" >
+      <td>{{loc.nombre}}</td>
+      <td class="text-center">{{loc.codigo_postal}}</td>
+      <td class="text-center">{{loc.departamento}}</td>
+      <td class="text-center">
+        <button type="button" class="btn btn-sm btn-outline-danger rounded-circle" ngbTooltip="Borrar Extra"><i class="fas fa-trash"></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
