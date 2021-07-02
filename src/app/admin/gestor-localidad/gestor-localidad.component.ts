@@ -10,6 +10,7 @@ import { ConfiguracionParaPaginarService, NotificacionService } from 'src/app/co
 })
 export class GestorLocalidadComponent implements OnInit {
   public listas = {} as configurarListas;
+  public localidadesExtra: any = [];
 
   constructor(private _route: ActivatedRoute, private _configPagina: ConfiguracionParaPaginarService, private _msj: NotificacionService) { }
 
@@ -17,6 +18,7 @@ export class GestorLocalidadComponent implements OnInit {
   ngOnInit(): void {
     this.listas.localidades = this._route.snapshot.data["localidades"];
     this.listas.provincias = this._route.snapshot.data["provincias"];
+    this.localidadesExtra = this._route.snapshot.data["localidadesExtras"];
   }
 
 }
