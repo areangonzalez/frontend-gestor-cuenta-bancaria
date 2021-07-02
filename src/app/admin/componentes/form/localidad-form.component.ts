@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DepartamentoService, LocalidadService, NotificacionService, UtilService } from './../../../core/services';
+import { BackendLocalidadService, DepartamentoService, NotificacionService, UtilService } from './../../../core/services';
 
 @Component({
   selector: 'admin-localidad-form',
@@ -16,7 +16,7 @@ export class LocalidadFormComponent implements OnInit {
   public departamentos: any = [];
   public localidades: any = [];
 
-  constructor(private _fb: FormBuilder, private _departamentoService: DepartamentoService, private _localidadService: LocalidadService, private _msj: NotificacionService, private _util: UtilService) {
+  constructor(private _fb: FormBuilder, private _departamentoService: DepartamentoService, private _localidadService: BackendLocalidadService, private _msj: NotificacionService, private _util: UtilService) {
     this.localidadForm = _fb.group({
       id: '',
       nombre: ['', [Validators.required]],

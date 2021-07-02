@@ -21,6 +21,10 @@ export class LocalidadExtraService implements Resolve<any> {
     return this._http.get('/localidad-extras', httpParams);
   }
 
+  guardar(localidadid: number) {
+    return this._http.post('/localidad-extras', { localidadid: localidadid });
+  }
+
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,

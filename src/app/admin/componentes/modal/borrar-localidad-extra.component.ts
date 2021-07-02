@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -6,13 +6,13 @@ import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-boots
   selector: 'admin-borrar-localidad-extra-content',
   template: `
     <div class="modal-header">
-      <h4 class="modal-title">Confirmar Borrado de Localidad Extra</h4>
+      <h4 class="modal-title">{{titulo}}</h4>
       <button type="button" class="close" aria-label="Close" (click)="cerrarModal()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <p>¿Está seguro que desea borrar La localidad extra?</p>
+      <p class="text-center">{{pregunta}}</p>
     </div>
     <div class=modal-footer>
     <button type="button" class="btn btn-danger" (click)="confirmar(false)"><span class="oi oi-ban" title="Cancelar" aria-hidden="true"></span> No</button>
@@ -20,9 +20,19 @@ import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-boots
     </div>
   `,
 })
-export class BorrarLocalidadExtraContent {
+export class BorrarLocalidadExtraContent implements OnInit {
+  @Input("esBorrar") public esBorrar: boolean;
+  @Input("nombreLocalidad") public nombreLocalidad: string;
+  public titulo: string = '';
+  public pregunta: string = '';
 
-  constructor(public _activeModal: NgbActiveModal) {}
+  constructor(public _activeModal: NgbActiveModal) {
+  }
+
+  ngOnInit() {
+    this.titulo = (this.esBorrar) ? 'Confirmar Borrado de Localidad Extra' : 'Confirmar Agregado de Localidad Extra';
+    this.pregunta = (this.esBorrar) ? '¿Está seguro que desea borrar ' + this.nombreLocalidad + ' del listado localidad extra?' : '¿Está seguro que desea agregar ' + this.nombreLocalidad + ' al listado localidad extra?';
+  }
 
 
   confirmar(confirmacion: boolean) {
@@ -41,6 +51,8 @@ export class BorrarLocalidadExtraContent {
   styleUrls: ['./borrar-localidad-extra.component.scss']
 })
 export class BorrarLocalidadExtraComponent {
+  @Input("esBorrar") public esBorrar: boolean; // si es true es para un confirmado de borrado; false es un confirmado de agregar
+  @Input("nombreLocalidad") public nombreLocalidad: string;
   @Output("confirmarBorrado") public confirmarBorrado = new EventEmitter();
 
   constructor(
@@ -53,6 +65,8 @@ export class BorrarLocalidadExtraComponent {
 
   abrirModal() {
     const modalRef = this.modalService.open(BorrarLocalidadExtraContent, {  centered: true });
+    modalRef.componentInstance.esBorrar = this.esBorrar;
+    modalRef.componentInstance.nombreLocalidad = this.nombreLocalidad;
     modalRef.result.then(
       (result) => {
         if (result == 'closed'){

@@ -21,7 +21,7 @@
       <td class="text-center">{{loc.departamento}}</td>
       <td class="text-center">
         <admin-registrar-localidad-modal [provincias]="provincias" [localidad]="loc" [titulo]="'Editar'"></admin-registrar-localidad-modal>
-        <button type="button" class="btn btn-sm btn-outline-info rounded-circle" ngbTooltip="Crear Excepción"><i class="fas fa-exchange-alt"></i></button>
+        <admin-borrar-localidad-extra-modal *ngIf="(!loc.extra)" [esBorrar]="false" [nombreLocalidad]="loc.nombre" (confirmarBorrado)="agregarLocalidadExtra($event, loc.id)"></admin-borrar-localidad-extra-modal>
       </td>
     </tr>
   </tbody>

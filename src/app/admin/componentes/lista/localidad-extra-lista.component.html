@@ -19,7 +19,7 @@
       <td class="text-center">{{loc.codigo_postal}}</td>
       <td class="text-center">{{loc.departamento}}</td>
       <td class="text-center">
-        <admin-borrar-localidad-extra-modal (confirmarBorrado)="borrarLocalidadExtra($event, loc.id)"></admin-borrar-localidad-extra-modal>
+        <admin-borrar-localidad-extra-modal [esBorrar]="true" [nombreLocalidad]="loc.nombre" (confirmarBorrado)="borrarLocalidadExtra($event, loc.id)"></admin-borrar-localidad-extra-modal>
       </td>
     </tr>
   </tbody>
