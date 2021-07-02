@@ -16,6 +16,8 @@ export interface configurarListas {
   bancos?: any;
   provincias?: any;
   departamentos?: any;
+  localidadesExtras?: any;
+  backendLocalidades?: any;
 }
 
 

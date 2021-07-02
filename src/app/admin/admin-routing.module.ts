@@ -18,7 +18,7 @@ const routes: Routes = [
   },{
     path: 'localidad-abm', component: GestorLocalidadComponent,
     data: { loading: true, title: 'Gestionar Localidades', rol: ['soporte', 'admin'] },
-    resolve: { provincias: ProvinciaService, localidades: BackendLocalidadService, localidadesExtras: LocalidadExtraService}
+    resolve: { provincias: ProvinciaService, backendLocalidades: BackendLocalidadService, localidadesExtras: LocalidadExtraService}
   }
 ];
 

@@ -16,9 +16,9 @@ export class GestorLocalidadComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.listas.localidades = this._route.snapshot.data["localidades"];
+    this.listas.backendLocalidades = this._route.snapshot.data["backendLocalidades"];
     this.listas.provincias = this._route.snapshot.data["provincias"];
-    this.localidadesExtra = this._route.snapshot.data["localidadesExtras"];
+    this.listas.localidadesExtras = this._route.snapshot.data["localidadesExtras"];
   }
 
 }

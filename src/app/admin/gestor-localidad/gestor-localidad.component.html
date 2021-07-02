@@ -1,21 +1,17 @@
 <h2>Gestión de Localidades</h2>
 
-<div class="shadow-sm mb-3 bg-white p-3 rounded">
-  <span>Búsqueda avanzada</span>
-</div>
-
-<div class="shadow-sm mb-3 bg-white p-3 rounded">
-  <ul ngbNav #nav="ngbNav" class="nav-tabs">
+<div class="mb-3">
+  <ul ngbNav #nav="ngbNav" class="nav-pills nav-fill">
     <li ngbNavItem>
       <a ngbNavLink>Localidades</a>
       <ng-template ngbNavContent>
-        <admin-localidad-lista [localidades]="listas.localidades" [provincias]="listas.provincias"></admin-localidad-lista>
+        <admin-localidad-lista [listados]="listas"></admin-localidad-lista>
       </ng-template>
     </li>
     <li ngbNavItem>
       <a ngbNavLink>Extras</a>
       <ng-template ngbNavContent>
-        <admin-localidad-extra-lista [localidadesExtra]="localidadesExtra"></admin-localidad-extra-lista>
+        <admin-localidad-extra-lista [listados]="listas"></admin-localidad-extra-lista>
       </ng-template>
     </li>
   </ul>

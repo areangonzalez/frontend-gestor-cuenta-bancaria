@@ -1,15 +1,15 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NotificacionService, UtilService, DepartamentoService } from 'src/app/core/services';
 
 @Component({
-  selector: 'app-busqueda-avanzada-localidad',
+  selector: 'admin-busqueda-avanzada-localidad',
   templateUrl: './busqueda-avanzada-localidad.component.html',
   styleUrls: ['./busqueda-avanzada-localidad.component.scss']
 })
 export class BusquedaAvanzadaLocalidadComponent implements OnInit {
   @Input("provincias") public provincias: any;
-  @Output("obtenerBusqueda") public obtenerBusqueda: any;
+  @Output("obtenerBusqueda") public obtenerBusqueda = new EventEmitter();
   public btnSeleccion: boolean = false;
   public mostrar: boolean = false;
   public busquedaAvanzada: FormGroup;

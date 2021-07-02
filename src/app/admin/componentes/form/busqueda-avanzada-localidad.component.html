@@ -1,1 +1,39 @@
-<p>busqueda-avanzada-localidad works!</p>
+<fieldset [formGroup]="busquedaAvanzada">
+  <div class="form-group" >
+    <div class="input-group">
+      <input type="text" #buscarReporte class="form-control" formControlName="global_param" id="buscar-reporte" placeholder="Buscar por DNI, Nombre, Apellido, Usuario" (keyup.enter)="buscar()" [ngClass]="{'campo-seleccionado': marcarCampo(busquedaAvanzada.controls.global_param.value)}">
+      <div class="input-group-append btn-group">
+        <button type="button" class="btn btn-primary" (click)="buscar()" ngbTooltip="Buscar" ><i class="fas fa-search"></i></button>
+        <button type="button" class="btn btn-danger" ngbTooltip="Limpiar b&uacute;squeda" (click)="limpiarCampos()" ><i class="fas fa-trash-alt"></i></button>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-md" (click)="mostrarBusquedaAvanzada()" [ngClass]="{'btn-success': btnSeleccion, 'btn-primary': !btnSeleccion}">
+    Búsqueda Avanzada &nbsp;
+    <i class="fas fa-caret-down" *ngIf="!mostrar" ></i>
+    <i class="fas fa-caret-up" *ngIf="mostrar" ></i>
+  </button>
+  <div class="card mt-1" *ngIf="mostrar">
+      <div class="card-body">
+          <fieldset>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="provinciaid" class="prioridad">Provincia:</label>
+              <select class="form-control" id="provinciaid" formControlName="provinciaid" (change)="departamentoPorProvincia($event.target.value)">
+                <option value="">Seleccione una Provincia</option>
+                <option *ngFor="let prov of provincias" value="{{prov.id}}">{{prov.nombre}}</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="departamentoid" class="prioridad">Departamento (<span>*</span>):</label>
+              <select class="form-control" id="departamentoid" formControlName="departamentoid" >
+                <option value="">Seleccione un Departamento</option>
+                <option *ngFor="let depto of departamentos" value="{{depto.id}}">{{depto.nombre}}</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+  </div>
+</fieldset>
+

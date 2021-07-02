@@ -600,13 +600,18 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
         /* BACKEND LOCALIDADES  */
         function getBackendLocalidad() {
-          const localidad = [
+          const localidad = {
+          "total_filtrado": 5,
+          "pages": 1,
+          "pagesize": 20,
+          "resultado":
+          [
             {id: 1, nombre: 'Cipolletti', codigo_postal: "8324", provinciaid: 3, departamentoid: 2, departamento: "General Roca"},
             {id: 2, nombre: 'Gral. Roca', codigo_postal: "8332", provinciaid: 3, departamentoid: 2, departamento: "General Roca"},
             {id: 3, nombre: 'San Carlos de Bariloche', codigo_postal: "8400", provinciaid: 3, departamentoid: 2, departamento: "Bariloche"},
             {id: 4, nombre: 'San Javier', codigo_postal: "8501", provinciaid: 3, departamentoid: 2, departamento: "Adolfo Alsina"},
             {id: 5, nombre: 'Viedma', codigo_postal: "8500", provinciaid: 3, departamentoid: 2, departamento: "Adolfo Alsina"}
-          ];
+          ]};
 
           if (localidad) {
             return ok(localidad);
@@ -616,13 +621,18 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
         /* LOCALIDADES EXTRAS */
         function getLocalidadExtras() {
-          const localidad = [
-            {id: 1, nombre: 'Cipolletti', codigo_postal: "8324", provinciaid: 3, departamentoid: 2, departamento: "General Roca"},
-            {id: 2, nombre: 'Gral. Roca', codigo_postal: "8332", provinciaid: 3, departamentoid: 2, departamento: "General Roca"},
-            {id: 3, nombre: 'San Carlos de Bariloche', codigo_postal: "8400", provinciaid: 3, departamentoid: 2, departamento: "Bariloche"},
-            {id: 4, nombre: 'San Javier', codigo_postal: "8501", provinciaid: 3, departamentoid: 2, departamento: "Adolfo Alsina"},
-            {id: 5, nombre: 'Viedma', codigo_postal: "8500", provinciaid: 3, departamentoid: 2, departamento: "Adolfo Alsina"}
-          ];
+          const localidad = {
+            "total_filtrado": 5,
+            "pages": 1,
+            "pagesize": 20,
+            "resultado":
+            [
+              {id: 1, nombre: 'Cipolletti', codigo_postal: "8324", provinciaid: 3, departamentoid: 2, departamento: "General Roca"},
+              {id: 2, nombre: 'Gral. Roca', codigo_postal: "8332", provinciaid: 3, departamentoid: 2, departamento: "General Roca"},
+              {id: 3, nombre: 'San Carlos de Bariloche', codigo_postal: "8400", provinciaid: 3, departamentoid: 2, departamento: "Bariloche"},
+              {id: 4, nombre: 'San Javier', codigo_postal: "8501", provinciaid: 3, departamentoid: 2, departamento: "Adolfo Alsina"},
+              {id: 5, nombre: 'Viedma', codigo_postal: "8500", provinciaid: 3, departamentoid: 2, departamento: "Adolfo Alsina"}
+            ]};
 
           if (localidad) {
             return ok(localidad);

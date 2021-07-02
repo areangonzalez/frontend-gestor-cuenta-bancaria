@@ -1,26 +1,45 @@
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">nombre</th>
-      <th class="text-center" scope="col">Codigo Postal</th>
-      <th class="text-center" scope="col">Departamento</th>
-      <th class="text-center" scope="col">
-      </th>
-    </tr>
-  </thead>
-  <tbody *ngIf="(localidadesExtra.length == 0)">
-    <tr>
-      <td colspan="4" class="bg-warning text-center">No se han encontrado ninguna Localidad</td>
-    </tr>
-  </tbody>
-  <tbody *ngIf="(localidadesExtra.length > 0)">
-    <tr *ngFor="let loc of localidadesExtra" >
-      <td>{{loc.nombre}}</td>
-      <td class="text-center">{{loc.codigo_postal}}</td>
-      <td class="text-center">{{loc.departamento}}</td>
-      <td class="text-center">
-        <admin-borrar-localidad-extra-modal [esBorrar]="true" [nombreLocalidad]="loc.nombre" (confirmarBorrado)="borrarLocalidadExtra($event, loc.id)"></admin-borrar-localidad-extra-modal>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="shadow-sm bg-white mb-3 rounded p-3">
+  <admin-busqueda-avanzada-localidad [provincias]="listados.provincias"></admin-busqueda-avanzada-localidad>
+</div>
+<div class="shadow-sm bg-white rounded p-3">
+  <div class="d-flex justify-content-between">
+    <div class="d-flex align-items-center p-2 font-weight-bold ancho-fijo">
+      <span *ngIf="configPaginacion.totalRegistros > 0">Localidades: {{configPaginacion.cantRegistros}} - {{configPaginacion.totalRegistros}} de {{configPaginacion.colleccionSize}}</span>
+      <span *ngIf="configPaginacion.totalRegistros == 0">Localidades: 0</span>
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3 pr-0" >
+        <select class="form-control form-control-sm" id="page_size" [(ngModel)]="tamanioPagina" (change)="cambiarPagina($event.target.value)">
+          <option *ngFor="let tamanio of tamanioPaginaLista" value="{{tamanio.size}}">{{tamanio.size}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="d-flex align-items-center p-2 font-weight-bold">
+      <ngb-pagination *ngIf="(configPaginacion.colleccionSize > 0)"  [collectionSize]="configPaginacion.colleccionSize" [(page)]="configPaginacion.page" [pageSize]="configPaginacion.pageSize" [maxSize]="10" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="cambiarPagina(configPaginacion.page)" aria-label="Default pagination" style="margin-bottom: -15px;" ></ngb-pagination>
+    </div>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">nombre</th>
+        <th class="text-center" scope="col">Codigo Postal</th>
+        <th class="text-center" scope="col">Departamento</th>
+        <th class="text-center" scope="col">
+        </th>
+      </tr>
+    </thead>
+    <tbody *ngIf="(localidadesExtras.length == 0)">
+      <tr>
+        <td colspan="4" class="bg-warning text-center">No se han encontrado ninguna Localidad</td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="(localidadesExtras.length > 0)">
+      <tr *ngFor="let loc of localidadesExtras" >
+        <td>{{loc.nombre}}</td>
+        <td class="text-center">{{loc.codigo_postal}}</td>
+        <td class="text-center">{{loc.departamento}}</td>
+        <td class="text-center">
+          <admin-borrar-localidad-extra-modal [esBorrar]="true" [nombreLocalidad]="loc.nombre" (confirmarBorrado)="borrarLocalidadExtra($event, loc.id)"></admin-borrar-localidad-extra-modal>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
