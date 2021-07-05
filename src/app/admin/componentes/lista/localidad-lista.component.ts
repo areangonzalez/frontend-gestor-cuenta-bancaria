@@ -30,6 +30,7 @@ export class LocalidadListaComponent implements OnInit {
       this._localidadExtraService.guardar(id).subscribe(
         respuesta => {
           this._msj.exitoso("Se ha agreado correctamente la localidad en listado extras.");
+          this.cambiarPagina(this.configPaginacion.page);
         }, error => { this._msj.cancelado(error); }
       )
     }

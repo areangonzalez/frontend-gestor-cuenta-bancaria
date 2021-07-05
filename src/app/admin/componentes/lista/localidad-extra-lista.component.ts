@@ -30,6 +30,7 @@ export class LocalidadExtraListaComponent implements OnInit {
       this._localidadExtraService.borrar(id).subscribe(
         respuesta => {
           this._msj.exitoso("Se ha borrado la localidad del listado extra con exito.");
+          this.cambiarPagina(this.configPaginacion.page);
         }, error => { this._msj.cancelado(error); }
       )
     }
