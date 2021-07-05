@@ -21,6 +21,7 @@
       <tr>
         <th scope="col">nombre</th>
         <th class="text-center" scope="col">Codigo Postal</th>
+        <th class="text-center" scope="col">Provincia</th>
         <th class="text-center" scope="col">Departamento</th>
         <th class="text-center" scope="col">
         </th>
@@ -35,6 +36,7 @@
       <tr *ngFor="let loc of localidadesExtras" >
         <td>{{loc.nombre}}</td>
         <td class="text-center">{{loc.codigo_postal}}</td>
+        <td class="text-center">{{loc.provincia}}</td>
         <td class="text-center">{{loc.departamento}}</td>
         <td class="text-center">
           <admin-borrar-localidad-extra-modal [esBorrar]="true" [nombreLocalidad]="loc.nombre" (confirmarBorrado)="borrarLocalidadExtra($event, loc.id)"></admin-borrar-localidad-extra-modal>

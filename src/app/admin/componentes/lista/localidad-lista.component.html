@@ -21,6 +21,7 @@
       <tr>
         <th scope="col">nombre</th>
         <th class="text-center" scope="col">Codigo Postal</th>
+        <th class="text-center" scope="col">Provincia</th>
         <th class="text-center" scope="col">Departamento</th>
         <th class="text-center" scope="col">
           <admin-registrar-localidad-modal [provincias]="listados.provincias" [titulo]="'Agregar'"></admin-registrar-localidad-modal>
@@ -36,6 +37,7 @@
       <tr *ngFor="let loc of backendLocalidades" >
         <td>{{loc.nombre}}</td>
         <td class="text-center">{{loc.codigo_postal}}</td>
+        <td class="text-center">{{loc.provincia}}</td>
         <td class="text-center">{{loc.departamento}}</td>
         <td class="text-center">
           <admin-registrar-localidad-modal [provincias]="listados.provincias" [localidad]="loc" [titulo]="'Editar'"></admin-registrar-localidad-modal>
