@@ -41,7 +41,7 @@ export class LocalidadExtraListaComponent implements OnInit {
    */
    public realizarBusqueda(apiBusqueda:any, page: number) {
     // Agrego la paginacion a la busqueda avanzada
-    Object.assign(apiBusqueda, {page: page-1, pagesize: this.tamanioPagina, sort:"-create_at"});
+    Object.assign(apiBusqueda, {page: page-1, pagesize: this.tamanioPagina});
     // agrego la busqueda en la nueva variable
     this.busqueda = apiBusqueda;
     // configuro para que se dirija a la primera pagina

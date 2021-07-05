@@ -29,6 +29,8 @@ export class LocalidadExtraService implements Resolve<any> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
     ): Observable<any>|Promise<any>|any {
-      return this._http.get('/localidad-extras');
+      let httpParams = new HttpParams();
+      httpParams = this._http.formatParams(httpParams, { pagesize: 20, pages: 0 });
+      return this._http.get('/localidad-extras', httpParams);
     }
 }
