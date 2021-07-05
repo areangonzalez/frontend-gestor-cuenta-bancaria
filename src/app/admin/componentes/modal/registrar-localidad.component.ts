@@ -31,7 +31,7 @@ export class RegistrarLocalidadContent {
 
   public confirmar(confirmacion: boolean) {
     if (confirmacion) {
-      this._activeModal.close('close');
+      this._activeModal.close(true);
     }else {
       this._activeModal.close('close');
     }

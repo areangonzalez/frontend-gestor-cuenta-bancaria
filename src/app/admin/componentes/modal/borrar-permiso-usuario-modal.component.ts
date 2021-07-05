@@ -59,7 +59,7 @@ export class BorrarPermisoUsuarioModalComponent {
           return this.confirmarBorrado.emit(result);
         }
       }
-    )
+    );
   }
 
 }

@@ -73,4 +73,9 @@ export class LocalidadListaComponent implements OnInit {
     this.tamanioPagina = size;
     this.realizarBusqueda(this.busqueda, this.configPaginacion.page);
   }
+  actualizarRegistro(confirmacion: boolean) {
+    if (confirmacion) {
+      this.realizarBusqueda({}, this.configPaginacion.page);
+    }
+  }
 }

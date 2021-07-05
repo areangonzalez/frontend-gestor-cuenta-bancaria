@@ -24,7 +24,7 @@
         <th class="text-center" scope="col">Provincia</th>
         <th class="text-center" scope="col">Departamento</th>
         <th class="text-center" scope="col">
-          <admin-registrar-localidad-modal [provincias]="listados.provincias" [titulo]="'Agregar'"></admin-registrar-localidad-modal>
+          <admin-registrar-localidad-modal [provincias]="listados.provincias" [titulo]="'Agregar'" (confirmarRegistro)="actualizarRegistro($event)"></admin-registrar-localidad-modal>
         </th>
       </tr>
     </thead>
@@ -40,7 +40,7 @@
         <td class="text-center">{{loc.provincia}}</td>
         <td class="text-center">{{loc.departamento}}</td>
         <td class="text-center">
-          <admin-registrar-localidad-modal [provincias]="listados.provincias" [localidad]="loc" [titulo]="'Editar'"></admin-registrar-localidad-modal>
+          <admin-registrar-localidad-modal [provincias]="listados.provincias" [localidad]="loc" [titulo]="'Editar'" (confirmarRegistro)="actualizarRegistro($event)"></admin-registrar-localidad-modal>
           <admin-borrar-localidad-extra-modal *ngIf="(!loc.extra)" [esBorrar]="false" [nombreLocalidad]="loc.nombre" (confirmarBorrado)="agregarLocalidadExtra($event, loc.id)"></admin-borrar-localidad-extra-modal>
         </td>
       </tr>
