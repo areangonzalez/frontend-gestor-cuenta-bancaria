@@ -93,7 +93,9 @@ export class LocalidadListaComponent implements OnInit {
       this.realizarBusqueda({nombre: this.nombreLocalidadGuardada}, this.configPaginacion.page);
     }
   }
-
+  /**
+   * al agregar una localidad en listado extra actualizo el listado de localidadesExtras
+   */
   actualizarLocalidadesExtras() {
     this._localidadExtraService.buscar({page: 0, pagesize: 20}).subscribe(
       respuesta => {

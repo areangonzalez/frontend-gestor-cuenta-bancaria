@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ConfigurarPagina } from 'src/app/core/models';
-import { ConfiguracionParaPaginarService, LocalidadExtraService, NotificacionService } from './../../../core/services';
+import { BackendLocalidadService, ConfiguracionParaPaginarService, LocalidadExtraService, NotificacionService } from './../../../core/services';
 
 @Component({
   selector: 'admin-localidad-extra-lista',
@@ -15,7 +15,7 @@ export class LocalidadExtraListaComponent implements OnInit {
   public tamanioPaginaLista: any = [];
   public localidadesExtras: any = [];
 
-  constructor(private _configPagina: ConfiguracionParaPaginarService, private _localidadExtraService: LocalidadExtraService, private _msj: NotificacionService) { }
+  constructor(private _configPagina: ConfiguracionParaPaginarService,private _backendLocalidadService: BackendLocalidadService, private _localidadExtraService: LocalidadExtraService, private _msj: NotificacionService) { }
 
   ngOnInit(): void {
     this.prepararListado(this.listados.localidadesExtras, 1);
@@ -31,6 +31,7 @@ export class LocalidadExtraListaComponent implements OnInit {
         respuesta => {
           this._msj.exitoso("Se ha borrado la localidad del listado extra con exito.");
           this.cambiarPagina(this.configPaginacion.page);
+          this.actualizarLocalidadesBackend();
         }, error => { this._msj.cancelado(error); }
       )
     }
@@ -68,9 +69,22 @@ export class LocalidadExtraListaComponent implements OnInit {
   cambiarPagina(pagina:any) {
     this.realizarBusqueda(this.busqueda, pagina);
   }
-
+  /**
+   * cambia el tamaño de pagina al listado
+   * @param size tamaño de pagina
+   */
   cambiarTamanioPagina(size: number) {
     this.tamanioPagina = size;
     this.realizarBusqueda(this.busqueda, this.configPaginacion.page);
+  }
+  /**
+   * al borrar una localidad del listado actualizo el listado de backendLocalidad
+   */
+  actualizarLocalidadesBackend() {
+    this._backendLocalidadService.buscar({page: 0, pagesize: 20}).subscribe(
+      respuesta => {
+        this.listados.backendLocalidades = respuesta;
+      }, error => { this._msj.cancelado(error); }
+    );
   }
 }
