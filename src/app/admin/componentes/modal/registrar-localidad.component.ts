@@ -27,10 +27,13 @@ export class RegistrarLocalidadContent {
   public cerrarModal() {
     this._activeModal.close('closed');
   }
-
+  /**
+   * confirma el guardado de una localidad
+   * @param confirmacion puede ser false o venir con el nombre de la localidad agregada o editada
+   */
   public confirmar(confirmacion: any) {
     if (confirmacion !== false) {
-      this._activeModal.close(true);
+      this._activeModal.close(confirmacion);
     }else {
       this._activeModal.close('close');
     }
@@ -64,7 +67,7 @@ export class RegistrarLocalidadComponent {
         if (result == 'closed'){
         }else{
           // obtengo el resultado de la operacion.
-          return this.confirmarRegistro.emit(result);
+          return this.confirmarRegistro.emit({confirma: true, nombreLocalidad: result});
         }
       }
     )

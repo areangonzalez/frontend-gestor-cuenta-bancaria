@@ -14,6 +14,7 @@ export class LocalidadListaComponent implements OnInit {
   public tamanioPagina: number = 20;
   public tamanioPaginaLista: any = [];
   public backendLocalidades: any = [];
+  public nombreLocalidadGuardada: string = '';
 
   constructor(private _configPagina: ConfiguracionParaPaginarService, private _localidadExtraService: LocalidadExtraService, private _msj: NotificacionService, private _backendLocalidadService: BackendLocalidadService) { }
 
@@ -73,9 +74,10 @@ export class LocalidadListaComponent implements OnInit {
     this.tamanioPagina = size;
     this.realizarBusqueda(this.busqueda, this.configPaginacion.page);
   }
-  actualizarRegistro(confirmacion: boolean) {
-    if (confirmacion) {
-      this.realizarBusqueda({}, this.configPaginacion.page);
+  actualizarRegistro(confirmacion: any) {
+    if (confirmacion.confirma) {
+      this.nombreLocalidadGuardada = confirmacion.nombreLocalidad;
+      this.realizarBusqueda({nombre: this.nombreLocalidadGuardada}, this.configPaginacion.page);
     }
   }
 }
