@@ -17,7 +17,7 @@ export class BusquedaAvanzadaLocalidadComponent implements OnInit {
 
   constructor(private _fb: FormBuilder, private _mensajeService: NotificacionService, private _util: UtilService, private _departamentoService: DepartamentoService, private _msj: NotificacionService) {
     this.busquedaAvanzada = _fb.group({
-      global_param: '',
+      nombre: '',
       provinciaid: '',
       departamentoid: ''
     });
