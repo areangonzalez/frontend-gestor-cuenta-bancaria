@@ -35,8 +35,10 @@ export class BusquedaAvanzadaLocalidadComponent implements OnInit {
     let esTrue: boolean = false;
     // busco dentro del objeto segun la clave
     for (const clave in busquedaAvanzada) {
-      Object.assign(apiBusqueda, {[clave]: busquedaAvanzada[clave]});
-      esTrue = true;
+      if (busquedaAvanzada[clave] != "") {
+        Object.assign(apiBusqueda, {[clave]: busquedaAvanzada[clave]});
+        esTrue = true;
+      }
     }
     this.obtenerBusqueda.emit(apiBusqueda);
     this.btnSeleccion = esTrue;

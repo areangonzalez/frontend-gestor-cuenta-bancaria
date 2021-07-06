@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { NotificacionService } from 'src/app/core/services';
-
 
 @Component({
   selector: 'admin-registrar-localidad-content',
@@ -29,8 +28,8 @@ export class RegistrarLocalidadContent {
     this._activeModal.close('closed');
   }
 
-  public confirmar(confirmacion: boolean) {
-    if (confirmacion) {
+  public confirmar(confirmacion: any) {
+    if (confirmacion !== false) {
       this._activeModal.close(true);
     }else {
       this._activeModal.close('close');
@@ -47,6 +46,7 @@ export class RegistrarLocalidadComponent {
   @Input("provincias") public provincias: any; // array que contiene el/los listados para el componente
   @Input("localidad") public localidad?: any;
   @Input("titulo") public titulo: string;
+  @Output("confirmarRegistro") public confirmarRegistro = new EventEmitter();
 
   constructor(private _modalService: NgbModal, private _msj: NotificacionService, private _config: NgbModalConfig)
   {
@@ -59,6 +59,15 @@ export class RegistrarLocalidadComponent {
     modalRef.componentInstance.provincias = this.provincias;
     modalRef.componentInstance.localidad = this.localidad;
     modalRef.componentInstance.titulo = this.titulo;
+    modalRef.result.then(
+      (result) => {
+        if (result == 'closed'){
+        }else{
+          // obtengo el resultado de la operacion.
+          return this.confirmarRegistro.emit(result);
+        }
+      }
+    )
   }
 
 }

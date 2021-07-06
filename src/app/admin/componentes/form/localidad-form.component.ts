@@ -57,19 +57,20 @@ export class LocalidadFormComponent implements OnInit {
     if (this.localidadForm.invalid) {
       return;
     }else{
+      let nombre = this.localidadForm.get("nombre").value;
       let params = this.localidadForm.value;
       if (params.id != '') { // editar
         this._localidadService.guardar(params, params.id).subscribe(
           respuesta => {
             this._msj.exitoso("Se ha editado Correctamente la localidad");
-            this.cancelarForm.emit(true);
+            this.cancelarForm.emit(nombre);
           }, error => { this._msj.cancelado(error); }
           );
         } else {
         this._localidadService.guardar(params).subscribe(
           respuesta => {
             this._msj.exitoso("Se ha guardado correctamente la localidad");
-            this.cancelarForm.emit(true);
+            this.cancelarForm.emit(nombre);
           }, error => { this._msj.cancelado(error); }
         );
       }
