@@ -32,6 +32,7 @@ export class LocalidadListaComponent implements OnInit {
         respuesta => {
           this._msj.exitoso("Se ha agreado correctamente la localidad en listado extras.");
           this.cambiarPagina(this.configPaginacion.page);
+          this.actualizarLocalidadesExtras();
         }, error => { this._msj.cancelado(error); }
       )
     }
@@ -55,6 +56,11 @@ export class LocalidadListaComponent implements OnInit {
       }, error => { this._msj.cancelado(error); }
     )
   }
+  /**
+   * prepara el listado con paginacion
+   * @param listado listado de localidades
+   * @param pagina numero de pagina
+   */
   prepararListado(listado:any, pagina: number) {
     // preparo la variable con la configuracion para el paginado
     this.configPaginacion = this._configPagina.config(listado, pagina);
@@ -69,15 +75,30 @@ export class LocalidadListaComponent implements OnInit {
   cambiarPagina(pagina:any) {
     this.realizarBusqueda(this.busqueda, pagina);
   }
-
+  /**
+   * cambia el tamaño de paginado
+   * @param size tamaño de pagina
+   */
   cambiarTamanioPagina(size: number) {
     this.tamanioPagina = size;
     this.realizarBusqueda(this.busqueda, this.configPaginacion.page);
   }
+  /**
+   * Se actualiza el listado de al registrar una localidad
+   * @param confirmacion objeto { confirma: true, nombreLocalidad: "localidad" } confirma el guardado y trae nombre de la localidad
+   */
   actualizarRegistro(confirmacion: any) {
     if (confirmacion.confirma) {
       this.nombreLocalidadGuardada = confirmacion.nombreLocalidad;
       this.realizarBusqueda({nombre: this.nombreLocalidadGuardada}, this.configPaginacion.page);
     }
+  }
+
+  actualizarLocalidadesExtras() {
+    this._localidadExtraService.buscar({page: 0, pagesize: 20}).subscribe(
+      respuesta => {
+        this.listados.localidadesExtras = respuesta;
+      }, error => { this._msj.cancelado(error); }
+    );
   }
 }
