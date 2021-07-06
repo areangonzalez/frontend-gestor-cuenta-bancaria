@@ -1,5 +1,5 @@
 <div class="shadow-sm bg-white mb-3 rounded p-3">
-  <admin-busqueda-avanzada-localidad [provincias]="listados.provincias"></admin-busqueda-avanzada-localidad>
+  <admin-busqueda-avanzada-localidad [provincias]="listados.provincias" (obtenerBusqueda)="realizarBusqueda($event, 1)"></admin-busqueda-avanzada-localidad>
 </div>
 <div class="shadow-sm bg-white rounded p-3">
   <div class="d-flex justify-content-between">
@@ -19,7 +19,7 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th scope="col">nombre</th>
+        <th scope="col">Nombre</th>
         <th class="text-center" scope="col">Codigo Postal</th>
         <th class="text-center" scope="col">Provincia</th>
         <th class="text-center" scope="col">Departamento</th>
