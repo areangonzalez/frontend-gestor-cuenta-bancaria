@@ -44,7 +44,7 @@ registerLocaleData(es);
     Title,
     BreadcrumbsService,
     // fake-backend
-    // fakeBackendProvider
+    // fakeBackendProvidercons
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
