@@ -133,6 +133,11 @@ export class RegistrarPersonaComponent implements OnInit {
 
   public validarPersona() {
     this.submitted = true;
+
+    if (!this._util.validarUltimoDigitoCuil(this.personaForm.get("cuil").value)){
+      this._msj.cancelado("El numero de cuil es incorrecto, Por favor verifique el Número de Documento o los digitos de CUIL.");
+      return;
+    }
     if (this.personaForm.invalid) { // verifico la validación en los campos del formulario
       return;
     }else{ // si pasa la validación
@@ -140,7 +145,6 @@ export class RegistrarPersonaComponent implements OnInit {
       let persona = this.personaForm.value;
       let id = this.personaForm.value.id;
       this.guardarPersona(persona,id);
-
     }
   }
 
