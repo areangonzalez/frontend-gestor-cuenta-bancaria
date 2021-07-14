@@ -1,7 +1,7 @@
 /**
- * ultimo commit 1d0b84b4411c1da6b50aba4966b887dcd6594c46
+ * ultimo commit fd0795f18e82d3de7cd1da5c41cbd5e2b420a733
  */
 export const environment = {
   production: true,
-  apiUrl: 'http://api.gcb.local'
+  apiUrl: 'http://api.gcb.local/api'
 };
