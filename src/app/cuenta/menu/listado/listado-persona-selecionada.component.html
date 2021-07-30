@@ -20,8 +20,9 @@
       <th scope="col">Cuil</th>
       <th scope="col" rowspan="1" colspan="2">Apellido y Nombre</th>
       <th scope="col" class="text-center" *ngIf="(tipo === 'interbanking')">CBU</th>
-      <th class="text-center" scope="col" *ngIf="(tipo == 'cuenta-saldo')">Ingreso Neto</th>
       <th class="text-center" scope="col" *ngIf="(tipo == 'cuenta-saldo')">Fecha Prestación</th>
+      <th class="text-center" scope="col" *ngIf="(tipo == 'cuenta-saldo')">Ingreso Neto</th>
+      <th class="text-center" scope="col" *ngIf="(tipo == 'cuenta-saldo')">Sucursal</th>
       <th class="text-center">Acción</th>
     </tr>
   </thead>
@@ -41,8 +42,9 @@
         </div>
       </td>
       <td class="text-center" *ngIf="(tipo === 'interbanking')">${{persona.cbu}}</td>
-      <td class="text-center" *ngIf="(tipo == 'cuenta-saldo')">${{persona.prestacion.monto}}</td>
       <td class="text-center" *ngIf="(tipo == 'cuenta-saldo')">{{persona.prestacion.fecha_ingreso | date: 'dd/MM/yyyy'}}</td>
+      <td class="text-center" *ngIf="(tipo == 'cuenta-saldo')">${{persona.prestacion.monto}}</td>
+      <td class="text-center" *ngIf="(tipo == 'cuenta-saldo')">${{persona.prestacion.nombre}}</td>
       <td class="text-center">
         <modal-editar-persona [config-listas]="configurarListas" [persona]="persona" (obtenerDatosPersona)="editarPersona($event)" [tipo]="tipo"></modal-editar-persona>
         <modal-borrar-prestacion (confirmarBorrado)="borrarPersona($event, i, persona.prestacion['id'])"></modal-borrar-prestacion>
