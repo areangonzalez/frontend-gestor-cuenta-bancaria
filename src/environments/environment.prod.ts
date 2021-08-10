@@ -3,5 +3,5 @@
  */
 export const environment = {
   production: true,
-  apiUrl: 'http://gcb.local/api'
+  apiUrl: 'https://api.gcb.local/api'
 };

@@ -13,6 +13,7 @@
       <th scope="col">Cuil</th>
       <th scope="col" rowspan="1" colspan="2">Apellido y Nombre</th>
       <th class="text-center">Localidad</th>
+      <th *ngIf="(tipo == 'cuenta')" class="text-center">Sucursal</th>
       <th *ngIf="(tipo !== 'cuenta')" class="text-center" scope="col">Fecha de Ingreso</th>
       <th class="text-center">Acción</th>
     </tr>
@@ -39,6 +40,7 @@
         </div>
       </td>
       <td class="text-center">{{(persona.lugar !== undefined) ? persona.lugar.localidad : ""}}</td>
+      <td class="text-center">{{(persona.sucursal !== "") ? persona.sucursal : ""}}</td>
       <td *ngIf="(persona.create_at)" class="text-center">{{persona.create_at | date: 'dd/MM/yyyy'}}</td>
       <td class="text-center">
         <modal-info-persona [persona]="persona" [listadoBancos]="configurarListas.bancos" (actualizarDatos)="actualizarListado($event, persona.cuil)"></modal-info-persona>
@@ -46,7 +48,7 @@
         <modal-registrar-cbu *ngIf="(tipo === 'cuenta' && (persona.tiene_cbu !== 'undefinded' && !persona.tiene_cbu) && (!persona.convenio_pendiente))" [edicion]="false" [botonCircular]="true" [listadoBancos]="configurarListas.bancos" [personaid]="persona.id" (actualizarDatos)="actualizarListado($event, persona.cuil)" ></modal-registrar-cbu>
         <modal-agregar-sucursal *ngIf="(tipo === 'cuenta' && (persona.tiene_cbu !== 'undefinded' && !persona.tiene_cbu) && (!persona.convenio_pendiente))" [subSucursales]="configurarListas.subSucursales" [idPersona]="persona.id" [existeCopia]="copiaDeDatos.existe" [copiaSeleccion]="copiaDeDatos" [listaDeSeleccionPersona]="configurarListas.seleccionPersona" [persona]="persona" (obtenerPrestacion)="obtengoDatosPrestacion(persona,$event)"></modal-agregar-sucursal>
         <modal-rechazar-prestacion *ngIf="(persona.convenio_pendiente)" (confirmarBorrado)="rechazarPrestacion($event, persona.id, persona.cuil)"></modal-rechazar-prestacion>
-        <button *ngIf="copiaDeDatos.existe && (!persona.tiene_cbu) && (!persona.convenio_pendiente)" type="button" class="btn btn-sm btn-outline-success rounded-circle" (click)="pegarCopiaSeleccionada(persona, copiaDeDatos)" ngbTooltip="{{pegarUltimaSeleccion(copiaDeDatos)}}" container="body"><i class="fas fa-paste"></i></button>
+        <modal-rechazar-prestacion *ngIf="(!persona.convenio_pendiente && persona.sucursal !== '' && !persona.tiene_cbu)" (confirmarBorrado)="rechazarPrestacion($event, persona.id, persona.cuil)"></modal-rechazar-prestacion>
       </td>
     </tr>
   </tbody>
