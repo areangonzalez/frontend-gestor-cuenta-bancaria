@@ -26,7 +26,7 @@
     </tr>
   </tbody>
   <tbody *ngIf="(listadoPersonas.length > 0)">
-    <tr *ngFor="let persona of listadoPersonas" [ngClass]="[{'table-warning': persona.convenio_pendiente}, {'table-info': persona.para_exportar}]" ngbTooltip="{{esPendiente(persona.convenio_pendiente, persona.para_exportar)}}">
+    <tr *ngFor="let persona of listadoPersonas" [ngClass]="{'table-warning': persona.convenio_pendiente, 'table-info': persona.para_exportar}" ngbTooltip="{{esPendiente(persona.convenio_pendiente, persona.para_exportar)}}">
       <td >{{persona.cuil}}</td>
       <td rowspan="1" colspan="2">
         {{persona.apellido}}, {{persona.nombre}}
