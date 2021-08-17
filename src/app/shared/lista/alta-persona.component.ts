@@ -119,9 +119,12 @@ export class AltaPersonaComponent implements OnInit {
     }
   }
 
-  esPendiente(estado: boolean) {
-    if (estado == true) {
+  esPendiente(pendiente: boolean, enEspera: boolean) {
+    if (pendiente == true) {
       return "Esperando respuesta del banco.";
+    }
+    if (enEspera == true) {
+      return "Esperando a ser exportado."
     }
   }
 
