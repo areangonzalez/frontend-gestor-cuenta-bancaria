@@ -61,6 +61,12 @@ import { UtilService } from 'src/app/core/services';
                   <span>Por favor seleccione una sucursal.</span>
               </div>
             </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="observacion">Observación</label>
+                <textarea class="form-control" id="observacion" formControlName="observacion" rows="2"></textarea>
+              </div>
+            </div>
           </div>
         </fieldset>
     </div>
@@ -83,7 +89,8 @@ export class AgregarSucursalContent {
       sucursal: ['', [Validators.required]],
       monto: ['', [Validators.required]],
       fecha_ingreso: '',
-      fechaIngreso: ['', [Validators.required]]
+      fechaIngreso: ['', [Validators.required]],
+      observacion: ''
     });
 
     _configNgbDate.minDate = {year: 1900, month: 1, day: 1};
@@ -112,7 +119,8 @@ export class AgregarSucursalContent {
         codigo: this.sucursalForm.value.sucursal.codigo,
         sucursalid: this.sucursalForm.value.sucursal.sucursalid,
         nombre: this.sucursalForm.value.sucursal.nombre,
-        sucursal_codigo: this.sucursalForm.value.sucursal.sucursal_codigo
+        sucursal_codigo: this.sucursalForm.value.sucursal.sucursal_codigo,
+        observacion: this.sucursalForm.value.observacion
       };
 
       this.activeModal.close(this.prestacion);
