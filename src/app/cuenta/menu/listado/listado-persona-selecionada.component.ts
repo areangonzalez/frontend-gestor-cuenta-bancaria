@@ -117,4 +117,12 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
     }
   }
 
+  cortarObservacion(texto:any) {
+
+    if (texto) {
+      let textoMinimo = texto.substr(0, 25);
+      return textoMinimo;
+    }
+  }
+
 }

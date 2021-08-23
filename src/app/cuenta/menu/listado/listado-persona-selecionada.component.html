@@ -23,6 +23,7 @@
       <th class="text-center" scope="col" *ngIf="(tipo == 'cuenta-saldo')">Fecha Prestación</th>
       <th class="text-center" scope="col" *ngIf="(tipo == 'cuenta-saldo')">Ingreso Neto</th>
       <th class="text-center" scope="col" *ngIf="(tipo == 'cuenta-saldo')">Sucursal</th>
+      <th class="text-center" scope="col" *ngIf="(tipo == 'cuenta-saldo')">Observación</th>
       <th class="text-center">Acción</th>
     </tr>
   </thead>
@@ -45,7 +46,9 @@
       <td class="text-center" *ngIf="(tipo == 'cuenta-saldo')">{{persona.prestacion.fecha_ingreso | date: 'dd/MM/yyyy'}}</td>
       <td class="text-center" *ngIf="(tipo == 'cuenta-saldo')">${{persona.prestacion.monto}}</td>
       <td class="text-center" *ngIf="(tipo == 'cuenta-saldo')">{{persona.prestacion.nombre}}</td>
+      <td *ngIf="(tipo == 'cuenta-saldo')">{{cortarObservacion(persona.prestacion.observacion) }} <code *ngIf="(persona.prestacion.observacion.length > 23)" placement="left" ngbTooltip="{{persona.prestacion.observacion}}" container="body" >...</code></td>
       <td class="text-center">
+        <!-- <button type="button" *ngIf="(persona.prestacion.observacion)" class="btn btn-sm btn-outline-info rounded-circle" placement="left" ngbTooltip="{{persona.prestacion.observacion}}" container="body"><i class="fas fa-ellipsis-h"></i></button> -->
         <modal-editar-persona [config-listas]="configurarListas" [persona]="persona" (obtenerDatosPersona)="editarPersona($event)" [tipo]="tipo"></modal-editar-persona>
         <modal-borrar-prestacion (confirmarBorrado)="borrarPersona($event, i, persona.prestacion['id'])"></modal-borrar-prestacion>
       </td>
