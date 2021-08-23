@@ -26,7 +26,7 @@
     </tr>
   </tbody>
   <tbody *ngIf="(listadoPersonas.length > 0)">
-    <tr *ngFor="let persona of listadoPersonas" [ngClass]="{'table-warning': persona.convenio_pendiente, 'table-info': persona.para_exportar}" ngbTooltip="{{esPendiente(persona.convenio_pendiente, persona.para_exportar)}}">
+    <tr *ngFor="let persona of listadoPersonas" [ngClass]="{'table-warning': persona.convenio_pendiente, 'table-info': persona.para_exportar}" ngbTooltip="{{esPendiente(persona.convenio_pendiente, persona.para_exportar)}}" container="body" >
       <td >{{persona.cuil}}</td>
       <td rowspan="1" colspan="2">
         {{persona.apellido}}, {{persona.nombre}}
@@ -45,8 +45,8 @@
       <td class="text-center">
         <modal-info-persona [persona]="persona" [listadoBancos]="configurarListas.bancos" (actualizarDatos)="actualizarListado($event, persona.cuil)"></modal-info-persona>
         <modal-editar-persona [config-listas]="configurarListas" [persona]="persona" [tipo]="tipo" (obtenerDatosPersona)="obtenerCuilPersona($event)"></modal-editar-persona>
-        <modal-registrar-cbu *ngIf="(tipo === 'cuenta' && (persona.tiene_cbu !== 'undefinded' && !persona.tiene_cbu) && (!persona.convenio_pendiente))" [edicion]="false" [botonCircular]="true" [listadoBancos]="configurarListas.bancos" [personaid]="persona.id" (actualizarDatos)="actualizarListado($event, persona.cuil)" ></modal-registrar-cbu>
-        <modal-agregar-sucursal *ngIf="(tipo === 'cuenta' && (persona.tiene_cbu !== 'undefinded' && !persona.tiene_cbu) && (!persona.convenio_pendiente) && persona.para_exportar)" [subSucursales]="configurarListas.subSucursales" [idPersona]="persona.id" [existeCopia]="copiaDeDatos.existe" [copiaSeleccion]="copiaDeDatos" [listaDeSeleccionPersona]="configurarListas.seleccionPersona" [persona]="persona" (obtenerPrestacion)="obtengoDatosPrestacion(persona,$event)"></modal-agregar-sucursal>
+        <modal-registrar-cbu *ngIf="(tipo === 'cuenta' && (!persona.tiene_cbu) && (!persona.convenio_pendiente) && (!persona.para_exportar))" [edicion]="false" [botonCircular]="true" [listadoBancos]="configurarListas.bancos" [personaid]="persona.id" (actualizarDatos)="actualizarListado($event, persona.cuil)" ></modal-registrar-cbu>
+        <modal-agregar-sucursal *ngIf="(tipo === 'cuenta' && (!persona.tiene_cbu) && (!persona.convenio_pendiente) && (!persona.para_exportar))" [subSucursales]="configurarListas.subSucursales" [idPersona]="persona.id" [existeCopia]="copiaDeDatos.existe" [copiaSeleccion]="copiaDeDatos" [listaDeSeleccionPersona]="configurarListas.seleccionPersona" [persona]="persona" (obtenerPrestacion)="obtengoDatosPrestacion(persona,$event)"></modal-agregar-sucursal>
         <modal-rechazar-prestacion *ngIf="(persona.convenio_pendiente)" (confirmarBorrado)="rechazarPrestacion($event, persona.id, persona.cuil)"></modal-rechazar-prestacion>
       </td>
     </tr>
