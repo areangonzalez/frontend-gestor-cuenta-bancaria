@@ -28,7 +28,7 @@
     </tr>
   </thead>
   <tbody *ngIf="(configurarListas.seleccionPersona.length == 0)">
-    <tr class="text-center bg-warning" rowspan="1"><td colspan="6"><strong>NO HAY PERSONAS SELECCIONADAS</strong></td></tr>
+    <tr class="text-center bg-warning" rowspan="1"><td colspan="8"><strong>NO HAY PERSONAS SELECCIONADAS</strong></td></tr>
   </tbody>
   <tbody *ngIf="(configurarListas.seleccionPersona.length > 0)">
     <tr *ngFor="let persona of configurarListas.seleccionPersona; let i = index;">
@@ -48,7 +48,6 @@
       <td class="text-center" *ngIf="(tipo == 'cuenta-saldo')">{{persona.prestacion.nombre}}</td>
       <td *ngIf="(tipo == 'cuenta-saldo')">{{cortarObservacion(persona.prestacion.observacion) }} <code *ngIf="(persona.prestacion.observacion.length > 23)" placement="left" ngbTooltip="{{persona.prestacion.observacion}}" container="body" >...</code></td>
       <td class="text-center">
-        <!-- <button type="button" *ngIf="(persona.prestacion.observacion)" class="btn btn-sm btn-outline-info rounded-circle" placement="left" ngbTooltip="{{persona.prestacion.observacion}}" container="body"><i class="fas fa-ellipsis-h"></i></button> -->
         <modal-editar-persona [config-listas]="configurarListas" [persona]="persona" (obtenerDatosPersona)="editarPersona($event)" [tipo]="tipo"></modal-editar-persona>
         <modal-borrar-prestacion (confirmarBorrado)="borrarPersona($event, i, persona.prestacion['id'])"></modal-borrar-prestacion>
       </td>
