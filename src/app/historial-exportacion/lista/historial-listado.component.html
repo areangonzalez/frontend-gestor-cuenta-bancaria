@@ -4,17 +4,21 @@
     <tr>
       <th class="text-center" scope="col">Fecha de Exportación</th>
       <th class="text-center" scope="col">Archivo</th>
-      <th class="text-center" scope="col">Cantidad</th>
+      <th class="text-center" scope="col">Cant. Registros Exportado</th>
+      <th class="text-center" scope="col">Cant. Registros</th>
       <th class="text-center" scope="col"></th>
     </tr>
   </thead>
   <tbody *ngIf="(historial.length == 0)">
-    <tr class="bg-warning"><td colspan="4" rowspan="1" class="text-center"><strong>NO SE HA ENCONTRADO RESULTADO</strong></td></tr>
+    <tr class="bg-warning"><td colspan="5" rowspan="1" class="text-center"><strong>NO SE HA ENCONTRADO RESULTADO</strong></td></tr>
   </tbody>
   <tbody *ngIf="(historial.length > 0)">
     <tr *ngFor="let archivo of historial">
       <td class="text-center">{{archivo.export_at | date: 'dd/MM/yyyy'}}</td>
       <td class="text-center text-capitalize">{{archivo.tipo}}</td>
+      <td class="text-center">
+        {{archivo.cantidad}} <span *ngIf="(archivo.tipo == 'ctasaldo')">Persona/s</span> <span *ngIf="(archivo.tipo == 'interbanking')"> Cuenta/s</span>
+      </td>
       <td class="text-center">
         {{archivo.cantidad}} <span *ngIf="(archivo.tipo == 'ctasaldo')">Persona/s</span> <span *ngIf="(archivo.tipo == 'interbanking')"> Cuenta/s</span>
       </td>
