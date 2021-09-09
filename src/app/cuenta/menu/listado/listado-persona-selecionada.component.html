@@ -1,6 +1,6 @@
 <div class="row mb-1" *ngIf="(tipo == 'cuenta-saldo')">
   <div class="col">
-    <button type="button" class="btn btn-sm btn-success btn-block" (click)="guardarListadoSeleccion(configurarListas.seleccionPersona)" [disabled]="(configurarListas.seleccionPersona.length == 0)" ><i class="fas fa-save"></i> Guardar Listado Cuenta Saldo</button>
+    <button type="button" class="btn btn-sm btn-success btn-block" (click)="guardarListadoSeleccion(configurarListas.seleccionPersona)" [disabled]="(configurarListas.seleccionPersona.length == 0)" ><i class="fas fa-save"></i> Guardar Listado de Convenio</button>
   </div>
   <div class="col-1 text-center font-weight-bold">
     <small>{{(configurarListas.seleccionPersona.length > 0) ? configurarListas.seleccionPersona.length : 0}} Registro/s.</small>
