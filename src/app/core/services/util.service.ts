@@ -38,7 +38,7 @@ export class UtilService {
     switch(formato){
       case "dd/MM/yyyy":
         fechaArray = fecha.split("-");
-        nuevaFecha = fechaArray[0] + '/' + fechaArray[1] + '/' + fechaArray[2];
+        nuevaFecha = fechaArray[2] + '/' + fechaArray[1] + '/' + fechaArray[0];
         break;
       case "yyyy-MM-dd":
         fechaArray = fecha.split("/");
