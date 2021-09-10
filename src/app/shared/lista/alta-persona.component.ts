@@ -121,7 +121,7 @@ export class AltaPersonaComponent implements OnInit {
   esPendiente(pendiente: boolean, enEspera: boolean, observacion: string, fecha_pedido: string) {
     let texto: string = (observacion != "") ? "Observacion: " + observacion: "";
     if (pendiente == true) {
-      return "Esperando respuesta del banco. Exportado: " + this._utils.darFormatoAfecha(fecha_pedido, 'dd/MM/yyyy') + "</br> " + texto;
+      return "Esperando respuesta del banco. Exportado: " + texto + " " + this._utils.darFormatoAfecha(fecha_pedido, 'dd/MM/yyyy');
     }
     if (enEspera == true) {
       return "Esperando a ser exportado. " + texto;
