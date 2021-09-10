@@ -25,6 +25,34 @@ export class UtilService {
 
     return fecha;
   }
+  /**
+   * Formatea la fecha cambiando el separador y ordenando en dia/mes/año
+   * por Ej.: yyyy-MM-dd => dd/MM/yyyy o dd/MM/yyyy => yyyy-MM-dd
+   * @param fecha cadena de una fecha
+   * @param formato yyyy-MM-dd ... dd/MM/yyyy
+   * @returns Devuelve una cedena con la fecha invertida y cambiando el separador
+   */
+  public darFormatoAfecha(fecha: string, formato: string) {
+    let fechaArray: any;
+    let nuevaFecha: string = '';
+    switch(formato){
+      case "dd/MM/yyyy":
+        fechaArray = fecha.split("-");
+        nuevaFecha = ((fechaArray[0] < 10) ? "0" + fechaArray[0] : fechaArray[0] ) + '-' + ((fechaArray[1] < 10) ? "0" + fechaArray[1] : fechaArray[1] ) + '-' + fechaArray[2];
+        break;
+      case "yyyy-MM-dd":
+        fechaArray = fecha.split("/");
+        nuevaFecha = fechaArray[2] + '-' + ((fechaArray[1] < 10) ? "0" + fechaArray[1] : fechaArray[1] ) + '-' + ((fechaArray[0] < 10) ? "0" + fechaArray[0] : fechaArray[0] );
+        break;
+      default:
+        fechaArray = fecha.split("/");
+        nuevaFecha = fechaArray[2] + '-' + ((fechaArray[1] < 10) ? "0" + fechaArray[1] : fechaArray[1] ) + '-' + ((fechaArray[0] < 10) ? "0" + fechaArray[0] : fechaArray[0] );
+        break;
+    }
+
+    return nuevaFecha;
+
+  }
 
   /**
    * @function validarNumero valida si el valor es un numero

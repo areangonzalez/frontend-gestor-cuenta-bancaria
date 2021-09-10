@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { configurarListas } from 'src/app/core/models';
-import { NotificacionService } from 'src/app/core/services';
-import { PrestacionService } from './../../core/services';
+import { NotificacionService, UtilService, PrestacionService } from 'src/app/core/services';
 
 @Component({
   selector: 'shared-lista-alta-persona',
@@ -18,7 +17,7 @@ export class AltaPersonaComponent implements OnInit {
   @Output("cuilPersona") public cuilPersona = new EventEmitter();
   public copiaDeDatos: any = { existe: false };
 
-  constructor(private _msj: NotificacionService, private _prestacionService: PrestacionService) { }
+  constructor(private _msj: NotificacionService, private _prestacionService: PrestacionService, private _utils: UtilService) { }
 
   ngOnInit(): void {
   }
@@ -119,10 +118,10 @@ export class AltaPersonaComponent implements OnInit {
     }
   }
 
-  esPendiente(pendiente: boolean, enEspera: boolean, observacion: string) {
+  esPendiente(pendiente: boolean, enEspera: boolean, observacion: string, fecha_pedido: string) {
     let texto: string = (observacion != "") ? "Observacion: " + observacion: "";
     if (pendiente == true) {
-      return "Esperando respuesta del banco. " + texto
+      return "Esperando respuesta del banco. Exportado: " + this._utils.darFormatoAfecha(fecha_pedido, 'dd/MM/yyyy') + " " + texto;
     }
     if (enEspera == true) {
       return "Esperando a ser exportado. " + texto;
