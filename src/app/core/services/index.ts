@@ -28,3 +28,4 @@ export * from './provincia.service';
 export * from './departamento.service';
 export * from './backend-localidad.service';
 export * from './localidad-extra.service';
+export * from './convenio.service';

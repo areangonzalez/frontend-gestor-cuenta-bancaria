@@ -122,6 +122,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return getProvincias();
               case url.match('/apimock/departamentos') && method === 'GET':
                 return getDepartamentos();
+              case url.match('/apimock/convenios') && method === 'GET':
+                return getConvenios();
             }
         }
 
@@ -152,6 +154,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           ];
 
           return ok(listadoBancos);
+        }
+        /*** LISTADO DE CONVENIOS ***/
+        function getConvenios() {
+          let listaConvenio = [{ "id": 1, "nombre": "8180" },{ "id": 2, "nombre": "8277" }];
+
+          return ok(listaConvenio);
         }
         /*** LISTADO DE PERMISOS ***/
         function getPermisos() {
