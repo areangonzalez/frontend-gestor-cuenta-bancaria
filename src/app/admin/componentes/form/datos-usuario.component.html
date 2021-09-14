@@ -1,30 +1,12 @@
 <fieldset [formGroup]="usuario">
   <div class="row">
     <div class="form-group col-md-6">
-      <label for="rol" class="prioridad">Rol:</label>
-      <select class="form-control" id="rol" formControlName="rol">
-        <option value="">Seleccione un Rol</option>
-        <option *ngFor="let rol of listaRoles" value="{{rol.name}}">{{rol.name}}</option>
-      </select>
-      <div *ngIf="(usuario.get('rol').invalid && submitted)"
-          class="text-danger">
-          <div *ngIf="usuario.get('rol').hasError('required')">Este campo es requerido. </div>
-      </div>
-    </div>
-    <div class="form-group col-md-6">
       <label for="nombre_usuario" class="prioridad">Usuario (<span>*</span>):</label>
       <input type="text" id="nombre_usuario" placeholder="Nombre de usuario" class="form-control" formControlName="username" [ngClass]="{'is-invalid': (usuario.get('username').invalid && submitted)}">
       <div *ngIf="(usuario.get('username').invalid && submitted)"
           class="text-danger">
           <div *ngIf="usuario.get('username').hasError('required')">Este campo es requerido. </div>
           <div *ngIf="usuario.get('username').hasError('minlength')">El nombre es muy corto.</div>
-      </div>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="email" class="prioridad">Email:</label>
-      <input type="email" id="email" placeholder="Ej.: nombre@mail.com.ar" class="form-control" formControlName="email" (keyup)="aMinuscula($event.target)" [ngClass]="{'is-invalid': (usuario.get('email').invalid && submitted)}">
-      <div *ngIf="(usuario.get('email').invalid && submitted)" class="text-danger">
-        <div *ngIf="usuario.get('email').hasError('pattern')">El email es invalido.</div>
       </div>
     </div>
     <div class="form-group col-md-6">
@@ -35,6 +17,13 @@
       </select>
       <div *ngIf="(usuario.get('localidadid').invalid && submitted)" class="text-danger">
           <div *ngIf="usuario.get('localidadid').hasError('required')">Por favor Seleccione localidad. </div>
+      </div>
+    </div>
+    <div class="form-group col-md-12">
+      <label for="email" class="prioridad">Email:</label>
+      <input type="email" id="email" placeholder="Ej.: nombre@mail.com.ar" class="form-control" formControlName="email" (keyup)="aMinuscula($event.target)" [ngClass]="{'is-invalid': (usuario.get('email').invalid && submitted)}">
+      <div *ngIf="(usuario.get('email').invalid && submitted)" class="text-danger">
+        <div *ngIf="usuario.get('email').hasError('pattern')">El email es invalido.</div>
       </div>
     </div>
     <div class="form-group col-md-6">

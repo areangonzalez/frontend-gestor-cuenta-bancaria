@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { UsuarioService, NotificacionService, UtilService } from './../../../core/services';
 
@@ -7,7 +7,7 @@ import { UsuarioService, NotificacionService, UtilService } from './../../../cor
   templateUrl: './datos-persona.component.html',
   styleUrls: ['./datos-persona.component.scss']
 })
-export class DatosPersonaComponent implements OnInit {
+export class DatosPersonaComponent {
   @Input("localidades") public localidades: any;
   @Input("roles") public roles: any;
   @Output("cancelarForm") public cancelarForm = new EventEmitter();
@@ -28,7 +28,6 @@ export class DatosPersonaComponent implements OnInit {
         personaid: '',
         username: ['', [Validators.required, Validators.minLength(3)]],
         email: ['', [Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
-        rol: ['', [Validators.required]],
         localidadid: '',
         password: ['', [Validators.required, Validators.minLength(8)]],
         confirmPass: ['', [Validators.required]]
@@ -36,9 +35,6 @@ export class DatosPersonaComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.setRol(this.roles);
-  }
   /**
    * cancela el formulario
    */
@@ -150,14 +146,12 @@ export class DatosPersonaComponent implements OnInit {
             this.persona.get('usuario').patchValue({'personaid': datosPersona.id});
             this.persona.patchValue({'cuil_prin': cuil_pri});
             this.persona.patchValue({'cuil_fin': cuil_fin});
-            this.setRol(this.roles);
           }
         }else{
           this.persona.patchValue({'nro_documento': nro_documento});
           this.persona.patchValue({'cuil_prin': cuil_pri});
           this.persona.patchValue({'cuil_fin': cuil_fin});
           this.persona.get('usuario').patchValue({'personaid': ''});
-          this.setRol(this.roles);
         }
       }, error => { this._msj.cancelado(error); });
   }
@@ -177,15 +171,6 @@ export class DatosPersonaComponent implements OnInit {
             control.setErrors(null);
         }
     });
-  }
-  /**
-   * seteo el combo de rol si solo tiene un valor para seleccionar
-   * @param listaRoles listado de roles que obtengo por api
-   */
-  setRol(listaRoles: any) {
-    if (listaRoles.length === 1) {
-      this.persona.get('usuario').patchValue({'rol':listaRoles[0].name});
-    }
   }
 
 }
