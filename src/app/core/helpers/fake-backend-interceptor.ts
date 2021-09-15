@@ -148,16 +148,37 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
         /*** LISTADO DE PERMISOS ***/
         function getPermisos() {
+          let rolParam = request.params.get('rol');
           let listaPermisos = [
             { "name": "persona_crear" },{ "name": "persona_modificar" },{ "name": "prestacion_acreditar" },
             { "name": "prestacion_baja" },{ "name": "prestacion_crear" },{ "name": "prestacion_ver" }
           ];
 
+          switch (rolParam) {
+            case 'usuario_8180':
+              listaPermisos = [
+                { "name": "exportar_cuenta_saldo" },{ "name": "prestacion_borrar" },{ "name": "importar_cuenta_bps" }
+              ];
+              break;
+            case 'usuario_8277':
+              listaPermisos = [
+                { "name": "exportar_cuenta_saldo" },{ "name": "prestacion_borrar" },{ "name": "importar_cuenta_bps" }
+              ];
+              break;
+            default:
+              listaPermisos = [
+                { "name": "persona_crear" },{ "name": "persona_modificar" },{ "name": "prestacion_crear" },{ "name": "prestacion_borrar" },
+                { "name": "exportar_cuenta_saldo" },{ "name": "importar_cuenta_bps" }
+              ];
+              break;
+          }
+
+
           return ok(listaPermisos);
         }
         /*** LISTADO DE ROLES ***/
         function getRols() {
-          let listaRoles = [{id: 2, name: "soporte" },{id: 3, name: "usuario" },{id: 4, name: "usuario_8180" },{id: 5, name: "usuario_8277" }]
+          let listaRoles = [{name: "usuario" },{name: "usuario_8180" },{name: "usuario_8277" }]
 
           return ok(listaRoles);
         }
@@ -229,9 +250,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           let param = request.body;
           let f = new Date();
           let fechaHoy = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate();
-          console.log(param);
 
-          if (localStorage.getItem("ususarios")) {
+          if (localStorage.getItem("usuarios")) {
             listaUsuarios = JSON.parse(localStorage.getItem("usuarios"));
           }
 
@@ -283,8 +303,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           if (localStorage.getItem("asignacion")) {
             listaAsignacion = (JSON.parse(localStorage.getItem("asignacion")) !== undefined) ? JSON.parse(localStorage.getItem("asignacion")) : undefined;
           }
-          console.log(listaAsignacion)
-          if (listaAsignacion !== undefined) {
+
+          if (listaAsignacion.length !== 0) {
             return ok(listaAsignacion);
           } else {
             return ok({usuarioid: id, lista_permiso: []});

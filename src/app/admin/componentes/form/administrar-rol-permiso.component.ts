@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NotificacionService, UsuarioService } from './../../../core/services';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NotificacionService, UsuarioService, PermisosService } from './../../../core/services';
 
 @Component({
   selector: 'admin-administrar-rol-permiso-form',
@@ -8,17 +9,27 @@ import { NotificacionService, UsuarioService } from './../../../core/services';
 })
 export class AdministrarRolPermisoComponent implements OnInit {
   @Input("idUsuario") private idUsuario: number;
-  @Input("listaPermisos") public listaPermisos: any;
+  @Input("listaRoles") public listaRoles: any;
   @Input("baja") public baja: boolean;
+  public listaPermisos: any = [];
+  public user: FormGroup;
+  public submitted: boolean = false;
   public listaUsuarioConPermisos: any = {lista_permiso: []};
   public permisosSeleccionados: any = [];
 
-  constructor(private _msj: NotificacionService, private _usuarioService: UsuarioService) {}
+  constructor(private _msj: NotificacionService, private _usuarioService: UsuarioService, private _fb: FormBuilder, private _permisoService: PermisosService) {
+    this.user = _fb.group({
+      rol: ['', Validators.required]
+    })
+  }
 
   ngOnInit() {
     this.obtenerListaPermisos(this.idUsuario);
   }
-
+  /**
+   * Obtiene el listado de permisos del usuario
+   * @param idUsuario identificador del usuario
+   */
   obtenerListaPermisos(idUsuario: number) {
     this._usuarioService.listarAsignacion(idUsuario).subscribe(
       listado => {
@@ -27,19 +38,12 @@ export class AdministrarRolPermisoComponent implements OnInit {
     )
   }
   /**
-   * al seleccionar un programa ya viene definido un permiso
-   * @param programaid identificador de programa
-   */
-  setPermisosDefault(programaid: any) {
-    this.permisosSeleccionados = (programaid != "") ? [{ name: "prestacion_ver" }] : [];
-  }
-  /**
    * Valido los datos antes de asignar los permisos
    */
   validarDatos() {
-    console.log(this.permisosSeleccionados);
-
-    if (this.permisosSeleccionados.length == 0) {
+    if (this.user.invalid) {
+      return;
+    }else if (this.permisosSeleccionados.length == 0) {
       this._msj.cancelado("No se ha seleccionado ningun permiso");
       return;
     }else{
@@ -62,5 +66,18 @@ export class AdministrarRolPermisoComponent implements OnInit {
         this.obtenerListaPermisos(this.idUsuario);
       }, error => { this._msj.cancelado(error); }
     );
+  }
+
+  listarPermisos() {
+    let rol = (this.user.value.rol !== "") ? this.user.value.rol : "";
+    if (rol !== "") {
+      this._permisoService.permisoPorRol(rol).subscribe(
+        respuesta => {
+          this.listaPermisos = respuesta;
+        }, error => { this._msj.cancelado(error); }
+      )
+    }else{
+      this.listaPermisos = [];
+    }
   }
 }

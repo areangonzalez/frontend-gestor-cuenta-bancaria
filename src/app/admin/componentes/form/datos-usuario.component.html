@@ -1,7 +1,7 @@
 <fieldset [formGroup]="usuario">
   <div class="row">
     <div class="form-group col-md-6">
-      <label for="nombre_usuario" class="prioridad">Usuario (<span>*</span>):</label>
+      <label for="nombre_usuario" class="prioridad">Usuario (<span class="is-invalid">*</span>):</label>
       <input type="text" id="nombre_usuario" placeholder="Nombre de usuario" class="form-control" formControlName="username" [ngClass]="{'is-invalid': (usuario.get('username').invalid && submitted)}">
       <div *ngIf="(usuario.get('username').invalid && submitted)"
           class="text-danger">
@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="form-group col-md-6">
-      <label for="password" class="prioridad">Contraseña (<span>*</span>):</label>
+      <label for="password" class="prioridad">Contraseña (<span class="is-invalid">*</span>):</label>
       <input type="password" id="password" placeholder="********" class="form-control" formControlName="password" [ngClass]="{'is-invalid': (usuario.get('password').invalid && submitted)}">
       <div *ngIf="(usuario.get('password').invalid && submitted)"
           class="text-danger">
@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="form-group col-md-6">
-      <label for="confirmPass" class="prioridad">Confirmar Contraseña (<span>*</span>):</label>
+      <label for="confirmPass" class="prioridad">Confirmar Contraseña (<span class="is-invalid">*</span>):</label>
       <input type="password" id="confirmPass" placeholder="********" class="form-control" formControlName="confirmPass" [ngClass]="{'is-invalid': (usuario.get('password').value != usuario.get('confirmPass').value && usuario.get('confirmPass').value != null)}">
       <div *ngIf="(usuario.get('password').value != usuario.get('confirmPass').value && usuario.get('confirmPass').value != null)" class="text-danger">
         <div>Las contraseñas no coinciden.</div>

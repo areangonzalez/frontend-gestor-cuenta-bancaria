@@ -2,7 +2,7 @@
   <fieldset >
     <div class="row">
       <div class="form-group col-md-6">
-          <label for="nro_documento" class="prioridad">Nro. documento (<span>*</span>):</label>
+          <label for="nro_documento" class="prioridad">Nro. documento (<span class="is-invalid">*</span>):</label>
           <div class="input-group">
               <input type="text" id="nro_documento" class="form-control" formControlName="nro_documento" minlength="7" maxlength="8" placeholder="Ej.: 23123987"
                 (keyup)="soloNumero($event.target)" (change)="validarCuil($event.target.value)" [ngClass]="{'is-invalid': (persona.get('nro_documento').invalid && submitted)}">
@@ -14,7 +14,7 @@
           </div>
       </div>
       <div class="form-group col-md-6">
-          <label for="form-agente-cuil" class="prioridad">Cuil (<span>*</span>):</label>
+          <label for="form-agente-cuil" class="prioridad">Cuil (<span class="is-invalid">*</span>):</label>
           <div class="input-group">
               <input id="cuil_prin" class="form-control input-cuil-number" type="text" placeholder="##" formControlName="cuil_prin" maxlength="2"
               (change)="armarCuil()" (keyup)="soloNumero($event.target)" [ngClass]="{'is-invalid': (persona.get('cuil_prin').invalid && submitted)}">
@@ -28,7 +28,7 @@
           </div>
       </div>
       <div class="form-group col-md-6">
-          <label for="apellido" class="prioridad">Apellido (<span>*</span>):</label>
+          <label for="apellido" class="prioridad">Apellido (<span class="is-invalid">*</span>):</label>
           <input type="text" id="apellido" placeholder="Apellido" class="form-control" formControlName="apellido" [ngClass]="{'is-invalid': (persona.get('apellido').invalid && submitted)}">
           <div *ngIf="(persona.get('apellido').invalid && submitted)"
               class="text-danger">
@@ -37,7 +37,7 @@
           </div>
       </div>
       <div class="form-group col-md-6">
-          <label for="nombre" class="prioridad">Nombre (<span>*</span>):</label>
+          <label for="nombre" class="prioridad">Nombre (<span class="is-invalid">*</span>):</label>
           <input type="text" id="nombre" placeholder="Nombre" class="form-control" formControlName="nombre" [ngClass]="{'is-invalid': (persona.get('nombre').invalid && submitted)}">
           <div *ngIf="(persona.get('nombre').invalid && submitted)"
               class="text-danger">
@@ -50,7 +50,7 @@
     <admin-usuario-pass-form [localidades]="localidades" [listaRoles]="roles" [usuario]="persona.get('usuario')" [submitted]="submitted" ></admin-usuario-pass-form>
     <hr class="pt1">
     <div class="float-right">
-        <button type="button" class="btn btn-danger" (click)="cancelar()"><span class="oi oi-ban" title="Cancelar" aria-hidden="true"></span> Cancelar</button>&nbsp;
+        <button type="button" class="btn btn-danger" (click)="cancelar()"><span class="is-invalid" class="oi oi-ban" title="Cancelar" aria-hidden="true"></span> Cancelar</button>&nbsp;
         <button type="button" class="btn btn-success" (click)="validarForm()" ><span class="fas fa-save" title="Guardar" aria-hidden="true"></span> Guardar</button>
     </div>
 

@@ -14,7 +14,7 @@ const routes: Routes = [
   },{
     path: 'gestor-usuarios', component: GestorUsuarioComponent,
     data: { loading: true, title: 'Gestión de Usuarios', rol: ['soporte', 'admin'] },
-    resolve: { usuarios: UsuarioService, permisos: PermisosService, roles: RolService, localidades: LocalidadService}
+    resolve: { usuarios: UsuarioService, roles: RolService, localidades: LocalidadService}
   },{
     path: 'localidad-abm', component: GestorLocalidadComponent,
     data: { loading: true, title: 'Gestionar Localidades', rol: ['soporte', 'admin'] },

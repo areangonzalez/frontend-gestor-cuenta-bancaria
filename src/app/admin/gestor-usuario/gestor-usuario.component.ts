@@ -20,7 +20,6 @@ export class GestorUsuarioComponent implements OnInit {
     this.prepararListadoUsuario(this._route.snapshot.data["usuarios"], 1);
     this.listas.localidades = this._route.snapshot.data["localidades"];
     this.listas.programas = this._route.snapshot.data["programas"];
-    this.listas.permisos = this._route.snapshot.data["permisos"];
     this.listas.roles = this._route.snapshot.data["roles"];
   }
   /**
