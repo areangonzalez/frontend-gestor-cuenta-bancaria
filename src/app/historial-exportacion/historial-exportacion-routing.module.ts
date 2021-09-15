@@ -13,7 +13,7 @@ const routes = [
     resolve: {
       historial: ExportService
     },
-    data: { rol: ['usuario', 'admin'] }
+    data: { title: 'Historial de exportación', rol: ['usuario','usuario_8180','usuario_8277','admin'] }
   }
 ];
 

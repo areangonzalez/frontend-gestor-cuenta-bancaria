@@ -13,9 +13,6 @@
         <a class="nav-link" [routerLink]="['/cuentas']" ><i class="fas fa-university"></i> Cuentas</a>
       </li>
       <li class="nav-item" [routerLinkActive]="['active']" (click)="isCollapsed = !isCollapsed;">
-        <a class="nav-link" [routerLink]="['/tesoreria']" ><i class="fas fa-coins"></i> Tesoreía</a>
-      </li>
-      <li class="nav-item" [routerLinkActive]="['active']" (click)="isCollapsed = !isCollapsed;">
         <a class="nav-link" [routerLink]="['/historial-exportacion']" ><i class="fas fa-history"></i> Historial de Exportación</a>
       </li>
       <li *ngIf="isAdmin" class="" ><a class="nav-link"  [routerLink]="['/admin/gestor-usuarios']" ><i class="fas fa-users-cog"></i> Gestionar usuarios</a></li>

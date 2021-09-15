@@ -299,10 +299,17 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function listarPermisosDeUsuario() {
           let urlParts = request.url.split('/');
           let id = parseInt(urlParts[urlParts.length - 1]);
-          let listaAsignacion = [];
+          let listaAsignacion:any = [];
           if (localStorage.getItem("asignacion")) {
             listaAsignacion = (JSON.parse(localStorage.getItem("asignacion")) !== undefined) ? JSON.parse(localStorage.getItem("asignacion")) : undefined;
           }
+          let lista_permiso: any = [];
+          if (listaAsignacion["lista_permiso"].length > 0) {
+            for (const k in listaAsignacion.lista_permiso) {
+              lista_permiso.push(listaAsignacion.lista_permiso[k].name);
+            }
+          }
+          listaAsignacion.lista_permiso = lista_permiso
 
           if (listaAsignacion.length !== 0) {
             return ok(listaAsignacion);
@@ -318,7 +325,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             listaAsignacion = JSON.parse(localStorage.getItem("asignacion"));
           }
           listaAsignacion = {
-            usuarioid: newPermisos.usuarioid, programaid: newPermisos.programaid, rolid: newPermisos.rolid,
+            usuarioid: newPermisos.usuarioid,
+            rol: newPermisos.rol,
             lista_permiso: newPermisos.lista_permiso
           };
 
@@ -332,7 +340,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           let respuesta: any = {};
           if ( datos.username === 'admin' && datos.password_hash === 'admins' ) {
             respuesta = {
-              username: 'Admin', access_token: 'fake-jwt-token', rol: 'admin'
+              username: 'Admin', access_token: 'fake-jwt-token', rol: ['usuario_8180', 'usuario_8277']
             };
 
           }else if ( datos.username === 'soporte' && datos.password_hash === 'soportes' ){

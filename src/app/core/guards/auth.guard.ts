@@ -13,15 +13,16 @@ export class AuthGuard implements CanActivate {
       let cont = 0;
       if (roles && autorizacion) {
           for (const rol of roles) {
-            if ( rol === autorizacion.rol) {
-              cont++;
+            for (let i = 0; i < autorizacion.rol.length; i++) {
+              if ( rol === autorizacion.rol[i]) {
+                cont++;
+              }
             }
           }
           return autorizacion && cont > 0;
       }
       if (autorizacion) { return true; }
       // not logged in so redirect to login page with the return url
-      console.log(state);
 
       this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
       return false;

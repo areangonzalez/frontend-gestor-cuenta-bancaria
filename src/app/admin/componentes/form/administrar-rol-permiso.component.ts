@@ -33,6 +33,8 @@ export class AdministrarRolPermisoComponent implements OnInit {
   obtenerListaPermisos(idUsuario: number) {
     this._usuarioService.listarAsignacion(idUsuario).subscribe(
       listado => {
+        console.log(listado);
+
         this.listaUsuarioConPermisos = listado;
       }, error => { this._msj.cancelado(error); }
     )
@@ -43,12 +45,10 @@ export class AdministrarRolPermisoComponent implements OnInit {
   validarDatos() {
     if (this.user.invalid) {
       return;
-    }else if (this.permisosSeleccionados.length == 0) {
-      this._msj.cancelado("No se ha seleccionado ningun permiso");
-      return;
     }else{
       let params: any  = {
         usuarioid: this.idUsuario,
+        rol: this.user.value.rol,
         lista_permiso: this.permisosSeleccionados
       };
 

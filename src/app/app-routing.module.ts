@@ -11,18 +11,15 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'tesoreria',
-        data: { breadcrumb: 'Tesorería', title: 'Tesorería', rol: ['usuario', 'admin'] },
-        loadChildren: () => import('./persona/persona.module').then(m => m.PersonaModule)
-      },
-      {
         path: 'cuentas',
-        data: { breadcrumb: 'Cuentas', title: 'Cuentas', rol: ['usuario', 'admin'] },
+        canActivate: [AuthGuard],
+        data: { breadcrumb: 'Cuentas', title: 'Cuentas', rol: ['usuario','usuario_8180','usuario_8277','admin'] },
         loadChildren: () => import('./cuenta/cuenta.module').then(m => m.CuentaModule)
       },
       {
         path: 'historial-exportacion',
-        data: { breadcrumb: 'Historial de exportación', title: 'Historial de Exportación', rol: ['usuario', 'admin'] },
+        canActivate: [AuthGuard],
+        data: { breadcrumb: 'Historial de exportación', title: 'Historial de Exportación', rol: ['usuario','usuario_8180','usuario_8277','admin'] },
         loadChildren: () => import('./historial-exportacion/historial-exportacion.module').then(m => m.HistorialExportacionModule)
       },
       { path: '', redirectTo: 'cuentas', pathMatch: 'full' }

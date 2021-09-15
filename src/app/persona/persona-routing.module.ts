@@ -12,7 +12,7 @@ const routes = [
     resolve: {
       personas: CuentaService, localidades: LocalidadService, tipoDocumentos: TipoDocumentoService, nacionalidades: NacionalidadService, estadoCiviles: EstadoCivilService, sexos: SexoService, generos: GeneroService, bancos: BancoServiceService
     },
-    data: { title: 'Tesorería', rol: ['usuario', 'admin'] }
+    data: { title: 'Tesorería', rol: ['usuario','usuario_8180','usuario_8277','admin'] }
   }
 ];
 
