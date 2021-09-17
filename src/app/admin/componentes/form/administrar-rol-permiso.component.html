@@ -1,7 +1,7 @@
 <div class="row m-1">
   <div class="form-group col-md-12" [formGroup]="user">
     <label for="rol" class="prioridad">Rol (<span>*</span>):</label>
-    <select class="form-control" id="rol" formControlName="rol" (change)="listarPermisos()" [ngClass]="{'is-invalid': (user.get('rol').invalid && submitted)}">
+    <select class="form-control" id="rol" formControlName="rol" [ngClass]="{'is-invalid': (user.get('rol').invalid && submitted)}">
       <option value="">Seleccione Rol</option>
       <option *ngFor="let rol of listaRoles" value="{{rol.name}}">{{rol.name}}</option>
     </select>

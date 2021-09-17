@@ -10,14 +10,14 @@ import { NotificacionService, UsuarioService, PermisosService } from './../../..
 export class AdministrarRolPermisoComponent implements OnInit {
   @Input("idUsuario") private idUsuario: number;
   @Input("listaRoles") public listaRoles: any;
+  @Input("listaPermisos") public listaPermisos: any;
   @Input("baja") public baja: boolean;
-  public listaPermisos: any = [];
   public user: FormGroup;
   public submitted: boolean = false;
   public listaUsuarioConPermisos: any = {lista_permiso: []};
   public permisosSeleccionados: any = [];
 
-  constructor(private _msj: NotificacionService, private _usuarioService: UsuarioService, private _fb: FormBuilder, private _permisoService: PermisosService) {
+  constructor(private _msj: NotificacionService, private _usuarioService: UsuarioService, private _fb: FormBuilder) {
     this.user = _fb.group({
       rol: ['', Validators.required]
     })
@@ -68,16 +68,4 @@ export class AdministrarRolPermisoComponent implements OnInit {
     );
   }
 
-  listarPermisos() {
-    let rol = (this.user.value.rol !== "") ? this.user.value.rol : "";
-    if (rol !== "") {
-      this._permisoService.permisoPorRol(rol).subscribe(
-        respuesta => {
-          this.listaPermisos = respuesta;
-        }, error => { this._msj.cancelado(error); }
-      )
-    }else{
-      this.listaPermisos = [];
-    }
-  }
 }

@@ -21,6 +21,7 @@ export class GestorUsuarioComponent implements OnInit {
     this.listas.localidades = this._route.snapshot.data["localidades"];
     this.listas.programas = this._route.snapshot.data["programas"];
     this.listas.roles = this._route.snapshot.data["roles"];
+    this.listas.permisos = this._route.snapshot.data["permisos"];
   }
   /**
    * @function buscar busca en listado

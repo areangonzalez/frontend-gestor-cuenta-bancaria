@@ -8,7 +8,7 @@
     <li ngbNavItem="permisos">
       <a ngbNavLink>Permisos</a>
       <ng-template ngbNavContent>
-        <admin-administrar-rol-permiso-form [idUsuario]="datosUsuario.usuario.id" [listaRoles]="configListas.roles" [baja]="usuarioBaja"></admin-administrar-rol-permiso-form>
+        <admin-administrar-rol-permiso-form [idUsuario]="datosUsuario.usuario.id" [listaRoles]="configListas.roles" [listaPermisos]="configListas.permisos" [baja]="usuarioBaja"></admin-administrar-rol-permiso-form>
       </ng-template>
     </li>
     <li ngbNavItem="administrarUsuario">

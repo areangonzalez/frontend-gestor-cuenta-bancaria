@@ -340,7 +340,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           let respuesta: any = {};
           if ( datos.username === 'admin' && datos.password_hash === 'admins' ) {
             respuesta = {
-              username: 'Admin', access_token: 'fake-jwt-token', rol: ['usuario_8180', 'usuario_8277']
+              username: 'Admin', access_token: 'fake-jwt-token', rol: ['admin']
             };
 
           }else if ( datos.username === 'soporte' && datos.password_hash === 'soportes' ){
