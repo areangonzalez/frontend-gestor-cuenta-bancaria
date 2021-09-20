@@ -19,6 +19,11 @@ let listaUsuarios = [
   {personaid: 5, id: 5, nombre: "Gustavo", apellido: "Acosta", nro_documento: "18334826", cuil: "20183348265", email:"gacosta@desarrollohumano.rionegro.gov.ar", localidadid: "5", localidad: "Viedma", rol: 'usuario', username: "gacosta", created_at: "2019-11-21", fecha_baja: "", baja: false, direccion_ip: "192.10.10.8", descripcion_baja: "" }
 ];
 
+let listaRolPermiso = [
+  {usuarioid: 1, personaid: 1, lista_rol: [{ rol: "usuario", lista_permiso: [] }]},
+  {usuarioid: 2, personaid: 2, lista_rol: [{ rol: "usuario_8180", lista_permiso: ['prestacion_crear', 'exportar_cuenta_saldo'] }, { rol: "usuario_8277", lista_permiso: ['prestacion_crear', 'prestacion_borrar'] }]}
+]
+
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -300,9 +305,22 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           let urlParts = request.url.split('/');
           let id = parseInt(urlParts[urlParts.length - 1]);
           let listaAsignacion:any = [];
-          if (localStorage.getItem("asignacion")) {
+
+          //listaRolPermiso
+          let usuario = listaRolPermiso.filter(usu => { return usu.usuarioid === id; });
+          let usuarioEncontrado = usuario.length ? usuario[0] : null;
+
+          console.log(usuarioEncontrado)
+
+          return ok(usuarioEncontrado);
+        }
+
+
+          /* if (localStorage.getItem("asignacion")) {
             listaAsignacion = (JSON.parse(localStorage.getItem("asignacion")) !== undefined) ? JSON.parse(localStorage.getItem("asignacion")) : undefined;
           }
+
+
           let lista_permiso: any = [];
           if (listaAsignacion["lista_permiso"].length > 0) {
             for (const k in listaAsignacion.lista_permiso) {
@@ -315,8 +333,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return ok(listaAsignacion);
           } else {
             return ok({usuarioid: id, lista_permiso: []});
-          }
-        }
+          } */
 
         function agregarPermisosAusuario() {
           let newPermisos = request.body;

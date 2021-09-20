@@ -14,7 +14,7 @@ export class AdministrarRolPermisoComponent implements OnInit {
   @Input("baja") public baja: boolean;
   public user: FormGroup;
   public submitted: boolean = false;
-  public listaUsuarioConPermisos: any = {lista_permiso: []};
+  public listaUsuarioConRolyPermisos: any = {lista_permiso: []};
   public permisosSeleccionados: any = [];
 
   constructor(private _msj: NotificacionService, private _usuarioService: UsuarioService, private _fb: FormBuilder) {
@@ -27,15 +27,16 @@ export class AdministrarRolPermisoComponent implements OnInit {
     this.obtenerListaPermisos(this.idUsuario);
   }
   /**
-   * Obtiene el listado de permisos del usuario
+   * Obtiene el listado de roles con sus permisos del usuario
    * @param idUsuario identificador del usuario
    */
   obtenerListaPermisos(idUsuario: number) {
     this._usuarioService.listarAsignacion(idUsuario).subscribe(
-      listado => {
-        console.log(listado);
+      respuesta => {
+        console.log(respuesta);
 
-        this.listaUsuarioConPermisos = listado;
+        // guardo el listado con roles y sus permisos
+        this.listaUsuarioConRolyPermisos = respuesta;
       }, error => { this._msj.cancelado(error); }
     )
   }
