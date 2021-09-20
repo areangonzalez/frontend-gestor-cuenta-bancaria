@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificacionService, UsuarioService, PermisosService } from './../../../core/services';
 
 @Component({
@@ -12,16 +11,11 @@ export class AdministrarRolPermisoComponent implements OnInit {
   @Input("listaRoles") public listaRoles: any;
   @Input("listaPermisos") public listaPermisos: any;
   @Input("baja") public baja: boolean;
-  public user: FormGroup;
-  public submitted: boolean = false;
   public listaUsuarioConRolyPermisos: any = {lista_permiso: []};
+  public rolesSeleccionados: any = [];
   public permisosSeleccionados: any = [];
 
-  constructor(private _msj: NotificacionService, private _usuarioService: UsuarioService, private _fb: FormBuilder) {
-    this.user = _fb.group({
-      rol: ['', Validators.required]
-    })
-  }
+  constructor(private _msj: NotificacionService, private _usuarioService: UsuarioService) {}
 
   ngOnInit() {
     this.obtenerListaPermisos(this.idUsuario);
@@ -44,12 +38,16 @@ export class AdministrarRolPermisoComponent implements OnInit {
    * Valido los datos antes de asignar los permisos
    */
   validarDatos() {
-    if (this.user.invalid) {
+    if (this.rolesSeleccionados.length == 0) {
+      this._msj.cancelado("No se ha seleccionado ningun rol.");
+      return;
+    }else if (this.permisosSeleccionados.length == 0) {
+      this._msj.cancelado("No se ha seleccionado ningun permiso.");
       return;
     }else{
       let params: any  = {
         usuarioid: this.idUsuario,
-        rol: this.user.value.rol,
+        lista_rol: this.rolesSeleccionados,
         lista_permiso: this.permisosSeleccionados
       };
 

@@ -49,7 +49,6 @@ export class ErrorInterceptor implements HttpInterceptor {
     convertArray(mensaje: any) {
       try {
         const error = JSON.parse(mensaje);
-
         return error;
       }catch {
         return mensaje

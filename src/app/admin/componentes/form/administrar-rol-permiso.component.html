@@ -1,13 +1,14 @@
 <div class="row m-1">
-  <div class="form-group col-md-12" [formGroup]="user">
-    <label for="rol" class="prioridad">Rol (<span>*</span>):</label>
-    <select class="form-control" id="rol" formControlName="rol" [ngClass]="{'is-invalid': (user.get('rol').invalid && submitted)}">
-      <option value="">Seleccione Rol</option>
-      <option *ngFor="let rol of listaRoles" value="{{rol.name}}">{{rol.name}}</option>
-    </select>
-    <div *ngIf="(user.get('rol').invalid && submitted)"
-        class="text-danger">
-        <div *ngIf="user.get('rol').hasError('required')">Este campo es requerido. </div>
+  <div class="col-md-12">
+    <div class="form-group">
+      <label for="permisos">Rol/es:</label>
+      <ng-select [items]="listaRoles"
+        bindLabel="name"
+        placeholder="Seleccione uno o varios rol/es."
+        appendTo="body"
+        multiple="true"
+        [(ngModel)]="rolesSeleccionados">
+      </ng-select>
     </div>
   </div>
   <div class="col-md-12">
