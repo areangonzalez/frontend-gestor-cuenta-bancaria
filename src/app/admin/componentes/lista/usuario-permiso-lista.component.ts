@@ -7,7 +7,7 @@ import { UsuarioService, NotificacionService } from './../../../core/services';
   styleUrls: ['./usuario-permiso-lista.component.scss']
 })
 export class UsuarioPermisoListaComponent implements OnInit {
-  @Input("listaUsuarioConRolyPermisos") public listaUsuarioConRolyPermisos: any;
+  @Input("listaConvenioPermisos") public listaConvenioPermisos: any;
 
   constructor(private _usuarioService: UsuarioService, private _msj: NotificacionService) { }
 
@@ -37,7 +37,7 @@ export class UsuarioPermisoListaComponent implements OnInit {
    */
   actualizarListado(idUsuario: number) {
     this._usuarioService.listarAsignacion(idUsuario).subscribe(
-      listado => { this.listaUsuarioConRolyPermisos = listado; },
+      listado => { this.listaConvenioPermisos = listado; },
       error => { this._msj.cancelado(error); }
     )
   }

@@ -153,31 +153,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
         /*** LISTADO DE PERMISOS ***/
         function getPermisos() {
-          let rolParam = request.params.get('rol');
           let listaPermisos = [
             { "name": "persona_crear" },{ "name": "persona_modificar" },{ "name": "prestacion_acreditar" },
             { "name": "prestacion_baja" },{ "name": "prestacion_crear" },{ "name": "prestacion_ver" }
           ];
-
-          switch (rolParam) {
-            case 'usuario_8180':
-              listaPermisos = [
-                { "name": "exportar_cuenta_saldo" },{ "name": "prestacion_borrar" },{ "name": "importar_cuenta_bps" }
-              ];
-              break;
-            case 'usuario_8277':
-              listaPermisos = [
-                { "name": "exportar_cuenta_saldo" },{ "name": "prestacion_borrar" },{ "name": "importar_cuenta_bps" }
-              ];
-              break;
-            default:
-              listaPermisos = [
-                { "name": "persona_crear" },{ "name": "persona_modificar" },{ "name": "prestacion_crear" },{ "name": "prestacion_borrar" },
-                { "name": "exportar_cuenta_saldo" },{ "name": "importar_cuenta_bps" }
-              ];
-              break;
-          }
-
 
           return ok(listaPermisos);
         }
@@ -305,35 +284,37 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           let urlParts = request.url.split('/');
           let id = parseInt(urlParts[urlParts.length - 1]);
           let listaAsignacion:any = [];
+          let asignacionHistory: any = [];
 
-          //listaRolPermiso
-          let usuario = listaRolPermiso.filter(usu => { return usu.usuarioid === id; });
-          let usuarioEncontrado = usuario.length ? usuario[0] : null;
+          if (localStorage.getItem("asignacion")) {
+            asignacionHistory = JSON.parse(localStorage.getItem("asignacion"));
+          }
 
-          console.log(usuarioEncontrado)
+          let usuIgual = asignacionHistory.filter(usu => { return usu.usuarioid === id; });
+          let usuarioEncontrado = usuIgual.length ? usuIgual[0] : null;
 
-          return ok(usuarioEncontrado);
+          if (usuarioEncontrado) {
+
+            let lista_permiso: any = [];
+            if (usuarioEncontrado.lista_permiso.length > 0) {
+              for (const k in usuarioEncontrado.lista_permiso) {
+                lista_permiso.push(usuarioEncontrado.lista_permiso[k].name);
+              }
+            }
+            console.log(lista_permiso);
+            usuarioEncontrado.lista_permiso = lista_permiso;
+            listaAsignacion.push(usuarioEncontrado);
+          }
+
+            if (listaAsignacion.length !== 0) {
+              return ok(listaAsignacion);
+            } else {
+              return ok({usuarioid: id, lista_permiso: []});
+            }
+
         }
 
 
-          /* if (localStorage.getItem("asignacion")) {
-            listaAsignacion = (JSON.parse(localStorage.getItem("asignacion")) !== undefined) ? JSON.parse(localStorage.getItem("asignacion")) : undefined;
-          }
-
-
-          let lista_permiso: any = [];
-          if (listaAsignacion["lista_permiso"].length > 0) {
-            for (const k in listaAsignacion.lista_permiso) {
-              lista_permiso.push(listaAsignacion.lista_permiso[k].name);
-            }
-          }
-          listaAsignacion.lista_permiso = lista_permiso
-
-          if (listaAsignacion.length !== 0) {
-            return ok(listaAsignacion);
-          } else {
-            return ok({usuarioid: id, lista_permiso: []});
-          } */
 
         function agregarPermisosAusuario() {
           let newPermisos = request.body;
@@ -343,11 +324,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           }
           listaAsignacion = {
             usuarioid: newPermisos.usuarioid,
-            rol: newPermisos.rol,
+            convenioid: newPermisos.convenioid,
+            convenio: (newPermisos.convenioid === 1) ? "8180" : "8277",
             lista_permiso: newPermisos.lista_permiso
           };
 
-          localStorage.setItem("asignacion", JSON.stringify(listaAsignacion));
+          localStorage.setItem("asignacion", JSON.stringify([listaAsignacion]));
 
           return of(new HttpResponse({ status: 200 }));
         }

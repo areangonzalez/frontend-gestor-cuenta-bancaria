@@ -1,15 +1,15 @@
-{{listaUsuarioConRolyPermisos | json}}
+{{listaConvenioPermisos | json}}
 <table class="table table-sm">
   <thead class="background-menu">
-    <th scope="col">Rol</th>
+    <th scope="col">Convenio</th>
     <th scope="col">Permisos</th>
     <th></th>
   </thead>
-  <tbody *ngIf="(listaUsuarioConRolyPermisos.lista_rol !== undefined && listaUsuarioConRolyPermisos.lista_rol.length == 0)">
+  <tbody *ngIf="(listaConvenioPermisos.lista_convenio !== undefined && listaConvenioPermisos.lista_convenio.length == 0)">
     <td scope="row" class="text-center bg-warning" rowspan="1" colspan="3"><strong>El usuario no tiene Rol/es y permiso/s</strong></td>
   </tbody>
-  <tbody *ngIf="(listaUsuarioConRolyPermisos.lista_rol !== undefined && listaUsuarioConRolyPermisos.lista_rol.length > 0)">
-    <tr *ngFor="let roles of listaUsuarioConRolyPermisos.lista_rol">
+  <tbody *ngIf="(listaConvenioPermisos.lista_convenio !== undefined && listaConvenioPermisos.lista_convenio.length > 0)">
+    <tr *ngFor="let roles of listaConvenioPermisos.lista_convenio">
       <td scope="row">
         <span class="badge badge-pill badge-info m-1">{{roles.rol}}</span>
       </td>
@@ -20,7 +20,7 @@
         <span *ngFor="let permiso of roles.lista_permiso" class="badge badge-pill badge-info m-1">{{permiso}}</span>
       </td>
       <td class="text-center">
-        <admin-confirmar-borrar-permiso-usuario-modal (confirmarBorrado)="borrarDato(listaUsuarioConRolyPermisos, $event)"></admin-confirmar-borrar-permiso-usuario-modal>
+        <admin-confirmar-borrar-permiso-usuario-modal (confirmarBorrado)="borrarDato(listaConvenioPermisos, $event)"></admin-confirmar-borrar-permiso-usuario-modal>
       </td>
     </tr>
   </tbody>
