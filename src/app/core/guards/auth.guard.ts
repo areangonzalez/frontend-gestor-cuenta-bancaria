@@ -13,10 +13,8 @@ export class AuthGuard implements CanActivate {
       let cont = 0;
       if (roles && autorizacion) {
           for (const rol of roles) {
-            for (let i = 0; i < autorizacion.rol.length; i++) {
-              if ( rol === autorizacion.rol[i]) {
-                cont++;
-              }
+            if ( rol === autorizacion.rol) {
+              cont++;
             }
           }
           return autorizacion && cont > 0;
