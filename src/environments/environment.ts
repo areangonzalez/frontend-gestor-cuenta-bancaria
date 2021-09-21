@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: '/apimock'
-  // apiUrl: 'http://api.gcb.local/api'
+  // apiUrl: '/apimock'
+  apiUrl: 'http://api.gcb.local/api'
 };
 
 /*

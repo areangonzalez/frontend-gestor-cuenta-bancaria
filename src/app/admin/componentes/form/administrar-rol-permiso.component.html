@@ -1,13 +1,13 @@
 <div class="row m-1">
-  <div class="form-group col-md-6">
+  <div class="form-group col-md-12" [formGroup]="datos">
     <label for="rol" class="prioridad">Convenio:</label>
     <select class="form-control" id="convenio" formControlName="convenioid">
       <option value="">Seleccione un Convenio</option>
       <option *ngFor="let convenio of listaConvenio" value="{{convenio.id}}">{{convenio.nombre}}</option>
     </select>
-    <div *ngIf="(datos.get('convenio').invalid && submitted)"
+    <div *ngIf="(datos.get('convenioid').invalid && submitted)"
         class="text-danger">
-        <div *ngIf="datos.get('convenio').hasError('required')">Este campo es requerido. </div>
+        <div *ngIf="datos.get('convenioid').hasError('required')">Este campo es requerido. </div>
     </div>
   </div>
   <div class="col-md-12">

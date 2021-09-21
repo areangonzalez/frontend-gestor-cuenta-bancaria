@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { GestorUsuarioComponent } from './gestor-usuario';
 import { GestorLocalidadComponent } from './gestor-localidad';
-import { LocalidadService, UsuarioService, PermisosService, RolService, ProvinciaService, BackendLocalidadService, LocalidadExtraService } from '../core/services';
+import { LocalidadService, UsuarioService, PermisosService, RolService, ProvinciaService, BackendLocalidadService, LocalidadExtraService, ConvenioService } from '../core/services';
 
 
 const routes: Routes = [
@@ -14,7 +14,7 @@ const routes: Routes = [
   },{
     path: 'gestor-usuarios', component: GestorUsuarioComponent,
     data: { loading: true, title: 'Gestión de Usuarios', rol: ['soporte', 'admin'] },
-    resolve: { usuarios: UsuarioService, roles: RolService, localidades: LocalidadService, permisos: PermisosService}
+    resolve: { usuarios: UsuarioService, roles: RolService, localidades: LocalidadService, permisos: PermisosService, convenios: ConvenioService}
   },{
     path: 'localidad-abm', component: GestorLocalidadComponent,
     data: { loading: true, title: 'Gestionar Localidades', rol: ['soporte', 'admin'] },
@@ -25,6 +25,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [LocalidadService, ProvinciaService, UsuarioService, PermisosService, RolService, BackendLocalidadService, LocalidadExtraService]
+  providers: [LocalidadService, ProvinciaService, UsuarioService, PermisosService, RolService, BackendLocalidadService, LocalidadExtraService, ConvenioService]
 })
 export class AdminRoutingModule { }

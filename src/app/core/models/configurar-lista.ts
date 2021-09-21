@@ -18,6 +18,7 @@ export interface configurarListas {
   departamentos?: any;
   localidadesExtras?: any;
   backendLocalidades?: any;
+  convenios?: any;
 }
 
 
