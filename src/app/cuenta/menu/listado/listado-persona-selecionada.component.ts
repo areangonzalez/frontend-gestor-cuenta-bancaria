@@ -24,11 +24,11 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
       if (idPrestacion !== undefined) {
         this._prestacionService.borrar(idPrestacion).subscribe(
           respuesta => {
+            this.actualizarListadoPersonas.emit(true);
             this._msj.exitoso("Se ha quitado el pedido de convenio de la persona.");
           },
           error => { this._msj.cancelado(error); });
       }
-      this.configurarListas.seleccionPersona.splice(index, 1);
     }
 
   }
@@ -44,19 +44,6 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
     return dir;
   }
 
-  public guardarListadoSeleccion(seleccion: any) {
-    if (seleccion.length > 0) {
-      // guardo el listado de las personas seleccionadas
-      this._cuentaSaldoService.guardarSeleccionPersona(seleccion).subscribe(
-        respuesta => {
-          this.actualizarListaSeleccion(true);
-          this._msj.exitoso("El listado se ha guardado con exito!!");
-        }, error => { this.tipoError(error); }
-      );
-    }else{
-      this._msj.cancelado("No hay personas seleccionadas dentro del listado.");
-    }
-  }
   /**
    * Edito los datos de una persona
    * @param datosPersona datos editados de una persona

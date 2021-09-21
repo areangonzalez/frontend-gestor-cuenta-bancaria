@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
 import { NgbModal, NgbActiveModal, NgbModalConfig, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UtilService } from 'src/app/core/services';
+import { UtilService, AutenticacionService } from 'src/app/core/services';
 
 @Component({
   selector: 'content-agregar-sucursal',
@@ -18,6 +18,15 @@ import { UtilService } from 'src/app/core/services';
       </div>
         <fieldset [formGroup]="sucursalForm">
           <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="convenio">Convenio (<span class="text-danger">*</span>)</label>
+                <select class="form-control" id="convenio" formControlName="convenioid" [ngClass]="{'is-invalid': (sucursalForm.get('convenioid').invalid && submitted)}">
+                  <option value="">Seleccionar Sucursal</option>
+                  <option *ngFor="let convenio of convenios" value="{{convenio.id}}">{{convenio.nombre}}</option>
+                </select>
+              </div>
+            </div>
             <div class="col-md-12">
               <div class="form-group">
                 <label for="fecha_nacimiento">Fecha prestación (<span class="text-danger">*</span>)</label>
@@ -54,7 +63,7 @@ import { UtilService } from 'src/app/core/services';
                 <label for="sucursal">Sucursal (<span class="text-danger">*</span>)</label>
                 <select class="form-control" id="sucursal" formControlName="sucursal" [ngClass]="{'is-invalid': (sucursalForm.get('sucursal').invalid && submitted)}">
                   <option value="">Seleccionar Sucursal</option>
-                  <option *ngFor="let sucursal of subSucursales" [ngValue]="sucursal">{{sucursal.sucursal_codigo}} - {{sucursal.nombre}}</option>
+                  <option *ngFor="let sucursal of subSucursales" [ngValue]="sucursal">{{sucursal.nombre}}</option>
                 </select>
               </div>
               <div *ngIf="(sucursalForm.get('sucursal').invalid && submitted)" class="text-danger">
@@ -72,29 +81,36 @@ import { UtilService } from 'src/app/core/services';
     </div>
     <div class="modal-footer d-flex justify-content-between">
       <button type="button" class="btn btn-outline-danger" (click)="cerrarModal()"><i class="fas fa-ban"></i> Cancelar</button>
-      <button *ngIf="copiaSeleccion.existe" type="button" class="btn btn-outline-dark" (click)="pegarDatosForm(copiaSeleccion)" ngbTooltip="{{pegarUltimaSeleccion(copiaSeleccion)}}"><i class="fas fa-paste"></i> Pegar datos </button>
       <button type="button" class="btn btn-outline-success" (click)="validarPersona()"><i class="fas fa-plus"></i> Agregar</button>
     </div>
 `,
 })
 export class AgregarSucursalContent {
   @Input("subSucursales") public subSucursales:any;
+  @Input("convenios") public convenios:any;
   @Input("copiaSeleccion") public copiaSeleccion: any;
   public sucursalForm: FormGroup;
   public submitted: boolean = false;
-  public prestacion: any = { monto: "", sub_sucursalid: "", fecha_ingreso: "", fechaIngreso: "", localidad: "", codigo_postal: "", codigo: "", sucursalid: "", nombre: "",sucursal_codigo: "" };
+  public prestacion: any = {};
 
-  constructor(public activeModal: NgbActiveModal, private _fb:FormBuilder, private _util: UtilService, private _configNgbDate: NgbDatepickerConfig) {
+  constructor(public activeModal: NgbActiveModal, private _fb:FormBuilder, private _util: UtilService, private _configNgbDate: NgbDatepickerConfig, private _auth: AutenticacionService) {
     this.sucursalForm = _fb.group({
+      convenioid: '',
       sucursal: ['', [Validators.required]],
       monto: ['', [Validators.required]],
       fecha_ingreso: '',
       fechaIngreso: ['', [Validators.required]],
       observacion: ''
     });
-
+    // configuracion de fecha en combos
     _configNgbDate.minDate = {year: 1900, month: 1, day: 1};
+    // datos del usuairo logueado
+
   }
+  /* public convenioDelUsuario() {
+    let datosUsuario = this._auth.loggedIn;
+    return (datosUsuario.convenio)
+  } */
   /**
    * Cierro el modal
    */
@@ -127,21 +143,6 @@ export class AgregarSucursalContent {
     }
   }
   /**
-   * pego los datos copiados dentro del formulario
-   * @param copia objeto que contiene la copia de datos
-   */
-  pegarDatosForm(copia:any) {
-    let sucursal: any = {};
-    // busco en el listado de subsucursales, la sucursal quecontenga el mismo codigo
-    for (let i = 0; i < this.subSucursales.length; i++) {
-      if (this.subSucursales[i].codigo === copia.codigo){
-        sucursal = this.subSucursales[i];
-      }
-    }
-    // seteo el formulario
-    this.sucursalForm.patchValue({sucursal: sucursal, monto: copia.monto, fechaIngreso: copia.fechaIngreso, fecha_ingreso: copia.fecha_ingreso });
-  }
-  /**
    * @function formatFechaNaciento convierte la fecha en un string
    * @param obj la fecha viene en formato objeto
    */
@@ -157,18 +158,6 @@ export class AgregarSucursalContent {
       moneda.value = moneda.value.substring(0, moneda.value.length -1);
     }
   }
-  /**
-   * Pega los datos de una copia para armar el tooltip
-   */
-  pegarUltimaSeleccion(ultimaSeleccion: any) {
-    let seleccion: string = "Pergar: ";
-    seleccion += "Fecha de prestación: " + ultimaSeleccion["fechaIngreso"]["day"] + "/" + ultimaSeleccion["fechaIngreso"]["month"] + "/" + ultimaSeleccion["fechaIngreso"]["year"];
-    seleccion += " - Monto: " + ultimaSeleccion["monto"];
-    seleccion += " - Sucursal: " + ultimaSeleccion["sucursal_codigo"] + " - " + ultimaSeleccion["nombre"];
-
-    return seleccion;
-  }
-
 }
 
 @Component({
@@ -178,6 +167,7 @@ export class AgregarSucursalContent {
 })
 export class AgregarSucursalComponent {
   @Input("subSucursales") public subSucursales: any;
+  @Input("convenios") public convenios: any;
   @Input("listaDeSeleccionPersona") public listaDeSeleccionPersona: any;
   @Input("idPersona") public idPersona: number;
   @Input("existeCopia") public existeCopia: boolean;
@@ -212,6 +202,7 @@ export class AgregarSucursalComponent {
   abrirModal() {
     const modalRef = this._modalService.open(AgregarSucursalContent);
     modalRef.componentInstance.subSucursales = this.subSucursales;
+    modalRef.componentInstance.convenios = this.convenios;
     modalRef.componentInstance.copiaSeleccion = this.copiaSeleccion;
     modalRef.result.then(
       (result) => {
