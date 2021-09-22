@@ -76,13 +76,13 @@ export class AltaPersonaComponent implements OnInit {
     }
   }
 
-  esPendiente(pendiente: boolean, enEspera: boolean, observacion: string, fecha_pedido: string) {
+  esPendiente(pendiente: boolean, enEspera: boolean, observacion: string, fecha_pedido: string, convenio: string) {
     let texto: string = (observacion != "") ? "Observación: " + observacion: "";
     if (pendiente == true) {
-      return "Esperando respuesta del banco desde "+ this._utils.darFormatoAfecha(fecha_pedido, 'dd/MM/yyyy') +". " + texto;
+      return "Esperando respuesta del banco desde "+ this._utils.darFormatoAfecha(fecha_pedido, 'dd/MM/yyyy') +" por el convenio " + convenio + ". " + texto;
     }
     if (enEspera == true) {
-      return "Esperando a ser exportado. " + texto;
+      return "Esperando a ser exportado por el convenio " + convenio + ". " + texto;
     }
   }
 
