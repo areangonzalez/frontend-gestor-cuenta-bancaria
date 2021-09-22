@@ -136,7 +136,7 @@ export class AgregarSucursalContent {
         nombre: this.sucursalForm.value.sucursal.nombre,
         sucursal_codigo: this.sucursalForm.value.sucursal.sucursal_codigo,
         observacion: this.sucursalForm.value.observacion,
-        tipo_convenio: this.sucursalForm.value.tipo_convenioid
+        tipo_convenioid: this.sucursalForm.value.tipo_convenioid
       };
 
       this.activeModal.close(this.prestacion);
