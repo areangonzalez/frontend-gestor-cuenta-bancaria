@@ -10,7 +10,7 @@ export class ConvenioService implements Resolve<any>{
   constructor(private _http: ApiService) { }
 
   resolve() {
-    return this._http.get('/convenios');
+    return this._http.get('/tipo-convenios');
   }
 
 }

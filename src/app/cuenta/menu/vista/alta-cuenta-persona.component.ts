@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { configurarListas, ConfigurarPagina } from 'src/app/core/models';
-import { ConfiguracionParaPaginarService, NotificacionService, PersonaService } from 'src/app/core/services';
+import { ConfiguracionParaPaginarService, CuentaSaldoService, NotificacionService, PersonaService, PrestacionService } from 'src/app/core/services';
 
 @Component({
   selector: 'vista-alta-cuenta-persona',
@@ -15,7 +15,7 @@ export class AltaCuentaPersonaComponent implements OnInit {
   public filtradoBusqueda: any = {};
   public configPaginacion: ConfigurarPagina = new ConfigurarPagina(); // obteiene el objeto de configuracion de rango y paginado de comprobantes
 
-  constructor(private _route: ActivatedRoute, private _configurarPaginacion: ConfiguracionParaPaginarService, private _personaService: PersonaService, private _msj: NotificacionService) { }
+  constructor(private _route: ActivatedRoute, private _configurarPaginacion: ConfiguracionParaPaginarService, private _personaService: PersonaService, private _msj: NotificacionService, private _prestacionService: PrestacionService, private _cuentaSaldoService: CuentaSaldoService ) { }
 
   ngOnInit(): void {
     this.prepararListadoPersona(this._route.snapshot.data["personas"], 1);
@@ -33,6 +33,26 @@ export class AltaCuentaPersonaComponent implements OnInit {
 
   obtenerPersona(persona: any) {
     this.listas.seleccionPersona.push(persona);
+  }
+
+  guardarPrestacion(prestacion: any) {
+    console.log(prestacion);
+
+    this._prestacionService.guardar(prestacion).subscribe(
+      respuesta => {
+        this._msj.exitoso("Se ha guardado la prestacion con exito.");
+        this.actualizarListadoConvenio();
+        this.actualizarBusqueda('');
+      }
+    );
+  }
+
+  actualizarListadoConvenio() {
+    this._cuentaSaldoService.listado().subscribe(
+      respuesta => {
+        this.listas.seleccionPersona = respuesta;
+      }, error => { this._msj.cancelado(error); }
+    );
   }
 
   prepararListadoPersona(listado:any, pagina: number) {

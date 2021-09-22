@@ -15,6 +15,7 @@ export class AltaPersonaComponent implements OnInit {
   @Output("seleccionDePersona") public seleccionDePersona = new   EventEmitter();
   @Output("cambioDePagina") public cambioDePagina = new EventEmitter();
   @Output("cuilPersona") public cuilPersona = new EventEmitter();
+  @Output("guardarPrestacion") public guardarPrestacion = new EventEmitter();
   public copiaDeDatos: any = { existe: false };
 
   constructor(private _msj: NotificacionService, private _prestacionService: PrestacionService, private _utils: UtilService) { }
@@ -34,12 +35,9 @@ export class AltaPersonaComponent implements OnInit {
    * @param sucursal datos de la sucursal obtenidos del formulario
    */
   obtengoDatosPrestacion(persona: any, prestacion: any) {
-    persona["prestacion"] = prestacion;
+    prestacion["personaid"] = persona.id;
 
-    this.copiarDatosSeleccionados(prestacion);
-
-    persona['prestacion']['personaid'] = persona.id;
-    this.seleccionDePersona.emit(persona);
+    this.guardarPrestacion.emit(prestacion);
   }
   /**
    * Armo una cadena de texto con los datos de direccion de la persona para el tooltip
@@ -54,46 +52,6 @@ export class AltaPersonaComponent implements OnInit {
     dir += (lugar['depto'] != '') ? ' - ' + lugar['depto'] : '';
 
     return dir;
-  }
-  /**
-   * Pego los datos copiados en la seleccion anterior en una persona nueva,
-   * si la persona ya ha sido seleccionada se le notifica con un mensaje de error al usuario
-   * @param persona objeto que contiene los datos de la persona seleccionada
-   * @param copia objeto que contiene los datos que han sido copiado en una seleccion anterior
-   */
-  pegarCopiaSeleccionada(persona: any, copia: any) {
-    let personaSeleccionada: boolean = false;
-    for (let i = 0; i < this.configurarListas.seleccionPersona.length; i++) {
-      if (this.configurarListas.seleccionPersona[i].id === persona.id) {
-        this._msj.cancelado("¡Esta persona ya ha sido seleccionada!");
-        personaSeleccionada = true;
-      }
-    }
-
-    if (!personaSeleccionada) {
-      persona["prestacion"] = copia;
-      persona["prestacion"]["personaid"] = persona.id;
-      this.seleccionDePersona.emit(persona);
-    }
-  }
-  /**
-   * Pega los datos de una copia para armar el tooltip
-   */
-  pegarUltimaSeleccion(ultimaSeleccion: any) {
-    let seleccion: string = "Pegar: ";
-    seleccion += "Fecha de prestación: " + ultimaSeleccion["fechaIngreso"]["day"] + "/" + ultimaSeleccion["fechaIngreso"]["month"] + "/" + ultimaSeleccion["fechaIngreso"]["year"];
-    seleccion += " - Monto: " + ultimaSeleccion["monto"];
-    seleccion += " - Sucursal: " + ultimaSeleccion["sucursal_codigo"] + " - " + ultimaSeleccion["nombre"];
-
-    return seleccion;
-  }
-  /**
-   * copio los datos seleccionados de una persona y los asigno a una nueva variable
-   * @param copia datos obtenidos del formulario
-   */
-  copiarDatosSeleccionados(copia:any) {
-    this.copiaDeDatos.existe = true;
-    Object.assign(this.copiaDeDatos, copia);
   }
   /**
    * al modificar una persona obtengo su numero de cuil

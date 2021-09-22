@@ -88,7 +88,6 @@ import { UtilService, AutenticacionService } from 'src/app/core/services';
 export class AgregarSucursalContent {
   @Input("subSucursales") public subSucursales:any;
   @Input("convenios") public convenios:any;
-  @Input("copiaSeleccion") public copiaSeleccion: any;
   public sucursalForm: FormGroup;
   public submitted: boolean = false;
   public prestacion: any = {};
@@ -170,8 +169,6 @@ export class AgregarSucursalComponent {
   @Input("convenios") public convenios: any;
   @Input("listaDeSeleccionPersona") public listaDeSeleccionPersona: any;
   @Input("idPersona") public idPersona: number;
-  @Input("existeCopia") public existeCopia: boolean;
-  @Input("copiaSeleccion") public copiaSeleccion: any;
   @Input("persona") public persona: any;
   @Output("obtenerPrestacion") public obtenerPrestacion = new EventEmitter();
 
@@ -203,7 +200,6 @@ export class AgregarSucursalComponent {
     const modalRef = this._modalService.open(AgregarSucursalContent);
     modalRef.componentInstance.subSucursales = this.subSucursales;
     modalRef.componentInstance.convenios = this.convenios;
-    modalRef.componentInstance.copiaSeleccion = this.copiaSeleccion;
     modalRef.result.then(
       (result) => {
         if (result !== false) {
