@@ -36,14 +36,12 @@ export class AltaCuentaPersonaComponent implements OnInit {
   }
 
   guardarPrestacion(prestacion: any) {
-    console.log(prestacion);
-
     this._prestacionService.guardar(prestacion).subscribe(
       respuesta => {
         this._msj.exitoso("Se ha guardado la prestacion con exito.");
         this.actualizarListadoConvenio();
         this.actualizarBusqueda('');
-      }
+      }, error => { this._msj.cancelado(error); }
     );
   }
 
