@@ -21,7 +21,7 @@ import { UtilService, AutenticacionService } from 'src/app/core/services';
             <div class="col-md-12">
               <div class="form-group">
                 <label for="convenio">Convenio (<span class="text-danger">*</span>)</label>
-                <select class="form-control" id="convenio" formControlName="convenioid" [ngClass]="{'is-invalid': (sucursalForm.get('convenioid').invalid && submitted)}">
+                <select class="form-control" id="convenio" formControlName="tipo_convenioid" [ngClass]="{'is-invalid': (sucursalForm.get('tipo_convenioid').invalid && submitted)}">
                   <option value="">Seleccionar Sucursal</option>
                   <option *ngFor="let convenio of convenios" value="{{convenio.id}}">{{convenio.nombre}}</option>
                 </select>
@@ -94,7 +94,7 @@ export class AgregarSucursalContent {
 
   constructor(public activeModal: NgbActiveModal, private _fb:FormBuilder, private _util: UtilService, private _configNgbDate: NgbDatepickerConfig, private _auth: AutenticacionService) {
     this.sucursalForm = _fb.group({
-      convenioid: '',
+      tipo_convenioid: '',
       sucursal: ['', [Validators.required]],
       monto: ['', [Validators.required]],
       fecha_ingreso: '',
@@ -135,7 +135,8 @@ export class AgregarSucursalContent {
         sucursalid: this.sucursalForm.value.sucursal.sucursalid,
         nombre: this.sucursalForm.value.sucursal.nombre,
         sucursal_codigo: this.sucursalForm.value.sucursal.sucursal_codigo,
-        observacion: this.sucursalForm.value.observacion
+        observacion: this.sucursalForm.value.observacion,
+        tipo_convenio: this.sucursalForm.value.tipo_convenioid
       };
 
       this.activeModal.close(this.prestacion);
