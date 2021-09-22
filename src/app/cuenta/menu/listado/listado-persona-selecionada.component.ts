@@ -25,6 +25,7 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
         this._prestacionService.borrar(idPrestacion).subscribe(
           respuesta => {
             this.actualizarListadoPersonas.emit(true);
+            this.actualizarListaSeleccion(true);
             this._msj.exitoso("Se ha quitado el pedido de convenio de la persona.");
           },
           error => { this._msj.cancelado(error); });
