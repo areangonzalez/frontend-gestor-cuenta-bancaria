@@ -19,16 +19,16 @@
     <tr>
       <th scope="col">Cuil</th>
       <th scope="col" rowspan="1" colspan="2">Apellido y Nombre</th>
-      <th scope="col" class="text-center" *ngIf="(tipo === 'interbanking')">CBU</th>
       <th class="text-center" scope="col" *ngIf="(tipo == 'cuenta-saldo')">Fecha Prestación</th>
       <th class="text-center" scope="col" *ngIf="(tipo == 'cuenta-saldo')">Ingreso Neto</th>
       <th class="text-center" scope="col" *ngIf="(tipo == 'cuenta-saldo')">Sucursal</th>
+      <th class="text-center" scope="col" *ngIf="(tipo == 'cuenta-saldo')">Convenio</th>
       <th class="text-center" scope="col" *ngIf="(tipo == 'cuenta-saldo')">Observación</th>
       <th class="text-center">Acción</th>
     </tr>
   </thead>
   <tbody *ngIf="(configurarListas.seleccionPersona.length == 0)">
-    <tr class="text-center bg-warning" rowspan="1"><td colspan="8"><strong>NO HAY PERSONAS SELECCIONADAS</strong></td></tr>
+    <tr class="text-center bg-warning" rowspan="1"><td colspan="9"><strong>NO HAY PERSONAS SELECCIONADAS</strong></td></tr>
   </tbody>
   <tbody *ngIf="(configurarListas.seleccionPersona.length > 0)">
     <tr *ngFor="let persona of configurarListas.seleccionPersona; let i = index;">
@@ -46,6 +46,7 @@
       <td class="text-center" *ngIf="(tipo == 'cuenta-saldo')">{{persona.prestacion.fecha_ingreso | date: 'dd/MM/yyyy'}}</td>
       <td class="text-center" *ngIf="(tipo == 'cuenta-saldo')">${{persona.prestacion.monto}}</td>
       <td class="text-center" *ngIf="(tipo == 'cuenta-saldo')">{{persona.prestacion.nombre}}</td>
+      <td class="text-center" *ngIf="(tipo == 'cuenta-saldo')">{{persona.prestacion.tipo_convenio}}</td>
       <td *ngIf="(tipo == 'cuenta-saldo')">{{cortarObservacion(persona.prestacion.observacion) }} <code *ngIf="(persona.prestacion.observacion.length > 23)" placement="left" ngbTooltip="{{persona.prestacion.observacion}}" container="body" >...</code></td>
       <td class="text-center">
         <modal-editar-persona [config-listas]="configurarListas" [persona]="persona" (obtenerDatosPersona)="editarPersona($event)" [tipo]="tipo"></modal-editar-persona>
