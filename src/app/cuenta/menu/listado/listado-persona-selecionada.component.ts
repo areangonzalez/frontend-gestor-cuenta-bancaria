@@ -108,7 +108,7 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
   cortarObservacion(texto:any) {
 
     if (texto) {
-      let textoMinimo = texto.substr(0, 15);
+      let textoMinimo = texto.substr(0, 10);
       return textoMinimo;
     }
   }
