@@ -4,19 +4,19 @@
     <th scope="col">Permisos</th>
     <th></th>
   </thead>
-  <tbody *ngIf="(listaConvenioPermisos.lista_convenio !== undefined && listaConvenioPermisos.lista_convenio.length == 0)">
+  <tbody *ngIf="(listaConvenioPermisos !== undefined && listaConvenioPermisos.length == 0)">
     <td scope="row" class="text-center bg-warning" rowspan="1" colspan="3"><strong>El usuario no tiene Rol/es y permiso/s</strong></td>
   </tbody>
-  <tbody *ngIf="(listaConvenioPermisos.lista_convenio !== undefined && listaConvenioPermisos.lista_convenio.length > 0)">
-    <tr *ngFor="let roles of listaConvenioPermisos.lista_convenio">
+  <tbody *ngIf="(listaConvenioPermisos !== undefined && listaConvenioPermisos.length > 0)">
+    <tr *ngFor="let convenio of listaConvenioPermisos">
       <td scope="row">
-        <span class="badge badge-pill badge-info m-1">{{roles.rol}}</span>
+        <span class="badge badge-pill badge-info m-1">{{convenio.tipo_convenio}}</span>
       </td>
-      <td *ngIf="(roles.lista_permiso.length == 0)" class="text-center" scope="row">
+      <td *ngIf="(convenio.lista_permiso.length == 0)" class="text-center" scope="row">
         <strong>Sin permisos</strong>
       </td>
-      <td *ngIf="(roles.lista_permiso.length > 0)" scope="row">
-        <span *ngFor="let permiso of roles.lista_permiso" class="badge badge-pill badge-info m-1">{{permiso}}</span>
+      <td *ngIf="(convenio.lista_permiso.length > 0)" scope="row">
+        <span *ngFor="let permiso of convenio.lista_permiso" class="badge badge-pill badge-info m-1">{{permiso}}</span>
       </td>
       <td class="text-center">
         <admin-confirmar-borrar-permiso-usuario-modal (confirmarBorrado)="borrarDato(listaConvenioPermisos, $event)"></admin-confirmar-borrar-permiso-usuario-modal>
