@@ -19,7 +19,7 @@ export class AdministrarRolPermisoComponent implements OnInit {
 
   constructor(private _msj: NotificacionService, private _usuarioService: UsuarioService, private _fb: FormBuilder) {
     this.datos = _fb.group({
-      convenioid: ['', [Validators.required]]
+      tipo_convenioid: ['', [Validators.required]]
     });
   }
 
@@ -53,6 +53,7 @@ export class AdministrarRolPermisoComponent implements OnInit {
     }else{
       let params: any  = {
         usuarioid: this.idUsuario,
+        tipo_convenioid: this.datos.value.tipo_convenioid,
         lista_permiso: this.permisosSeleccionados
       };
 
@@ -66,7 +67,7 @@ export class AdministrarRolPermisoComponent implements OnInit {
   guardar(params: object) {
     this._usuarioService.asignarPermisos(params).subscribe(
       respuesta => {
-        this._msj.exitoso("Se han agregado correctamente el programa y los permisos al usuario.");
+        this._msj.exitoso("Se han agregado correctamente el convenio y los permisos al usuario.");
         this.obtenerListaPermisos(this.idUsuario);
       }, error => { this._msj.cancelado(error); }
     );

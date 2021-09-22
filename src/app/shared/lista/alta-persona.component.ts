@@ -15,7 +15,7 @@ export class AltaPersonaComponent implements OnInit {
   @Output("seleccionDePersona") public seleccionDePersona = new   EventEmitter();
   @Output("cambioDePagina") public cambioDePagina = new EventEmitter();
   @Output("cuilPersona") public cuilPersona = new EventEmitter();
-  @Output("guardarPrestacion") public guardarPrestacion = new EventEmitter();
+  @Output("guardoPrestacion") public guardoPrestacion = new EventEmitter();
   public copiaDeDatos: any = { existe: false };
 
   constructor(private _msj: NotificacionService, private _prestacionService: PrestacionService, private _utils: UtilService) { }
@@ -34,10 +34,10 @@ export class AltaPersonaComponent implements OnInit {
    * @param persona objeto que contiene los datos a persona
    * @param sucursal datos de la sucursal obtenidos del formulario
    */
-  obtengoDatosPrestacion(persona: any, prestacion: any) {
-    prestacion["personaid"] = persona.id;
-
-    this.guardarPrestacion.emit(prestacion);
+   confirmacionPrestacion(confirmacion: boolean) {
+     if (confirmacion) {
+       this.guardoPrestacion.emit(confirmacion);
+     }
   }
   /**
    * Armo una cadena de texto con los datos de direccion de la persona para el tooltip

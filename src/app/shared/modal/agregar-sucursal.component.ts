@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
 import { NgbModal, NgbActiveModal, NgbModalConfig, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UtilService, AutenticacionService } from 'src/app/core/services';
+import { UtilService, AutenticacionService, PrestacionService, NotificacionService } from 'src/app/core/services';
 
 @Component({
   selector: 'content-agregar-sucursal',
@@ -88,11 +88,14 @@ import { UtilService, AutenticacionService } from 'src/app/core/services';
 export class AgregarSucursalContent {
   @Input("subSucursales") public subSucursales:any;
   @Input("convenios") public convenios:any;
+  @Input("personaid") public personaid:any;
+  @Input("personanombre") public personanombre:string;
   public sucursalForm: FormGroup;
   public submitted: boolean = false;
-  public prestacion: any = {};
 
-  constructor(public activeModal: NgbActiveModal, private _fb:FormBuilder, private _util: UtilService, private _configNgbDate: NgbDatepickerConfig, private _auth: AutenticacionService) {
+  constructor(public activeModal: NgbActiveModal, private _fb:FormBuilder, private _util: UtilService,
+    private _configNgbDate: NgbDatepickerConfig, private _auth: AutenticacionService, private _prestacionService: PrestacionService,
+    private _msj: NotificacionService) {
     this.sucursalForm = _fb.group({
       tipo_convenioid: '',
       sucursal: ['', [Validators.required]],
@@ -106,10 +109,6 @@ export class AgregarSucursalContent {
     // datos del usuairo logueado
 
   }
-  /* public convenioDelUsuario() {
-    let datosUsuario = this._auth.loggedIn;
-    return (datosUsuario.convenio)
-  } */
   /**
    * Cierro el modal
    */
@@ -124,23 +123,28 @@ export class AgregarSucursalContent {
     if ( this.sucursalForm.invalid ) {
       return;
     }else{
-      this.prestacion = {
+      let prestacion = {
         monto: this.sucursalForm.value.monto,
         fecha_ingreso: this.sucursalForm.value.fecha_ingreso,
-        fechaIngreso: this.sucursalForm.value.fechaIngreso,
         sub_sucursalid: this.sucursalForm.value.sucursal.id,
-        localidad: this.sucursalForm.value.sucursal.localidad,
-        codigo_postal: this.sucursalForm.value.sucursal.codigo_postal,
-        codigo: this.sucursalForm.value.sucursal.codigo,
-        sucursalid: this.sucursalForm.value.sucursal.sucursalid,
-        nombre: this.sucursalForm.value.sucursal.nombre,
-        sucursal_codigo: this.sucursalForm.value.sucursal.sucursal_codigo,
         observacion: this.sucursalForm.value.observacion,
-        tipo_convenioid: this.sucursalForm.value.tipo_convenioid
+        tipo_convenioid: this.sucursalForm.value.tipo_convenioid,
+        personaid: this.personaid
       };
-
-      this.activeModal.close(this.prestacion);
+      this.guardarPrestacion(prestacion);
     }
+  }
+  /**
+   * Guardado del convenio
+   * @param prestacion parametros a guardar
+   */
+  guardarPrestacion(prestacion: any) {
+    this._prestacionService.guardar(prestacion).subscribe(
+      respuesta => {
+        this._msj.exitoso("Se ha puesto el convenio en preparado para exportar de " + this.personanombre);
+        this.activeModal.close(true);
+      }, error => { this._msj.cancelado(error); }
+    );
   }
   /**
    * @function formatFechaNaciento convierte la fecha en un string
@@ -171,7 +175,7 @@ export class AgregarSucursalComponent {
   @Input("listaDeSeleccionPersona") public listaDeSeleccionPersona: any;
   @Input("idPersona") public idPersona: number;
   @Input("persona") public persona: any;
-  @Output("obtenerPrestacion") public obtenerPrestacion = new EventEmitter();
+  @Output("obtenerConfirmacidoDePrestacion") public obtenerConfirmacidoDePrestacion = new EventEmitter();
 
   constructor(private _modalService: NgbModal, private _config: NgbModalConfig) {
     _config.backdrop = 'static';
@@ -201,10 +205,13 @@ export class AgregarSucursalComponent {
     const modalRef = this._modalService.open(AgregarSucursalContent);
     modalRef.componentInstance.subSucursales = this.subSucursales;
     modalRef.componentInstance.convenios = this.convenios;
+    modalRef.componentInstance.personaid = this.idPersona;
+    modalRef.componentInstance.personanombre = this.persona.apellido + ", " + this.persona.nombre;
+
     modalRef.result.then(
       (result) => {
         if (result !== false) {
-          return this.obtenerPrestacion.emit(result);
+          return this.obtenerConfirmacidoDePrestacion.emit(result);
         }
       });
   }
