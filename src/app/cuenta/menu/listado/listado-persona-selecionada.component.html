@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class="col-6">
-    <modal-confirmar-exportacion [listaPersona]="configurarListas.seleccionPersona" [TituloBtn]="'Exportar Archivo Cuenta Saldo'" [tipoBoton]="'boton-largo'" (confirmar)="exportarArchivo($event)"></modal-confirmar-exportacion>
+    <modal-confirmar-exportacion [listaPersona]="configurarListas.seleccionPersona" [tipoConvenioLista]="configurarListas.convenios" [TituloBtn]="'Exportar Archivo Cuenta Saldo'" [tipoBoton]="'boton-largo'" (confirmar)="exportarArchivo($event)"></modal-confirmar-exportacion>
   </div>
 </div>
 {{tipo_convenio}}
