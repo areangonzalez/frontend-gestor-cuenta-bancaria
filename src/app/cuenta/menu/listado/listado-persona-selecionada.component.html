@@ -7,9 +7,9 @@
   </div>
   <div class="col-3">
     <div class="form-group col-md-12" >
-      <select class="form-control form-control-sm" id="convenio" [(ngModel)]="tipo_convenio">
+      <select class="form-control form-control-sm" id="convenio" [(ngModel)]="tipo_convenio" (change)="buscarPorConvenio(tipo_convenio)">
         <option value="">Seleccione un Convenio</option>
-        <option *ngFor="let convenio of configurarListas.convenios" value="{{convenio}}">{{convenio.nombre}}</option>
+        <option *ngFor="let convenio of configurarListas.convenios" value="{{convenio.id}}">{{convenio.nombre}}</option>
       </select>
     </div>
   </div>

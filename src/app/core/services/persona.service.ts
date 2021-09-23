@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { HttpParams } from '@angular/common/http';
-import { Resolve } from "@angular/router";
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from "@angular/router";
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -40,10 +41,14 @@ export class PersonaService implements Resolve<any> {
     return this._http.get('/personas/' + id);
   }
 
-  resolve() {
-    let httpParams = new HttpParams();
-    httpParams = this._http.formatParams(httpParams, {pagesize: 8});
-    return this._http.get('/personas', httpParams);
-  }
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot,
+    ): Observable<any>|Promise<any>|any {
+      let httpParams = new HttpParams();
+      httpParams = this._http.formatParams(httpParams, {pagesize: 8});
+      return this._http.get('/personas', httpParams);
+    }
+
 
 }

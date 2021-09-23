@@ -63,7 +63,7 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
 
   actualizarListaSeleccion(actualizar: boolean) {
     if (actualizar) {
-      this._cuentaSaldoService.listado().subscribe(
+      this._prestacionService.listar().subscribe(
         respuesta => {
           this.configurarListas.seleccionPersona = respuesta;
           this.actualizarListadoPersonas.emit(true);
@@ -112,6 +112,13 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
       let textoMinimo = texto.substr(0, 10);
       return textoMinimo;
     }
+  }
+
+  buscarPorConvenio(tipoConvenioid: any) {
+    this._prestacionService.buscar({tipo_convenioid: tipoConvenioid}).subscribe(
+      respuesta => {
+        this.configurarListas.seleccionPersona = respuesta;
+    }, error => { this._msj.cancelado(error); });
   }
 
 }
