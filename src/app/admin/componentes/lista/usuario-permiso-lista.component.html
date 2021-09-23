@@ -12,10 +12,10 @@
       <td scope="row">
         <span class="badge badge-pill badge-info m-1">{{convenio.tipo_convenio}}</span>
       </td>
-      <td *ngIf="(convenio.lista_permiso.length == 0)" class="text-center" scope="row">
+      <td *ngIf="(convenio.lista_permiso !== undefined && convenio.lista_permiso.length == 0)" class="text-center" scope="row">
         <strong>Sin permisos</strong>
       </td>
-      <td *ngIf="(convenio.lista_permiso.length > 0)" scope="row">
+      <td *ngIf="(convenio.lista_permiso !== undefined && convenio.lista_permiso.length > 0)" scope="row">
         <span *ngFor="let permiso of convenio.lista_permiso" class="badge badge-pill badge-info m-1">{{permiso}}</span>
       </td>
       <td class="text-center">
