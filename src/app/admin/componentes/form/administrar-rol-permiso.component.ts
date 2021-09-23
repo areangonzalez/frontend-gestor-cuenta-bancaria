@@ -33,8 +33,6 @@ export class AdministrarRolPermisoComponent implements OnInit {
   obtenerListaPermisos(idUsuario: number) {
     this._usuarioService.listarAsignacion(idUsuario).subscribe(
       respuesta => {
-        console.log(respuesta);
-
         // guardo el listado con roles y sus permisos
         this.listaConvenioPermisos = respuesta;
       }, error => { this._msj.cancelado(error); }
