@@ -24,7 +24,7 @@ import { NgbModalConfig, NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-boots
       <span>¿Esta seguro que desea descargar?</span>
     </div>
     <div class="modal-footer d-flex justify-content-end">
-      <button type="button" class="btn btn-danger" (click)="confirmar(false)">No</button>
+      <button type="button" class="btn btn-danger" (click)="this.activeModal.close(false)">No</button>
       <button type="button" class="btn btn-success" (click)="confirmar(true)">Si</button>
     </div>
   `,
@@ -46,8 +46,6 @@ export class ConfirmarExportacionModalContent {
       return this.mostrarError = true;
     }else if (confirmacion && this.tipoConvenioid != ''){
       this.activeModal.close({confirmar: true, tipo_convenioid: this.tipoConvenioid});
-    }else{
-      this.activeModal.close(false);
     }
   }
 
