@@ -9,16 +9,19 @@ import { NgbModalConfig, NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-boots
     <div class="modal-body d-flex justify-content-center">
       <span>Se debe seleccionar un convenio para descargar el archivo</span>
     </div>
-    <div class="col-3">
+    <div class="col">
       <div class="form-group col-md-12" >
         <select class="form-control form-control-sm" id="convenio" [(ngModel)]="tipoConvenioid">
           <option value="">Seleccione un Convenio</option>
           <option *ngFor="let convenio of tipoConvenioLista" value="{{convenio}}">{{convenio.nombre}}</option>
         </select>
+        <div class="text-danger" *ngIf="(mostrarError)">
+            <span>Por favor seleccione un convenio, para exportar.</span>
+        </div>
       </div>
     </div>
     <div class="modal-body d-flex justify-content-center">
-      <span>Se debe seleccionar un convenio para descargar el archivo</span>
+      <span>¿Esta seguro que desea descargar?</span>
     </div>
     <div class="modal-footer d-flex justify-content-end">
       <button type="button" class="btn btn-danger" (click)="confirmar(false)">No</button>
@@ -30,6 +33,7 @@ import { NgbModalConfig, NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-boots
 export class ConfirmarExportacionModalContent {
   @Input("tipoConvenioLista") public tipoConvenioLista: any;
   public tipoConvenioid:any = '';
+  public mostrarError: boolean = false;
 
 
   constructor(private modalService: NgbModal, public activeModal: NgbActiveModal, config: NgbModalConfig) {
@@ -38,7 +42,9 @@ export class ConfirmarExportacionModalContent {
   }
 
   confirmar(confirmacion: boolean) {
-    if (confirmacion){
+    if (this.tipoConvenioid === ''){
+      return this.mostrarError = true;
+    }else if (confirmacion && this.tipoConvenioid != ''){
       this.activeModal.close({confirmar: true, tipo_convenioid: this.tipoConvenioid});
     }else{
       this.activeModal.close(false);
