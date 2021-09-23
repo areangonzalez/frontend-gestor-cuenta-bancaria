@@ -7,20 +7,42 @@ import { NgbModalConfig, NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-boots
       <h5 class="modal-title">Confirmación</h5>
     </div>
     <div class="modal-body d-flex justify-content-center">
-      <span>¿Esta seguro que desea descargar?</span>
+      <span>Se debe seleccionar un convenio para descargar el archivo</span>
+    </div>
+    <div class="col-3">
+      <div class="form-group col-md-12" >
+        <select class="form-control form-control-sm" id="convenio" [(ngModel)]="tipoConvenioid">
+          <option value="">Seleccione un Convenio</option>
+          <option *ngFor="let convenio of tipoConvenioLista" value="{{convenio}}">{{convenio.nombre}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-body d-flex justify-content-center">
+      <span>Se debe seleccionar un convenio para descargar el archivo</span>
     </div>
     <div class="modal-footer d-flex justify-content-end">
-      <button type="button" class="btn btn-danger" (click)="activeModal.close(false)">No</button>
-      <button type="button" class="btn btn-success" (click)="activeModal.close(true)">Si</button>
+      <button type="button" class="btn btn-danger" (click)="confirmar(false)">No</button>
+      <button type="button" class="btn btn-success" (click)="confirmar(true)">Si</button>
     </div>
   `,
   styleUrls: ['./confirmar-exportacion.component.scss']
 })
 export class ConfirmarExportacionModalContent {
+  @Input("tipoConvenioLista") public tipoConvenioLista: any;
+  public tipoConvenioid:any = '';
+
 
   constructor(private modalService: NgbModal, public activeModal: NgbActiveModal, config: NgbModalConfig) {
     config.backdrop = 'static';
     config.keyboard = false;
+  }
+
+  confirmar(confirmacion: boolean) {
+    if (confirmacion){
+      this.activeModal.close({confirmar: true, tipo_convenioid: this.tipoConvenioid});
+    }else{
+      this.activeModal.close(false);
+    }
   }
 
 }
@@ -34,6 +56,7 @@ export class ConfirmarExportacionComponent {
   @Input("listaPersona") public listaPersona: any;
   @Input("TituloBtn") public tituloBtn: string;
   @Input("tipoBoton") public tipoBoton: string;
+  @Input("tipoConvenioLista") public tipoConvenioLista: any;
   @Output("confirmar") public confirmar = new EventEmitter();
 
 
@@ -44,6 +67,7 @@ export class ConfirmarExportacionComponent {
 
   open() {
     const modalRef = this._modalService.open(ConfirmarExportacionModalContent);
+    modalRef.componentInstance.tipoConvenioLista = this.tipoConvenioLista;
     modalRef.result.then(
       (result) => {
           return this.confirmar.emit(result);

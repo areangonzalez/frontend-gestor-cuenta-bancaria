@@ -13,6 +13,7 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
   /* @Input("personaSeleccionada") public personaSeleccionada: any; */
   @Input("tipo") public tipo: string;
   @Output("actualizarListadoPersonas") public actualizarListadoPersonas = new EventEmitter();
+  public tipo_convenio: any = '';
 
   constructor(private _msj: NotificacionService, private _cuentaSaldoService: CuentaSaldoService, private _descargaService: ArchivoService, private _prestacionService: PrestacionService) { }
 
