@@ -11,7 +11,9 @@ export class ArchivoService implements Resolve<any> {
   constructor(private _http: ApiService) { }
 
   exportarCtaSaldo(params: any) {
-    return this._http.post("/cuenta-saldo/exportar", params);
+    let httpParams = new HttpParams();
+    httpParams = this._http.formatParams(httpParams, params);
+    return this._http.get("/prestacion/exportar-convenio", params);
   }
 
   exportarCtaInterbanking() {

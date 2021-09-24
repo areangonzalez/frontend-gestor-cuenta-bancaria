@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ArchivoService, CuentaSaldoService, NotificacionService, PrestacionService } from 'src/app/core/services';
+import { ArchivoService, NotificacionService, PrestacionService, UtilService } from 'src/app/core/services';
 import {saveAs as importedSaveAs} from "file-saver";
 import { configurarListas } from 'src/app/core/models';
 
@@ -15,7 +15,7 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
   @Output("actualizarListadoPersonas") public actualizarListadoPersonas = new EventEmitter();
   public tipo_convenio: any = '';
 
-  constructor(private _msj: NotificacionService, private _cuentaSaldoService: CuentaSaldoService, private _descargaService: ArchivoService, private _prestacionService: PrestacionService) { }
+  constructor(private _msj: NotificacionService, private _util: UtilService, private _descargaService: ArchivoService, private _prestacionService: PrestacionService) { }
 
   ngOnInit(): void {
   }
@@ -77,11 +77,13 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
    */
   public exportarArchivo(exportar:any) {
     if (exportar.confirmar){
-      this._descargaService.exportarCtaSaldo(this.configurarListas.seleccionPersona).subscribe(
+      let params = { tipo_convenioid: exportar.tipo_convenioid };
+      this._descargaService.exportarCtaSaldo(params).subscribe(
         respuesta => {
           let blob = new Blob([respuesta["cuenta_saldo"]], {type:"text/plain;charset=utf-8"});
+          let hoy = this._util.fechaHoy();
 
-          let filename = 'CTASLDO.txt';
+          let filename = 'CTASLDO_'+ hoy +'.txt';
           importedSaveAs(blob, filename);
           this.configurarListas.seleccionPersona = [];
 
