@@ -23,7 +23,7 @@
         {{archivo.cantidad_actual}} Persona/s
       </td>
       <td class="text-center">
-        <modal-confirmar-exportacion [tipoBoton]="'boton-icono'" (confirmar)="descargarArchivo($event, archivo.id, archivo.tipo)"></modal-confirmar-exportacion>
+        <modal-confirmar-exportacion [tipoBoton]="'boton-icono'" [tipoExportacion]="'historial'" [tipoConvenioLista]="listaTipoConvenio" (confirmar)="descargarArchivo($event, archivo.id, archivo.tipo)"></modal-confirmar-exportacion>
       </td>
     </tr>
   </tbody>

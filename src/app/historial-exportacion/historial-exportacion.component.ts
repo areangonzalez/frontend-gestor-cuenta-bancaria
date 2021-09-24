@@ -21,6 +21,7 @@ export class HistorialExportacionComponent implements OnInit {
   public fromDate: NgbDate | null = null; // fecha desde
   public toDate: NgbDate | null = null; // fecha hasta
   public mostrarDp: boolean = false; // Muestra el DatePicker
+  public tipoConvenioLista: any = [];
 
   constructor(
     private _route: ActivatedRoute, private _configurarPaginacion: ConfiguracionParaPaginarService,
@@ -38,6 +39,7 @@ export class HistorialExportacionComponent implements OnInit {
 
   ngOnInit(): void {
     this.prepararListado(this._route.snapshot.data["historial"], 1);
+    this.tipoConvenioLista = this._route.snapshot.data["convenios"];
   }
 
   prepararListado(listado: any, pagina: number) {

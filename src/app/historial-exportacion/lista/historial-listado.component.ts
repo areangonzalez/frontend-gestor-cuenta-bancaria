@@ -9,6 +9,7 @@ import {saveAs as importedSaveAs} from "file-saver";
 })
 export class HistorialListadoComponent {
   @Input("historial") public historial: any;
+  @Input("listaTipoConvenio") public listaTipoConvenio: any;
   @Input("configPaginacion") public configPaginacion: any;
   @Output("cambiarPagina") public cambiarPagina = new EventEmitter();
   page = 4;
