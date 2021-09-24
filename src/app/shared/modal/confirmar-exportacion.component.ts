@@ -13,7 +13,7 @@ import { NgbModalConfig, NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-boots
       <div class="form-group col-md-12" >
         <select class="form-control form-control-sm" id="convenio" [(ngModel)]="tipoConvenioid">
           <option value="">Seleccione un Convenio</option>
-          <option *ngFor="let convenio of tipoConvenioLista" value="{{convenio}}">{{convenio.nombre}}</option>
+          <option *ngFor="let convenio of tipoConvenioLista" value="{{convenio.id}}">{{convenio.nombre}}</option>
         </select>
         <div class="text-danger" *ngIf="(mostrarError)">
             <span>Por favor seleccione un convenio, para exportar.</span>
@@ -45,7 +45,7 @@ export class ConfirmarExportacionModalContent {
     if (this.tipoConvenioid === ''){
       return this.mostrarError = true;
     }else if (confirmacion && this.tipoConvenioid != ''){
-      this.activeModal.close({confirmar: true, tipo_convenioid: this.tipoConvenioid});
+      this.activeModal.close(this.tipoConvenioid);
     }
   }
 

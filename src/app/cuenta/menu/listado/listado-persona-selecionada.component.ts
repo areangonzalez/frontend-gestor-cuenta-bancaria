@@ -75,9 +75,10 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
   /**
    * Permite descargar un archivo de texto
    */
-  public exportarArchivo(exportar:any) {
-    if (exportar.confirmar){
-      let params = { tipo_convenioid: exportar.tipo_convenioid };
+  public exportarArchivo(tipoConvenioid:string) {
+    if (tipoConvenioid !== ''){
+      let params = {"tipo_convenioid": tipoConvenioid};
+
       this._descargaService.exportarCtaSaldo(params).subscribe(
         respuesta => {
           let blob = new Blob([respuesta["cuenta_saldo"]], {type:"text/plain;charset=utf-8"});
