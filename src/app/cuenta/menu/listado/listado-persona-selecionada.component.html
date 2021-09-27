@@ -44,7 +44,7 @@
       </td>
       <td class="text-center" *ngIf="(tipo == 'cuenta-saldo')">{{persona.prestacion.fecha_ingreso | date: 'dd/MM/yyyy'}}</td>
       <td class="text-center" *ngIf="(tipo == 'cuenta-saldo')">${{persona.prestacion.monto}}</td>
-      <td class="text-center" *ngIf="(tipo == 'cuenta-saldo')">{{persona.prestacion.nombre}}</td>
+      <td class="text-center" *ngIf="(tipo == 'cuenta-saldo')">{{persona.prestacion.sucursal.nombre}}</td>
       <td class="text-center" *ngIf="(tipo == 'cuenta-saldo')">{{persona.prestacion.tipo_convenio}}</td>
       <td *ngIf="(tipo == 'cuenta-saldo')">{{cortarObservacion(persona.prestacion.observacion) }} <code *ngIf="(persona.prestacion.observacion.length > 23)" placement="left" ngbTooltip="{{persona.prestacion.observacion}}" container="body" >...</code></td>
       <td class="text-center">
