@@ -41,4 +41,24 @@ export class AutenticacionService {
       let userLogin = this._jwtService.getToken();
       return userLogin.datosToken.username;
     }
+
+    getConvenioUser() {
+      let convenios = this.loggedIn.lista_convenio;
+      let lista_convenio = {mostrar: false, convenio: []};
+      switch (convenios.length) {
+        case 0:
+          lista_convenio.mostrar = (this.loggedIn.rol == "admin") ? true : false;
+          break;
+        case 1:
+          lista_convenio.mostrar = false;
+          lista_convenio.convenio = this.loggedIn.lista_convenio;
+          break;
+        default:
+          lista_convenio.mostrar = true;
+          lista_convenio.convenio = this.loggedIn.lista_convenio;
+          break;
+      }
+
+      return lista_convenio;
+    }
 }

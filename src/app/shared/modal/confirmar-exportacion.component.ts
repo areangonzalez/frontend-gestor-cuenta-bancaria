@@ -1,12 +1,13 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { NgbModalConfig, NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { AutenticacionService } from 'src/app/core/services';
 
 @Component({
   template: `
     <div class="modal-header">
       <h5 class="modal-title">Confirmación</h5>
     </div>
-    <section *ngIf="(tipoExportacion !== 'historial')">
+    <section *ngIf="(tipoExportacion !== 'historial' && (this.userConvenio !== undefined && this.userConvenio.mostrar))">
       <div class="modal-body d-flex justify-content-center">
         <span>Se debe seleccionar un convenio para descargar el archivo</span>
       </div>
@@ -27,7 +28,8 @@ import { NgbModalConfig, NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-boots
     </div>
     <div class="modal-footer d-flex justify-content-end">
       <button type="button" class="btn btn-danger" (click)="this.activeModal.close(false)">No</button>
-      <button *ngIf="(tipoExportacion == 'ctaSaldo')" type="button" class="btn btn-success" (click)="confirmar(true)">Si</button>
+      <button *ngIf="(tipoExportacion == 'ctaSaldo' && (this.userConvenio !== undefined && !this.userConvenio.mostrar))" type="button" class="btn btn-success" (click)="confirmar(true)">Si</button>
+      <button *ngIf="(tipoExportacion == 'ctaSaldo' && (this.userConvenio !== undefined && this.userConvenio.mostrar))" type="button" class="btn btn-success" (click)="confirmarXConvenioUsuario()">Si</button>
       <button *ngIf="(tipoExportacion == 'historial')" type="button" class="btn btn-success" (click)="confirmarDescargaHistorial(true)">Si</button>
     </div>
   `,
@@ -38,22 +40,31 @@ export class ConfirmarExportacionModalContent {
   @Input("tipoExportacion") public tipoExportacion: string;
   public tipoConvenioid:any = '';
   public mostrarError: boolean = false;
+  public userConvenio: any;
 
 
-  constructor(private modalService: NgbModal, public activeModal: NgbActiveModal, config: NgbModalConfig) {
+  constructor(private modalService: NgbModal, public activeModal: NgbActiveModal, config: NgbModalConfig, private _user:AutenticacionService) {
     config.backdrop = 'static';
     config.keyboard = false;
+    // datos que define si el usuario tiene 1 convenio
+    this.userConvenio = _user.getConvenioUser();
   }
   confirmarDescargaHistorial(confirmacion: boolean){
     this.activeModal.close(true);
   }
 
+  confirmarXConvenioUsuario() {
+    console.log(this.userConvenio.convenio[0].id)
+  }
+
   confirmar(confirmacion: boolean) {
-    if (this.tipoConvenioid === ''){
+    console.log("2 convenios");
+
+    /* if (this.tipoConvenioid === ''){
       return this.mostrarError = true;
     }else if (confirmacion && this.tipoConvenioid != ''){
       this.activeModal.close(this.tipoConvenioid);
-    }
+    } */
   }
 
 }

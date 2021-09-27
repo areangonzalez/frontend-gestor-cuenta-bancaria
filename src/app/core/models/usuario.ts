@@ -5,4 +5,5 @@ export class Usuario {
   nombre?: string;
   apellido?: string;
   email?: string;
+  lista_convenio?: any;
 }

@@ -23,7 +23,6 @@ export * from './permisos.service';
 export * from './rol.service';
 export * from './export.service';
 export * from './banco-service.service';
-export * from './prestacion.service';
 export * from './provincia.service';
 export * from './departamento.service';
 export * from './backend-localidad.service';

@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
 import { CuentaComponent } from './cuenta.component';
 import { AltaCuentaPersonaComponent, ImportacionCbuComponent } from './menu';
-import { BancoServiceService, ConvenioService, CuentaSaldoService, EstadoCivilService, GeneroService, LocalidadService, NacionalidadService, PersonaService, PrestacionService, SexoService, SubSucursalService, TipoDocumentoService } from '../core/services';
+import { BancoServiceService, ConvenioService, CuentaSaldoService, EstadoCivilService, GeneroService, LocalidadService, NacionalidadService, PersonaService, SexoService, SubSucursalService, TipoDocumentoService } from '../core/services';
+import { PrestacionService } from 'src/app/core/services/prestacion.service';
 import { AuthGuard } from '../core/guards/auth.guard';
 import { ArchivoService } from '../core/services/archivo.service';
 

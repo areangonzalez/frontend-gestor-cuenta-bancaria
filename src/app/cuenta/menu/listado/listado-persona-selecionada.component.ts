@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ArchivoService, NotificacionService, PrestacionService, UtilService } from 'src/app/core/services';
+import { ArchivoService, NotificacionService, UtilService, AutenticacionService } from 'src/app/core/services';
+import { PrestacionService } from 'src/app/core/services/prestacion.service';
 import {saveAs as importedSaveAs} from "file-saver";
 import { configurarListas } from 'src/app/core/models';
 
@@ -14,10 +15,13 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
   @Input("tipo") public tipo: string;
   @Output("actualizarListadoPersonas") public actualizarListadoPersonas = new EventEmitter();
   public tipo_convenio: any = '';
+  public userConvenio: any;
 
-  constructor(private _msj: NotificacionService, private _util: UtilService, private _descargaService: ArchivoService, private _prestacionService: PrestacionService) { }
+  constructor(private _msj: NotificacionService, private _util: UtilService, private _descargaService: ArchivoService, private _prestacionService: PrestacionService, private _user: AutenticacionService) {
+  }
 
   ngOnInit(): void {
+    this.userConvenio = this._user.getConvenioUser();
   }
 
   borrarPersona(confirmacion: boolean, index: number, idPrestacion:number) {

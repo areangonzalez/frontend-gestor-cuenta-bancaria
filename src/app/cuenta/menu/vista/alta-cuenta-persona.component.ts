@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { configurarListas, ConfigurarPagina } from 'src/app/core/models';
-import { ConfiguracionParaPaginarService, CuentaSaldoService, NotificacionService, PersonaService, PrestacionService } from 'src/app/core/services';
+import { ConfiguracionParaPaginarService, CuentaSaldoService, NotificacionService, PersonaService } from 'src/app/core/services';
+import { PrestacionService } from 'src/app/core/services/prestacion.service';
 
 @Component({
   selector: 'vista-alta-cuenta-persona',

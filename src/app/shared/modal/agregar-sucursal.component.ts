@@ -1,7 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
 import { NgbModal, NgbActiveModal, NgbModalConfig, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UtilService, AutenticacionService, PrestacionService, NotificacionService } from 'src/app/core/services';
+import { UtilService, AutenticacionService, NotificacionService } from 'src/app/core/services';
+import { PrestacionService } from 'src/app/core/services/prestacion.service';
 
 @Component({
   selector: 'content-agregar-sucursal',

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { configurarListas } from 'src/app/core/models';
-import { NotificacionService, UtilService, PrestacionService } from 'src/app/core/services';
+import { NotificacionService, UtilService} from 'src/app/core/services';
+import { PrestacionService } from 'src/app/core/services/prestacion.service';
 
 @Component({
   selector: 'shared-lista-alta-persona',
