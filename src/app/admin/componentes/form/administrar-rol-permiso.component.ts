@@ -71,4 +71,10 @@ export class AdministrarRolPermisoComponent implements OnInit {
     );
   }
 
+  editarPermisos(permisos: any){
+    console.log(permisos);
+    this.datos.patchValue({tipo_convenioid: permisos.tipo_convenioid});
+    this.permisosSeleccionados = permisos.lista_permiso;
+  }
+
 }

@@ -19,6 +19,7 @@
         <span *ngFor="let permiso of convenio.lista_permiso" class="badge badge-pill badge-info m-1">{{permiso}}</span>
       </td>
       <td class="text-center">
+        <button type="button" class="btn btn-sm btn-outline-secondary" (click)="editarPermiso(convenio)"><i class="far fa-edit"></i></button>
         <admin-confirmar-borrar-permiso-usuario-modal (confirmarBorrado)="borrarDato(convenio, $event)"></admin-confirmar-borrar-permiso-usuario-modal>
       </td>
     </tr>

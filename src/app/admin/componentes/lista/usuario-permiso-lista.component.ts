@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UsuarioService, NotificacionService } from './../../../core/services';
 
 @Component({
@@ -8,6 +8,7 @@ import { UsuarioService, NotificacionService } from './../../../core/services';
 })
 export class UsuarioPermisoListaComponent implements OnInit {
   @Input("listaConvenioPermisos") public listaConvenioPermisos: any;
+  @Output("editarPermisoUsuario") public editarPermisoUsuario = new EventEmitter();
 
   constructor(private _usuarioService: UsuarioService, private _msj: NotificacionService) { }
 
@@ -38,6 +39,10 @@ export class UsuarioPermisoListaComponent implements OnInit {
       listado => { this.listaConvenioPermisos = listado; },
       error => { this._msj.cancelado(error); }
     )
+  }
+
+  editarPermiso(convenioPermiso:any){
+    this.editarPermisoUsuario.emit(convenioPermiso);
   }
 
 }
