@@ -16,7 +16,7 @@ export class AltaCuentaPersonaComponent implements OnInit {
   public filtradoBusqueda: any = {};
   public configPaginacion: ConfigurarPagina = new ConfigurarPagina(); // obteiene el objeto de configuracion de rango y paginado de comprobantes
 
-  constructor(private _route: ActivatedRoute, private _configurarPaginacion: ConfiguracionParaPaginarService, private _personaService: PersonaService, private _msj: NotificacionService, private _prestacionService: PrestacionService, private _cuentaSaldoService: CuentaSaldoService ) { }
+  constructor(private _route: ActivatedRoute, private _configurarPaginacion: ConfiguracionParaPaginarService, private _personaService: PersonaService, private _msj: NotificacionService, private _prestacionService: PrestacionService) { }
 
   ngOnInit(): void {
     this.prepararListadoPersona(this._route.snapshot.data["personas"], 1);
@@ -44,7 +44,7 @@ export class AltaCuentaPersonaComponent implements OnInit {
   }
 
   actualizarListadoConvenio() {
-    this._cuentaSaldoService.listado().subscribe(
+    this._prestacionService.listar().subscribe(
       respuesta => {
         this.listas.seleccionPersona = respuesta;
       }, error => { this._msj.cancelado(error); }
