@@ -33,8 +33,11 @@ export class PrestacionService implements Resolve<any>{
   }
 
   listar() {
+    let params = {estado: 4};
     let httpParams = new HttpParams();
-    httpParams = this._http.formatParams(httpParams, {estado: 4});
+    params = this.convenioUser(params);
+
+    httpParams = this._http.formatParams(httpParams, params);
     return this._http.get('/prestacions', httpParams);
   }
 
