@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ArchivoService, NotificacionService, UtilService, AutenticacionService } from 'src/app/core/services';
 import { PrestacionService } from 'src/app/core/services/prestacion.service';
 import {saveAs as importedSaveAs} from "file-saver";
-import { configurarListas } from 'src/app/core/models';
+import { configurarListas, UserConvenio } from 'src/app/core/models';
 
 @Component({
   selector: 'cuenta-listado-persona-selecionada',
@@ -15,7 +15,7 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
   @Input("tipo") public tipo: string;
   @Output("actualizarListadoPersonas") public actualizarListadoPersonas = new EventEmitter();
   public tipo_convenio: any = '';
-  public userConvenio: any;
+  public userConvenio: UserConvenio;
 
   constructor(private _msj: NotificacionService, private _util: UtilService, private _descargaService: ArchivoService, private _prestacionService: PrestacionService, private _user: AutenticacionService) {
   }

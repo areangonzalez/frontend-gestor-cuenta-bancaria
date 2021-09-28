@@ -3,7 +3,7 @@
     <span> Cantidad de Registro/s: {{(configurarListas.seleccionPersona.length > 0) ? configurarListas.seleccionPersona.length : 0}}</span>
   </div>
   <div class="col-3">
-    <div *ngIf="(this.userConvenio !== undefined && this.userConvenio.mostrar)" class="form-group col-md-12" >
+    <div *ngIf="(this.userConvenio.mostrar)" class="form-group col-md-12" >
       <select class="form-control form-control-sm" id="convenio" [(ngModel)]="tipo_convenio" (change)="buscarPorConvenio(tipo_convenio)">
         <option value="">Seleccione un Convenio</option>
         <option *ngFor="let convenio of configurarListas.convenios" value="{{convenio.id}}">{{convenio.nombre}}</option>

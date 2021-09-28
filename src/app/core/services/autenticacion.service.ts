@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { JwtService } from "./jwt.service";
 import { ApiService } from './api.service';
-import { Usuario } from './../models/usuario';
+import { Usuario, UserConvenio } from './../models';
 
 @Injectable({ providedIn: 'root' })
 export class AutenticacionService {
@@ -44,7 +44,7 @@ export class AutenticacionService {
 
     getConvenioUser() {
       let convenios = this.loggedIn.lista_convenio;
-      let lista_convenio = {mostrar: false, convenio: []};
+      let lista_convenio: UserConvenio = {mostrar: false, convenio: []};
       switch (convenios.length) {
         case 0:
           lista_convenio.mostrar = (this.loggedIn.rol == "admin") ? true : false;

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs';
 import { AutenticacionService } from '.';
+import { UserConvenio } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +39,7 @@ export class PrestacionService implements Resolve<any>{
   }
 
   private convenioUser(params: any) {
-    let tipoConvenio = this._user.getConvenioUser();
+    let tipoConvenio: UserConvenio = this._user.getConvenioUser();
 
       if (tipoConvenio.convenio.length == 1) {
         params["tipo_convenioid"] = tipoConvenio.convenio[0].id;
