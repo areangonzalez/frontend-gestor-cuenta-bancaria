@@ -3,6 +3,7 @@ import { NgbModal, NgbActiveModal, NgbModalConfig, NgbDatepickerConfig } from '@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UtilService, AutenticacionService, NotificacionService } from 'src/app/core/services';
 import { PrestacionService } from 'src/app/core/services/prestacion.service';
+import { UserConvenio } from 'src/app/core/models';
 
 @Component({
   selector: 'content-agregar-sucursal',
@@ -19,7 +20,7 @@ import { PrestacionService } from 'src/app/core/services/prestacion.service';
       </div>
         <fieldset [formGroup]="sucursalForm">
           <div class="row">
-            <div class="col-md-12">
+            <div *ngIf="(userConvenio.mostrar)" class="col-md-12">
               <div class="form-group">
                 <label for="convenio">Convenio (<span class="text-danger">*</span>)</label>
                 <select class="form-control" id="convenio" formControlName="tipo_convenioid" [ngClass]="{'is-invalid': (sucursalForm.get('tipo_convenioid').invalid && submitted)}">
@@ -93,9 +94,10 @@ export class AgregarSucursalContent {
   @Input("personanombre") public personanombre:string;
   public sucursalForm: FormGroup;
   public submitted: boolean = false;
+  public userConvenio: UserConvenio;
 
   constructor(public activeModal: NgbActiveModal, private _fb:FormBuilder, private _util: UtilService,
-    private _configNgbDate: NgbDatepickerConfig, private _auth: AutenticacionService, private _prestacionService: PrestacionService,
+    private _configNgbDate: NgbDatepickerConfig, private _user: AutenticacionService, private _prestacionService: PrestacionService,
     private _msj: NotificacionService) {
     this.sucursalForm = _fb.group({
       tipo_convenioid: '',
@@ -108,7 +110,7 @@ export class AgregarSucursalContent {
     // configuracion de fecha en combos
     _configNgbDate.minDate = {year: 1900, month: 1, day: 1};
     // datos del usuairo logueado
-
+    this.userConvenio = this._user.getConvenioUser();
   }
   /**
    * Cierro el modal
@@ -121,6 +123,10 @@ export class AgregarSucursalContent {
    */
   validarPersona() {
     this.submitted = true;
+    if (this.userConvenio.convenio.length == 1) {
+      this.sucursalForm.patchValue({tipo_convenioid: this.userConvenio.convenio[0].id});
+    }
+
     if ( this.sucursalForm.invalid ) {
       return;
     }else{
@@ -142,7 +148,7 @@ export class AgregarSucursalContent {
   guardarPrestacion(prestacion: any) {
     this._prestacionService.guardar(prestacion).subscribe(
       respuesta => {
-        this._msj.exitoso("Se ha puesto el convenio en preparado para exportar de " + this.personanombre);
+        this._msj.exitoso("Se ha guardado correctamente los datos para el convenio.");
         this.activeModal.close(true);
       }, error => { this._msj.cancelado(error); }
     );

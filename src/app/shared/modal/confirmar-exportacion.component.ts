@@ -8,7 +8,7 @@ import { AutenticacionService, NotificacionService } from 'src/app/core/services
     <div class="modal-header">
       <h5 class="modal-title">Confirmación</h5>
     </div>
-    <section *ngIf="(tipoExportacion !== 'historial' && this.userConvenio.mostrar)">
+    <section *ngIf="(tipoExportacion !== 'historial' && userConvenio.mostrar)">
       <div class="modal-body d-flex justify-content-center">
         <span>Se debe seleccionar un convenio para descargar el archivo</span>
       </div>
