@@ -41,7 +41,7 @@ export class HistorialListadoComponent {
           if (!falla) {
             setTimeout(() => {
               this._msj.exitoso("Se ha descargado correctamente el archivo");
-              this.cambioPagina(1);
+              this.cambioPagina(this.configPaginacion.page);
             }, 800);
           }
       }, error => {
