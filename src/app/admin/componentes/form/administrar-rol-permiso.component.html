@@ -10,7 +10,6 @@
         <div *ngIf="datos.get('tipo_convenioid').hasError('required')">Este campo es requerido. </div>
     </div>
   </div>
-  {{ permisosSeleccionados | json }}
   <div class="col-md-12">
     <div class="form-group">
       <label for="permisos">Permiso/s:</label>
@@ -19,8 +18,7 @@
         placeholder="Seleccione uno o varios permiso/s."
         appendTo="body"
         multiple="true"
-        [(ngModel)]="permisosSeleccionados"
-        [compareWith]="permisosSeleccionadosEdit">
+        [(ngModel)]="permisosSeleccionados">
       </ng-select>
     </div>
   </div>
