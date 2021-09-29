@@ -14,8 +14,10 @@ export class AdministrarRolPermisoComponent implements OnInit {
   @Input("baja") public baja: boolean;
   public listaConvenioPermisos: any = [{ lista_coonvenio: { lista_permiso: [] }}];
   public permisosSeleccionados: any = [];
+  public permisosSeleccionadosEdit: any = [];
   public datos: FormGroup;
   public submitted: boolean = false;
+  public editado: boolean = false;
 
   constructor(private _msj: NotificacionService, private _usuarioService: UsuarioService, private _fb: FormBuilder) {
     this.datos = _fb.group({
@@ -43,16 +45,24 @@ export class AdministrarRolPermisoComponent implements OnInit {
    */
   validarDatos() {
     this.submitted = true;
+    let permisos: any = [];
     if (this.datos.invalid) {
       return;
     }else if (this.permisosSeleccionados.length == 0) {
       this._msj.cancelado("No se ha seleccionado ningun permiso.");
       return;
     }else{
+      if (this.editado) {
+        for (const key in this.permisosSeleccionados) {
+          permisos.push({name: this.permisosSeleccionados[key]});
+        }
+      }
+
+
       let params: any  = {
         usuarioid: this.idUsuario,
         tipo_convenioid: this.datos.value.tipo_convenioid,
-        lista_permiso: this.permisosSeleccionados
+        lista_permiso: (this.editado) ? permisos : this.permisosSeleccionados
       };
 
       this.guardar(params)
@@ -75,6 +85,7 @@ export class AdministrarRolPermisoComponent implements OnInit {
     console.log(permisos);
     this.datos.patchValue({tipo_convenioid: permisos.tipo_convenioid});
     this.permisosSeleccionados = permisos.lista_permiso;
+    let editado = true;
   }
 
 }
