@@ -55,19 +55,20 @@ export class ListadoPersonaSelecionadaComponent implements OnInit {
    * @param datosPersona datos editados de una persona
    */
   editarPersona(datosPersona: any) {
-    // busco la persona en listaod y agrego los cambios a la persona encontrada
-    for (let i = 0; i < this.configurarListas.seleccionPersona.length; i++) {
-      if (this.configurarListas.seleccionPersona[i].id == datosPersona.id) {
-        Object.assign(datosPersona, { prestacion: this.configurarListas.seleccionPersona[i].prestacion, tiene_cbu: this.configurarListas.seleccionPersona[i].tiene_cbu });
-        this.configurarListas.seleccionPersona[i] = datosPersona;
-        this.actualizarListadoPersonas.emit(true);
-      }
-    }
+    this.actualizarListaSeleccion(true);
+    this.actualizarListadoPersonas.emit(true);
   }
 
   actualizarListaSeleccion(actualizar: boolean) {
     if (actualizar) {
-      this._prestacionService.listar().subscribe(
+      let params = {};
+      if (this.userConvenio.convenio.length == 1) {
+        params["tipo_convenioid"] = this.userConvenio.convenio[0]["id"];
+      }else if (this.tipo_convenio != '') {
+        params["tipo_convenioid"] = this.tipo_convenio;
+      }
+
+      this._prestacionService.buscar(params).subscribe(
         respuesta => {
           this.configurarListas.seleccionPersona = respuesta;
           this.actualizarListadoPersonas.emit(true);
