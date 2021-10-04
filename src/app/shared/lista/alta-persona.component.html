@@ -14,6 +14,7 @@
       <th scope="col" rowspan="1" colspan="2">Apellido y Nombre</th>
       <th class="text-center">Localidad</th>
       <th *ngIf="(tipo == 'cuenta')" class="text-center">Sucursal</th>
+      <th *ngIf="(tipo == 'importar')" class="text-center">Convenio</th>
       <th *ngIf="(tipo !== 'cuenta')" colspan="2" class="text-center" scope="col">Fecha de Ingreso</th>
       <th class="text-center">Acción</th>
     </tr>
@@ -41,6 +42,7 @@
       </td>
       <td class="text-center">{{(persona.lugar !== undefined) ? persona.lugar.localidad : ""}}</td>
       <td class="text-center">{{(persona.sucursal !== "") ? persona.sucursal : ""}}</td>
+      <td *ngIf="(tipo == 'importar')" class="text-center">{{persona.tipo_convenio}}</td>
       <td class="text-center">{{persona.create_at | date: 'dd/MM/yyyy'}}</td>
       <td class="text-center">
         <modal-info-persona [persona]="persona" [listadoBancos]="configurarListas.bancos" (actualizarDatos)="actualizarListado($event, persona.cuil)"></modal-info-persona>
