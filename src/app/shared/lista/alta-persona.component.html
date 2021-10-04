@@ -15,18 +15,18 @@
       <th class="text-center">Localidad</th>
       <th *ngIf="(tipo == 'cuenta')" class="text-center">Sucursal</th>
       <th *ngIf="(tipo == 'importar')" class="text-center">Convenio</th>
-      <th class="text-center" scope="col">Fecha de Ingreso</th>
+      <th *ngIf="(tipo == 'importar')" class="text-center" scope="col">Fecha de Ingreso</th>
       <th class="text-center">Acción</th>
     </tr>
   </thead>
-  <tbody *ngIf="(listadoPersonas.length == 0)">
+  <tbody *ngIf="(listadoPersonas.length == 4)">
     <tr class="table-warning">
-      <td rowspan="1" colspan="6" class="text-center">
+      <td rowspan="1" colspan="7" class="text-center">
         <strong>NO SE HAN ENCONTRADO PERSONAS</strong>
       </td>
     </tr>
   </tbody>
-  <tbody *ngIf="(listadoPersonas.length > 0)">
+  <tbody *ngIf="(listadoPersonas.length > 5)">
     <tr *ngFor="let persona of listadoPersonas" [ngClass]="{'table-warning': persona.convenio_pendiente, 'table-info': persona.para_exportar}" ngbTooltip="{{esPendiente(persona)}}" container="body" >
       <td >{{persona.cuil}}</td>
       <td rowspan="1" colspan="2">
@@ -43,7 +43,7 @@
       <td class="text-center">{{(persona.lugar !== undefined) ? persona.lugar.localidad : ""}}</td>
       <td *ngIf="(tipo == 'cuenta')" class="text-center">{{(persona.sucursal !== "") ? persona.sucursal : ""}}</td>
       <td *ngIf="(tipo == 'importar')" class="text-center">{{persona.tipo_convenio}}</td>
-      <td class="text-center">{{persona.create_at | date: 'dd/MM/yyyy'}}</td>
+      <td *ngIf="(tipo == 'importar')" class="text-center">{{persona.create_at | date: 'dd/MM/yyyy'}}</td>
       <td class="text-center">
         <modal-info-persona [persona]="persona" [listadoBancos]="configurarListas.bancos" (actualizarDatos)="actualizarListado($event, persona.cuil)"></modal-info-persona>
         <modal-editar-persona [config-listas]="configurarListas" [persona]="persona" [tipo]="tipo" (obtenerDatosPersona)="obtenerCuilPersona($event)"></modal-editar-persona>
