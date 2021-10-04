@@ -35,6 +35,9 @@ export class UtilService {
   public darFormatoAfecha(fecha: string, formato: string) {
     let fechaArray: any;
     let nuevaFecha: string = '';
+    let verificoFecha = fecha.split(" ");
+    fecha = (verificoFecha.length == 1) ? verificoFecha[0] : verificoFecha[0];
+
     switch(formato){
       case "dd/MM/yyyy":
         fechaArray = fecha.split("-");
