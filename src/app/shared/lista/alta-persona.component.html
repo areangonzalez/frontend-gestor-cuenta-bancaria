@@ -13,20 +13,20 @@
       <th scope="col">Cuil</th>
       <th scope="col" rowspan="1" colspan="2">Apellido y Nombre</th>
       <th class="text-center">Localidad</th>
-      <th *ngIf="(tipo == 'cuenta')" class="text-center">Sucursal</th>
+      <th *ngIf="(tipo == 'cuenta')" rowspan="1" colspan="2" class="text-center">Sucursal</th>
       <th *ngIf="(tipo == 'importar')" class="text-center">Convenio</th>
       <th *ngIf="(tipo == 'importar')" class="text-center" scope="col">Fecha de Ingreso</th>
       <th class="text-center">Acción</th>
     </tr>
   </thead>
-  <tbody *ngIf="(listadoPersonas.length == 4)">
+  <tbody *ngIf="(listadoPersonas.length == 0)">
     <tr class="table-warning">
       <td rowspan="1" colspan="7" class="text-center">
         <strong>NO SE HAN ENCONTRADO PERSONAS</strong>
       </td>
     </tr>
   </tbody>
-  <tbody *ngIf="(listadoPersonas.length > 5)">
+  <tbody *ngIf="(listadoPersonas.length > 0)">
     <tr *ngFor="let persona of listadoPersonas" [ngClass]="{'table-warning': persona.convenio_pendiente, 'table-info': persona.para_exportar}" ngbTooltip="{{esPendiente(persona)}}" container="body" >
       <td >{{persona.cuil}}</td>
       <td rowspan="1" colspan="2">
