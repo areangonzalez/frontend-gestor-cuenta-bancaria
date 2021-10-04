@@ -77,13 +77,23 @@ export class AltaPersonaComponent implements OnInit {
     }
   }
 
-  esPendiente(pendiente: boolean, enEspera: boolean, observacion: string, fecha_pedido: string, convenio: string) {
-    let texto: string = (observacion != "") ? "Observación: " + observacion: "";
-    if (pendiente == true) {
-      return "Esperando respuesta del banco desde "+ this._utils.darFormatoAfecha(fecha_pedido, 'dd/MM/yyyy') +" por el convenio " + convenio + ". " + texto;
-    }
-    if (enEspera == true) {
-      return "Esperando a ser exportado por el convenio " + convenio + ". " + texto;
+  esPendiente(persona: any) {
+    let texto: string = (persona.observacion != "") ? "Observación: " + persona.observacion: "";
+
+    switch (this.tipo) {
+      case "cuenta":
+        if (persona.convenio_pendiente == true) {
+          return "Esperando respuesta del banco desde "+ this._utils.darFormatoAfecha(persona.export_at, 'dd/MM/yyyy') +" por el convenio " + persona.tipo_convenio + ". " + texto;
+        }
+        if (persona.para_exportar == true) {
+          return "Esperando a ser exportado por el convenio " + persona.tipo_convenio + ". " + texto;
+        }
+        break;
+      case "importar":
+        if (persona.import_at !== "") {
+          return "Fecha Importación: " + this._utils.darFormatoAfecha(persona.import_at, 'dd/MM/yyyy');
+        }
+        break;
     }
   }
 

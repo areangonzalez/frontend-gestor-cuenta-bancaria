@@ -1,7 +1,7 @@
 /**
- * ultimo commit 19cacff7522ff00caffe64c7709281a3ee4c59d2
+ * ultimo commit fe0cc83067b34a205f75b0321018644a42f51b2b
  */
 export const environment = {
   production: true,
-  apiUrl: 'http://api.gcb.local/api'
+  apiUrl: 'https://gestor-bancario-api-test.rionegro.gov.ar/api'
 };
