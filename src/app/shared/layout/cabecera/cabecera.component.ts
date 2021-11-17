@@ -13,7 +13,7 @@ export class CabeceraComponent implements OnInit {
   public nombreUsuario: string = '';
   public isAdmin: boolean = false;
 
-  constructor( private _router: Router,  private _auth: AutenticacionService, private _loading: LoaderService, private _autenticacion: AutenticacionService ) { }
+  constructor( private _router: Router,  private _auth: AutenticacionService, private _loading: LoaderService ) { }
 
   ngOnInit(): void {
     this.setNombreUsuario();
@@ -22,7 +22,7 @@ export class CabeceraComponent implements OnInit {
   cerrarSesion() {
     this._loading.show();
       setTimeout(() => {
-        this._autenticacion.logout();
+        this._auth.logout();
         this._loading.hide();
         this._router.navigate(['/login']);
        }, 1000);
