@@ -1,8 +1,9 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
-import { ConfigurarPagina } from '../core/models';
-import { ConfiguracionParaPaginarService, ExportService, NotificacionService, UtilService } from '../core/services';
+import {saveAs as importedSaveAs} from "file-saver";
+import { ConfigurarPagina, UserConvenio } from '../core/models';
+import { ArchivoService, AutenticacionService, ConfiguracionParaPaginarService, ExportService, NotificacionService, UtilService } from '../core/services';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -11,6 +12,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./historial-exportacion.component.scss']
 })
 export class HistorialExportacionComponent implements OnInit {
+  public tipo_convenio: any = '';
+  public userConvenio: UserConvenio;
   public historial: any;
   public filtradoBusqueda: any = {};
   public configPaginacion: ConfigurarPagina = new ConfigurarPagina(); // obteiene el objeto de configuracion de rango y paginado de comprobantes
@@ -26,18 +29,18 @@ export class HistorialExportacionComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute, private _configurarPaginacion: ConfiguracionParaPaginarService,
     private _exportService: ExportService, private _msj: NotificacionService, private _fb: FormBuilder,
-    private _util: UtilService
+    private _util: UtilService, private _user: AutenticacionService
   ) {
     this.busquedaAvanzada = _fb.group({
       export_at_desde: '',
       exportAtDesde: '',
       export_at_hasta: '',
-      exportAtHasta: '',
-      tipo: ''
+      exportAtHasta: ''
     });
   }
 
   ngOnInit(): void {
+    this.userConvenio = this._user.getConvenioUser();
     this.prepararListado(this._route.snapshot.data["historial"], 1);
     this.tipoConvenioLista = this._route.snapshot.data["convenios"];
   }
@@ -50,7 +53,7 @@ export class HistorialExportacionComponent implements OnInit {
   }
 
   realizarBusqueda(params: any, pagina: number) {
-    Object.assign(params, {page: pagina-1, paginasize: 20});
+    Object.assign(params, {page: pagina-1, pagesize: 20});
     this.filtradoBusqueda = params;
     this._exportService.buscar(params).subscribe(
       respuesta => {
@@ -112,6 +115,42 @@ export class HistorialExportacionComponent implements OnInit {
       this.busquedaAvanzada.patchValue(busqueda);
       this.configPaginacion.page = 1;
       this.buscar();
+  }
+
+  /**
+   * Permite descargar un archivo de texto
+   */
+   public exportarArchivoPendientes(tipoConvenioid:any) {
+     console.log(tipoConvenioid);
+
+    if (tipoConvenioid !== ''){
+      let params = {"tipo_convenioid": tipoConvenioid};
+
+      this._exportService.descargarPendiente(tipoConvenioid).subscribe(
+        respuesta => {
+          let blob = new Blob([respuesta["cuenta_saldo"]], {type:"text/plain;charset=utf-8"});
+          let hoy = this._util.fechaHoy();
+
+          let filename = 'CTASLDO_'+ hoy +'.txt';
+          importedSaveAs(blob, filename);
+
+          setTimeout(() => {
+            this._msj.exitoso(respuesta["message"]);
+          }, 800);
+      }, error => {
+
+        /* let msjObject = JSON.parse(error); */
+        this.tipoError(error);
+      });
+    }
+  }
+
+  private tipoError(error: any) {
+    if (typeof error === 'string') {
+      this._msj.cancelado(error);
+    }else{
+      this._msj.erroresMultiples(error);
+    }
   }
 
   /**

@@ -1,2 +1,3 @@
 <button *ngIf="(tipoBoton == 'boton-largo')" type="button" class="btn btn-sm btn-secondary btn-block" ngbTooltip="Exportar listado" (click)="open()" [disabled]="(listaPersona.length == 0)"><i class="fas fa-file-download"></i> {{tituloBtn}}</button>
 <button *ngIf="(tipoBoton == 'boton-icono')" type="button" class="btn btn-sm btn-secondary" ngbTooltip="Descargar Archivo" (click)="open()"><i class="fas fa-file-download"></i></button>
+<button *ngIf="(tipoBoton == 'boton-pendiente')" type="button" class="btn btn-md btn-secondary btn-block" ngbTooltip="Exportar pendientes" (click)="open()"><i class="fas fa-file-download"></i> Exportar Pendientes</button>

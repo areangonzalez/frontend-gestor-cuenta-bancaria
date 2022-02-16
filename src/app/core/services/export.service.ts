@@ -26,6 +26,10 @@ export class ExportService implements Resolve<any> {
     return this._http.get('/exports/' + id);
   }
 
+  descargarPendiente(convenioid:number) {
+    return this._http.get('/exports/pendientes-por-convenio/' + convenioid);
+  }
+
   resolve() {
     let httpParams = new HttpParams();
     httpParams = this._http.formatParams(httpParams, { sort: '-export_at', page: 0, pagesize: 20 });
