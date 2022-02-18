@@ -12,7 +12,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./historial-exportacion.component.scss']
 })
 export class HistorialExportacionComponent implements OnInit {
-  public tipo_convenio: any = '';
   public userConvenio: UserConvenio;
   public historial: any;
   public filtradoBusqueda: any = {};

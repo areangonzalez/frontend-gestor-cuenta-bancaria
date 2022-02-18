@@ -1,5 +1,6 @@
 /**
- * ultimo commit d46fc05ac2c2adb8328e75e70c9d6fe6c7dd08ce
+ * ultimo commit 6227798b6e10655cf3053a312a22e356fa8ab306
+ * arreglo de acceso de login de soporte y exportacion de pedido de cuentas pendientes
  */
 export const environment = {
   production: true,
