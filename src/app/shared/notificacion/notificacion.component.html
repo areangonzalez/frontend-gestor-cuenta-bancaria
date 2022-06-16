@@ -12,9 +12,14 @@
         <div *ngIf="(tipo === 5)" class="ml-3 pt-3">
           <ul *ngFor="let msj of mensaje">
             <li>{{msj.persona}}</li>
-            <li *ngIf="(msj.direccion !== undefined)">{{msj.direccion}}</li>
+            <li *ngIf="(msj.tipo_documento !== undefined)">{{msj.tipo_documento}}</li>
+            <li *ngIf="(msj.nacionalidad !== undefined)">{{msj.nacionalidad}}</li>
             <li *ngIf="(msj.calle !== undefined)">{{msj.calle}}</li>
             <li *ngIf="(msj.personaid !== undefined)">{{msj.personaid}}</li>
+            <li *ngIf="(msj.fecha_nacimiento !== undefined)">{{msj.fecha_nacimiento}}</li>
+            <li *ngIf="(msj.sexo !== undefined)">{{msj.sexo}}</li>
+            <li *ngIf="(msj.cuil !== undefined)">{{msj.cuil}}</li>
+            <li *ngIf="(msj.nro_documento !== undefined)">{{msj.nro_documento}}</li>
           </ul>
         </div>
       </div>
